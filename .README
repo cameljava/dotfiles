@@ -1,0 +1,5 @@
+set up my dotfile:
+
+mkdir $HOME/git/cameljava_github/dotfiles
+echo "alias config='/usr/bin/git --git-dir=$HOME/git/cameljava_github/dotfiles --work-tree=$HOME'" >> $HOME/.bashrc
+echo "config config --local status.showUntrackedFiles no" >> $HOME/.bashrc
