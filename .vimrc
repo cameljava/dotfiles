@@ -1,6 +1,21 @@
 " .vimrc
 " Author: Kevin Lee
-" Source: 
+" Source:
+
+call plug#begin('~/.vim/plugged')
+Plug 'junegunn/vim-plug'
+Plug 'tpope/vim-surround'
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'tomtom/tcomment_vim'
+Plug 'easymotion/vim-easymotion'
+Plug 'scrooloose/nerdtree'
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+Plug 'w0rp/ale'
+Plug 'terryma/vim-multiple-cursors'
+call plug#end()
 
 " Basic settings and variables"{{{
 
@@ -20,7 +35,7 @@ set tabstop=2 shiftwidth=2 expandtab "setup default tab/shift/expand
 set showmode showcmd ttyfast
 "set guioptions=a            " hide scrollbars/menu/tabs
 let mapleader = ","
-"let maplocalleader = ";"   "not sure about this, turn off 
+"let maplocalleader = ";"   "not sure about this, turn off
 "set foldmethod=marker       " sets the fold method to {{{ }}} markers
 "set shortmess=atI           " disable welcome screen
 set listchars=tab:\|\ ,trail:·,eol:¬
@@ -274,7 +289,7 @@ colorscheme slate
 " Map Y to act like D and C, i.e. yank until EOL, rather than act like yy
 map Y y$
 
-" Easily create HTML unorded lists. 
+" Easily create HTML unorded lists.
 map <F3> i<ul><CR><Space><Space><li></li><CR><Esc>I</ul><Esc>kcit
 map <F4> <Esc>o<li></li><Esc>cit
 
