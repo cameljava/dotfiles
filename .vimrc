@@ -11,13 +11,19 @@ Plug 'vim-airline/vim-airline'
 Plug 'tomtom/tcomment_vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'scrooloose/nerdtree'
+Plug 'PhilRunninger/nerdtree-buffer-ops'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'w0rp/ale'
 Plug 'terryma/vim-multiple-cursors'
+Plug 'junegunn/vim-easy-align'
+Plug 'othree/eregex.vim'
 call plug#end()
 
 " Basic settings and variables"{{{
+
+"fix mac backspace issue
+set backspace=indent,eol,start
 
 filetype plugin indent on
 syntax on
@@ -215,31 +221,7 @@ endif
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
 " }}}
-" ctrlp {{{
 
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_dotfiles = 1
-let g:ctrlp_working_path_mode = 2
-let g:ctrlp_match_window_bottom = 0
-let g:ctrlp_match_window_reversed = 0
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  'build/.*\|/temp/.*',
-  \ 'file': '\.jar$\|\.ear$|\.zip',
-  \ }
-let g:ctrlp_user_command = 'git ls-files %s'
-" }}}
-
-" vim-go {{{
-let g:go_fmt_command = "goimports"
-au FileType go nmap <Leader>gd <Plug>(go-doc)
-au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
-au FileType go nmap <leader>t <Plug>(go-test)
-au FileType go nmap <leader>rr <Plug>(go-run)
-au FileType go nmap <Leader>e <Plug>(go-rename)
-au FileType go nmap <Leader>ds <Plug>(go-def-split)
-au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
-au FileType go nmap <Leader>dt <Plug>(go-def-tab)
-" }}}
 " Vim Dispatch {{{
 nnoremap <leader>gt :Dispatch<CR>
 " }}}
@@ -292,7 +274,6 @@ map Y y$
 " Easily create HTML unorded lists.
 map <F3> i<ul><CR><Space><Space><li></li><CR><Esc>I</ul><Esc>kcit
 map <F4> <Esc>o<li></li><Esc>cit
-
 
 " Quickly save your file.
 map <leader>w :w!<cr>
