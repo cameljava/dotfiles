@@ -201,11 +201,9 @@ nmap <silent> <leader>eg :e ~/.gitconfig<CR>
 " Edit the .tmux.conf"
 nmap <silent> <leader>et :e ~/.tmux.conf<CR>
 " Edit slate configuration
-nmap <silent> <leader>el :e ~/.slate<cr>
+"nmap <silent> <leader>el :e ~/.slate<cr>
 " Open a scratch file
 nmap <silent> <leader>eh :e ~/scratch.txt<CR>
-" Open dev tools content folder
-nmap <silent> <leader>ec :e ~/.vim/bundle/solarized/colors/solarized.vim<CR>
 " End Quick editing  }}}
 " Plugins configuration"{{{
 
