@@ -28,6 +28,8 @@ set backspace=indent,eol,start
 filetype plugin indent on
 syntax on
 set encoding=utf-8
+"turn on hidden to allow toggle between buffer with unsaved
+set hidden
 set visualbell noerrorbells " don't beep
 set hlsearch incsearch      " hightlight search and incremental search
 set gdefault                " global replace by default
