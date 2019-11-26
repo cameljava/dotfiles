@@ -34,7 +34,7 @@ map <leader>w :w!<cr>
 " Quickly save and quit your file.
 map <leader>wq :wq<cr>
 " Map Y to act like D and C, i.e. yank until EOL, rather than act like yy
-map Y y$ 
+map Y y$
 "turn on hidden to allow toggle between buffer with unsaved
 set hidden
 set visualbell noerrorbells " don't beep
