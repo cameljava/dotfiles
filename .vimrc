@@ -19,6 +19,7 @@ Plug 'w0rp/ale'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'junegunn/vim-easy-align'
 Plug 'othree/eregex.vim'
+Plug 'altercation/vim-colors-solarized'
 call plug#end()
 
 " Basic settings and variables"{{{
@@ -50,32 +51,6 @@ let mapleader = ","
 set listchars=tab:\|\ ,trail:·,eol:¬
 set nospell                 " disable spellcheck for code
 " End Basic settings and variables}}}
-
-" Auto-commands {{{
-
-aug nick
-  " Remove all autocommands for the current group.
-  au!
-  " .md extension is markdown
-  au BufRead,BufNewFile *.md set ft=markdown foldlevel=2 wrap linebreak textwidth=0 wrapmargin=0 spell
-  au BufRead,BufNewFile *.wp set ft=markdown foldlevel=2 wrap linebreak textwidth=0 wrapmargin=0 spell
-  if v:version > 703
-    au BufRead,BufNewFile *.md set colorcolumn=80
-    au BufRead,BufNewFile *.wp set colorcolumn=80
-  endif
-
-  " Spelling on markdown
-  au BufRead,BufNewFile *.md set spell
-  au BufRead,BufNewFile *.go set ts=4
-  " run go test on Dispatch
-  au FileType go let b:dispatch = 'go build'
-  " javascript tabstop 2 expandtab
-  au BufRead,BufNewFile *.js set ft=javascript foldlevel=2 ts=2 sw=2 expandtab textwidth=79
-  if v:version > 703
-    au BufRead,BufNewFile *.js set colorcolumn=80
-  endif
-aug END
-" End Auto-commands }}}
 
 " Keyboard Shortcuts and remappings   "{{{
 
@@ -114,10 +89,6 @@ nmap <silent> <leader>v :bel :vne<CR>
 nmap <silent> <leader>f :bel :new<CR>
 "close viewport buffer"
 nmap <silent> <leader>x :hid<CR>
-" }}}
-" Wordpress workarounds {{{
-nmap <leader>pr :%s/\`\([^`]\+\)`/\<span class=\"text codecolorer\"\>\1<\/span>/p<cr>:set nohlsearch<CR>
-nmap <leader>pu :%s/<span.\{-}>\(.\{-}\)<\/span>/`\1`/p<cr>:set nohlsearch<CR>
 " }}}
 
 " Code on retina {{{
@@ -183,15 +154,15 @@ vmap <silent> <expr> p <sid>Repl()
 " Theme and Color {{{
 
 set background=dark
-"colorscheme solarized
+colorscheme solarized
 "font is antialiased Terminus
 " set noantialias
 set guifont=Terminus\ (TTF):h14
 " set guifont=Hack:h14
 "draw vertical column at 80
-if v:version > 703
-  set colorcolumn=80
-endif
+" if v:version > 703
+  " set colorcolumn=80
+" endif
 " End Theme and Color }}}
 " Quick editing  {{{
 
@@ -283,4 +254,28 @@ map <leader>w :w!<cr>
 map <leader>wq :wq<cr>
 
 " For more options see ":help option-list" and ":options".
+
+" Auto-commands {{{
+aug nick
+  " Remove all autocommands for the current group.
+  au!
+  " .md extension is markdown
+  au BufRead,BufNewFile *.md set ft=markdown foldlevel=2 wrap linebreak textwidth=0 wrapmargin=0 spell
+  au BufRead,BufNewFile *.wp set ft=markdown foldlevel=2 wrap linebreak textwidth=0 wrapmargin=0 spell
+  if v:version > 703
+    au BufRead,BufNewFile *.md set colorcolumn=80
+    au BufRead,BufNewFile *.wp set colorcolumn=80
+  endif
+  " Spelling on markdown
+  au BufRead,BufNewFile *.md set spell
+  au BufRead,BufNewFile *.go set ts=4
+  " run go test on Dispatch
+  au FileType go let b:dispatch = 'go build'
+  " javascript tabstop 2 expandtab
+  au BufRead,BufNewFile *.js set ft=javascript foldlevel=2 ts=2 sw=2 expandtab textwidth=79
+  if v:version > 703
+    au BufRead,BufNewFile *.js set colorcolumn=80
+  endif
+aug END
+" End Auto-commands }}}
 
