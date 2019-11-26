@@ -1,16 +1,11 @@
 [user]
-	name = Kevin Lee
-	email = kevlee@cochlear.com
+  name = Kevin Lee
+  email = kevlee@cochlear.com
   username = kevlee
-#[mergetool "sourcetree"]
-#	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-#	trustExitCode = true
 [includeIf "gitdir:~/git/cameljava_github/"]
-    path = .gitconfig-cameljava-github
+  path = .gitconfig-cameljava-github
 [includeIf "gitdir:~/git/cameljava_bitbucket/"]
-    path = .gitconfig-cameljava-bitbucket
-[includeIf "gitdir:~/company_b/"]
-    path = .gitconfig-company_b
+  path = .gitconfig-cameljava-bitbucket
 [color]
   # Enable colors in color-supporting terminals
   ui = auto
@@ -44,16 +39,16 @@
   # Don't paginate output by default
   pager = cat
   # Global ignore file (not shared)
-	excludesfile = /Users/kevlee/.gitignore_global
+  excludesfile = /Users/kevlee/.gitignore_global
   # Global shared hooks directory
   # hooksPath = ~/.githooks
   #
   # Out of luck: on Windows w/o msysGit? You may have Notepad++…
   # editor = 'C:/Program Files (x86)/Notepad++/notepad++.exe' -multiInst -notabbar -nosession -noPlugin
-  # 
+  #
   # If you want to use Sublime Text 2's subl wrapper:
   # editor = subl -w
-  # 
+  #
   # Sublime Text 3 on Windows:
   # editor = 'c:/Program Files/Sublime Text 3/subl.exe' -w
   #
@@ -99,8 +94,8 @@
   # Disable fast-forward merges as default merge strategy.
   # Force explicit call of `git merge --ff …`.
   ff = false
-	# tool = smerge
-	tool = vimdiff
+  # tool = smerge
+  tool = vimdiff
   # Custom/dedicated merge drive for npm lock files (`package-lock.json`).
   # Also works with Yarn.
   # Use Git attributes to set targeted files (located at `~/.config/git/attributes``
@@ -167,13 +162,11 @@
   prereleaseSuffix = .beta
   prereleaseSuffix = -rc
   prereleaseSuffix = .rc
-# [difftool "sourcetree"]
-	# cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	# path = 
-# [mergetool "sourcetree"]
-	# cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	# trustExitCode = true
-# [mergetool "smerge"]
-	# cmd = smerge
 [commit]
-	template = /Users/kevlee/.stCommitMsg
+  template = /Users/kevlee/.stCommitMsg
+[difftool "sourcetree"]
+  cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+  path =
+[mergetool "sourcetree"]
+  cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+  trustExitCode = true
