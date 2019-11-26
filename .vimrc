@@ -27,7 +27,7 @@ call plug#end()
 "fix mac backspace issue
 set backspace=indent,eol,start
 
-filetype plugin indent on
+filetype indent on
 syntax on
 set encoding=utf-8
 "turn on hidden to allow toggle between buffer with unsaved
@@ -70,12 +70,6 @@ nmap <silent> <leader>w :set nowrap!<CR>
 "hide hightlight of searches"
 nmap <silent> // :nohlsearch<CR>
 " Movements shortcuts {{{
-" below setting seems not working
-" C-h/j/k/l to move between buffers
-" map <C-h> <C-w>h
-" map <C-j> <C-w>j
-" map <C-k> <C-w>k
-" map <C-l> <C-w>l
 " Buffer switching/management, might as well use those keys for something useful
 map <Right> :bnext<CR>
 imap <Right> <ESC>:bnext<CR>
@@ -89,49 +83,6 @@ nmap <silent> <leader>v :bel :vne<CR>
 nmap <silent> <leader>f :bel :new<CR>
 "close viewport buffer"
 nmap <silent> <leader>x :hid<CR>
-" }}}
-
-" Code on retina {{{
-nnoremap <silent> <leader>9 :call CodeOnRetina()<CR>
-let g:retina_code_environment_on = 0
-function! CodeOnRetina()
-  set fuopt=maxvert
-  if g:retina_code_environment_on
-    if has('gui_macvim')
-      set noantialias|set gfn=Terminus\ (TTF):h14|set co=80
-    else
-      set noantialias|set gfn=Terminus\ (TTF):h14|set co=80
-    endif
-    let g:retina_code_environment_on = 0
-  else
-    set antialias|set gfn=Inconsolata:h16|set co=80
-    let g:retina_code_environment_on = 1
-  endif
-endfunction
-" }}}
-
-" Writing environment {{{
-nnoremap <silent> <leader>0 :call ToggleWritingEnvironment()<CR>
-let g:writing_environment_on = 0
-function! ToggleWritingEnvironment()
-  set fuopt=maxvert
-  if g:writing_environment_on
-    if has('gui_macvim')
-      set noantialias|set gfn=Terminus\ (TTF):h14|set co=80
-    else
-      set noantialias|set gfn=Terminus\ (TTF):h14|set co=80
-    endif
-    let g:writing_environment_on = 0
-  else
-    set antialias|set gfn=Inconsolata:h22|set co=180
-"    set foldcolumn=12
-    let g:writing_environment_on = 1
-  endif
-endfunction
-" }}}
-" Magic c-space OmniComplete "{{{
-inoremap <C-Space> <C-x><C-o>
-inoremap <C-@> <C-Space>
 " }}}
 
 " Paste and visual paste improvments {{{
@@ -151,21 +102,14 @@ endfunction
 vmap <silent> <expr> p <sid>Repl()
 " }}}
 " End Keyboard Shortcuts}}}
+
 " Theme and Color {{{
-
 set background=dark
-colorscheme solarized
-"font is antialiased Terminus
-" set noantialias
-set guifont=Terminus\ (TTF):h14
-" set guifont=Hack:h14
-"draw vertical column at 80
-" if v:version > 703
-  " set colorcolumn=80
-" endif
+" colorscheme solarized
+colorscheme slate
 " End Theme and Color }}}
-" Quick editing  {{{
 
+" Quick editing  {{{
 " Edit the .bashrc"
 nmap <silent> <leader>eb :e ~/.bashrc<CR>
 " Edit the .vimrc"
@@ -237,7 +181,7 @@ set wildmenu
 set lbr
 
 " Specifiy a color scheme.
-colorscheme slate
+" colorscheme slate
 
 
 " Map Y to act like D and C, i.e. yank until EOL, rather than act like yy
