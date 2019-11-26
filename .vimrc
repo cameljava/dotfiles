@@ -1,6 +1,5 @@
 " .vimrc
 " Author: Kevin Lee
-" Source:
 
 call plug#begin('~/.vim/plugged')
 Plug 'junegunn/vim-plug'
@@ -23,13 +22,19 @@ Plug 'altercation/vim-colors-solarized'
 call plug#end()
 
 " Basic settings and variables"{{{
-
-"fix mac backspace issue
-set backspace=indent,eol,start
-
-filetype indent on
 syntax on
 set encoding=utf-8
+filetype plugin indent on
+set backspace=indent,eol,start "fix vi backspace
+set ruler " Show the line and column number of the cursor position
+set wildmenu " Display completion matches on your status line
+set lbr " Don't line wrap mid-word.
+" Quickly save your file.
+map <leader>w :w!<cr>
+" Quickly save and quit your file.
+map <leader>wq :wq<cr>
+" Map Y to act like D and C, i.e. yank until EOL, rather than act like yy
+map Y y$ 
 "turn on hidden to allow toggle between buffer with unsaved
 set hidden
 set visualbell noerrorbells " don't beep
@@ -37,7 +42,7 @@ set hlsearch incsearch      " hightlight search and incremental search
 set gdefault                " global replace by default
 "set nowrap                  " not wrap lines
 set nu rnu                      " show line numbers
-"set foldlevel=1             " default foldlevel 1 to see headings
+set foldlevel=1             " default foldlevel 1 to see headings
 set nobackup noswapfile     " stop backup and swap files
 set nocompatible ignorecase smartcase
 set nocindent noautoindent nosmartindent indentexpr= "disable autoindents
@@ -45,15 +50,14 @@ set tabstop=2 shiftwidth=2 expandtab "setup default tab/shift/expand
 set showmode showcmd ttyfast
 "set guioptions=a            " hide scrollbars/menu/tabs
 let mapleader = ","
-"let maplocalleader = ";"   "not sure about this, turn off
-"set foldmethod=marker       " sets the fold method to {{{ }}} markers
-"set shortmess=atI           " disable welcome screen
+let maplocalleader = ";"   "not sure about this, TODO
+set foldmethod=marker       " sets the fold method to {{{ }}} markers
+set shortmess=atI           " disable welcome screen
 set listchars=tab:\|\ ,trail:·,eol:¬
 set nospell                 " disable spellcheck for code
 " End Basic settings and variables}}}
 
 " Keyboard Shortcuts and remappings   "{{{
-
 "changes with less keystrokes
 nnoremap ; :
 " Space to toggle folds.
@@ -84,12 +88,10 @@ nmap <silent> <leader>f :bel :new<CR>
 "close viewport buffer"
 nmap <silent> <leader>x :hid<CR>
 " }}}
-
 " Paste and visual paste improvments {{{
 vnoremap <silent> y y`]
 vnoremap <silent> p p`]
 nnoremap <silent> p p`]
-
 " vp doesn't replace paste buffer
 function! RestoreRegister()
   let @" = s:restore_reg
@@ -123,8 +125,8 @@ nmap <silent> <leader>et :e ~/.tmux.conf<CR>
 " Open a scratch file
 nmap <silent> <leader>eh :e ~/scratch.txt<CR>
 " End Quick editing  }}}
-" Plugins configuration"{{{
 
+" Plugins configuration"{{{
 " Nerdtree "{{{
 map <leader>d :execute 'NERDTreeToggle ' . getcwd()<CR>
 let NERDTreeIgnore=['node_modules$[[dir]]', '\.git$[[dir]]']
@@ -137,89 +139,4 @@ endif
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
 " }}}
-
-" Vim Dispatch {{{
-nnoremap <leader>gt :Dispatch<CR>
-" }}}
 " End Plugins configuration"}}}
-" Platform specific configuration {{{
-if has('gui_win64')
-  set noantialias
-  set guifont=Terminus:h12
-  set lines=85
-  nmap <silent> <leader>ev :e $HOME/_vimrc<CR>
-  "overwrite mapping to reload the .vimrc"
-  nmap <silent> <leader>rv :source $HOME/_vimrc<CR>
-endif
-if has('gui_win32')
-  set noantialias
-  set guifont=Terminus:h12
-  set lines=85
-  "overwrite mapping to edit the .vimrc"
-  nmap <silent> <leader>ev :e $HOME/_vimrc<CR>
-  "overwrite mapping to reload the .vimrc"
-  nmap <silent> <leader>rv :source $HOME/_vimrc<CR>
-endif
-if has("gui_macvim")
-  set fuopt=maxvert
-  set noantialias
-  set guifont=Terminus\ (TTF):h14
-  "set guifont=Hack:h14
-  command! ToggleFullScreen if &fu|set noantialias|set gfn=Terminus\ (TTF):h14|set co=80|set nofu|else|set antialias|set gfn=Inconsolata:h22|set co=100|set fu|endif
-  an <silent> Window.Toggle\ Full\ Screen\ Mode :ToggleFullScreen<CR>
-endif
-
-" End Platform specific configuration }}}
-
-" Show the line and column number of the cursor position
-set ruler
-
-" Display completion matches on your status line
-set wildmenu
-
-" Don't line wrap mid-word.
-set lbr
-
-" Specifiy a color scheme.
-" colorscheme slate
-
-
-" Map Y to act like D and C, i.e. yank until EOL, rather than act like yy
-map Y y$
-
-" Easily create HTML unorded lists.
-map <F3> i<ul><CR><Space><Space><li></li><CR><Esc>I</ul><Esc>kcit
-map <F4> <Esc>o<li></li><Esc>cit
-
-" Quickly save your file.
-map <leader>w :w!<cr>
-
-" Quickly save and quit your file.
-map <leader>wq :wq<cr>
-
-" For more options see ":help option-list" and ":options".
-
-" Auto-commands {{{
-aug nick
-  " Remove all autocommands for the current group.
-  au!
-  " .md extension is markdown
-  au BufRead,BufNewFile *.md set ft=markdown foldlevel=2 wrap linebreak textwidth=0 wrapmargin=0 spell
-  au BufRead,BufNewFile *.wp set ft=markdown foldlevel=2 wrap linebreak textwidth=0 wrapmargin=0 spell
-  if v:version > 703
-    au BufRead,BufNewFile *.md set colorcolumn=80
-    au BufRead,BufNewFile *.wp set colorcolumn=80
-  endif
-  " Spelling on markdown
-  au BufRead,BufNewFile *.md set spell
-  au BufRead,BufNewFile *.go set ts=4
-  " run go test on Dispatch
-  au FileType go let b:dispatch = 'go build'
-  " javascript tabstop 2 expandtab
-  au BufRead,BufNewFile *.js set ft=javascript foldlevel=2 ts=2 sw=2 expandtab textwidth=79
-  if v:version > 703
-    au BufRead,BufNewFile *.js set colorcolumn=80
-  endif
-aug END
-" End Auto-commands }}}
-
