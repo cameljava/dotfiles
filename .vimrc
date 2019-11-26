@@ -70,12 +70,12 @@ nmap <silent> <leader>w :set nowrap!<CR>
 "hide hightlight of searches"
 nmap <silent> // :nohlsearch<CR>
 " Movements shortcuts {{{
-
+" below setting seems not working
 " C-h/j/k/l to move between buffers
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
+" map <C-h> <C-w>h
+" map <C-j> <C-w>j
+" map <C-k> <C-w>k
+" map <C-l> <C-w>l
 " Buffer switching/management, might as well use those keys for something useful
 map <Right> :bnext<CR>
 imap <Right> <ESC>:bnext<CR>
