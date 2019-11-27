@@ -32,6 +32,7 @@ set wildmenu " Display completion matches on your status line
 set lbr " Don't line wrap mid-word.
 "set nowrap                  " not wrap lines
 set nowrapscan " turn off wrap scan
+set scrolloff=5 "keeps cursor away from top/bottom of screen
 " Quickly save your file.
 map <leader>w :w!<cr>
 " Quickly save and quit your file.

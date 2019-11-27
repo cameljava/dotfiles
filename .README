@@ -1,5 +1,8 @@
 set up my dotfile:
 
+Inspired by: https://www.atlassian.com/git/tutorials/dotfiles
+and start my vimrc based on: https://bitbucket.org/durdn/cfg/src/master/.vimrc
+
 mkdir $HOME/git/cameljava_github/dotfiles
 echo "alias config='/usr/bin/git --git-dir=$HOME/git/cameljava_github/dotfiles --work-tree=$HOME'" >> $HOME/.bashrc
 echo "config config --local status.showUntrackedFiles no" >> $HOME/.bashrc
