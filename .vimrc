@@ -29,6 +29,8 @@ set encoding=utf-8
 filetype plugin indent on
 "set F8 to disable auto indenting for current file
 nnoremap <F8> :setl noai nocin nosi inde=<CR>
+"set f6 to toggle paste mode, when paste wont autoindent
+set pastetoggle=<F6>
 set backspace=indent,eol,start "fix vi backspace
 set ruler " Show the line and column number of the cursor position
 set wildmenu " Display completion matches on your status line
