@@ -30,6 +30,8 @@ set backspace=indent,eol,start "fix vi backspace
 set ruler " Show the line and column number of the cursor position
 set wildmenu " Display completion matches on your status line
 set lbr " Don't line wrap mid-word.
+"set nowrap                  " not wrap lines
+set nowrapscan " turn off wrap scan
 " Quickly save your file.
 map <leader>w :w!<cr>
 " Quickly save and quit your file.
@@ -41,7 +43,6 @@ set hidden
 set visualbell noerrorbells " don't beep
 set hlsearch incsearch      " hightlight search and incremental search
 set gdefault                " global replace by default
-"set nowrap                  " not wrap lines
 set nu rnu                      " show line numbers
 set foldlevel=1             " default foldlevel 1 to see headings
 set nobackup noswapfile     " stop backup and swap files
