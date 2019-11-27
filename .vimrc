@@ -19,6 +19,7 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'junegunn/vim-easy-align'
 Plug 'othree/eregex.vim'
 Plug 'altercation/vim-colors-solarized'
+Plug 'sjl/gundo.vim'
 call plug#end()
 
 " Basic settings and variables"{{{
@@ -142,4 +143,16 @@ endif
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
 " }}}
+" ale setting {{{
+let g:ale_fixers = {
+ \ 'javascript': ['eslint']
+ \ }
+ 
+let g:ale_sign_error = '❌'
+let g:ale_sign_warning = '⚠️'
+
+let g:ale_fix_on_save = 1
+"  End ale setting }}}
 " End Plugins configuration"}}}
+" get rid of E20 error
+autocmd BufWrite * mark ' | silent! %s/\n\{3,}/\r\r\r/e | silent! exe "norm! ''"
