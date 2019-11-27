@@ -22,6 +22,7 @@ Plug 'altercation/vim-colors-solarized'
 call plug#end()
 
 " Basic settings and variables"{{{
+set nocompatible
 syntax on
 set encoding=utf-8
 filetype plugin indent on
@@ -46,7 +47,7 @@ set foldlevel=1             " default foldlevel 1 to see headings
 set nobackup noswapfile     " stop backup and swap files
 set nocompatible ignorecase smartcase
 set nocindent noautoindent nosmartindent indentexpr= "disable autoindents
-set tabstop=2 shiftwidth=2 expandtab "setup default tab/shift/expand
+set tabstop=2 softtabstop=2 shiftwidth=2 expandtab "setup default tab/shift/expand
 set showmode showcmd ttyfast
 "set guioptions=a            " hide scrollbars/menu/tabs
 let mapleader = ","
@@ -72,7 +73,7 @@ nmap <silent> <leader>l :set nonu!<CR>
 "wrap lines"
 nmap <silent> <leader>w :set nowrap!<CR>
 "hide hightlight of searches"
-nmap <silent> // :nohlsearch<CR>
+nmap <silent> <BS> :nohlsearch<CR>
 " Movements shortcuts {{{
 " Buffer switching/management, might as well use those keys for something useful
 map <Right> :bnext<CR>
