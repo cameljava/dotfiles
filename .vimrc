@@ -23,10 +23,13 @@ Plug 'sjl/gundo.vim'
 call plug#end()
 
 " Basic settings and variables"{{{
+" set rtp+=/usr/local/opt/fzf
 set nocompatible
 syntax on
 set encoding=utf-8
 filetype plugin indent on
+set autoindent
+set tabstop=2 softtabstop=2 shiftwidth=2 expandtab "setup default tab/shift/expand
 "set F8 to disable auto indenting for current file
 nnoremap <F8> :setl noai nocin nosi inde=<CR>
 "set f6 to toggle paste mode, when paste wont autoindent
@@ -53,7 +56,6 @@ set nu rnu                      " show line numbers
 set foldlevel=1             " default foldlevel 1 to see headings
 set nobackup noswapfile     " stop backup and swap files
 set nocompatible ignorecase smartcase
-set tabstop=2 softtabstop=2 shiftwidth=2 expandtab "setup default tab/shift/expand
 set showmode showcmd ttyfast
 "set guioptions=a            " hide scrollbars/menu/tabs
 let mapleader = ","

@@ -46,3 +46,5 @@ HISTFILESIZE=5000000
 [ -f /Users/kevlee/git/cochlear_gitlab/drx-serverless/auth/node_modules/tabtab/.completions/slss.bash ] && . /Users/kevlee/git/cochlear_gitlab/drx-serverless/auth/node_modules/tabtab/.completions/slss.bash
 alias config='/usr/bin/git --git-dir=/Users/kevlee/git/cameljava_github/dotfiles --work-tree=/Users/kevlee'
 config config --local status.showUntrackedFiles no
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
