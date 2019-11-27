@@ -27,6 +27,8 @@ set nocompatible
 syntax on
 set encoding=utf-8
 filetype plugin indent on
+"set F8 to disable auto indenting for current file
+nnoremap <F8> :setl noai nocin nosi inde=<CR>
 set backspace=indent,eol,start "fix vi backspace
 set ruler " Show the line and column number of the cursor position
 set wildmenu " Display completion matches on your status line
@@ -49,7 +51,6 @@ set nu rnu                      " show line numbers
 set foldlevel=1             " default foldlevel 1 to see headings
 set nobackup noswapfile     " stop backup and swap files
 set nocompatible ignorecase smartcase
-set nocindent noautoindent nosmartindent indentexpr= "disable autoindents
 set tabstop=2 softtabstop=2 shiftwidth=2 expandtab "setup default tab/shift/expand
 set showmode showcmd ttyfast
 "set guioptions=a            " hide scrollbars/menu/tabs
