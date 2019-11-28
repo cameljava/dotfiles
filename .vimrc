@@ -24,46 +24,41 @@ call plug#end()
 
 " Basic settings and variables"{{{
 " set rtp+=/usr/local/opt/fzf
-set nocompatible
+set nocompatible ignorecase smartcase
 syntax on
 set encoding=utf-8
+set nobackup noswapfile     " stop backup and swap files
+"turn on hidden to allow toggle between buffer with unsaved
+set hidden
 filetype plugin indent on
 set autoindent
 set tabstop=2 softtabstop=2 shiftwidth=2 expandtab "setup default tab/shift/expand
+set visualbell noerrorbells " don't beep
+set shortmess=atI           " disable welcome screen
+set showmode showcmd ttyfast
+set ruler " Show the line and column number of the cursor position
+set wildmenu " Display completion matches on your status line
+set wrap linebreak nolist "allow wrap, not wrap within work
+set nu rnu                      " show line numbers
+set foldlevel=1             " default foldlevel 1 to see headings
+set foldmethod=marker       " sets the fold method to {{{ }}} markers
+set scrolloff=5 "keeps cursor away from top/bottom of screen
+set sidescrolloff=5 "keeps cursor away from side of screen
+set hlsearch incsearch      " hightlight search and incremental search
+set gdefault                " global replace by default
+set nowrapscan " turn off wrap scan, stop search at end/start of file
+"set guioptions=a            " hide scrollbars/menu/tabs
+set listchars=tab:\|\ ,trail:·,eol:¬
+set nospell                 " disable spellcheck for code
+set backspace=indent,eol,start "fix vi backspace
+let mapleader = ","
+let maplocalleader = ";"   "not sure about this, TODO
 "set F8 to disable auto indenting for current file
 nnoremap <F8> :setl noai nocin nosi inde=<CR>
 "set f6 to toggle paste mode, when paste wont autoindent
 set pastetoggle=<F6>
-set backspace=indent,eol,start "fix vi backspace
-set ruler " Show the line and column number of the cursor position
-set wildmenu " Display completion matches on your status line
-set lbr " Don't line wrap mid-word.
-"set nowrap                  " not wrap lines
-set nowrapscan " turn off wrap scan
-set scrolloff=5 "keeps cursor away from top/bottom of screen
-" Quickly save your file.
-map <leader>w :w!<cr>
-" Quickly save and quit your file.
-map <leader>wq :wq<cr>
 " Map Y to act like D and C, i.e. yank until EOL, rather than act like yy
 map Y y$
-"turn on hidden to allow toggle between buffer with unsaved
-set hidden
-set visualbell noerrorbells " don't beep
-set hlsearch incsearch      " hightlight search and incremental search
-set gdefault                " global replace by default
-set nu rnu                      " show line numbers
-set foldlevel=1             " default foldlevel 1 to see headings
-set nobackup noswapfile     " stop backup and swap files
-set nocompatible ignorecase smartcase
-set showmode showcmd ttyfast
-"set guioptions=a            " hide scrollbars/menu/tabs
-let mapleader = ","
-let maplocalleader = ";"   "not sure about this, TODO
-set foldmethod=marker       " sets the fold method to {{{ }}} markers
-set shortmess=atI           " disable welcome screen
-set listchars=tab:\|\ ,trail:·,eol:¬
-set nospell                 " disable spellcheck for code
 " End Basic settings and variables}}}
 
 " Keyboard Shortcuts and remappings   "{{{
