@@ -14,7 +14,7 @@ Plug 'PhilRunninger/nerdtree-buffer-ops'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'w0rp/ale'
+Plug 'dense-analysis/ale'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'junegunn/vim-easy-align'
 Plug 'othree/eregex.vim'
@@ -89,9 +89,11 @@ nmap <silent> <leader>m :only<CR>
 "vertical split"
 nmap <silent> <leader>v :bel :vne<CR>
 "horizontal split"
-nmap <silent> <leader>f :bel :new<CR>
+nmap <silent> <leader>h :bel :new<CR>
 "close viewport buffer"
 nmap <silent> <leader>x :hid<CR>
+"format file
+nmap <silent> <leader>f gg=G<CR>
 " }}}
 " Paste and visual paste improvments {{{
 vnoremap <silent> y y`]
@@ -145,15 +147,18 @@ let g:airline_left_sep = ''
 let g:airline_right_sep = ''
 " }}}
 " ale setting {{{
-let g:jsx_ext_required = 0
-
 let g:ale_linters = {
-\   'javascript': ['standard'],
+\   'javascript': ['eslint'],
+\   'json': ['jsonlint'],
+\   'yaml': ['yamllint'],
+\   'xml': ['xmllint'],
 \}
 
 let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'javascript': ['prettier', 'eslint'],
-\   '*': ['trim_whitespace'],
+\   'json': ['prettier', 'jq'],
+\   'yaml': ['prettier'],
 \}
 
 let g:ale_sign_error = '✘'
@@ -166,6 +171,7 @@ let g:ale_linters_explicit = 1
 let g:ale_lint_on_save = 1
 let g:ale_fix_on_save = 1
 let g:ale_javascript_prettier_options = '--single-quote --trailing-comma none'
+set omnifunc=ale#completion#OmniFunc
 
 "  End ale setting }}}
 " End Plugins configuration"}}}
