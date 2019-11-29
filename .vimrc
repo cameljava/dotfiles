@@ -96,7 +96,7 @@ nmap <silent> <leader>h :bel :new<CR>
 "close viewport buffer"
 nmap <silent> <leader>x :hid<CR>
 "format file
-nmap <silent> <leader>f gg=G<CR>
+nmap <silent> <leader>f :Autoformat<CR>
 " }}}
 " Paste and visual paste improvments {{{
 vnoremap <silent> y y`]
