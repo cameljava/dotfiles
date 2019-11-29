@@ -26,7 +26,9 @@ call plug#end()
 " Basic settings and variables"{{{
 " set rtp+=/usr/local/opt/fzf
 set nocompatible ignorecase smartcase
-syntax on
+syntax enable
+set lazyredraw
+set cursorline
 set encoding=utf-8
 set clipboard+=unnamed " Add the unnamed register to the clipboard
 set autoread  "Automatically read a file that has changed on disk
@@ -72,7 +74,7 @@ imap kk <ESC>
 nnoremap <Space> za
 vnoremap <Space> za
 "reload the .vimrc
-nmap <silent> <leader>s :source ~/.vimrc<CR>
+nmap <silent> <leader>rv :source ~/.vimrc<CR>
 "show spaces"
 nmap <silent> <leader>l :set nolist!<CR>
 "hide hightlight of searches"
@@ -173,6 +175,19 @@ let g:ale_javascript_prettier_options = '--single-quote --trailing-comma none'
 set omnifunc=ale#completion#OmniFunc
 
 "  End ale setting }}}
+" autoformat setting {{{
+
+" End autoformat setting }}}
 " End Plugins configuration"}}}
 " get rid of E20 error
 autocmd BufWrite * mark ' | silent! %s/\n\{3,}/\r\r\r/e | silent! exe "norm! ''"
+
+function! s:DiffWithSaved()
+  let filetype=&ft
+  diffthis
+  vnew | r # | normal! 1Gdd
+  diffthis
+  exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
+endfunction
+com! DiffSaved call s:DiffWithSaved()
+" to get out of diff view, use :diffoff command
