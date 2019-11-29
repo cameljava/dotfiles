@@ -20,6 +20,7 @@ Plug 'junegunn/vim-easy-align'
 Plug 'othree/eregex.vim'
 Plug 'altercation/vim-colors-solarized'
 Plug 'sjl/gundo.vim'
+Plug 'Chiel92/vim-autoformat'
 call plug#end()
 
 " Basic settings and variables"{{{
@@ -71,10 +72,10 @@ imap kk <ESC>
 nnoremap <Space> za
 vnoremap <Space> za
 "reload the .vimrc
-nmap <silent> <leader>rv :source ~/.vimrc<CR>
+jmap <silent> <leader>r :source ~/.vimrc<CR>
 "show spaces"
 nmap <silent> <leader>s :set nolist!<CR>
-"show line numbers"
+:show line numbers"
 nmap <silent> <leader>l :set nonu!<CR>
 "wrap lines"
 nmap <silent> <leader>w :set nowrap!<CR>
@@ -150,18 +151,18 @@ let g:airline_right_sep = ''
 " }}}
 " ale setting {{{
 let g:ale_linters = {
-\   'javascript': ['eslint'],
-\   'json': ['jsonlint'],
-\   'yaml': ['yamllint'],
-\   'xml': ['xmllint'],
-\}
+      \   'javascript': ['eslint'],
+      \   'json': ['jsonlint'],
+      \   'yaml': ['yamllint'],
+      \   'xml': ['xmllint'],
+      \}
 
 let g:ale_fixers = {
-\   '*': ['remove_trailing_lines', 'trim_whitespace'],
-\   'javascript': ['prettier', 'eslint'],
-\   'json': ['prettier', 'jq'],
-\   'yaml': ['prettier'],
-\}
+      \   '*': ['remove_trailing_lines', 'trim_whitespace'],
+      \   'javascript': ['prettier', 'eslint'],
+      \   'json': ['prettier', 'jq'],
+      \   'yaml': ['prettier'],
+      \}
 
 let g:ale_sign_error = '✘'
 let g:ale_sign_warning = '⚠'
