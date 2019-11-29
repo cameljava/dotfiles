@@ -27,6 +27,8 @@ call plug#end()
 set nocompatible ignorecase smartcase
 syntax on
 set encoding=utf-8
+set clipboard+=unnamed " Add the unnamed register to the clipboard
+set autoread  "Automatically read a file that has changed on disk
 set nobackup noswapfile     " stop backup and swap files
 "turn on hidden to allow toggle between buffer with unsaved
 set hidden
