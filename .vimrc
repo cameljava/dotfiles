@@ -72,13 +72,9 @@ imap kk <ESC>
 nnoremap <Space> za
 vnoremap <Space> za
 "reload the .vimrc
-jmap <silent> <leader>r :source ~/.vimrc<CR>
+nmap <silent> <leader>s :source ~/.vimrc<CR>
 "show spaces"
-nmap <silent> <leader>s :set nolist!<CR>
-:show line numbers"
-nmap <silent> <leader>l :set nonu!<CR>
-"wrap lines"
-nmap <silent> <leader>w :set nowrap!<CR>
+nmap <silent> <leader>l :set nolist!<CR>
 "hide hightlight of searches"
 nmap <silent> <BS> :nohlsearch<CR>
 " Movements shortcuts {{{
