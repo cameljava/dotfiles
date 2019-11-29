@@ -19,8 +19,8 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'junegunn/vim-easy-align'
 Plug 'othree/eregex.vim'
 Plug 'altercation/vim-colors-solarized'
-Plug 'sjl/gundo.vim'
 Plug 'Chiel92/vim-autoformat'
+Plug 'mbbill/undotree'
 call plug#end()
 
 " Basic settings and variables"{{{
@@ -44,6 +44,8 @@ set showmode showcmd ttyfast
 set ruler " Show the line and column number of the cursor position
 set wildmenu " Display completion matches on your status line
 set wrap linebreak nolist "allow wrap, not wrap within work
+" Syntax coloring lines that are too long just slows down the world
+set synmaxcol=2048
 set nu rnu                      " show line numbers
 set foldlevel=1             " default foldlevel 1 to see headings
 set foldmethod=marker       " sets the fold method to {{{ }}} markers
@@ -64,12 +66,16 @@ nnoremap <F8> :setl noai nocin nosi inde=<CR>
 set pastetoggle=<F6>
 " Map Y to act like D and C, i.e. yank until EOL, rather than act like yy
 map Y y$
+" highlight last inserted text
+nnoremap gV `[v`]
 " End Basic settings and variables}}}
 
 " Keyboard Shortcuts and remappings   "{{{
 "changes with less keystrokes
 nnoremap ; :
 imap kk <ESC>
+cmap kk <ESC>
+imap jj <ESC>:w<CR>
 " Space to toggle folds.
 nnoremap <Space> za
 vnoremap <Space> za
