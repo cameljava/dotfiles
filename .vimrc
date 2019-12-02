@@ -21,6 +21,10 @@ Plug 'othree/eregex.vim'
 Plug 'altercation/vim-colors-solarized'
 Plug 'Chiel92/vim-autoformat'
 Plug 'mbbill/undotree'
+Plug 'michaeljsmith/vim-indent-object'
+Plug 'vim-scripts/argtextobj.vim'
+" sort: gs+motion/object
+Plug 'christoomey/vim-sort-motion'
 call plug#end()
 
 " Basic settings and variables"{{{
