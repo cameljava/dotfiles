@@ -76,6 +76,7 @@ nnoremap ; :
 imap kk <ESC>
 cmap kk <ESC>
 imap jj <ESC>:w<CR>
+imap jq <ESC>:wq<CR>
 " Space to toggle folds.
 nnoremap <Space> za
 vnoremap <Space> za
@@ -154,18 +155,9 @@ let g:airline_left_sep = ''
 let g:airline_right_sep = ''
 " }}}
 " ale setting {{{
-let g:ale_linters = {
-      \   'javascript': ['eslint'],
-      \   'json': ['jsonlint'],
-      \   'yaml': ['yamllint'],
-      \   'xml': ['xmllint'],
-      \}
 
 let g:ale_fixers = {
-      \   '*': ['remove_trailing_lines', 'trim_whitespace'],
-      \   'javascript': ['prettier', 'eslint'],
-      \   'json': ['prettier', 'jq'],
-      \   'yaml': ['prettier'],
+      \   '*': ['remove_trailing_lines', 'trim_whitespace']
       \}
 
 let g:ale_sign_error = '✘'
@@ -177,7 +169,8 @@ highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
 let g:ale_linters_explicit = 1
 let g:ale_lint_on_save = 1
 let g:ale_fix_on_save = 1
-let g:ale_javascript_prettier_options = '--single-quote --trailing-comma none'
+" Set this. Airline will handle the rest.
+let g:airline#extensions#ale#enabled = 1
 set omnifunc=ale#completion#OmniFunc
 
 "  End ale setting }}}
