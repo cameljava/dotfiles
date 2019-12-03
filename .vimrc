@@ -42,6 +42,8 @@ call plug#end()
 
 packadd! matchit
 
+let mapleader = ","
+let maplocalleader = ";"   "not sure about this, TODO
 " Basic settings and variables"{{{
 " set rtp+=/usr/local/opt/fzf
 set ignorecase smartcase
@@ -94,8 +96,11 @@ if &t_Co > 2 || has("gui_running")
   let c_comment_strings=1
 endif
 set nu rnu                      " show line numbers
-set foldlevel=1             " default foldlevel 1 to see headings
-set foldmethod=marker       " sets the fold method to {{{ }}} markers
+"-- FOLDING --
+set foldmethod=syntax "syntax highlighting items specify folds
+set foldcolumn=1 "defines 1 col at window left, to indicate folding
+let javaScript_fold=1 "activate folding by JS syntax
+set foldlevelstart=99 "start file with all folds opened
 set scrolloff=5 "keeps cursor away from top/bottom of screen
 set sidescrolloff=5 "keeps cursor away from side of screen
 set hlsearch " hightlight search search
@@ -110,8 +115,6 @@ set history=1000
 set tabpagemax=50
 set nospell                 " disable spellcheck for code
 set backspace=indent,eol,start "fix vi backspace
-let mapleader = ","
-let maplocalleader = ";"   "not sure about this, TODO
 "set F8 to disable auto indenting for current file
 nnoremap <F8> :setl noai nocin nosi inde=<CR>
 "set f6 to toggle paste mode, when paste wont autoindent
@@ -129,9 +132,12 @@ inoremap kk <ESC>
 cnoremap <silent> kk <C-c>
 inoremap <silent> jj <ESC>:w<CR>
 inoremap jq <ESC>:wq<CR>
-" Space to toggle folds.
-nnoremap <Space> za
-vnoremap <Space> za
+" F9 to toggle all folds for quick checking.
+nmap <expr> <F9> &foldlevel ? 'zM':'zR'
+" TODO 
+" inoremap <F9> <C-O><F9>
+" onoremap <expr> <F9> <C-C>&foldlevel ? 'zM':'zR'
+" vnoremap <expr> <F9> &foldlevel ? 'zM':'zR'
 "reload the .vimrc
 nmap <silent> <leader>rv :source ~/.vimrc<CR>
 "show spaces"
