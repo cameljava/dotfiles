@@ -120,10 +120,9 @@ nnoremap <F8> :setl noai nocin nosi inde=<CR>
 "set f6 to toggle paste mode, when paste wont autoindent
 set pastetoggle=<F6>
 " Map Y to act like D and C, i.e. yank until EOL, rather than act like yy
-map Y y$
+noremap Y y$
 " highlight last inserted text
 nnoremap gV `[v`]
-" End Basic settings and variables}}}
 
 " Keyboard Shortcuts and remappings   "{{{
 "changes with less keystrokes
@@ -134,7 +133,7 @@ inoremap <silent> jj <ESC>:w<CR>
 inoremap jq <ESC>:wq<CR>
 " F9 to toggle all folds for quick checking.
 nmap <expr> <F9> &foldlevel ? 'zM':'zR'
-" TODO 
+" TODO
 " inoremap <F9> <C-O><F9>
 " onoremap <expr> <F9> <C-C>&foldlevel ? 'zM':'zR'
 " vnoremap <expr> <F9> &foldlevel ? 'zM':'zR'
@@ -164,7 +163,6 @@ nmap <silent> <leader>h :bel :new<CR>
 nmap <silent> <leader>x :hid<CR>
 "format file
 nmap <silent> <leader>f :Autoformat<CR>
-" }}}
 " Paste and visual paste improvments {{{
 vnoremap <silent> y y`]
 vnoremap <silent> p p`]
@@ -179,8 +177,6 @@ function! s:Repl()
   return "p@=RestoreRegister()\<cr>"
 endfunction
 vmap <silent> <expr> p <sid>Repl()
-" }}}
-" End Keyboard Shortcuts}}}
 
 
 " Quick editing  {{{
@@ -196,13 +192,11 @@ nmap <silent> <leader>et :e ~/.tmux.conf<CR>
 "nmap <silent> <leader>el :e ~/.slate<cr>
 " Open a scratch file
 nmap <silent> <leader>eh :e ~/scratch.txt<CR>
-" End Quick editing  }}}
 
 " Plugins configuration"{{{
 " Nerdtree "{{{
 map <leader>d :execute 'NERDTreeToggle ' . getcwd()<CR>
 let NERDTreeIgnore=['node_modules$[[dir]]', '\.git$[[dir]]']
-"}}}
 " Vim Airline {{{
 set laststatus=2
 if !exists('g:airline_symbols')
@@ -210,7 +204,6 @@ if !exists('g:airline_symbols')
 endif
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
-" }}}
 " ale setting {{{
 
 let g:ale_fixers = {
@@ -230,11 +223,8 @@ let g:ale_fix_on_save = 1
 let g:airline#extensions#ale#enabled = 1
 set omnifunc=ale#completion#OmniFunc
 
-"  End ale setting }}}
 " autoformat setting {{{
 
-" End autoformat setting }}}
-" End Plugins configuration"}}}
 " get rid of E20 error
 autocmd BufWrite * mark ' | silent! %s/\n\{3,}/\r\r\r/e | silent! exe "norm! ''"
 
@@ -285,4 +275,3 @@ endif
 " Theme and Color {{{
 set background=dark
 colorscheme slate
-" End Theme and Color }}}
