@@ -1,8 +1,22 @@
 " .vimrc
 " Author: Kevin Lee
 
+" Use Vim settings, rather than Vi settings (much better!).
+" This must be first, because it changes other options as a side effect.
+" Avoid side effects when it was already reset.
+if &compatible
+  set nocompatible
+endif
+
+" When the +eval feature is missing, the set command above will be skipped.
+" Use a trick to reset compatible only when the +eval feature is missing.
+silent! while 0
+  set nocompatible
+silent! endwhile
+
 call plug#begin('~/.vim/plugged')
 Plug 'junegunn/vim-plug'
+Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
@@ -31,8 +45,7 @@ packadd! matchit
 
 " Basic settings and variables"{{{
 " set rtp+=/usr/local/opt/fzf
-set nocompatible ignorecase smartcase
-syntax enable
+set ignorecase smartcase
 set lazyredraw
 set cursorline
 set encoding=utf-8
@@ -41,7 +54,6 @@ set autoread  "Automatically read a file that has changed on disk
 set nobackup noswapfile     " stop backup and swap files
 "turn on hidden to allow toggle between buffer with unsaved
 set hidden
-filetype plugin indent on
 set autoindent
 set tabstop=2 softtabstop=2 shiftwidth=2 expandtab "setup default tab/shift/expand
 set visualbell noerrorbells " don't beep
@@ -52,12 +64,42 @@ set wildmenu " Display completion matches on your status line
 set wrap linebreak nolist "allow wrap, not wrap within work
 " Syntax coloring lines that are too long just slows down the world
 set synmaxcol=2048
+set ttimeout		" time out for key codes
+set ttimeoutlen=100	" wait up to 100ms after Esc for special key
+" Show @@@ in the last line if it is truncated.
+set display=truncate
+" Do incremental searching when it's possible to timeout.
+if has('reltime')
+  set incsearch
+endif
+" Do not recognize octal numbers for Ctrl-A and Ctrl-X, most users find it
+" confusing.
+set nrformats-=octal
+" Don't use Ex mode, use Q for formatting.
+" Revert with ":unmap Q".
+map Q gq
+" In many terminal emulators the mouse works just fine.  By enabling it you
+" can position the cursor, Visually select and scroll with the mouse.
+if has('mouse')
+  set mouse=a
+endif
+
+" Switch syntax highlighting on when the terminal has colors or when using the
+" GUI (which always has colors).
+if &t_Co > 2 || has("gui_running")
+  " Revert with ":syntax off".
+  syntax on
+
+  " I like highlighting strings inside C comments.
+  " Revert with ":unlet c_comment_strings".
+  let c_comment_strings=1
+endif
 set nu rnu                      " show line numbers
 set foldlevel=1             " default foldlevel 1 to see headings
 set foldmethod=marker       " sets the fold method to {{{ }}} markers
 set scrolloff=5 "keeps cursor away from top/bottom of screen
 set sidescrolloff=5 "keeps cursor away from side of screen
-set hlsearch incsearch      " hightlight search and incremental search
+set hlsearch " hightlight search search
 set gdefault                " global replace by default
 set nowrapscan " turn off wrap scan, stop search at end/start of file
 "set guioptions=a            " hide scrollbars/menu/tabs
@@ -137,11 +179,6 @@ vmap <silent> <expr> p <sid>Repl()
 " }}}
 " End Keyboard Shortcuts}}}
 
-" Theme and Color {{{
-set background=dark
-" colorscheme solarized
-colorscheme slate
-" End Theme and Color }}}
 
 " Quick editing  {{{
 " Edit the .bashrc"
@@ -198,12 +235,51 @@ set omnifunc=ale#completion#OmniFunc
 " get rid of E20 error
 autocmd BufWrite * mark ' | silent! %s/\n\{3,}/\r\r\r/e | silent! exe "norm! ''"
 
-function! s:DiffWithSaved()
-  let filetype=&ft
-  diffthis
-  vnew | r # | normal! 1Gdd
-  diffthis
-  exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
-endfunction
-com! DiffSaved call s:DiffWithSaved()
-" to get out of diff view, use :diffoff command
+" Only do this part when Vim was compiled with the +eval feature.
+if 1
+
+  " Enable file type detection.
+  " Use the default filetype settings, so that mail gets 'tw' set to 72,
+  " 'cindent' is on in C files, etc.
+  " Also load indent files, to automatically do language-dependent indenting.
+  " Revert with ":filetype off".
+  filetype plugin indent on
+
+  " Put these in an autocmd group, so that you can revert them with:
+  " ":augroup vimStartup | au! | augroup END"
+  augroup vimStartup
+    au!
+
+    " When editing a file, always jump to the last known cursor position.
+    " Don't do it when the position is invalid, when inside an event handler
+    " (happens when dropping a file on gvim) and for a commit message (it's
+    " likely a different one than last time).
+    autocmd BufReadPost *
+      \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
+      \ |   exe "normal! g`\""
+      \ | endif
+
+  augroup END
+
+endif
+
+" Convenient command to see the difference between the current buffer and the
+" file it was loaded from, thus the changes you made.
+" Only define it when not defined already.
+" Revert with: ":delcommand DiffOrig".
+if !exists(":DiffOrig")
+  command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
+		  \ | wincmd p | diffthis
+endif
+
+if has('langmap') && exists('+langremap')
+  " Prevent that the langmap option applies to characters that result from a
+  " mapping.  If set (default), this may break plugins (but it's backward
+  " compatible).
+  set nolangremap
+endif
+
+" Theme and Color {{{
+set background=dark
+colorscheme slate
+" End Theme and Color }}}
