@@ -11,7 +11,7 @@ Plug 'tpope/vim-commentary'
 Plug 'easymotion/vim-easymotion'
 Plug 'scrooloose/nerdtree'
 Plug 'PhilRunninger/nerdtree-buffer-ops'
-Plug 'tpope/vim-fugitive'
+"Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'dense-analysis/ale'
@@ -26,6 +26,8 @@ Plug 'vim-scripts/argtextobj.vim'
 " sort: gs+motion/object
 Plug 'christoomey/vim-sort-motion'
 call plug#end()
+
+packadd! matchit
 
 " Basic settings and variables"{{{
 " set rtp+=/usr/local/opt/fzf
@@ -60,6 +62,11 @@ set gdefault                " global replace by default
 set nowrapscan " turn off wrap scan, stop search at end/start of file
 "set guioptions=a            " hide scrollbars/menu/tabs
 set listchars=tab:\|\ ,trail:·,eol:¬
+if v:version > 703 || v:version == 703 && has("patch541")
+  set formatoptions+=j " Delete comment character when joining commented lines
+endif
+set history=1000
+set tabpagemax=50
 set nospell                 " disable spellcheck for code
 set backspace=indent,eol,start "fix vi backspace
 let mapleader = ","
