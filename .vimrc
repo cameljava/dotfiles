@@ -25,7 +25,6 @@ Plug 'tpope/vim-commentary'
 Plug 'easymotion/vim-easymotion'
 Plug 'scrooloose/nerdtree'
 Plug 'PhilRunninger/nerdtree-buffer-ops'
-"Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'dense-analysis/ale'
@@ -147,10 +146,8 @@ inoremap <c-w> <c-g>u<c-w>
 
 " Movements shortcuts {{{
 " Buffer switching/management, might as well use those keys for something useful
-map <Right> :bnext<CR>
-imap <Right> <ESC>:bnext<CR>
-map <Left> :bprev<CR>
-imap <Left> <ESC>:bprev<CR>
+nnoremap <Tab> :bnext<CR>
+nnoremap <S-Tab> :bprev<CR>
 " Maximize only this window"
 nmap <silent> <leader>m :only<CR>
 "vertical split"
