@@ -11,7 +11,7 @@ endif
 " When the +eval feature is missing, the set command above will be skipped.
 " Use a trick to reset compatible only when the +eval feature is missing.
 silent! while 0
-  set nocompatible
+set nocompatible
 silent! endwhile
 
 call plug#begin('~/.vim/plugged')
@@ -63,8 +63,8 @@ set wildmenu " Display completion matches on your status line
 set wrap linebreak nolist "allow wrap, not wrap within work
 " Syntax coloring lines that are too long just slows down the world
 set synmaxcol=2048
-set ttimeout		" time out for key codes
-set ttimeoutlen=100	" wait up to 100ms after Esc for special key
+set ttimeout    " time out for key codes
+set ttimeoutlen=100 " wait up to 100ms after Esc for special key
 " Show @@@ in the last line if it is truncated.
 set display=truncate
 " Do incremental searching when it's possible to timeout.
@@ -125,10 +125,10 @@ nnoremap gV `[v`]
 " Keyboard Shortcuts and remappings   "{{{
 "changes with less keystrokes
 nnoremap ; :
-imap kk <ESC>
-cmap kk <ESC>
-imap <silent> jj <ESC>:w<CR>
-imap jq <ESC>:wq<CR>
+inoremap kk <ESC>
+cnoremap kk <ESC>
+inoremap <silent> jj <ESC>:w<CR>
+inoremap jq <ESC>:wq<CR>
 " Space to toggle folds.
 nnoremap <Space> za
 vnoremap <Space> za
@@ -252,9 +252,9 @@ if 1
     " (happens when dropping a file on gvim) and for a commit message (it's
     " likely a different one than last time).
     autocmd BufReadPost *
-      \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
-      \ |   exe "normal! g`\""
-      \ | endif
+          \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
+          \ |   exe "normal! g`\""
+          \ | endif
 
   augroup END
 
@@ -266,7 +266,7 @@ endif
 " Revert with: ":delcommand DiffOrig".
 if !exists(":DiffOrig")
   command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
-		  \ | wincmd p | diffthis
+        \ | wincmd p | diffthis
 endif
 
 if has('langmap') && exists('+langremap')
