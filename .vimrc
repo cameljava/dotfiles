@@ -44,7 +44,7 @@ packadd! matchit
 
 let mapleader = ","
 let maplocalleader = ";"   "not sure about this, TODO
-" Basic settings and variables"{{{
+" Basic settings and variables"
 " set rtp+=/usr/local/opt/fzf
 set ignorecase smartcase
 set lazyredraw
@@ -124,13 +124,13 @@ noremap Y y$
 " highlight last inserted text
 nnoremap gV `[v`]
 
-" Keyboard Shortcuts and remappings   "{{{
+" Keyboard Shortcuts and remappings   "
 "changes with less keystrokes
 nnoremap ; :
 inoremap kk <ESC>
 cnoremap <silent> kk <C-c>
 inoremap <silent> jj <ESC>:w<CR>
-inoremap jq <ESC>:wq<CR>
+inoremap jh <ESC>:wq<CR>
 " F9 to toggle all folds for quick checking.
 nmap <expr> <F9> &foldlevel ? 'zM':'zR'
 " TODO
@@ -149,7 +149,7 @@ inoremap <c-u> <c-g>u<c-u>
 " delete word before cursor, recoverable by u
 inoremap <c-w> <c-g>u<c-w>
 
-" Movements shortcuts {{{
+" Movements shortcuts
 " Buffer switching/management, might as well use those keys for something useful
 nnoremap <Tab> :bnext<CR>
 nnoremap <S-Tab> :bprev<CR>
@@ -163,7 +163,7 @@ nmap <silent> <leader>h :bel :new<CR>
 nmap <silent> <leader>x :hid<CR>
 "format file
 nmap <silent> <leader>f :Autoformat<CR>
-" Paste and visual paste improvments {{{
+" Paste and visual paste improvments
 vnoremap <silent> y y`]
 vnoremap <silent> p p`]
 nnoremap <silent> p p`]
@@ -179,7 +179,7 @@ endfunction
 vmap <silent> <expr> p <sid>Repl()
 
 
-" Quick editing  {{{
+" Quick editing
 " Edit the .bashrc"
 nmap <silent> <leader>eb :e ~/.bashrc<CR>
 " Edit the .vimrc"
@@ -193,18 +193,18 @@ nmap <silent> <leader>et :e ~/.tmux.conf<CR>
 " Open a scratch file
 nmap <silent> <leader>eh :e ~/scratch.txt<CR>
 
-" Plugins configuration"{{{
-" Nerdtree "{{{
+" Plugins configuration"
+" Nerdtree "
 map <leader>d :execute 'NERDTreeToggle ' . getcwd()<CR>
 let NERDTreeIgnore=['node_modules$[[dir]]', '\.git$[[dir]]']
-" Vim Airline {{{
+" Vim Airline
 set laststatus=2
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
-" ale setting {{{
+" ale setting
 
 let g:ale_fixers = {
       \   '*': ['remove_trailing_lines', 'trim_whitespace']
@@ -223,7 +223,7 @@ let g:ale_fix_on_save = 1
 let g:airline#extensions#ale#enabled = 1
 set omnifunc=ale#completion#OmniFunc
 
-" autoformat setting {{{
+" autoformat setting
 
 " get rid of E20 error
 autocmd BufWrite * mark ' | silent! %s/\n\{3,}/\r\r\r/e | silent! exe "norm! ''"
@@ -272,6 +272,6 @@ if has('langmap') && exists('+langremap')
   set nolangremap
 endif
 
-" Theme and Color {{{
+" Theme and Color
 set background=dark
 colorscheme slate
