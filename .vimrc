@@ -126,7 +126,7 @@ nnoremap gV `[v`]
 "changes with less keystrokes
 nnoremap ; :
 inoremap kk <ESC>
-cnoremap kk <ESC>
+cnoremap <silent> kk <C-c>
 inoremap <silent> jj <ESC>:w<CR>
 inoremap jq <ESC>:wq<CR>
 " Space to toggle folds.
