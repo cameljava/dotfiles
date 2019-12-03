@@ -7,8 +7,6 @@ Plug 'tpope/vim-surround'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'vim-airline/vim-airline'
-" Plug 'tomtom/tcomment_vim'
-" switch to use light weight comment plugin
 Plug 'tpope/vim-commentary'
 Plug 'easymotion/vim-easymotion'
 Plug 'scrooloose/nerdtree'
@@ -81,7 +79,7 @@ nnoremap gV `[v`]
 nnoremap ; :
 imap kk <ESC>
 cmap kk <ESC>
-imap jj <ESC>:w<CR>
+imap <silent> jj <ESC>:w<CR>
 imap jq <ESC>:wq<CR>
 " Space to toggle folds.
 nnoremap <Space> za
@@ -92,6 +90,12 @@ nmap <silent> <leader>rv :source ~/.vimrc<CR>
 nmap <silent> <leader>l :set nolist!<CR>
 "hide hightlight of searches"
 nmap <silent> <BS> :nohlsearch<CR>
+" Insert mode mapping
+" delete text you have typed in insert mode, recoverable by u
+inoremap <c-u> <c-g>u<c-u>
+" delete word before cursor, recoverable by u
+inoremap <c-w> <c-g>u<c-w>
+
 " Movements shortcuts {{{
 " Buffer switching/management, might as well use those keys for something useful
 map <Right> :bnext<CR>
