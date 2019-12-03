@@ -78,7 +78,7 @@ endif
 set nrformats-=octal
 " Don't use Ex mode, use Q for formatting.
 " Revert with ":unmap Q".
-map Q gq
+noremap Q gq
 " In many terminal emulators the mouse works just fine.  By enabling it you
 " can position the cursor, Visually select and scroll with the mouse.
 if has('mouse')
