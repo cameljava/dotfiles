@@ -96,6 +96,7 @@ if &t_Co > 2 || has("gui_running")
   let c_comment_strings=1
 endif
 set nu rnu                      " show line numbers
+nnoremap ; :
 "-- FOLDING --
 set foldmethod=syntax "syntax highlighting items specify folds
 set foldcolumn=1 "defines 1 col at window left, to indicate folding
@@ -107,7 +108,7 @@ set hlsearch " hightlight search search
 set gdefault                " global replace by default
 set nowrapscan " turn off wrap scan, stop search at end/start of file
 "set guioptions=a            " hide scrollbars/menu/tabs
-set listchars=tab:\|\ ,trail:·,eol:¬
+set listchars=tab:→→,eol:¬,space:.,trail:·
 if v:version > 703 || v:version == 703 && has("patch541")
   set formatoptions+=j " Delete comment character when joining commented lines
 endif
@@ -124,9 +125,15 @@ noremap Y y$
 " highlight last inserted text
 nnoremap gV `[v`]
 
-" Keyboard Shortcuts and remappings   "
-"changes with less keystrokes
-nnoremap ; :
+" #FINDING FILES
+" Use the `:find` command to fuzzy search files in the working directory
+" The `:b` command can also be used to do the same for open buffers
+
+" Search all subfolders
+set path+=**
+" Ignore node_modules and images from search results
+set wildignore+=**/node_modules/**,**/dist/**,**_site/**,*.swp,*.png,*.jpg,*.gif,*.webp,*.jpeg,*.map
+" Keyboard Shortcuts and remappings
 inoremap kk <ESC>
 cnoremap <silent> kk <C-c>
 inoremap <silent> jj <ESC>:w<CR>
@@ -224,6 +231,8 @@ set omnifunc=ale#completion#OmniFunc
 nmap <silent> [[ <Plug>(ale_previous_wrap)
 nmap <silent> ]] <Plug>(ale_next_wrap)
 " autoformat setting
+" ripgrep
+"export FZF_DEFAULT_COMMAND='rg --files --follow --hidden'
 
 " get rid of E20 error
 autocmd BufWrite * mark ' | silent! %s/\n\{3,}/\r\r\r/e | silent! exe "norm! ''"
@@ -256,6 +265,9 @@ if 1
 
 endif
 
+" Automatically remove the preview window after autocompletion
+autocmd CompleteDone * pclose
+
 " Convenient command to see the difference between the current buffer and the
 " file it was loaded from, thus the changes you made.
 " Only define it when not defined already.
@@ -267,7 +279,10 @@ endif
 
 if has('langmap') && exists('+langremap')
   " Prevent that the langmap option applies to characters that result from a
-  " mapping.  If set (default), this may break plugins (but it's backward
+  " mapping.  If set (default), this may break plugins (but it's backwar
+" Automatically remove the preview window after autocompletion
+autocmd CompleteDone * pclose
+
   " compatible).
   set nolangremap
 endif
