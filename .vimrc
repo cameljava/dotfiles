@@ -38,6 +38,8 @@ Plug 'michaeljsmith/vim-indent-object'
 Plug 'vim-scripts/argtextobj.vim'
 " sort: gs+motion/object
 Plug 'christoomey/vim-sort-motion'
+Plug 'miyakogi/conoline.vim'
+Plug 'ludovicchabant/vim-gutentags'
 call plug#end()
 
 packadd! matchit
@@ -168,8 +170,8 @@ inoremap <c-w> <c-g>u<c-w>
 
 " movements shortcuts
 " buffer switching/management, might as well use those keys for something useful
-nnoremap <tab> :bnext<cr>
-nnoremap <s-tab> :bprev<cr>
+nnoremap <silent> <tab> :bnext<cr>
+nnoremap <silent> <s-tab> :bprev<cr>
 " maximize only this window"
 nmap <silent> <leader>m :only<cr>
 "vertical split"
@@ -210,7 +212,27 @@ nmap <silent> <leader>et :e ~/.tmux.conf<CR>
 " Open a scratch file
 nmap <silent> <leader>eh :e ~/scratch.txt<CR>
 
-" Plugins configuration"
+"Plugins configuration"
+
+" #NETRW {{{
+" Set preferred view
+let g:netrw_liststyle = 3
+" Remove banner
+let g:netrw_banner = 0
+
+" #FZF {{{
+let g:fzf_command_prefix = 'Fzf'
+nnoremap <Leader>b :FzfBuffers<CR>
+nnoremap <Leader>h :FzfHistory<CR>
+nnoremap <Leader>t :FzfBTags<CR>
+nnoremap <Leader>T :FzfTags<CR>
+nnoremap <C-p> :FzfFiles<CR>
+" Have FZF list all tracked files plus untracked files minus your ignored files
+nnoremap <Leader>p :FzfGitFiles --exclude-standard --others --cached<CR>
+nnoremap <Leader>gt :FzfRg<CR>
+
+" #GUTENTAGS
+let g:gutentags_file_list_command = "rg --files --follow --ignore-file '/home/ayo/.vimignore'"
 " Nerdtree "
 map <leader>d :execute 'NERDTreeToggle ' . getcwd()<CR>
 let NERDTreeIgnore=['node_modules$[[dir]]', '\.git$[[dir]]']
@@ -240,6 +262,10 @@ let g:airline#extensions#ale#enabled = 1
 set omnifunc=ale#completion#OmniFunc
 nmap <silent> [[ <Plug>(ale_previous_wrap)
 nmap <silent> ]] <Plug>(ale_next_wrap)
+" #CONOLINE
+" Highlight the line of the cursor
+let g:conoline_auto_enable = 1
+let g:conoline_use_colorscheme_default_insert=1
 " autoformat setting
 " ripgrep
 "export FZF_DEFAULT_COMMAND='rg --files --follow --hidden'
