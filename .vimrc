@@ -179,7 +179,7 @@ nmap <silent> <leader>h :bel :new<cr>
 "close viewport buffer"
 nmap <silent> <leader>x :hid<cr>
 "format file
-nmap <silent> <leader>f :autoformat<cr>
+nmap <silent> <leader>f :Autoformat<cr>
 " Paste and visual paste improvments
 vnoremap <silent> y y`]
 vnoremap <silent> p p`]
