@@ -28,7 +28,7 @@ Plug 'PhilRunninger/nerdtree-buffer-ops'
 Plug 'airblade/vim-gitgutter'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'dense-analysis/ale'
-Plug 'terryma/vim-multiple-cursors'
+" Plug 'terryma/vim-multiple-cursors'
 Plug 'junegunn/vim-easy-align'
 Plug 'othree/eregex.vim'
 Plug 'altercation/vim-colors-solarized'
@@ -209,9 +209,8 @@ let g:airline_right_sep = ''
 let g:ale_fixers = {
       \   '*': ['remove_trailing_lines', 'trim_whitespace']
       \}
-
-let g:ale_sign_error = '✘'
-let g:ale_sign_warning = '⚠'
+let g:ale_sign_error = '❌'
+let g:ale_sign_warning = '⚠️'
 let g:ale_lint_on_enter = 0
 let g:ale_lint_on_text_changed = 'never'
 highlight ALEErrorSign ctermbg=NONE ctermfg=red
@@ -222,7 +221,8 @@ let g:ale_fix_on_save = 1
 " Set this. Airline will handle the rest.
 let g:airline#extensions#ale#enabled = 1
 set omnifunc=ale#completion#OmniFunc
-
+nmap <silent> [[ <Plug>(ale_previous_wrap)
+nmap <silent> ]] <Plug>(ale_next_wrap)
 " autoformat setting
 
 " get rid of E20 error
