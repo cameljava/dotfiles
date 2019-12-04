@@ -125,51 +125,61 @@ noremap Y y$
 " highlight last inserted text
 nnoremap gV `[v`]
 
-" #FINDING FILES
-" Use the `:find` command to fuzzy search files in the working directory
-" The `:b` command can also be used to do the same for open buffers
+" Stop concealing quotes in JSON
+let g:vim_json_syntax_conceal = 0
 
-" Search all subfolders
+" Not sure below code TODO
+" augroup numbertoggle
+"   autocmd!
+"   autocmd bufenter,focusgained,insertleave * set relativenumber
+"   autocmd bufleave,focuslost,insertenter   * set norelativenumber
+" augroup end
+
+" #finding files
+" use the `:find` command to fuzzy search files in the working directory
+" the `:b` command can also be used to do the same for open buffers
+
+" search all subfolders
 set path+=**
-" Ignore node_modules and images from search results
+" ignore node_modules and images from search results
 set wildignore+=**/node_modules/**,**/dist/**,**_site/**,*.swp,*.png,*.jpg,*.gif,*.webp,*.jpeg,*.map
-" Keyboard Shortcuts and remappings
-inoremap kk <ESC>
-cnoremap <silent> kk <C-c>
-inoremap <silent> jj <ESC>:w<CR>
-inoremap jh <ESC>:wq<CR>
-" F9 to toggle all folds for quick checking.
-nmap <expr> <F9> &foldlevel ? 'zM':'zR'
-" TODO
-" inoremap <F9> <C-O><F9>
-" onoremap <expr> <F9> <C-C>&foldlevel ? 'zM':'zR'
-" vnoremap <expr> <F9> &foldlevel ? 'zM':'zR'
+" keyboard shortcuts and remappings
+inoremap kk <esc>
+cnoremap <silent> kk <c-c>
+inoremap <silent> jj <esc>:w<cr>
+inoremap jh <esc>:wq<cr>
+" f9 to toggle all folds for quick checking.
+nmap <expr> <f9> &foldlevel ? 'zm':'zr'
+" todo
+" inoremap <f9> <c-o><f9>
+" onoremap <expr> <f9> <c-c>&foldlevel ? 'zm':'zr'
+" vnoremap <expr> <f9> &foldlevel ? 'zm':'zr'
 "reload the .vimrc
-nmap <silent> <leader>rv :source ~/.vimrc<CR>
+nmap <silent> <leader>rv :source ~/.vimrc<cr>
 "show spaces"
-nmap <silent> <leader>l :set nolist!<CR>
+nmap <silent> <leader>l :set nolist!<cr>
 "hide hightlight of searches"
-nmap <silent> <BS> :nohlsearch<CR>
-" Insert mode mapping
+nmap <silent> <bs> :nohlsearch<cr>
+" insert mode mapping
 " delete text you have typed in insert mode, recoverable by u
 inoremap <c-u> <c-g>u<c-u>
 " delete word before cursor, recoverable by u
 inoremap <c-w> <c-g>u<c-w>
 
-" Movements shortcuts
-" Buffer switching/management, might as well use those keys for something useful
-nnoremap <Tab> :bnext<CR>
-nnoremap <S-Tab> :bprev<CR>
-" Maximize only this window"
-nmap <silent> <leader>m :only<CR>
+" movements shortcuts
+" buffer switching/management, might as well use those keys for something useful
+nnoremap <tab> :bnext<cr>
+nnoremap <s-tab> :bprev<cr>
+" maximize only this window"
+nmap <silent> <leader>m :only<cr>
 "vertical split"
-nmap <silent> <leader>v :bel :vne<CR>
+nmap <silent> <leader>v :bel :vne<cr>
 "horizontal split"
-nmap <silent> <leader>h :bel :new<CR>
+nmap <silent> <leader>h :bel :new<cr>
 "close viewport buffer"
-nmap <silent> <leader>x :hid<CR>
+nmap <silent> <leader>x :hid<cr>
 "format file
-nmap <silent> <leader>f :Autoformat<CR>
+nmap <silent> <leader>f :autoformat<cr>
 " Paste and visual paste improvments
 vnoremap <silent> y y`]
 vnoremap <silent> p p`]
@@ -235,7 +245,7 @@ nmap <silent> ]] <Plug>(ale_next_wrap)
 "export FZF_DEFAULT_COMMAND='rg --files --follow --hidden'
 
 " get rid of E20 error
-autocmd BufWrite * mark ' | silent! %s/\n\{3,}/\r\r\r/e | silent! exe "norm! ''"
+" autocmd BufWrite * mark ' | silent! %s/\n\{3,}/\r\r\r/e | silent! exe "norm! ''"
 
 " Only do this part when Vim was compiled with the +eval feature.
 if 1
@@ -280,8 +290,8 @@ endif
 if has('langmap') && exists('+langremap')
   " Prevent that the langmap option applies to characters that result from a
   " mapping.  If set (default), this may break plugins (but it's backwar
-" Automatically remove the preview window after autocompletion
-autocmd CompleteDone * pclose
+  " Automatically remove the preview window after autocompletion
+  autocmd CompleteDone * pclose
 
   " compatible).
   set nolangremap
