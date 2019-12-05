@@ -41,6 +41,8 @@ Plug 'christoomey/vim-sort-motion'
 Plug 'miyakogi/conoline.vim'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'frazrepo/vim-rainbow'
+Plug 'pangloss/vim-javascript'
 call plug#end()
 
 packadd! matchit
@@ -240,7 +242,7 @@ nnoremap <Leader>p :FzfGitFiles --exclude-standard --others --cached<CR>
 nnoremap <Leader>gt :FzfRg<CR>
 
 " #GUTENTAGS
-let g:gutentags_file_list_command = "rg --files --follow --ignore-file '/home/ayo/.vimignore'"
+let g:gutentags_file_list_command = "rg --files --follow --ignore-file '/Users/kevlee/.vimignore'"
 
 " Nerdtree "
 map <leader>d :execute 'NERDTreeToggle ' . getcwd()<CR>
