@@ -111,7 +111,7 @@ set wildmode=longest,list,full
 " Disables automatic commenting on newline:
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 " Spell-check set to <leader>o, 'o' for 'orthography':
-map <leader>o :setlocal spell! spelllang=en_us<CR>
+noremap <leader>o :setlocal spell! spelllang=en_us<CR>
 
 " Switch syntax highlighting on when the terminal has colors or when using the
 " GUI (which always has colors).
@@ -177,17 +177,17 @@ cnoremap <silent> kk <c-c>
 inoremap <silent> jj <esc>:w<cr>
 inoremap jh <esc>:wq<cr>
 " f9 to toggle all folds for quick checking.
-nmap <expr> <f9> &foldlevel ? 'zm':'zr'
+nnoremap <expr> <f9> &foldlevel ? 'zm':'zr'
 " todo
 " inoremap <f9> <c-o><f9>
 " onoremap <expr> <f9> <c-c>&foldlevel ? 'zm':'zr'
 " vnoremap <expr> <f9> &foldlevel ? 'zm':'zr'
 "reload the .vimrc
-nmap <silent> <leader>rv :source ~/.vimrc<cr>
+nnoremap <silent> <leader>rv :source ~/.vimrc<cr>
 "show spaces"
-nmap <silent> <leader>l :set nolist!<cr>
+nnoremap <silent> <leader>l :set nolist!<cr>
 "hide hightlight of searches"
-nmap <silent> <bs> :nohlsearch<cr>
+nnoremap <silent> <bs> :nohlsearch<cr>
 " insert mode mapping
 " delete text you have typed in insert mode, recoverable by u
 inoremap <c-u> <c-g>u<c-u>
@@ -199,27 +199,27 @@ inoremap <c-w> <c-g>u<c-w>
 nnoremap <silent> <tab> :bnext<cr>
 nnoremap <silent> <s-tab> :bprev<cr>
 " maximize only this window"
-nmap <silent> <leader>m :only<cr>
+nnoremap <silent> <leader>m :only<cr>
 "vertical split"
-nmap <silent> <leader>v :bel :vne<cr>
+nnoremap <silent> <leader>v :bel :vne<cr>
 "horizontal split"
-nmap <silent> <leader>h :bel :new<cr>
+nnoremap <silent> <leader>h :bel :new<cr>
 "close viewport buffer"
-nmap <silent> <leader>x :hid<cr>
+nnoremap <silent> <leader>x :hid<cr>
 "format file
-nmap <silent> <leader>f :Autoformat<cr>
+nnoremap <silent> <leader>f :Autoformat<cr>
 " Paste and visual paste improvments
 vnoremap <silent> y y`]
 vnoremap <silent> p p`]
 nnoremap <silent> p p`]
 " Shortcutting split navigation, saving a keypress:
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
+noremap <C-h> <C-w>h
+noremap <C-j> <C-w>j
+noremap <C-k> <C-w>k
+noremap <C-l> <C-w>l
 
 " Check file in shellcheck:
-map <leader>s :!clear && shellcheck %<CR>
+noremap <leader>s :!clear && shellcheck %<CR>
 " Replace all is aliased to S.
 nnoremap S :%s//g<Left><Left>
 " Automatically deletes all trailing whitespace on save.
@@ -238,17 +238,17 @@ vmap <silent> <expr> p <sid>Repl()
 
 " Quick editing
 " Edit the .bashrc"
-nmap <silent> <leader>eb :e ~/.bashrc<CR>
+nnoremap <silent> <leader>eb :e ~/.bashrc<CR>
 " Edit the .vimrc"
-nmap <silent> <leader>ev :e ~/.vimrc<CR>
+nnoremap <silent> <leader>ev :e ~/.vimrc<CR>
 " Edit the .gitconfig"
-nmap <silent> <leader>eg :e ~/.gitconfig<CR>
+nnoremap <silent> <leader>eg :e ~/.gitconfig<CR>
 " Edit the .tmux.conf"
-nmap <silent> <leader>et :e ~/.tmux.conf<CR>
+nnoremap <silent> <leader>et :e ~/.tmux.conf<CR>
 " Edit slate configuration
-"nmap <silent> <leader>el :e ~/.slate<cr>
+"nnoremap <silent> <leader>el :e ~/.slate<cr>
 " Open a scratch file
-nmap <silent> <leader>eh :e ~/scratch.txt<CR>
+nnoremap <silent> <leader>eh :e ~/scratch.txt<CR>
 
 "Plugins configuration"
 
@@ -264,7 +264,7 @@ let g:netrw_banner = 0
 " #FZF {{{
 let g:fzf_command_prefix = 'Fzf'
 nnoremap <Leader>b :FzfBuffers<CR>
-nnoremap <Leader>h :FzfHistory<CR>
+" nnoremap <Leader>h :FzfHistory<CR>
 nnoremap <Leader>t :FzfBTags<CR>
 nnoremap <Leader>T :FzfTags<CR>
 nnoremap <C-p> :FzfFiles<CR>
@@ -313,8 +313,8 @@ let g:ale_fix_on_save = 1
 " Set this. Airline will handle the rest.
 let g:airline#extensions#ale#enabled = 1
 set omnifunc=ale#completion#OmniFunc
-nmap <silent> [[ <Plug>(ale_previous_wrap)
-nmap <silent> ]] <Plug>(ale_next_wrap)
+nnoremap <silent> [[ <Plug>(ale_previous_wrap)
+nnoremap <silent> ]] <Plug>(ale_next_wrap)
 " #CONOLINE
 " Highlight the line of the cursor
 let g:conoline_auto_enable = 1
@@ -351,14 +351,14 @@ inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " Use `[g` and `]g` to navigate diagnostics
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
+nnoremap <silent> [g <Plug>(coc-diagnostic-prev)
+nnoremap <silent> ]g <Plug>(coc-diagnostic-next)
 
 " Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+nnoremap <silent> gd <Plug>(coc-definition)
+nnoremap <silent> gy <Plug>(coc-type-definition)
+nnoremap <silent> gi <Plug>(coc-implementation)
+nnoremap <silent> gr <Plug>(coc-references)
 
 " Use K to show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -375,11 +375,11 @@ endfunction
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Remap for rename current word
-nmap <leader>rn <Plug>(coc-rename)
+nnoremap <leader>rn <Plug>(coc-rename)
 
 " Remap for format selected region
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>cf  <Plug>(coc-format-selected)
+xnoremap <leader>f  <Plug>(coc-format-selected)
+nnoremap <leader>cf  <Plug>(coc-format-selected)
 
 augroup mygroup
   autocmd!
@@ -390,23 +390,23 @@ augroup mygroup
 augroup end
 
 " Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
+xnoremap <leader>a  <Plug>(coc-codeaction-selected)
+nnoremap <leader>a  <Plug>(coc-codeaction-selected)
 
 " Remap for do codeAction of current line
-nmap <leader>ac  <Plug>(coc-codeaction)
+nnoremap <leader>ac  <Plug>(coc-codeaction)
 " Fix autofix problem of current line
-nmap <leader>qf  <Plug>(coc-fix-current)
+nnoremap <leader>qf  <Plug>(coc-fix-current)
 
 " Create mappings for function text object, requires document symbols feature of languageserver.
-xmap if <Plug>(coc-funcobj-i)
-xmap af <Plug>(coc-funcobj-a)
-omap if <Plug>(coc-funcobj-i)
-omap af <Plug>(coc-funcobj-a)
+xnoremap if <Plug>(coc-funcobj-i)
+xnoremap af <Plug>(coc-funcobj-a)
+onoremap if <Plug>(coc-funcobj-i)
+onoremap af <Plug>(coc-funcobj-a)
 
 " Use <C-d> for select selections ranges, needs server support, like: coc-tsserver, coc-python
-nmap <silent> <C-d> <Plug>(coc-range-select)
-xmap <silent> <C-d> <Plug>(coc-range-select)
+nnoremap <silent> <C-d> <Plug>(coc-range-select)
+xnoremap <silent> <C-d> <Plug>(coc-range-select)
 
 " Use `:Format` to format current buffer
 command! -nargs=0 Format :call CocAction('format')
