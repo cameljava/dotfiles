@@ -269,8 +269,18 @@ nnoremap <Leader>gt :FzfRg<CR>
 let g:gutentags_file_list_command = "rg --files --follow --ignore-file '/Users/kevlee/.vimignore'"
 
 " Nerdtree "
-map <leader>d :execute 'NERDTreeToggle ' . getcwd()<CR>
+nnoremap <silent> <leader>d :execute 'NERDTreeToggle ' . getcwd()<CR>
 let NERDTreeIgnore=['node_modules$[[dir]]', '\.git$[[dir]]']
+"auto close nerdtree when you open a file
+let NERDTreeQuitOnOpen = 1
+" Close if the only remaining window is a nerdtree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+"auto del buffer of the file if you just deleted with nerdtree
+let NERDTreeAutoDeleteBuffer = 1
+"make nerdtree looks prettier
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
+autocmd BufReadPre,FileReadPre * :NERDTreeClose
 
 " Vim Airline
 set laststatus=2
