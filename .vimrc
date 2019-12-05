@@ -56,7 +56,6 @@ let maplocalleader = ";"   "not sure about this, TODO
 " set rtp+=/usr/local/opt/fzf
 set ignorecase smartcase
 set lazyredraw
-set cursorline
 set encoding=utf-8
 set clipboard+=unnamed " Add the unnamed register to the clipboard
 set autoread  "Automatically read a file that has changed on disk
@@ -319,6 +318,13 @@ nmap <silent> ]] <Plug>(ale_next_wrap)
 " Highlight the line of the cursor
 let g:conoline_auto_enable = 1
 let g:conoline_use_colorscheme_default_insert=1
+
+" Disable cursor line highlighting in Insert mode
+augroup aug_cursor_line
+  au!
+  au InsertEnter * setlocal nocursorline
+  au InsertLeave * setlocal cursorline
+augroup END
 
 " #COC
 " Use tab for trigger completion with characters ahead and navigate.
