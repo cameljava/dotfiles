@@ -51,6 +51,8 @@ call plug#end()
 
 packadd! matchit
 
+"treat $ as normal letter, will work for word text object
+set iskeyword+=$
 let mapleader = ","
 let maplocalleader = ";"   "not sure about this, TODO
 " Basic settings and variables"
