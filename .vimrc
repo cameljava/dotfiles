@@ -80,8 +80,15 @@ set wildmenu " Display completion matches on your status line
 set wrap linebreak nolist "allow wrap, not wrap within work
 " Syntax coloring lines that are too long just slows down the world
 set synmaxcol=2048
-set ttimeout    " time out for key codes
-set ttimeoutlen=100 " wait up to 100ms after Esc for special key
+" Timeout settings
+" Eliminating ESC delays in vim - Metaserv - https://meta-serv.com/article/vim_delay
+" Delayed esc from insert mode caused by cursor-shape terminal sequence - Vi and Vim Stack Exchange - https://vi.stackexchange.com/questions/15633/delayed-esc-from-insert-mode-caused-by-cursor-shape-terminal-sequence
+" Wait forever until I recall mapping
+" Don't wait to much for keycodes send by terminal, so there's no delay on <ESC>
+set notimeout
+set ttimeout
+set timeoutlen=2000
+set ttimeoutlen=30
 " Show @@@ in the last line if it is truncated.
 set display=truncate
 " Do incremental searching when it's possible to timeout.
