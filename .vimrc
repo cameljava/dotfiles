@@ -211,6 +211,9 @@ map <C-l> <C-w>l
 
 " Check file in shellcheck:
 map <leader>s :!clear && shellcheck %<CR>
+" Replace all is aliased to S.
+nnoremap S :%s//g<Left><Left>
+
 " vp doesn't replace paste buffer
 function! RestoreRegister()
   let @" = s:restore_reg
