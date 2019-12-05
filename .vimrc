@@ -213,7 +213,8 @@ map <C-l> <C-w>l
 map <leader>s :!clear && shellcheck %<CR>
 " Replace all is aliased to S.
 nnoremap S :%s//g<Left><Left>
-
+" Automatically deletes all trailing whitespace on save.
+autocmd BufWritePre * %s/\s\+$//e
 " vp doesn't replace paste buffer
 function! RestoreRegister()
   let @" = s:restore_reg
