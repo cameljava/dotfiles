@@ -44,7 +44,8 @@ Plug 'miyakogi/conoline.vim'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'frazrepo/vim-rainbow'
-Plug 'pangloss/vim-javascript'
+" Plug 'pangloss/vim-javascript'
+Plug 'sheerun/vim-polyglot'
 Plug 'jremmen/vim-ripgrep'
 call plug#end()
 
