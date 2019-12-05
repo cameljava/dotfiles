@@ -43,6 +43,7 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'frazrepo/vim-rainbow'
 Plug 'pangloss/vim-javascript'
+Plug 'jremmen/vim-ripgrep'
 call plug#end()
 
 packadd! matchit
@@ -96,6 +97,12 @@ noremap Q gq
 if has('mouse')
   set mouse=a
 endif
+" Enable autocompletion:
+set wildmode=longest,list,full
+" Disables automatic commenting on newline:
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+" Spell-check set to <leader>o, 'o' for 'orthography':
+map <leader>o :setlocal spell! spelllang=en_us<CR>
 
 " Switch syntax highlighting on when the terminal has colors or when using the
 " GUI (which always has colors).
@@ -196,6 +203,14 @@ nmap <silent> <leader>f :Autoformat<cr>
 vnoremap <silent> y y`]
 vnoremap <silent> p p`]
 nnoremap <silent> p p`]
+" Shortcutting split navigation, saving a keypress:
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
+
+" Check file in shellcheck:
+map <leader>s :!clear && shellcheck %<CR>
 " vp doesn't replace paste buffer
 function! RestoreRegister()
   let @" = s:restore_reg
