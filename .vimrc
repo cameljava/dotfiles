@@ -16,6 +16,8 @@ silent! endwhile
 
 call plug#begin('~/.vim/plugged')
 Plug 'junegunn/vim-plug'
+Plug 'tpope/vim-fugitive'
+Plug 'shumphrey/fugitive-gitlab.vim'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug '/usr/local/opt/fzf'
@@ -242,6 +244,9 @@ nmap <silent> <leader>et :e ~/.tmux.conf<CR>
 nmap <silent> <leader>eh :e ~/scratch.txt<CR>
 
 "Plugins configuration"
+
+" #fugitive
+let g:fugitive_gitlab_domains = ['https://gitlab.cochlear.link']
 
 " #NETRW {{{
 " Set preferred view
