@@ -68,15 +68,11 @@ set hidden
 set autoindent
 set tabstop=2 softtabstop=2 shiftwidth=2 expandtab "setup default tab/shift/expand
 set visualbell noerrorbells " don't beep
-set shortmess=atI           " disable welcome screen
+set shortmess=atIc           " disable welcome screen; don't give ins-completion-menu messages.
 set showmode showcmd ttyfast
 set cmdheight=2
 " You will have bad experience for diagnostic messages when it's default 4000.
 set updatetime=300
-" don't give |ins-completion-menu| messages.
-set shortmess+=c
-" always show signcolumns
-set signcolumn=yes
 set ruler " Show the line and column number of the cursor position
 set wildmenu " Display completion matches on your status line
 set wrap linebreak nolist "allow wrap, not wrap within work
@@ -198,6 +194,9 @@ inoremap <c-w> <c-g>u<c-w>
 
 " movements shortcuts
 " buffer switching/management, might as well use those keys for something useful
+nnoremap <silent> <space> <PageDown>
+" known issue, TOD
+"nnoremap <silent> <S-space> <PageUp>
 nnoremap <silent> <tab> :bnext<cr>
 nnoremap <silent> <s-tab> :bprev<cr>
 " maximize only this window"
@@ -205,7 +204,7 @@ nnoremap <silent> <leader>m :only<cr>
 "vertical split"
 nnoremap <silent> <leader>v :bel :vne<cr>
 "horizontal split"
-nnoremap <silent> <leader>h :bel :new<cr>
+nnoremap <silent> <leader>s :bel :new<cr>
 "close viewport buffer"
 nnoremap <silent> <leader>x :hid<cr>
 "format file
@@ -214,14 +213,14 @@ nnoremap <silent> <leader>f :Autoformat<cr>
 vnoremap <silent> y y`]
 vnoremap <silent> p p`]
 nnoremap <silent> p p`]
-" Shortcutting split navigation, saving a keypress:
+" Shortcutting split navigation, saving a keypress, TODO only work  c-s-h
 noremap <C-h> <C-w>h
 noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 
 " Check file in shellcheck:
-noremap <leader>s :!clear && shellcheck %<CR>
+noremap <space>b :!clear && shellcheck %<CR>
 " Replace all is aliased to S.
 nnoremap S :%s//g<Left><Left>
 " Automatically deletes all trailing whitespace on save.
@@ -236,7 +235,6 @@ function! s:Repl()
   return "p@=RestoreRegister()\<cr>"
 endfunction
 vmap <silent> <expr> p <sid>Repl()
-
 
 " Quick editing
 " Edit the .bashrc"
@@ -266,7 +264,7 @@ let g:netrw_banner = 0
 " #FZF {{{
 let g:fzf_command_prefix = 'Fzf'
 nnoremap <Leader>b :FzfBuffers<CR>
-" nnoremap <Leader>h :FzfHistory<CR>
+nnoremap <Leader>fh :FzfHistory<CR>
 nnoremap <Leader>t :FzfBTags<CR>
 nnoremap <Leader>T :FzfTags<CR>
 nnoremap <C-p> :FzfFiles<CR>
@@ -332,6 +330,8 @@ augroup END
 " #COC
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+let g:coc_global_extensions = ['coc-emoji', 'coc-eslint', 'coc-prettier', 'coc-tsserver', 'coc-tslint', 'coc-tslint-plugin', 'coc-css', 'coc-json', 'coc-pyls', 'coc-yaml']
+
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
