@@ -30,7 +30,6 @@ Plug 'PhilRunninger/nerdtree-buffer-ops'
 Plug 'airblade/vim-gitgutter'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'dense-analysis/ale'
-" Plug 'terryma/vim-multiple-cursors'
 Plug 'junegunn/vim-easy-align'
 Plug 'othree/eregex.vim'
 Plug 'altercation/vim-colors-solarized'
@@ -44,7 +43,6 @@ Plug 'miyakogi/conoline.vim'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'frazrepo/vim-rainbow'
-" Plug 'pangloss/vim-javascript'
 Plug 'sheerun/vim-polyglot'
 Plug 'jremmen/vim-ripgrep'
 "Plug 'bling/vim-bufferline'
@@ -334,6 +332,9 @@ augroup END
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
 " let g:coc_global_extensions = ['coc-emoji', 'coc-eslint', 'coc-prettier', 'coc-tsserver', 'coc-tslint', 'coc-tslint-plugin', 'coc-css', 'coc-json', 'coc-pyls', 'coc-yaml']
 let g:coc_global_extensions = ['coc-emoji', 'coc-tsserver', 'coc-tslint', 'coc-tslint-plugin', 'coc-css', 'coc-json', 'coc-pyls', 'coc-yaml']
+
+" Better display for messages
+set cmdheight=2
 
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
