@@ -31,7 +31,7 @@ fi
 # Add Visual Studio Code (code)
 export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 
-######## add awscli 
+######## add awscli
 export PATH=~/Library/Python/3.7/bin:$PATH
 export PATH="/usr/local/opt/libressl/bin:$PATH"
 
@@ -44,19 +44,6 @@ export PATH="/usr/local/opt/libressl/bin:$PATH"
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
-############## add brew autocomplete
-#HOMEBREW_PREFIX=$(brew --prefix)
-#if type brew &>/dev/null; then
-#  for COMPLETION in "$HOMEBREW_PREFIX"/etc/bash_completion.d/*
-#  do
-#    [[ -f $COMPLETION ]] && source "$COMPLETION"
-#  done
-#  if [[ -f ${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh ]];
-#  then
-#    source "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
-#  fi
-#fi
-
 
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 # add alias
@@ -95,25 +82,3 @@ export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 export LDFLAGS="-L/usr/local/opt/openssl@1.1/lib"
 export CPPFLAGS="-I/usr/local/opt/openssl@1.1/include"
 export PKG_CONFIG_PATH="/usr/local/opt/openssl@1.1/lib/pkgconfig"
-
-# kadd function to clean update brew
-
-fullBrewUpdate(){
-            brew update
-
-#            casks=( $(brew cask list) )
-#
-#            for cask in ${casks[@]}
-#            do
-#                # in the first line there is version
-#                    current="$(brew cask info $cask | sed -n '1p' | sed -n 's/^.*: \(.*\)$/\1/p')"
-#
-#                    installed=( $(ls /opt/homebrew-cask/Caskroom/$cask))
-#                    if (! [[ " ${installed[@]} " == *" $current "* ]]); then
-#                            (set -x; brew cask install $cask --force;)
-#                    fi
-#            done
-
-            brew upgrade
-            brew cleanup
-    }

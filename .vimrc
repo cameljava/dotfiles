@@ -68,7 +68,7 @@ set hidden
 set autoindent
 set tabstop=2 softtabstop=2 shiftwidth=2 expandtab "setup default tab/shift/expand
 set visualbell noerrorbells " don't beep
-set shortmess=atIc           " disable welcome screen; don't give ins-completion-menu messages.
+set shortmess=atIc          " disable welcome screen; don't give ins-completion-menu messages.
 set showmode showcmd ttyfast
 set cmdheight=2
 " You will have bad experience for diagnostic messages when it's default 4000.
@@ -105,7 +105,7 @@ if has('mouse')
   set mouse=a
 endif
 " Enable autocompletion:
-set wildmode=longest,list,full
+set wildmode=list:longest,full
 " Disables automatic commenting on newline:
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 " Spell-check set to <leader>o, 'o' for 'orthography':
@@ -208,7 +208,7 @@ nnoremap <silent> <leader>s :bel :new<cr>
 "close viewport buffer"
 nnoremap <silent> <leader>x :hid<cr>
 "format file
-nnoremap <silent> <leader>f :Autoformat<cr>
+nnoremap <silent> <leader>ff :Autoformat<cr>
 " Paste and visual paste improvments
 vnoremap <silent> y y`]
 vnoremap <silent> p p`]
@@ -312,7 +312,7 @@ let g:ale_lint_on_save = 1
 let g:ale_fix_on_save = 1
 " Set this. Airline will handle the rest.
 let g:airline#extensions#ale#enabled = 1
-set omnifunc=ale#completion#OmniFunc
+"set omnifunc=ale#completion#OmniFunc
 nnoremap <silent> [[ <Plug>(ale_previous_wrap)
 nnoremap <silent> ]] <Plug>(ale_next_wrap)
 " #CONOLINE
@@ -330,7 +330,8 @@ augroup END
 " #COC
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-let g:coc_global_extensions = ['coc-emoji', 'coc-eslint', 'coc-prettier', 'coc-tsserver', 'coc-tslint', 'coc-tslint-plugin', 'coc-css', 'coc-json', 'coc-pyls', 'coc-yaml']
+" let g:coc_global_extensions = ['coc-emoji', 'coc-eslint', 'coc-prettier', 'coc-tsserver', 'coc-tslint', 'coc-tslint-plugin', 'coc-css', 'coc-json', 'coc-pyls', 'coc-yaml']
+let g:coc_global_extensions = ['coc-emoji', 'coc-tsserver', 'coc-tslint', 'coc-tslint-plugin', 'coc-css', 'coc-json', 'coc-pyls', 'coc-yaml']
 
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
