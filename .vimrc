@@ -47,6 +47,7 @@ Plug 'frazrepo/vim-rainbow'
 " Plug 'pangloss/vim-javascript'
 Plug 'sheerun/vim-polyglot'
 Plug 'jremmen/vim-ripgrep'
+"Plug 'bling/vim-bufferline'
 call plug#end()
 
 packadd! matchit
@@ -291,6 +292,7 @@ autocmd BufReadPre,FileReadPre * :NERDTreeClose
 
 " Vim Airline
 set laststatus=2
+let g:airline#extensions#tabline#enabled = 1
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
