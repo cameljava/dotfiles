@@ -16,8 +16,6 @@ silent! endwhile
 
 call plug#begin('~/.vim/plugged')
 Plug 'junegunn/vim-plug'
-Plug 'tpope/vim-fugitive'
-Plug 'shumphrey/fugitive-gitlab.vim'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug '/usr/local/opt/fzf'
@@ -32,32 +30,24 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'dense-analysis/ale'
 Plug 'junegunn/vim-easy-align'
 Plug 'othree/eregex.vim'
-Plug 'altercation/vim-colors-solarized'
+" Plug 'altercation/vim-colors-solarized'
 Plug 'Chiel92/vim-autoformat'
 Plug 'mbbill/undotree'
 Plug 'michaeljsmith/vim-indent-object'
-Plug 'vim-scripts/argtextobj.vim'
+" Plug 'vim-scripts/argtextobj.vim'
 " sort: gs+motion/object
-Plug 'christoomey/vim-sort-motion'
-Plug 'miyakogi/conoline.vim'
-Plug 'ludovicchabant/vim-gutentags'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'frazrepo/vim-rainbow'
-Plug 'sheerun/vim-polyglot'
-Plug 'jremmen/vim-ripgrep'
-"Plug 'bling/vim-bufferline'
+" Plug 'christoomey/vim-sort-motion'
 call plug#end()
 
 packadd! matchit
 
-"treat $ as normal letter, will work for word text object
-set iskeyword+=$
 let mapleader = ","
 let maplocalleader = ";"   "not sure about this, TODO
 " Basic settings and variables"
 " set rtp+=/usr/local/opt/fzf
 set ignorecase smartcase
 set lazyredraw
+set cursorline
 set encoding=utf-8
 set clipboard+=unnamed " Add the unnamed register to the clipboard
 set autoread  "Automatically read a file that has changed on disk
@@ -67,25 +57,15 @@ set hidden
 set autoindent
 set tabstop=2 softtabstop=2 shiftwidth=2 expandtab "setup default tab/shift/expand
 set visualbell noerrorbells " don't beep
-set shortmess=atIc          " disable welcome screen; don't give ins-completion-menu messages.
+set shortmess=atI           " disable welcome screen
 set showmode showcmd ttyfast
-set cmdheight=2
-" You will have bad experience for diagnostic messages when it's default 4000.
-set updatetime=300
 set ruler " Show the line and column number of the cursor position
 set wildmenu " Display completion matches on your status line
 set wrap linebreak nolist "allow wrap, not wrap within work
 " Syntax coloring lines that are too long just slows down the world
 set synmaxcol=2048
-" Timeout settings
-" Eliminating ESC delays in vim - Metaserv - https://meta-serv.com/article/vim_delay
-" Delayed esc from insert mode caused by cursor-shape terminal sequence - Vi and Vim Stack Exchange - https://vi.stackexchange.com/questions/15633/delayed-esc-from-insert-mode-caused-by-cursor-shape-terminal-sequence
-" Wait forever until I recall mapping
-" Don't wait to much for keycodes send by terminal, so there's no delay on <ESC>
-set notimeout
-set ttimeout
-set timeoutlen=2000
-set ttimeoutlen=30
+set ttimeout    " time out for key codes
+set ttimeoutlen=100 " wait up to 100ms after Esc for special key
 " Show @@@ in the last line if it is truncated.
 set display=truncate
 " Do incremental searching when it's possible to timeout.
@@ -103,12 +83,6 @@ noremap Q gq
 if has('mouse')
   set mouse=a
 endif
-" Enable autocompletion:
-set wildmode=list:longest,full
-" Disables automatic commenting on newline:
-autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-" Spell-check set to <leader>o, 'o' for 'orthography':
-noremap <leader>o :setlocal spell! spelllang=en_us<CR>
 
 " Switch syntax highlighting on when the terminal has colors or when using the
 " GUI (which always has colors).
@@ -121,7 +95,6 @@ if &t_Co > 2 || has("gui_running")
   let c_comment_strings=1
 endif
 set nu rnu                      " show line numbers
-nnoremap ; :
 "-- FOLDING --
 set foldmethod=syntax "syntax highlighting items specify folds
 set foldcolumn=1 "defines 1 col at window left, to indicate folding
@@ -133,7 +106,7 @@ set hlsearch " hightlight search search
 set gdefault                " global replace by default
 set nowrapscan " turn off wrap scan, stop search at end/start of file
 "set guioptions=a            " hide scrollbars/menu/tabs
-set listchars=tab:→→,eol:¬,space:.,trail:·
+set listchars=tab:\|\ ,trail:·,eol:¬
 if v:version > 703 || v:version == 703 && has("patch541")
   set formatoptions+=j " Delete comment character when joining commented lines
 endif
@@ -150,80 +123,49 @@ noremap Y y$
 " highlight last inserted text
 nnoremap gV `[v`]
 
-" Stop concealing quotes in JSON
-let g:vim_json_syntax_conceal = 0
-
-" Not sure below code TODO
-" augroup numbertoggle
-"   autocmd!
-"   autocmd bufenter,focusgained,insertleave * set relativenumber
-"   autocmd bufleave,focuslost,insertenter   * set norelativenumber
-" augroup end
-
-" #finding files
-" use the `:find` command to fuzzy search files in the working directory
-" the `:b` command can also be used to do the same for open buffers
-
-" search all subfolders
-set path+=**
-" ignore node_modules and images from search results
-set wildignore+=**/node_modules/**,**/dist/**,**_site/**,*.swp,*.png,*.jpg,*.gif,*.webp,*.jpeg,*.map
-" keyboard shortcuts and remappings
-inoremap kk <esc>
-cnoremap <silent> kk <c-c>
-inoremap <silent> jj <esc>:w<cr>
-inoremap jh <esc>:wq<cr>
-" f9 to toggle all folds for quick checking.
-nnoremap <expr> <f9> &foldlevel ? 'zm':'zr'
-" todo
-" inoremap <f9> <c-o><f9>
-" onoremap <expr> <f9> <c-c>&foldlevel ? 'zm':'zr'
-" vnoremap <expr> <f9> &foldlevel ? 'zm':'zr'
+" Keyboard Shortcuts and remappings   "
+"changes with less keystrokes
+nnoremap ; :
+inoremap kk <ESC>
+cnoremap <silent> kk <C-c>
+inoremap <silent> jj <ESC>:w<CR>
+inoremap jh <ESC>:wq<CR>
+" F9 to toggle all folds for quick checking.
+nmap <expr> <F9> &foldlevel ? 'zM':'zR'
+" TODO
+" inoremap <F9> <C-O><F9>
+" onoremap <expr> <F9> <C-C>&foldlevel ? 'zM':'zR'
+" vnoremap <expr> <F9> &foldlevel ? 'zM':'zR'
 "reload the .vimrc
-nnoremap <silent> <leader>rv :source ~/.vimrc<cr>
+nmap <silent> <leader>rv :source ~/.vimrc<CR>
 "show spaces"
-nnoremap <silent> <leader>l :set nolist!<cr>
+nmap <silent> <leader>l :set nolist!<CR>
 "hide hightlight of searches"
-nnoremap <silent> <bs> :nohlsearch<cr>
-" insert mode mapping
+nmap <silent> <BS> :nohlsearch<CR>
+" Insert mode mapping
 " delete text you have typed in insert mode, recoverable by u
 inoremap <c-u> <c-g>u<c-u>
 " delete word before cursor, recoverable by u
 inoremap <c-w> <c-g>u<c-w>
 
-" movements shortcuts
-" buffer switching/management, might as well use those keys for something useful
-nnoremap <silent> <space> <PageDown>
-" known issue, TOD
-"nnoremap <silent> <S-space> <PageUp>
-nnoremap <silent> <tab> :bnext<cr>
-nnoremap <silent> <s-tab> :bprev<cr>
-" maximize only this window"
-nnoremap <silent> <leader>m :only<cr>
+" Movements shortcuts
+" Buffer switching/management, might as well use those keys for something useful
+nnoremap <Tab> :bnext<CR>
+nnoremap <S-Tab> :bprev<CR>
+" Maximize only this window"
+nmap <silent> <leader>m :only<CR>
 "vertical split"
-nnoremap <silent> <leader>v :bel :vne<cr>
+nmap <silent> <leader>v :bel :vne<CR>
 "horizontal split"
-nnoremap <silent> <leader>s :bel :new<cr>
+nmap <silent> <leader>h :bel :new<CR>
 "close viewport buffer"
-nnoremap <silent> <leader>x :hid<cr>
+nmap <silent> <leader>x :hid<CR>
 "format file
-nnoremap <silent> <leader>ff :Autoformat<cr>
+nmap <silent> <leader>f :Autoformat<CR>
 " Paste and visual paste improvments
 vnoremap <silent> y y`]
 vnoremap <silent> p p`]
 nnoremap <silent> p p`]
-" Shortcutting split navigation, saving a keypress, TODO only work  c-s-h
-noremap <C-h> <C-w>h
-noremap <C-j> <C-w>j
-noremap <C-k> <C-w>k
-noremap <C-l> <C-w>l
-
-" Check file in shellcheck:
-noremap <space>b :!clear && shellcheck %<CR>
-" Replace all is aliased to S.
-nnoremap S :%s//g<Left><Left>
-" Automatically deletes all trailing whitespace on save.
-autocmd BufWritePre * %s/\s\+$//e
 " vp doesn't replace paste buffer
 function! RestoreRegister()
   let @" = s:restore_reg
@@ -235,71 +177,42 @@ function! s:Repl()
 endfunction
 vmap <silent> <expr> p <sid>Repl()
 
+
 " Quick editing
 " Edit the .bashrc"
-nnoremap <silent> <leader>eb :e ~/.bashrc<CR>
+nmap <silent> <leader>eb :e ~/.bashrc<CR>
 " Edit the .vimrc"
-nnoremap <silent> <leader>ev :e ~/.vimrc<CR>
+nmap <silent> <leader>ev :e ~/.vimrc<CR>
 " Edit the .gitconfig"
-nnoremap <silent> <leader>eg :e ~/.gitconfig<CR>
+nmap <silent> <leader>eg :e ~/.gitconfig<CR>
 " Edit the .tmux.conf"
-nnoremap <silent> <leader>et :e ~/.tmux.conf<CR>
+nmap <silent> <leader>et :e ~/.tmux.conf<CR>
 " Edit slate configuration
-"nnoremap <silent> <leader>el :e ~/.slate<cr>
+"nmap <silent> <leader>el :e ~/.slate<cr>
 " Open a scratch file
-nnoremap <silent> <leader>eh :e ~/scratch.txt<CR>
+nmap <silent> <leader>eh :e ~/scratch.txt<CR>
 
-"Plugins configuration"
-
-" #fugitive
-let g:fugitive_gitlab_domains = ['https://gitlab.cochlear.link']
-
-" #NETRW {{{
-" Set preferred view
-let g:netrw_liststyle = 3
-" Remove banner
-let g:netrw_banner = 0
-
-" #FZF {{{
-let g:fzf_command_prefix = 'Fzf'
-nnoremap <Leader>b :FzfBuffers<CR>
-nnoremap <Leader>fh :FzfHistory<CR>
-nnoremap <Leader>t :FzfBTags<CR>
-nnoremap <Leader>T :FzfTags<CR>
-nnoremap <C-p> :FzfFiles<CR>
-" Have FZF list all tracked files plus untracked files minus your ignored files
-nnoremap <Leader>p :FzfGitFiles --exclude-standard --others --cached<CR>
-nnoremap <Leader>gt :FzfRg<CR>
-
-" #GUTENTAGS
-let g:gutentags_file_list_command = "rg --files --follow --ignore-file '/Users/kevlee/.vimignore'"
-
+" Plugins configuration"
 " Nerdtree "
-nnoremap <silent> <leader>d :execute 'NERDTreeToggle ' . getcwd()<CR>
+map <leader>d :execute 'NERDTreeToggle ' . getcwd()<CR>
 let NERDTreeIgnore=['node_modules$[[dir]]', '\.git$[[dir]]']
-"auto close nerdtree when you open a file
-let NERDTreeQuitOnOpen = 1
-" Close if the only remaining window is a nerdtree
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-"auto del buffer of the file if you just deleted with nerdtree
-let NERDTreeAutoDeleteBuffer = 1
-"make nerdtree looks prettier
-let NERDTreeMinimalUI = 1
-let NERDTreeDirArrows = 1
-autocmd BufReadPre,FileReadPre * :NERDTreeClose
-
 " Vim Airline
 set laststatus=2
-let g:airline#extensions#tabline#enabled = 1
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
-
 " ale setting
+
+" let g:jsx_ext_required = 0
+
+let g:ale_linters = {
+      \   'javascript': ['eslint'],
+      \}
+
 let g:ale_fixers = {
-      \   '*': ['remove_trailing_lines', 'trim_whitespace']
+      \   'javascript': ['prettier', 'eslint'],
       \}
 let g:ale_sign_error = '❌'
 let g:ale_sign_warning = '⚠️'
@@ -312,138 +225,15 @@ let g:ale_lint_on_save = 1
 let g:ale_fix_on_save = 1
 " Set this. Airline will handle the rest.
 let g:airline#extensions#ale#enabled = 1
-"set omnifunc=ale#completion#OmniFunc
-nnoremap <silent> [[ <Plug>(ale_previous_wrap)
-nnoremap <silent> ]] <Plug>(ale_next_wrap)
-" #CONOLINE
-" Highlight the line of the cursor
-let g:conoline_auto_enable = 1
-let g:conoline_use_colorscheme_default_insert=1
+set omnifunc=ale#completion#OmniFunc
+nmap <silent> [[ <Plug>(ale_previous_wrap)
+nmap <silent> ]] <Plug>(ale_next_wrap)
 
-" Disable cursor line highlighting in Insert mode
-augroup aug_cursor_line
-  au!
-  au InsertEnter * setlocal nocursorline
-  au InsertLeave * setlocal cursorline
-augroup END
+let g:ale_javascript_prettier_options = '--single-quote --trailing-comma none'
+let g:ale_javascript_prettier_use_local_config = 1
+"  End ale setting }}}
 
-" #COC
-" Use tab for trigger completion with characters ahead and navigate.
-" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-" let g:coc_global_extensions = ['coc-emoji', 'coc-eslint', 'coc-prettier', 'coc-tsserver', 'coc-tslint', 'coc-tslint-plugin', 'coc-css', 'coc-json', 'coc-pyls', 'coc-yaml']
-let g:coc_global_extensions = ['coc-emoji', 'coc-tsserver', 'coc-tslint', 'coc-tslint-plugin', 'coc-css', 'coc-json', 'coc-pyls', 'coc-yaml']
-
-" Better display for messages
-set cmdheight=2
-
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-" Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
-
-" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
-" Coc only does snippet and additional edit on confirm.
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-" Or use `complete_info` if your vim support it, like:
-" inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
-
-" Use `[g` and `]g` to navigate diagnostics
-nnoremap <silent> [g <Plug>(coc-diagnostic-prev)
-nnoremap <silent> ]g <Plug>(coc-diagnostic-next)
-
-" Remap keys for gotos
-nnoremap <silent> gd <Plug>(coc-definition)
-nnoremap <silent> gy <Plug>(coc-type-definition)
-nnoremap <silent> gi <Plug>(coc-implementation)
-nnoremap <silent> gr <Plug>(coc-references)
-
-" Use K to show documentation in preview window
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-
-" Highlight symbol under cursor on CursorHold
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
-" Remap for rename current word
-nnoremap <leader>rn <Plug>(coc-rename)
-
-" Remap for format selected region
-xnoremap <leader>f  <Plug>(coc-format-selected)
-nnoremap <leader>cf  <Plug>(coc-format-selected)
-
-augroup mygroup
-  autocmd!
-  " Setup formatexpr specified filetype(s).
-  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-  " Update signature help on jump placeholder
-  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-augroup end
-
-" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
-xnoremap <leader>a  <Plug>(coc-codeaction-selected)
-nnoremap <leader>a  <Plug>(coc-codeaction-selected)
-
-" Remap for do codeAction of current line
-nnoremap <leader>ac  <Plug>(coc-codeaction)
-" Fix autofix problem of current line
-nnoremap <leader>qf  <Plug>(coc-fix-current)
-
-" Create mappings for function text object, requires document symbols feature of languageserver.
-xnoremap if <Plug>(coc-funcobj-i)
-xnoremap af <Plug>(coc-funcobj-a)
-onoremap if <Plug>(coc-funcobj-i)
-onoremap af <Plug>(coc-funcobj-a)
-
-" Use <C-d> for select selections ranges, needs server support, like: coc-tsserver, coc-python
-nnoremap <silent> <C-d> <Plug>(coc-range-select)
-xnoremap <silent> <C-d> <Plug>(coc-range-select)
-
-" Use `:Format` to format current buffer
-command! -nargs=0 Format :call CocAction('format')
-
-" Use `:Fold` to fold current buffer
-command! -nargs=? Fold :call     CocAction('fold', <f-args>)
-
-" use `:OR` for organize import of current buffer
-command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
-
-" Add status line support, for integration with other plugin, checkout `:h coc-status`
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-
-" Using CocList
-" Show all diagnostics
-nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
-" Manage extensions
-nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
-" Show commands
-nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
-" Find symbol of current document
-nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
-" Search workspace symbols
-nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
-" Do default action for next item.
-nnoremap <silent> <space>j  :<C-u>CocNext<CR>
-" Do default action for previous item.
-nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
-" Resume latest coc list
-nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
-
+" End Plugins configuration"}}}
 " get rid of E20 error
 " autocmd BufWrite * mark ' | silent! %s/\n\{3,}/\r\r\r/e | silent! exe "norm! ''"
 
@@ -475,9 +265,6 @@ if 1
 
 endif
 
-" Automatically remove the preview window after autocompletion
-autocmd CompleteDone * pclose
-
 " Convenient command to see the difference between the current buffer and the
 " file it was loaded from, thus the changes you made.
 " Only define it when not defined already.
@@ -489,10 +276,7 @@ endif
 
 if has('langmap') && exists('+langremap')
   " Prevent that the langmap option applies to characters that result from a
-  " mapping.  If set (default), this may break plugins (but it's backwar
-  " Automatically remove the preview window after autocompletion
-  autocmd CompleteDone * pclose
-
+  " mapping.  If set (default), this may break plugins (but it's backward
   " compatible).
   set nolangremap
 endif
