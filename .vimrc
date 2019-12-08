@@ -216,7 +216,7 @@ let g:ale_lint_on_enter = 0
 let g:ale_lint_on_text_changed = 'never'
 highlight ALEErrorSign ctermbg=NONE ctermfg=red
 highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
-" let g:ale_linters_explicit = 1
+let g:ale_linters_explicit = 1
 let g:ale_lint_on_save = 1
 let g:ale_fix_on_save = 1
 let g:ale_completion_enabled = 1
@@ -226,8 +226,10 @@ set omnifunc=ale#completion#OmniFunc
 nmap <silent> [[ <Plug>(ale_previous_wrap)
 nmap <silent> ]] <Plug>(ale_next_wrap)
 
-let g:ale_javascript_prettier_options = '--single-quote --trailing-comma none'
-let g:ale_javascript_prettier_use_local_config = 1
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+
 "  End ale setting }}}
 
 " End Plugins configuration"}}}
