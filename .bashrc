@@ -48,3 +48,8 @@ alias config='/usr/bin/git --git-dir=/Users/kevlee/git/cameljava_github/dotfiles
 config config --local status.showUntrackedFiles no
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden'
+
+# https://medium.com/adorableio/modern-javascript-ctags-configuration-199884dbcc1
+# alias jtags="ctags -R app config lib && sed -i '' -E '/^(if|switch|function|module\.exports|it|describe).+language:js$/d' tags"

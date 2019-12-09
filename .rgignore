@@ -1,0 +1,16 @@
+node_modules
+tmp
+.git
+Library
+Music
+Screenshots
+Movies
+Applications
+fonts
+.localized
+.DS_Store
+.npm
+*.jpg
+*.jpeg
+*.png
+*.gif
