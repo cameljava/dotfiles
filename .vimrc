@@ -36,9 +36,11 @@ Plug 'Chiel92/vim-autoformat'
 Plug 'mbbill/undotree'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'Shougo/denite.nvim'
+
 Plug 'roxma/nvim-yarp'
 Plug 'roxma/vim-hug-neovim-rpc'
-Plug 'ludovicchabant/vim-gutentags'
+" Plug 'ludovicchabant/vim-gutentags'
+Plug 'majutsushi/tagbar'
 " Plug 'vim-scripts/argtextobj.vim'
 " sort: gs+motion/object
 " Plug 'christoomey/vim-sort-motion'
@@ -373,6 +375,8 @@ if has('langmap') && exists('+langremap')
   " compatible).
   set nolangremap
 endif
+
+nnoremap <F8> :TagbarToggle<CR>
 
 " Theme and Color
 set background=dark
