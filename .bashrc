@@ -16,6 +16,10 @@ complete -C '/Users/kevlee/Library/Python/3.7/bin/aws_completer' aws
 # alias
 
 alias sls="sls --region ap-southeast-2 "
+alias n="nvim "
+alias v="vim "
+alias m="mvim "
+alias g="git "
 alias gs="git status"
 alias gc="git commit"
 alias ga="git add "
