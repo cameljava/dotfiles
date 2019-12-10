@@ -15,7 +15,7 @@ set nonumber
 set noshowcmd
 
 " Yank and paste with the system clipboard
-set clipboard=unnamed
+set clipboard+=unnamed
 
 " Hides buffers instead of closing them
 set hidden
@@ -247,7 +247,7 @@ catch
 endtry
 
 " Vim airline theme
-let g:airline_theme='space'
+"let g:airline_theme='space'
 
 " Add custom highlights in method that is executed every time a colorscheme is sourced
 " See https://gist.github.com/romainl/379904f91fa40533175dfaec4c833f2f for details
@@ -321,6 +321,11 @@ endfunction
 " ===                             KEY MAPPINGS                             === "
 " ============================================================================ "
 nnoremap ; :
+nnoremap <silent> <tab> :bnext<cr>
+nnoremap <silent> <s-tab> :bprevious<cr>
+inoremap <silent> kk <esc>
+inoremap <silent> jj <esc>:w<cr>
+
 " === Denite shorcuts === "
 "   '         - Browser currently open buffers
 "   <leader>t - Browse list of files in current directory
@@ -419,7 +424,7 @@ nmap <leader>y :StripWhitespace<CR>
 "   <leader>h - Find and replace
 "   <leader>/ - Claer highlighted search terms while preserving history
 map <leader>h :%s///<left><left>
-nmap <silent> <leader>/ :nohlsearch<CR>
+nmap <silent> <bs> :nohlsearch<CR>
 
 " === Easy-motion shortcuts ==="
 "   <leader>w - Easy-motion highlights first word letters bi-directionally
