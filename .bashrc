@@ -1,5 +1,8 @@
 export PS1='$ '
 
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+
 #History search (use: hs sometext)
 alias hs='history | grep $1'
 
@@ -53,6 +56,7 @@ config config --local status.showUntrackedFiles no
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
+export EDITOR='vim'
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden'
 
 # https://medium.com/adorableio/modern-javascript-ctags-configuration-199884dbcc1

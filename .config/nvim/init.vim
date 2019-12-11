@@ -1,5 +1,85 @@
 scriptencoding utf-8
-source ~/.config/nvim/plugins.vim
+" ============================================================================ "
+" ===                               PLUGINS                                === "
+" ============================================================================ "
+
+call plug#begin('~/.config/nvim/plugged')
+
+" === Editing Plugins === "
+" Trailing whitespace highlighting & automatic fixing
+Plug 'ntpeters/vim-better-whitespace'
+
+" auto-close plugin
+Plug 'rstacruz/vim-closer'
+
+" Improved motion in Vim
+Plug 'easymotion/vim-easymotion'
+
+" Intellisense Engine
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc-snippets'
+Plug 'neoclide/coc-tsserver'
+Plug 'neoclide/coc-prettier'
+Plug 'neoclide/coc-eslint'
+Plug 'neoclide/coc-tslint'
+Plug 'neoclide/coc-css'
+Plug 'neoclide/coc-lists'
+Plug 'neoclide/coc-highlight'
+
+" Denite - Fuzzy finding, buffer management
+Plug 'Shougo/denite.nvim'
+
+" Snippet support
+Plug 'Shougo/neosnippet'
+Plug 'Shougo/neosnippet-snippets'
+
+" Print function signatures in echo area
+Plug 'Shougo/echodoc.vim'
+
+" === Git Plugins === "
+" Enable git changes to be shown in sign column
+Plug 'mhinz/vim-signify'
+Plug 'tpope/vim-fugitive'
+
+" === Javascript Plugins === "
+" Typescript syntax highlighting
+Plug 'HerringtonDarkholme/yats.vim'
+
+" ReactJS JSX syntax highlighting
+Plug 'mxw/vim-jsx'
+
+" Generate JSDoc commands based on function signature
+Plug 'heavenshell/vim-jsdoc'
+
+" === Syntax Highlighting === "
+
+" Syntax highlighting for nginx
+Plug 'chr4/nginx.vim'
+
+" Syntax highlighting for javascript libraries
+Plug 'othree/javascript-libraries-syntax.vim'
+
+" Improved syntax highlighting and indentation
+Plug 'othree/yajs.vim'
+
+" === UI === "
+" File explorer
+Plug 'scrooloose/nerdtree'
+
+" Colorscheme
+Plug 'mhartington/oceanic-next'
+
+" Customized vim status line
+Plug 'vim-airline/vim-airline'
+"
+"Plug 'vim-airline/vim-airline-themes'
+
+" Icons
+Plug 'ryanoasis/vim-devicons'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+
+" Initialize plugin system
+call plug#end()
 
 " ============================================================================ "
 " ===                           EDITING OPTIONS                            === "
@@ -8,11 +88,12 @@ source ~/.config/nvim/plugins.vim
 " Remap leader key to ,
 let g:mapleader=','
 
-" Disable line numbers
-set nonumber
 
-" Don't show last command
-set noshowcmd
+" enable line numbers and relative line number
+set nu rnu
+
+" show last command
+set showcmd
 
 " Yank and paste with the system clipboard
 set clipboard+=unnamed
@@ -34,7 +115,7 @@ set shiftwidth=2
 set nowrap
 
 " Don't highlight current cursor line
-set nocursorline
+set cursorline
 
 " Disable line/column number in status line
 " Shows up in preview window when airline is disabled if not
@@ -460,18 +541,17 @@ set smartcase
 " Automatically re-read file if a change was detected outside of vim
 set autoread
 
-" Enable line numbers
-set number
-
 " Set backups
 if has('persistent_undo')
   set undofile
   set undolevels=3000
   set undoreload=10000
 endif
+
+set backupcopy=yes
+set backupext=.nvbak
+set nobackup noswapfile     " stop backup and swap files
 set backupdir=~/.local/share/nvim/backup " Don't put backups in current dir
-set backup
-set noswapfile
 
 " Reload icons after init source
 if exists('g:loaded_webdevicons')

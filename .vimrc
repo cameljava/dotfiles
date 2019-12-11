@@ -58,6 +58,7 @@ set encoding=utf-8
 set clipboard+=unnamed " Add the unnamed register to the clipboard
 set autoread  "Automatically read a file that has changed on disk
 set nobackup noswapfile     " stop backup and swap files
+set backupcopy=yes
 "turn on hidden to allow toggle between buffer with unsaved
 set hidden
 set autoindent
@@ -200,7 +201,7 @@ nmap <silent> <leader>eh :e ~/scratch.txt<CR>
 " Plugins configuration"
 
 " Nerdtree "
-map <leader>d :execute 'NERDTreeToggle ' . getcwd()<CR>
+map <leader>n :NERDTreeToggle<CR>
 let NERDTreeIgnore=['node_modules$[[dir]]', '\.git$[[dir]]']
 " Vim Airline
 set laststatus=2
