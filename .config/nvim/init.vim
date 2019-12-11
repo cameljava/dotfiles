@@ -26,6 +26,9 @@ Plug 'neoclide/coc-css'
 Plug 'neoclide/coc-lists'
 Plug 'neoclide/coc-highlight'
 
+" tagbar like view
+Plug 'liuchengxu/vista.vim'
+
 " Denite - Fuzzy finding, buffer management
 Plug 'Shougo/denite.nvim'
 
@@ -123,6 +126,20 @@ set noruler
 
 " Only one line for command line
 set cmdheight=1
+
+" Make Y yank everything from the cursor to the end of the line. This makes Y
+" act more like C or D because by default, Y yanks the current line (i.e. the
+" same as yy).
+noremap Y y$
+
+" j/k will move virtual lines (lines that wrap)
+noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
+noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
+
+" Stay in visual mode when indenting. You will never have to run gv after
+" performing an indentation.
+vnoremap < <gv
+vnoremap > >gv
 
 " === Completion Settings === "
 
@@ -474,6 +491,8 @@ function! s:denite_my_settings() abort
   \ denite#do_map('do_action', 'vsplit')
   nnoremap <silent><buffer><expr> <C-h>
   \ denite#do_map('do_action', 'split')
+  nnoremap <silent><buffer><expr> <Space>
+  \ denite#do_map('toggle_select').'j'
 endfunction
 
 " === Nerdtree shorcuts === "
@@ -552,6 +571,11 @@ set backupcopy=yes
 set backupext=.nvbak
 set nobackup noswapfile     " stop backup and swap files
 set backupdir=~/.local/share/nvim/backup " Don't put backups in current dir
+
+" paste toggle
+nnoremap <F2> :set invpaste paste?<CR>
+imap <F2> <C-O>:set invpaste paste?<CR>
+set pastetoggle=<F2>
 
 " Reload icons after init source
 if exists('g:loaded_webdevicons')
