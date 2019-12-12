@@ -58,6 +58,7 @@ config config --local status.showUntrackedFiles no
 
 export EDITOR='vim'
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden'
+eval $(thefuck --alias)
 
 # https://medium.com/adorableio/modern-javascript-ctags-configuration-199884dbcc1
 # alias jtags="ctags -R app config lib && sed -i '' -E '/^(if|switch|function|module\.exports|it|describe).+language:js$/d' tags"

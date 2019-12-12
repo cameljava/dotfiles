@@ -15,6 +15,9 @@ Plug 'rstacruz/vim-closer'
 " Improved motion in Vim
 Plug 'easymotion/vim-easymotion'
 
+" code comment
+Plug 'scrooloose/nerdcommenter'
+
 " Intellisense Engine
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'neoclide/coc-snippets'
@@ -46,10 +49,10 @@ Plug 'tpope/vim-fugitive'
 
 " === Javascript Plugins === "
 " Typescript syntax highlighting
-Plug 'HerringtonDarkholme/yats.vim'
+"Plug 'HerringtonDarkholme/yats.vim'
 
 " ReactJS JSX syntax highlighting
-Plug 'mxw/vim-jsx'
+"Plug 'mxw/vim-jsx'
 
 " Generate JSDoc commands based on function signature
 Plug 'heavenshell/vim-jsdoc'
@@ -60,7 +63,7 @@ Plug 'heavenshell/vim-jsdoc'
 Plug 'sheerun/vim-polyglot'
 
 " Syntax highlighting for javascript libraries
-"Plug 'othree/javascript-libraries-syntax.vim'
+Plug 'othree/javascript-libraries-syntax.vim'
 
 " Improved syntax highlighting and indentation
 "Plug 'othree/yajs.vim'
@@ -124,14 +127,21 @@ set cursorline
 " Shows up in preview window when airline is disabled if not
 set noruler
 
-" Only one line for command line
-set cmdheight=1
+" two line for command line
+set cmdheight=2
 
 " === Completion Settings === "
 
 " Don't give completion messages like 'match 1 of 2'
 " or 'The only match'
 set shortmess+=c
+
+" You will have bad experience for cmc diagnostic messages when it's default 4000.
+set updatetime=300
+
+" always show signcolumns
+set signcolumn=yes
+
 
 " ============================================================================ "
 " ===                           PLUGIN SETUP                               === "
@@ -206,7 +216,108 @@ catch
   echo 'Denite not installed. It should work after running :PlugInstall'
 endtry
 
+" === Denite shorcuts === "
+"   '         - Browser currently open buffers
+"   <leader>t - Browse list of files in current directory
+"   <leader>g - Search current directory for occurences of given term and close window if no results
+"   <leader>j - Search current directory for occurences of word under cursor
+nmap ' :Denite buffer<CR>
+nmap <leader>t :DeniteProjectDir file/rec<CR>
+nnoremap <leader>g :<C-u>Denite grep:. -no-empty<CR>
+nnoremap <leader>j :<C-u>DeniteCursorWord grep:.<CR>
+
+" Define mappings while in 'filter' mode
+"   <C-o>         - Switch to normal mode inside of search results
+"   <Esc>         - Exit denite window in any mode
+"   <CR>          - Open currently selected file in any mode
+"   <C-t>         - Open currently selected file in a new tab
+"   <C-v>         - Open currently selected file a vertical split
+"   <C-h>         - Open currently selected file in a horizontal split
+autocmd FileType denite-filter call s:denite_filter_my_settings()
+function! s:denite_filter_my_settings() abort
+  imap <silent><buffer> <C-o>
+  \ <Plug>(denite_filter_quit)
+  inoremap <silent><buffer><expr> <Esc>
+  \ denite#do_map('quit')
+  nnoremap <silent><buffer><expr> <Esc>
+  \ denite#do_map('quit')
+  inoremap <silent><buffer><expr> <CR>
+  \ denite#do_map('do_action')
+  inoremap <silent><buffer><expr> <C-t>
+  \ denite#do_map('do_action', 'tabopen')
+  inoremap <silent><buffer><expr> <C-v>
+  \ denite#do_map('do_action', 'vsplit')
+  inoremap <silent><buffer><expr> <C-h>
+  \ denite#do_map('do_action', 'split')
+endfunction
+
+" Define mappings while in denite window
+"   <CR>        - Opens currently selected file
+"   q or <Esc>  - Quit Denite window
+"   d           - Delete currenly selected file
+"   p           - Preview currently selected file
+"   <C-o> or i  - Switch to insert mode inside of filter prompt
+"   <C-t>       - Open currently selected file in a new tab
+"   <C-v>       - Open currently selected file a vertical split
+"   <C-h>       - Open currently selected file in a horizontal split
+autocmd FileType denite call s:denite_my_settings()
+function! s:denite_my_settings() abort
+  nnoremap <silent><buffer><expr> <CR>
+  \ denite#do_map('do_action')
+  nnoremap <silent><buffer><expr> q
+  \ denite#do_map('quit')
+  nnoremap <silent><buffer><expr> <Esc>
+  \ denite#do_map('quit')
+  nnoremap <silent><buffer><expr> d
+  \ denite#do_map('do_action', 'delete')
+  nnoremap <silent><buffer><expr> p
+  \ denite#do_map('do_action', 'preview')
+  nnoremap <silent><buffer><expr> i
+  \ denite#do_map('open_filter_buffer')
+  nnoremap <silent><buffer><expr> <C-o>
+  \ denite#do_map('open_filter_buffer')
+  nnoremap <silent><buffer><expr> <C-t>
+  \ denite#do_map('do_action', 'tabopen')
+  nnoremap <silent><buffer><expr> <C-v>
+  \ denite#do_map('do_action', 'vsplit')
+  nnoremap <silent><buffer><expr> <C-h>
+  \ denite#do_map('do_action', 'split')
+  nnoremap <silent><buffer><expr> <Space>
+  \ denite#do_map('toggle_select').'j'
+endfunction
+
 " === Coc.nvim === "
+
+" Use `[g` and `]g` to navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
+" Coc only does snippet and additional edit on confirm.
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" Or use `complete_info` if your vim support it, like:
+" inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+
 " use <tab> for trigger completion and navigate to next complete item
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -217,6 +328,17 @@ inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
+
+" Highlight symbol under cursor on CursorHold
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
+
+" Remap for format selected region
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
 
 "Close preview window when completion is done.
 autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
@@ -234,6 +356,14 @@ let g:neosnippet#snippets_directory='~/.config/nvim/snippets'
 let g:neosnippet#enable_conceal_markers = 0
 
 " === NERDTree === "
+
+" === Nerdtree shorcuts === "
+"  <leader>n - Toggle NERDTree on/off
+"  <leader>f - Opens current file location in NERDTree
+nmap <leader>n :NERDTreeToggle<CR>
+nmap <leader>l :NERDTreeFind<CR>
+
+" --- Nerdtree setting --- "
 " Show hidden files/directories
 let g:NERDTreeShowHidden = 1
 
@@ -309,7 +439,7 @@ let g:javascript_plugin_jsdoc = 1
 
 " === vim-jsx === "
 " Highlight jsx syntax even in non .jsx files
-let g:jsx_ext_required = 0
+"let g:jsx_ext_required = 0
 
 " === javascript-libraries-syntax === "
 let g:used_javascript_libs = 'underscore,requirejs,chai,jquery'
@@ -426,81 +556,7 @@ noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
 vnoremap < <gv
 vnoremap > >gv
 
-" === Denite shorcuts === "
-"   '         - Browser currently open buffers
-"   <leader>t - Browse list of files in current directory
-"   <leader>g - Search current directory for occurences of given term and close window if no results
-"   <leader>j - Search current directory for occurences of word under cursor
-nmap ' :Denite buffer<CR>
-nmap <leader>t :DeniteProjectDir file/rec<CR>
-nnoremap <leader>g :<C-u>Denite grep:. -no-empty<CR>
-nnoremap <leader>j :<C-u>DeniteCursorWord grep:.<CR>
 
-" Define mappings while in 'filter' mode
-"   <C-o>         - Switch to normal mode inside of search results
-"   <Esc>         - Exit denite window in any mode
-"   <CR>          - Open currently selected file in any mode
-"   <C-t>         - Open currently selected file in a new tab
-"   <C-v>         - Open currently selected file a vertical split
-"   <C-h>         - Open currently selected file in a horizontal split
-autocmd FileType denite-filter call s:denite_filter_my_settings()
-function! s:denite_filter_my_settings() abort
-  imap <silent><buffer> <C-o>
-  \ <Plug>(denite_filter_quit)
-  inoremap <silent><buffer><expr> <Esc>
-  \ denite#do_map('quit')
-  nnoremap <silent><buffer><expr> <Esc>
-  \ denite#do_map('quit')
-  inoremap <silent><buffer><expr> <CR>
-  \ denite#do_map('do_action')
-  inoremap <silent><buffer><expr> <C-t>
-  \ denite#do_map('do_action', 'tabopen')
-  inoremap <silent><buffer><expr> <C-v>
-  \ denite#do_map('do_action', 'vsplit')
-  inoremap <silent><buffer><expr> <C-h>
-  \ denite#do_map('do_action', 'split')
-endfunction
-
-" Define mappings while in denite window
-"   <CR>        - Opens currently selected file
-"   q or <Esc>  - Quit Denite window
-"   d           - Delete currenly selected file
-"   p           - Preview currently selected file
-"   <C-o> or i  - Switch to insert mode inside of filter prompt
-"   <C-t>       - Open currently selected file in a new tab
-"   <C-v>       - Open currently selected file a vertical split
-"   <C-h>       - Open currently selected file in a horizontal split
-autocmd FileType denite call s:denite_my_settings()
-function! s:denite_my_settings() abort
-  nnoremap <silent><buffer><expr> <CR>
-  \ denite#do_map('do_action')
-  nnoremap <silent><buffer><expr> q
-  \ denite#do_map('quit')
-  nnoremap <silent><buffer><expr> <Esc>
-  \ denite#do_map('quit')
-  nnoremap <silent><buffer><expr> d
-  \ denite#do_map('do_action', 'delete')
-  nnoremap <silent><buffer><expr> p
-  \ denite#do_map('do_action', 'preview')
-  nnoremap <silent><buffer><expr> i
-  \ denite#do_map('open_filter_buffer')
-  nnoremap <silent><buffer><expr> <C-o>
-  \ denite#do_map('open_filter_buffer')
-  nnoremap <silent><buffer><expr> <C-t>
-  \ denite#do_map('do_action', 'tabopen')
-  nnoremap <silent><buffer><expr> <C-v>
-  \ denite#do_map('do_action', 'vsplit')
-  nnoremap <silent><buffer><expr> <C-h>
-  \ denite#do_map('do_action', 'split')
-  nnoremap <silent><buffer><expr> <Space>
-  \ denite#do_map('toggle_select').'j'
-endfunction
-
-" === Nerdtree shorcuts === "
-"  <leader>n - Toggle NERDTree on/off
-"  <leader>f - Opens current file location in NERDTree
-nmap <leader>n :NERDTreeToggle<CR>
-nmap <leader>f :NERDTreeFind<CR>
 
 "   <Space> - PageDown
 "   -       - PageUp
@@ -514,11 +570,6 @@ nmap <C-h> <C-w>h
 nmap <C-j> <C-w>j
 nmap <C-k> <C-w>k
 nmap <C-l> <C-w>l
-
-" === coc.nvim === "
-nmap <silent> <leader>dd <Plug>(coc-definition)
-nmap <silent> <leader>dr <Plug>(coc-references)
-nmap <silent> <leader>dj <Plug>(coc-implementation)
 
 " === vim-better-whitespace === "
 "   <leader>y - Automatically remove trailing whitespace
