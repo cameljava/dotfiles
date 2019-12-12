@@ -56,14 +56,14 @@ Plug 'heavenshell/vim-jsdoc'
 
 " === Syntax Highlighting === "
 
-" Syntax highlighting for nginx
-Plug 'chr4/nginx.vim'
+" Syntax highlighting language pack for vim
+Plug 'sheerun/vim-polyglot'
 
 " Syntax highlighting for javascript libraries
-Plug 'othree/javascript-libraries-syntax.vim'
+"Plug 'othree/javascript-libraries-syntax.vim'
 
 " Improved syntax highlighting and indentation
-Plug 'othree/yajs.vim'
+"Plug 'othree/yajs.vim'
 
 " === UI === "
 " File explorer
@@ -71,6 +71,7 @@ Plug 'scrooloose/nerdtree'
 
 " Colorscheme
 Plug 'mhartington/oceanic-next'
+"Plug 'trevordmiller/nova-vim'
 
 " Customized vim status line
 Plug 'vim-airline/vim-airline'
@@ -90,7 +91,6 @@ call plug#end()
 
 " Remap leader key to ,
 let g:mapleader=','
-
 
 " enable line numbers and relative line number
 set nu rnu
@@ -126,20 +126,6 @@ set noruler
 
 " Only one line for command line
 set cmdheight=1
-
-" Make Y yank everything from the cursor to the end of the line. This makes Y
-" act more like C or D because by default, Y yanks the current line (i.e. the
-" same as yy).
-noremap Y y$
-
-" j/k will move virtual lines (lines that wrap)
-noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
-noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
-
-" Stay in visual mode when indenting. You will never have to run gv after
-" performing an indentation.
-vnoremap < <gv
-vnoremap > >gv
 
 " === Completion Settings === "
 
@@ -257,7 +243,8 @@ let g:NERDTreeMinimalUI = 1
 " Custom icons for expandable/expanded directories
 let g:NERDTreeDirArrowExpandable = '⬏'
 let g:NERDTreeDirArrowCollapsible = '⬎'
-
+let g:NERDTreeShowBookmarks=1
+let g:nerdtree_tabs_focus_on_files=1
 " Hide certain files and directories from NERDTree
 let g:NERDTreeIgnore = ['^\.DS_Store$', '^tags$', '\.git$[[dir]]', '\.idea$[[dir]]', '\.sass-cache$']
 
@@ -425,6 +412,20 @@ nnoremap <silent> <s-tab> :bprevious<cr>
 inoremap <silent> kk <esc>
 inoremap <silent> jj <esc>:w<cr>
 
+" Make Y yank everything from the cursor to the end of the line. This makes Y
+" act more like C or D because by default, Y yanks the current line (i.e. the
+" same as yy).
+noremap Y y$
+
+" j/k will move virtual lines (lines that wrap)
+noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
+noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
+
+" Stay in visual mode when indenting. You will never have to run gv after
+" performing an indentation.
+vnoremap < <gv
+vnoremap > >gv
+
 " === Denite shorcuts === "
 "   '         - Browser currently open buffers
 "   <leader>t - Browse list of files in current directory
@@ -504,9 +505,11 @@ nmap <leader>f :NERDTreeFind<CR>
 "   <Space> - PageDown
 "   -       - PageUp
 noremap <Space> <PageDown>
-noremap - <PageUp>
+" TODO below seems not working
+"noremap - <PageUp>
 
 " Quick window switching
+" TODO below not working, only if press with shit as well
 nmap <C-h> <C-w>h
 nmap <C-j> <C-w>j
 nmap <C-k> <C-w>k
