@@ -676,11 +676,6 @@ set backupext=.nvbak
 set nobackup noswapfile     " stop backup and swap files
 set backupdir=~/.local/share/nvim/backup " Don't put backups in current dir
 
-" paste toggle
-nnoremap <F2> :set invpaste paste?<CR>
-imap <F2> <C-O>:set invpaste paste?<CR>
-set pastetoggle=<F2>
-
 " Reload icons after init source
 if exists('g:loaded_webdevicons')
   call webdevicons#refresh()
