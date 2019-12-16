@@ -15,24 +15,36 @@ set nocompatible
 silent! endwhile
 
 call plug#begin('~/.vim/plugged')
-Plug 'sheerun/vim-polyglot'
 Plug 'junegunn/vim-plug'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-surround'
-Plug '/usr/local/opt/fzf'
-Plug 'junegunn/fzf.vim'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'tpope/vim-commentary'
-Plug 'easymotion/vim-easymotion'
+" language syntax
+Plug 'sheerun/vim-polyglot'
+" ALE
+Plug 'dense-analysis/ale'
+" Nerdtree
 Plug 'scrooloose/nerdtree'
 Plug 'PhilRunninger/nerdtree-buffer-ops'
-Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'dense-analysis/ale'
-Plug 'junegunn/vim-easy-align'
+" Tim pope
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
+" fzf
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
+" use standard regex instead of vim format
 Plug 'othree/eregex.vim'
+" airline
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+" git related
+Plug 'airblade/vim-gitgutter'
+" git command wrapper
+" Plug 'tpope/vim-fugitive'
+" Format
+" easy align(=)
+Plug 'junegunn/vim-easy-align'
+" easymotion
+" Plug 'easymotion/vim-easymotion'
 Plug 'Chiel92/vim-autoformat'
 Plug 'mbbill/undotree'
 Plug 'michaeljsmith/vim-indent-object'
@@ -52,11 +64,13 @@ nnoremap ; :
 let mapleader = ","
 let maplocalleader = ";"   "not sure about this, TODO
 " Basic settings and variables"
-" set rtp+=/usr/local/opt/fzf
+set updatetime=100
 set ignorecase smartcase
 set lazyredraw
 set cursorline
 set encoding=utf-8
+set fileencoding=utf-8
+set fileencodings=utf-8
 set clipboard+=unnamed " Add the unnamed register to the clipboard
 set autoread  "Automatically read a file that has changed on disk
 set nobackup noswapfile     " stop backup and swap files
@@ -93,6 +107,8 @@ if has('mouse')
   set mouse=a
 endif
 
+set completeopt=menu,menuone,preview,noselect,noinsert
+
 " Switch syntax highlighting on when the terminal has colors or when using the
 " GUI (which always has colors).
 if &t_Co > 2 || has("gui_running")
@@ -123,8 +139,9 @@ set history=1000
 set tabpagemax=50
 set nospell                 " disable spellcheck for code
 set backspace=indent,eol,start "fix vi backspace
-"set F8 to disable auto indenting for current file
-nnoremap <F8> :setl noai nocin nosi inde=<CR>
+noremap <F3> :Autoformat<CR>
+"set F7 to disable auto indenting for current file
+nnoremap <F7> :setl noai nocin nosi inde=<CR>
 "set f6 to toggle paste mode, when paste wont autoindent
 set pastetoggle=<F6>
 " Map Y to act like D and C, i.e. yank until EOL, rather than act like yy
@@ -205,6 +222,7 @@ nmap <silent> <leader>eh :e ~/scratch.txt<CR>
 " Nerdtree "
 map <leader>n :NERDTreeToggle<CR>
 let NERDTreeIgnore=['node_modules$[[dir]]', '\.git$[[dir]]']
+
 " Vim Airline
 set laststatus=2
 if !exists('g:airline_symbols')
@@ -234,6 +252,8 @@ let g:airline#extensions#ale#enabled = 1
 set omnifunc=ale#completion#OmniFunc
 nmap <silent> [[ <Plug>(ale_previous_wrap)
 nmap <silent> ]] <Plug>(ale_next_wrap)
+noremap <Leader>lf :ALEFix<CR>
+
 
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
@@ -246,6 +266,11 @@ let g:ale_open_list = 1
 " This can be useful if you are combining ALE with
 " some other plugin which sets quickfix errors, etc.
 " let g:ale_keep_list_window_open = 1
+
+" gitgutter settings
+" eregex setting, use / to find. :%S// (uppercase S) to replace
+nnoremap / :M/
+nnoremap ,/ /
 
 " End Plugins configuration"}}}
 
@@ -314,4 +339,4 @@ set termguicolors
 let g:rehash256 = 1
 colorscheme molokai
 
- " colorscheme gruvbox
+" colorscheme gruvbox
