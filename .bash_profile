@@ -27,6 +27,13 @@ else
     start_agent;
 fi
 
+export PATH=$HOME/kbin:$PATH
+# use  GNU versions coreutils instead of macos version
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+export PATH="$(brew --prefix grep)/libexec/gnubin:$PATH"
+export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
+export PATH="/usr/local/opt/findutils/libexec/gnubin:$PATH"
+
 ######### add vsCode
 # Add Visual Studio Code (code)
 export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
@@ -82,3 +89,10 @@ export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 export LDFLAGS="-L/usr/local/opt/openssl@1.1/lib"
 export CPPFLAGS="-I/usr/local/opt/openssl@1.1/include"
 export PKG_CONFIG_PATH="/usr/local/opt/openssl@1.1/lib/pkgconfig"
+
+if [ -f "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh" ]; then
+  __GIT_PROMPT_DIR=$(brew --prefix)/opt/bash-git-prompt/share
+  GIT_PROMPT_ONLY_IN_REPO=1
+  source "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh"
+fi
+source ~/git/cameljava_github/configFiles/bash/forgit.plugin.sh

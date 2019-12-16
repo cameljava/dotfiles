@@ -22,6 +22,7 @@ Plug 'tpope/vim-surround'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-commentary'
 Plug 'easymotion/vim-easymotion'
 Plug 'scrooloose/nerdtree'
@@ -40,6 +41,7 @@ Plug 'majutsushi/tagbar'
 " Plug 'vim-scripts/argtextobj.vim'
 " sort: gs+motion/object
 " Plug 'christoomey/vim-sort-motion'
+Plug 'rafi/awesome-vim-colorschemes'
 call plug#end()
 
 packadd! matchit
@@ -210,7 +212,7 @@ if !exists('g:airline_symbols')
 endif
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
-
+let g:airline#extensions#tabline#enabled = 1
 " ale setting
 " let g:jsx_ext_required = 0
 " individual fixer and liner defined in ft folder
@@ -295,4 +297,21 @@ nnoremap <F8> :TagbarToggle<CR>
 
 " Theme and Color
 set background=dark
-colorscheme slate
+" set background=light
+set termguicolors
+" colorscheme slate
+
+" let g:oceanic_next_terminal_bold = 1
+" let g:oceanic_next_terminal_italic = 1
+" let g:airline_theme='oceanicnext'
+" colorscheme OceanicNext
+
+" colorscheme nord
+
+" colorscheme onedark
+" colorscheme purify
+
+let g:rehash256 = 1
+colorscheme molokai
+
+ " colorscheme gruvbox

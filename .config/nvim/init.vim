@@ -21,6 +21,9 @@ Plug 'scrooloose/nerdcommenter'
 " Intellisense Engine
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
+" auto generate tags file
+" Plug 'ludovicchabant/vim-gutentags'
+
 " tagbar like view
 Plug 'liuchengxu/vista.vim'
 
@@ -431,6 +434,20 @@ let g:NERDTreeIgnore = ['^\.DS_Store$', '^tags$', '\.git$[[dir]]', '\.idea$[[dir
 " Wrap in try/catch to avoid errors on initial install before plugin is available
 try
 
+" tags
+" set tags=~/.cache/tags/.tags;,.tags
+" let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
+" let g:gutentags_ctags_tagfile = '.tags'
+"
+" let g:gutentags_modules = ['ctags']
+"
+" let g:gutentags_cache_dir = expand('~/.cache/tags')
+" let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
+" let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
+" let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
+" let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']
+" let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
+"
 " === Vim airline ==== "
 " Enable extensions
 let g:airline_extensions = ['branch', 'hunks', 'coc']
@@ -496,6 +513,22 @@ let g:used_javascript_libs = 'underscore,requirejs,chai,jquery'
 
 " === Signify === "
 let g:signify_sign_delete = '-'
+
+" === nerdcommenter === "
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+
+" Use compact syntax for prettified multi-line comments
+let g:NERDCompactSexyComs = 1
+
+" Allow commenting and inverting empty lines (useful when commenting a region)
+let g:NERDCommentEmptyLines = 1
+
+" Enable trimming of trailing whitespace when uncommenting
+let g:NERDTrimTrailingWhitespace = 1
+
+" Enable NERDCommenterToggle to check all selected lines is commented or not 
+let g:NERDToggleCheckAllLines = 1
 
 " ============================================================================ "
 " ===                                UI                                    === "
@@ -606,8 +639,6 @@ noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
 vnoremap < <gv
 vnoremap > >gv
 
-
-
 "   <Space> - PageDown
 "   -       - PageUp
 noremap <Space> <PageDown>
@@ -620,6 +651,33 @@ nmap <C-h> <C-w>h
 nmap <C-j> <C-w>j
 nmap <C-k> <C-w>k
 nmap <C-l> <C-w>l
+
+" Quick editing
+" Edit the .bashrc"
+nmap <silent> <leader>eb :e ~/.bashrc<CR>
+" Edit the .vimrc"
+nmap <silent> <leader>ev :e ~/.config/nvim/init.vim<CR>
+" Edit the .gitconfig"
+nmap <silent> <leader>eg :e ~/.gitconfig<CR>
+" Edit the .tmux.conf"
+nmap <silent> <leader>et :e ~/.tmux.conf<CR>
+" Edit slate configuration
+"nmap <silent> <leader>el :e ~/.slate<cr>
+" Open a scratch file
+nmap <silent> <leader>eh :e ~/scratch.txt<CR>
+"reload the .vimrc
+nmap <silent> <leader>rv :so ~/.config/nvim/init.vim<CR>
+"show spaces"
+nmap <silent> <leader>l :set nolist!<CR>
+"hide hightlight of searches"
+nmap <silent> <BS> :nohlsearch<CR>
+" TODO turn off this, as neovim constant frozen, finally find c-o can get
+" out..
+" Insert mode mapping
+" delete text you have typed in insert mode, recoverable by u
+" inoremap <c-u> <c-g>u<c-u>
+" delete word before cursor, recoverable by u
+" inoremap <c-w> <c-g>u<c-w>
 
 " === vim-better-whitespace === "
 "   <leader>y - Automatically remove trailing whitespace

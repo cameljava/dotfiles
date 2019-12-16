@@ -17,7 +17,7 @@ export NVM_DIR="$HOME/.nvm"
 complete -C '/Users/kevlee/Library/Python/3.7/bin/aws_completer' aws
 
 # alias
-
+alias rm="rm -i"
 alias sls="sls --region ap-southeast-2 "
 alias n="nvim "
 alias v="vim "
@@ -36,6 +36,7 @@ alias gh="git checkout"
 alias gp="git push"
 alias gl="git lg -15"
 alias gm="git merge --no-commit "
+alias fzfp="fzf --preview 'bat --style=numbers --color=always {} | head -500'"
 export SLS_DEBUG=true
 
 HISTSIZE=500000
@@ -57,8 +58,12 @@ config config --local status.showUntrackedFiles no
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 export EDITOR='vim'
+# search all files in current folder including hidden and git ignore, except .rgignore
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden'
 eval $(thefuck --alias)
+
+
+tre() { command tre "$@" -e && source "/tmp/tre_aliases_$USER" 2>/dev/null; }
 
 # https://medium.com/adorableio/modern-javascript-ctags-configuration-199884dbcc1
 # alias jtags="ctags -R app config lib && sed -i '' -E '/^(if|switch|function|module\.exports|it|describe).+language:js$/d' tags"
