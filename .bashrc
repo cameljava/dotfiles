@@ -161,5 +161,14 @@ eval $(thefuck --alias)
 
 tre() { command tre "$@" -e && source "/tmp/tre_aliases_$USER" 2>/dev/null; }
 
+function dirdiff() {
+  # Shell-escape each path:
+  DIR1=$(printf '%q' "$1")
+  shift
+  DIR2=$(printf '%q' "$1")
+  shift
+  vim $@ -c "DirDiff $DIR1 $DIR2"
+}
+
 # https://medium.com/adorableio/modern-javascript-ctags-configuration-199884dbcc1
 # alias jtags="ctags -R app config lib && sed -i '' -E '/^(if|switch|function|module\.exports|it|describe).+language:js$/d' tags"

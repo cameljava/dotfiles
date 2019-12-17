@@ -14,6 +14,12 @@ silent! while 0
 set nocompatible
 silent! endwhile
 
+" to worry about: from bronson/dotfiles
+filetype on   " work around stupid osx bug
+filetype off
+filetype plugin indent on
+
+
 call plug#begin('~/.vim/plugged')
 Plug 'junegunn/vim-plug'
 " language syntax
@@ -43,6 +49,13 @@ Plug 'airblade/vim-gitgutter'
 " Format
 " easy align(=)
 Plug 'junegunn/vim-easy-align'
+" Automatically clear search highlights after you move your cursor.
+Plug 'haya14busa/is.vim'
+" Run a diff on 2 directories.
+Plug 'will133/vim-dirdiff'
+" Run a diff on 2 blocks of text.
+Plug 'AndrewRadev/linediff.vim'
+
 " easymotion
 " Plug 'easymotion/vim-easymotion'
 Plug 'Chiel92/vim-autoformat'
@@ -53,7 +66,15 @@ Plug 'majutsushi/tagbar'
 " Plug 'vim-scripts/argtextobj.vim'
 " sort: gs+motion/object
 " Plug 'christoomey/vim-sort-motion'
+
 Plug 'rafi/awesome-vim-colorschemes'
+" Dim paragraphs above and below the active paragraph.
+Plug 'junegunn/limelight.vim'
+" Distraction free writing by removing UI elements and centering everything.
+Plug 'junegunn/goyo.vim'
+
+" Run test suites for various languages.
+Plug 'janko/vim-test'
 call plug#end()
 
 packadd! matchit
@@ -149,6 +170,24 @@ noremap Y y$
 " highlight last inserted text
 nnoremap gV `[v`]
 
+
+" press * to search for the term under the cursor or a visual selection and
+" then press a key below to replace all instances of it in the current file.
+nnoremap <Leader>r :%s///g<Left><Left>
+nnoremap <Leader>rc :%s///gc<Left><Left><Left>
+
+" The same as above but instead of acting on the whole file it will be
+" restricted to the previously visually selected range. You can do that by
+" pressing *, visually selecting the range you want it to apply to and then
+" press a key below to replace all instances of it in the current selection.
+xnoremap <Leader>r :s///g<Left><Left>
+xnoremap <Leader>rc :s///gc<Left><Left><Left>
+
+" Type a replacement term and press . to repeat the replacement again. Useful
+" for replacing a few instances of the term (comparable to multiple cursors).
+nnoremap <silent> s* :let @/='\<'.expand('<cword>').'\>'<CR>cgn
+xnoremap <silent> s* "sy:let @/=@s<CR>cgn
+
 " Keyboard Shortcuts and remappings   "
 "changes with less keystrokes
 inoremap kk <ESC>
@@ -219,6 +258,11 @@ nmap <silent> <leader>eh :e ~/scratch.txt<CR>
 
 " Plugins configuration"
 
+" fzf
+" Allow passing optional flags into the Rg command.
+"   Example: :Rg myterm -g '*.md'
+command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case " . <q-args>, 1, <bang>0)
+
 " Nerdtree "
 map <leader>n :NERDTreeToggle<CR>
 let NERDTreeIgnore=['node_modules$[[dir]]', '\.git$[[dir]]']
@@ -272,17 +316,28 @@ let g:ale_open_list = 1
 nnoremap / :M/
 nnoremap ,/ /
 
+" dirdiff
+let g:DirDiffExcludes = "CVS,*.class,*.exe,.*.swp,.git"
+
 " End Plugins configuration"}}}
+
+" -----------------------------------------------------------------------------
+" Basic autocommands
+" -----------------------------------------------------------------------------
+" from nickjj/dotfiles
+
+" Auto-resize splits when Vim gets resized.
+autocmd VimResized * wincmd =
+
+" Update a buffer's contents on focus if it changed outside of Vim.
+au FocusGained,BufEnter * :checktime
+
+" Unset paste on InsertLeave.
+autocmd InsertLeave * silent! set nopaste
 
 " Only do this part when Vim was compiled with the +eval feature.
 if 1
 
-  " Enable file type detection.
-  " Use the default filetype settings, so that mail gets 'tw' set to 72,
-  " 'cindent' is on in C files, etc.
-  " Also load indent files, to automatically do language-dependent indenting.
-  " Revert with ":filetype off".
-  filetype plugin indent on
 
   " Put these in an autocmd group, so that you can revert them with:
   " ":augroup vimStartup | au! | augroup END"
