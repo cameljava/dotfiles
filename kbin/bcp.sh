@@ -1,3 +1,4 @@
+#!/bin/bash
 ### BREW + FZF
 # mnemonic [B]rew [C]lean [P]lugin
 
