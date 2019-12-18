@@ -1,16 +1,5 @@
 export PS1='$ '
 
-# if [ -f ~/git/cameljava_github/configFiles/bash/sensible.bash ]; then
-#    source ~/git/cameljava_github/configFiles/bash/sensible.bash
-# fi
-
-# Unique Bash version check
-if ((BASH_VERSINFO[0] < 4)); then
-  echo "sensible.bash: Looks like you're running an older version of Bash."
-  echo "sensible.bash: You need at least bash-4.0 or some options will not work correctly."
-  echo "sensible.bash: Keep your software up-to-date!"
-fi
-
 # Prevent file overwrite on stdout redirection
 # Use `>|` to force redirection to an existing file
 set -o noclobber
@@ -156,7 +145,7 @@ config config --local status.showUntrackedFiles no
 
 export EDITOR='vim'
 # search all files in current folder including hidden and git ignore, except .rgignore
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden'
+export FZF_DEFAULT_COMMAND="rg --files --no-ignore-vcs --hidden --follow --glob '!.git'"
 eval $(thefuck --alias)
 
 tre() { command tre "$@" -e && source "/tmp/tre_aliases_$USER" 2>/dev/null; }
