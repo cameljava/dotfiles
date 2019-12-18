@@ -1,4 +1,5 @@
 export PS1='$ '
+export TERM=xterm-256color
 
 # Prevent file overwrite on stdout redirection
 # Use `>|` to force redirection to an existing file
