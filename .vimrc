@@ -45,7 +45,7 @@ Plug 'vim-airline/vim-airline-themes'
 " git related
 Plug 'airblade/vim-gitgutter'
 " git command wrapper
-" Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 " Format
 " easy align(=)
 Plug 'junegunn/vim-easy-align'
@@ -80,8 +80,9 @@ call plug#end()
 packadd! matchit
 
 nnoremap ; :
-" ? do we need map this, do we use ; in normal mode
+" do we really need below mapping?if on will affect below remap
 " nnoremap : ;
+
 let mapleader = ","
 let maplocalleader = ";"   "not sure about this, TODO
 " Basic settings and variables"
@@ -113,9 +114,9 @@ set ttimeoutlen=100 " wait up to 100ms after Esc for special key
 " Show @@@ in the last line if it is truncated.
 set display=truncate
 " Do incremental searching when it's possible to timeout.
-if has('reltime')
-  set incsearch
-endif
+" if has('reltime')
+set incsearch
+" endif
 " Do not recognize octal numbers for Ctrl-A and Ctrl-X, most users find it
 " confusing.
 set nrformats-=octal
@@ -142,10 +143,14 @@ if &t_Co > 2 || has("gui_running")
 endif
 set nu rnu                      " show line numbers
 "-- FOLDING --
-set foldmethod=syntax "syntax highlighting items specify folds
-set foldcolumn=1 "defines 1 col at window left, to indicate folding
-let javaScript_fold=1 "activate folding by JS syntax
-set foldlevelstart=99 "start file with all folds opened
+" set foldmethod=syntax "syntax highlighting items specify folds
+" set foldcolumn=1 "defines 1 col at window left, to indicate folding
+" let javaScript_fold=1 "activate folding by JS syntax
+" set foldlevelstart=99 "start file with all folds opened
+" F9 to toggle all folds for quick checking.
+" nnoremap <expr> <F9> &foldlevel ? 'zM':'zR'
+" no fold
+set nofoldenable
 set scrolloff=5 "keeps cursor away from top/bottom of screen
 set sidescrolloff=5 "keeps cursor away from side of screen
 set hlsearch " hightlight search search
@@ -194,18 +199,16 @@ inoremap kk <ESC>
 cnoremap <silent> kk <C-c>
 inoremap <silent> jj <ESC>:w<CR>
 inoremap jh <ESC>:wq<CR>
-" F9 to toggle all folds for quick checking.
-nmap <expr> <F9> &foldlevel ? 'zM':'zR'
 " TODO
 " inoremap <F9> <C-O><F9>
 " onoremap <expr> <F9> <C-C>&foldlevel ? 'zM':'zR'
 " vnoremap <expr> <F9> &foldlevel ? 'zM':'zR'
 "reload the .vimrc
-nmap <silent> <leader>rv :source ~/.vimrc<CR>
+nnoremap <silent> <leader>rv :source ~/.vimrc<CR>
 "show spaces"
-nmap <silent> <leader>l :set nolist!<CR>
+nnoremap <silent> <leader>l :set nolist!<CR>
 "hide hightlight of searches"
-nmap <silent> <BS> :nohlsearch<CR>
+nnoremap <silent> <BS> :nohlsearch<CR>
 " Insert mode mapping
 " delete text you have typed in insert mode, recoverable by u
 inoremap <c-u> <c-g>u<c-u>
@@ -217,15 +220,15 @@ inoremap <c-w> <c-g>u<c-w>
 nnoremap <Tab> :bnext<CR>
 nnoremap <S-Tab> :bprev<CR>
 " Maximize only this window"
-nmap <silent> <leader>m :only<CR>
+nnoremap <silent> <leader>m :only<CR>
 "vertical split"
-nmap <silent> <leader>v :bel :vne<CR>
+nnoremap <silent> <leader>v :bel :vne<CR>
 "horizontal split"
-nmap <silent> <leader>h :bel :new<CR>
+nnoremap <silent> <leader>h :bel :new<CR>
 "close viewport buffer"
-nmap <silent> <leader>x :hid<CR>
+nnoremap <silent> <leader>x :hid<CR>
 "format file
-nmap <silent> <leader>f :Autoformat<CR>
+nnoremap <silent> <leader>f :Autoformat<CR>
 " Paste and visual paste improvments
 vnoremap <silent> y y`]
 vnoremap <silent> p p`]
@@ -244,17 +247,17 @@ vmap <silent> <expr> p <sid>Repl()
 
 " Quick editing
 " Edit the .bashrc"
-nmap <silent> <leader>eb :e ~/.bashrc<CR>
+nnoremap <silent> <leader>eb :e ~/.bashrc<CR>
 " Edit the .vimrc"
-nmap <silent> <leader>ev :e ~/.vimrc<CR>
+nnoremap <silent> <leader>ev :e ~/.vimrc<CR>
 " Edit the .gitconfig"
-nmap <silent> <leader>eg :e ~/.gitconfig<CR>
+nnoremap <silent> <leader>eg :e ~/.gitconfig<CR>
 " Edit the .tmux.conf"
-nmap <silent> <leader>et :e ~/.tmux.conf<CR>
+nnoremap <silent> <leader>et :e ~/.tmux.conf<CR>
 " Edit slate configuration
-"nmap <silent> <leader>el :e ~/.slate<cr>
+"nnoremap <silent> <leader>el :e ~/.slate<cr>
 " Open a scratch file
-nmap <silent> <leader>eh :e ~/scratch.txt<CR>
+nnoremap <silent> <leader>eh :e ~/scratch.txt<CR>
 
 " Plugins configuration"
 
@@ -264,7 +267,7 @@ nmap <silent> <leader>eh :e ~/scratch.txt<CR>
 command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case " . <q-args>, 1, <bang>0)
 
 " Nerdtree "
-map <leader>n :NERDTreeToggle<CR>
+noremap <leader>n :NERDTreeToggle<CR>
 let NERDTreeIgnore=['node_modules$[[dir]]', '\.git$[[dir]]']
 
 " Vim Airline
@@ -294,8 +297,8 @@ let g:ale_completion_enabled = 1
 " Set this. Airline will handle the rest.
 let g:airline#extensions#ale#enabled = 1
 set omnifunc=ale#completion#OmniFunc
-nmap <silent> [[ <Plug>(ale_previous_wrap)
-nmap <silent> ]] <Plug>(ale_next_wrap)
+nnoremap <silent> [[ <Plug>(ale_previous_wrap)
+nnoremap <silent> ]] <Plug>(ale_next_wrap)
 noremap <Leader>lf :ALEFix<CR>
 
 
