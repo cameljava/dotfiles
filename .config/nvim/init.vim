@@ -527,7 +527,7 @@ let g:NERDCommentEmptyLines = 1
 " Enable trimming of trailing whitespace when uncommenting
 let g:NERDTrimTrailingWhitespace = 1
 
-" Enable NERDCommenterToggle to check all selected lines is commented or not 
+" Enable NERDCommenterToggle to check all selected lines is commented or not
 let g:NERDToggleCheckAllLines = 1
 
 " ============================================================================ "
@@ -738,3 +738,5 @@ set backupdir=~/.local/share/nvim/backup " Don't put backups in current dir
 if exists('g:loaded_webdevicons')
   call webdevicons#refresh()
 endif
+" TODO read https://vi.stackexchange.com/questions/2003/how-do-i-debug-my-vimrc-file
+" silent !mkdir ~/.config/nvim/backups > /dev/null 2>&1
