@@ -12,19 +12,19 @@
   branch = auto
   status = auto
   diff = auto
-[color "branch"]
-  current = yellow reverse
-  local = yellow
-  remote = green
-[color "diff"]
-  meta = yellow bold
-  frag = magenta bold
-  old = red bold
-  new = green bold
-[color "status"]
-  added = yellow
-  changed = red
-  untracked = blue
+; [color "branch"]
+;   current = yellow reverse
+;   local = yellow
+;   remote = green
+; [color "diff"]
+;   meta = yellow bold
+;   frag = magenta bold
+;   old = red bold
+;   new = green bold
+; [color "status"]
+;   added = yellow
+;   changed = red
+;   untracked = blue
 [alias]
   # List available aliases
   aliases = !git config --get-regexp alias | sed -re 's/alias\\.(\\S*)\\s(.*)$/\\1 = \\2/g'
@@ -53,7 +53,7 @@
   untrack = rm --cache --
 [core]
   # Don't paginate output by default
-  pager = cat
+	pager = delta --dark # --light for light terminal backgrounds
   # Global ignore file (not shared)
   excludesfile = /Users/kevlee/.gitignore_global
   # Global shared hooks directory
@@ -184,7 +184,7 @@
   template = /Users/kevlee/.stCommitMsg
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
+	path =
 [mergetool "sourcetree"]
 	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
