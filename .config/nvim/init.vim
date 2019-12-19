@@ -6,6 +6,10 @@ scriptencoding utf-8
 call plug#begin('~/.config/nvim/plugged')
 
 " === Editing Plugins === "
+" fzf
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
+
 " Trailing whitespace highlighting & automatic fixing
 Plug 'ntpeters/vim-better-whitespace'
 
@@ -42,13 +46,6 @@ Plug 'Shougo/echodoc.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 
-" === Javascript Plugins === "
-" Typescript syntax highlighting
-"Plug 'HerringtonDarkholme/yats.vim'
-
-" ReactJS JSX syntax highlighting
-"Plug 'mxw/vim-jsx'
-
 " Generate JSDoc commands based on function signature
 Plug 'heavenshell/vim-jsdoc'
 
@@ -59,9 +56,6 @@ Plug 'sheerun/vim-polyglot'
 
 " Syntax highlighting for javascript libraries
 Plug 'othree/javascript-libraries-syntax.vim'
-
-" Improved syntax highlighting and indentation
-"Plug 'othree/yajs.vim'
 
 " === UI === "
 " File explorer
