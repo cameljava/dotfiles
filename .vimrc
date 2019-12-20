@@ -95,8 +95,13 @@ set fileencoding=utf-8
 set fileencodings=utf-8
 set clipboard+=unnamed " Add the unnamed register to the clipboard
 set autoread  "Automatically read a file that has changed on disk
-set nobackup noswapfile     " stop backup and swap files
+set nobackup writebackup noswapfile noundofile
+if !isdirectory("/tmp/.vim/.backup")
+  call mkdir("/tmp/.vim/.backup", "", 0700)
+endif
 set backupcopy=yes
+set backupext=.vbak
+set backupdir=/tmp/.vim/.backup// " Don't put backups in current dir
 "turn on hidden to allow toggle between buffer with unsaved
 set hidden
 set autoindent

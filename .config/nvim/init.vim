@@ -10,17 +10,13 @@ call plug#begin('~/.config/nvim/plugged')
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 
-" Trailing whitespace highlighting & automatic fixing
-Plug 'ntpeters/vim-better-whitespace'
-
-" auto-close plugin
-Plug 'rstacruz/vim-closer'
-
 " Improved motion in Vim
 Plug 'easymotion/vim-easymotion'
 
-" code comment
-Plug 'scrooloose/nerdcommenter'
+" Tim pope
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
 
 " Intellisense Engine
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -32,14 +28,11 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'liuchengxu/vista.vim'
 
 " Denite - Fuzzy finding, buffer management
-Plug 'Shougo/denite.nvim'
+" Plug 'Shougo/denite.nvim'
 
-" Snippet support
-Plug 'Shougo/neosnippet'
-Plug 'Shougo/neosnippet-snippets'
-
-" Print function signatures in echo area
-Plug 'Shougo/echodoc.vim'
+" " Snippet support
+" Plug 'Shougo/neosnippet'
+" Plug 'Shougo/neosnippet-snippets'
 
 " === Git Plugins === "
 " Enable git changes to be shown in sign column
@@ -49,13 +42,8 @@ Plug 'tpope/vim-fugitive'
 " Generate JSDoc commands based on function signature
 Plug 'heavenshell/vim-jsdoc'
 
-" === Syntax Highlighting === "
-
 " Syntax highlighting language pack for vim
 Plug 'sheerun/vim-polyglot'
-
-" Syntax highlighting for javascript libraries
-Plug 'othree/javascript-libraries-syntax.vim'
 
 " === UI === "
 " File explorer
@@ -67,12 +55,7 @@ Plug 'mhartington/oceanic-next'
 
 " Customized vim status line
 Plug 'vim-airline/vim-airline'
-"
-"Plug 'vim-airline/vim-airline-themes'
-
-" Icons
-Plug 'ryanoasis/vim-devicons'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'vim-airline/vim-airline-themes'
 
 " Initialize plugin system
 call plug#end()
@@ -137,143 +120,6 @@ set signcolumn=yes
 " ============================================================================ "
 
 let g:python3_host_prog = '$HOME/.pyenv/versions/py3nvim/bin/python'
-" Wrap in try/catch to avoid errors on initial install before plugin is available
-try
-" === Denite setup ==="
-" Use ripgrep for searching current directory for files
-" By default, ripgrep will respect rules in .gitignore
-"   --files: Print each file that would be searched (but don't search)
-"   --glob:  Include or exclues files for searching that match the given glob
-"            (aka ignore .git files)
-"
-call denite#custom#var('file/rec', 'command', ['rg', '--files', '--glob', '!.git'])
-
-" Use ripgrep in place of "grep"
-call denite#custom#var('grep', 'command', ['rg'])
-
-" Custom options for ripgrep
-"   --vimgrep:  Show results with every match on it's own line
-"   --hidden:   Search hidden directories and files
-"   --heading:  Show the file name above clusters of matches from each file
-"   --S:        Search case insensitively if the pattern is all lowercase
-call denite#custom#var('grep', 'default_opts', ['--hidden', '--vimgrep', '--heading', '-S'])
-
-" Recommended defaults for ripgrep via Denite docs
-call denite#custom#var('grep', 'recursive_opts', [])
-call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
-call denite#custom#var('grep', 'separator', ['--'])
-call denite#custom#var('grep', 'final_opts', [])
-
-" Remove date from buffer list
-call denite#custom#var('buffer', 'date_format', '')
-
-" Custom options for Denite
-"   auto_resize             - Auto resize the Denite window height automatically.
-"   prompt                  - Customize denite prompt
-"   direction               - Specify Denite window direction as directly below current pane
-"   winminheight            - Specify min height for Denite window
-"   highlight_mode_insert   - Specify h1-CursorLine in insert mode
-"   prompt_highlight        - Specify color of prompt
-"   highlight_matched_char  - Matched characters highlight
-"   highlight_matched_range - matched range highlight
-let s:denite_options = {'default' : {
-\ 'split': 'floating',
-\ 'start_filter': 1,
-\ 'auto_resize': 1,
-\ 'source_names': 'short',
-\ 'prompt': 'λ ',
-\ 'statusline': 0,
-\ 'highlight_matched_char': 'QuickFixLine',
-\ 'highlight_matched_range': 'Visual',
-\ 'highlight_window_background': 'Visual',
-\ 'highlight_filter_background': 'DiffAdd',
-\ 'winrow': 1,
-\ 'vertical_preview': 1
-\ }}
-
-" Loop through denite options and enable them
-function! s:profile(opts) abort
-  for l:fname in keys(a:opts)
-    for l:dopt in keys(a:opts[l:fname])
-      call denite#custom#option(l:fname, l:dopt, a:opts[l:fname][l:dopt])
-    endfor
-  endfor
-endfunction
-
-call s:profile(s:denite_options)
-catch
-  echo 'Denite not installed. It should work after running :PlugInstall'
-endtry
-
-" === Denite shorcuts === "
-"   '         - Browser currently open buffers
-"   <leader>t - Browse list of files in current directory
-"   <leader>g - Search current directory for occurences of given term and close window if no results
-"   <leader>j - Search current directory for occurences of word under cursor
-nmap ' :Denite buffer<CR>
-nmap <leader>t :DeniteProjectDir file/rec<CR>
-nnoremap <leader>g :<C-u>Denite grep:. -no-empty<CR>
-nnoremap <leader>j :<C-u>DeniteCursorWord grep:.<CR>
-
-" Define mappings while in 'filter' mode
-"   <C-o>         - Switch to normal mode inside of search results
-"   <Esc>         - Exit denite window in any mode
-"   <CR>          - Open currently selected file in any mode
-"   <C-t>         - Open currently selected file in a new tab
-"   <C-v>         - Open currently selected file a vertical split
-"   <C-h>         - Open currently selected file in a horizontal split
-autocmd FileType denite-filter call s:denite_filter_my_settings()
-function! s:denite_filter_my_settings() abort
-  imap <silent><buffer> <C-o>
-  \ <Plug>(denite_filter_quit)
-  inoremap <silent><buffer><expr> <Esc>
-  \ denite#do_map('quit')
-  nnoremap <silent><buffer><expr> <Esc>
-  \ denite#do_map('quit')
-  inoremap <silent><buffer><expr> <CR>
-  \ denite#do_map('do_action')
-  inoremap <silent><buffer><expr> <C-t>
-  \ denite#do_map('do_action', 'tabopen')
-  inoremap <silent><buffer><expr> <C-v>
-  \ denite#do_map('do_action', 'vsplit')
-  inoremap <silent><buffer><expr> <C-h>
-  \ denite#do_map('do_action', 'split')
-endfunction
-
-" Define mappings while in denite window
-"   <CR>        - Opens currently selected file
-"   q or <Esc>  - Quit Denite window
-"   d           - Delete currenly selected file
-"   p           - Preview currently selected file
-"   <C-o> or i  - Switch to insert mode inside of filter prompt
-"   <C-t>       - Open currently selected file in a new tab
-"   <C-v>       - Open currently selected file a vertical split
-"   <C-h>       - Open currently selected file in a horizontal split
-autocmd FileType denite call s:denite_my_settings()
-function! s:denite_my_settings() abort
-  nnoremap <silent><buffer><expr> <CR>
-  \ denite#do_map('do_action')
-  nnoremap <silent><buffer><expr> q
-  \ denite#do_map('quit')
-  nnoremap <silent><buffer><expr> <Esc>
-  \ denite#do_map('quit')
-  nnoremap <silent><buffer><expr> d
-  \ denite#do_map('do_action', 'delete')
-  nnoremap <silent><buffer><expr> p
-  \ denite#do_map('do_action', 'preview')
-  nnoremap <silent><buffer><expr> i
-  \ denite#do_map('open_filter_buffer')
-  nnoremap <silent><buffer><expr> <C-o>
-  \ denite#do_map('open_filter_buffer')
-  nnoremap <silent><buffer><expr> <C-t>
-  \ denite#do_map('do_action', 'tabopen')
-  nnoremap <silent><buffer><expr> <C-v>
-  \ denite#do_map('do_action', 'vsplit')
-  nnoremap <silent><buffer><expr> <C-h>
-  \ denite#do_map('do_action', 'split')
-  nnoremap <silent><buffer><expr> <Space>
-  \ denite#do_map('toggle_select').'j'
-endfunction
 
 " === Coc.nvim === "
 
@@ -428,101 +274,68 @@ let g:NERDTreeIgnore = ['^\.DS_Store$', '^tags$', '\.git$[[dir]]', '\.idea$[[dir
 " Wrap in try/catch to avoid errors on initial install before plugin is available
 try
 
-" tags
-" set tags=~/.cache/tags/.tags;,.tags
-" let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
-" let g:gutentags_ctags_tagfile = '.tags'
-"
-" let g:gutentags_modules = ['ctags']
-"
-" let g:gutentags_cache_dir = expand('~/.cache/tags')
-" let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
-" let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
-" let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
-" let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']
-" let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
-"
-" === Vim airline ==== "
-" Enable extensions
-let g:airline_extensions = ['branch', 'hunks', 'coc']
+  " tags
+  " set tags=~/.cache/tags/.tags;,.tags
+  " let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
+  " let g:gutentags_ctags_tagfile = '.tags'
+  "
+  " let g:gutentags_modules = ['ctags']
+  "
+  " let g:gutentags_cache_dir = expand('~/.cache/tags')
+  " let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
+  " let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
+  " let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
+  " let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']
+  " let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
+  "
+  " === Vim airline ==== "
+  " Enable extensions
+  let g:airline_extensions = ['branch', 'hunks', 'coc']
 
-" Update section z to just have line number
-let g:airline_section_z = airline#section#create(['linenr'])
+  " Update section z to just have line number
+  let g:airline_section_z = airline#section#create(['linenr'])
 
-" Do not draw separators for empty sections (only for the active window) >
-let g:airline_skip_empty_sections = 1
+  " Do not draw separators for empty sections (only for the active window) >
+  let g:airline_skip_empty_sections = 1
 
-" Smartly uniquify buffers names with similar filename, suppressing common parts of paths.
-let g:airline#extensions#tabline#formatter = 'unique_tail'
+  " Smartly uniquify buffers names with similar filename, suppressing common parts of paths.
+  let g:airline#extensions#tabline#formatter = 'unique_tail'
 
-" Custom setup that removes filetype/whitespace from default vim airline bar
-let g:airline#extensions#default#layout = [['a', 'b', 'c'], ['x', 'z', 'warning', 'error']]
+  " Custom setup that removes filetype/whitespace from default vim airline bar
+  let g:airline#extensions#default#layout = [['a', 'b', 'c'], ['x', 'z', 'warning', 'error']]
 
-let airline#extensions#coc#stl_format_err = '%E{[%e(#%fe)]}'
+  let airline#extensions#coc#stl_format_err = '%E{[%e(#%fe)]}'
 
-let airline#extensions#coc#stl_format_warn = '%W{[%w(#%fw)]}'
+  let airline#extensions#coc#stl_format_warn = '%W{[%w(#%fw)]}'
 
-" Configure error/warning section to use coc.nvim
-let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
-let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
+  " Configure error/warning section to use coc.nvim
+  let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
+  let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
 
-" Hide the Nerdtree status line to avoid clutter
-let g:NERDTreeStatusline = ''
+  " Hide the Nerdtree status line to avoid clutter
+  let g:NERDTreeStatusline = ''
 
-" Disable vim-airline in preview mode
-let g:airline_exclude_preview = 1
+  " Disable vim-airline in preview mode
+  let g:airline_exclude_preview = 1
 
-" Enable powerline fonts
-let g:airline_powerline_fonts = 1
+  " Enable powerline fonts
+  let g:airline_powerline_fonts = 1
 
-" Enable caching of syntax highlighting groups
-let g:airline_highlighting_cache = 1
+  " Enable caching of syntax highlighting groups
+  let g:airline_highlighting_cache = 1
 
-" Define custom airline symbols
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-endif
+  " Define custom airline symbols
+  if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+  endif
 
-" Don't show git changes to current file in airline
-let g:airline#extensions#hunks#enabled=0
+  " Don't show git changes to current file in airline
+  let g:airline#extensions#hunks#enabled=0
 
 catch
   echo 'Airline not installed. It should work after running :PlugInstall'
 endtry
 
-" === echodoc === "
-" Enable echodoc on startup
-let g:echodoc#enable_at_startup = 1
-
-" === vim-javascript === "
-" Enable syntax highlighting for JSDoc
-let g:javascript_plugin_jsdoc = 1
-
-" === vim-jsx === "
-" Highlight jsx syntax even in non .jsx files
-"let g:jsx_ext_required = 0
-
-" === javascript-libraries-syntax === "
-let g:used_javascript_libs = 'underscore,requirejs,chai,jquery'
-
-" === Signify === "
-let g:signify_sign_delete = '-'
-
-" === nerdcommenter === "
-" Add spaces after comment delimiters by default
-let g:NERDSpaceDelims = 1
-
-" Use compact syntax for prettified multi-line comments
-let g:NERDCompactSexyComs = 1
-
-" Allow commenting and inverting empty lines (useful when commenting a region)
-let g:NERDCommentEmptyLines = 1
-
-" Enable trimming of trailing whitespace when uncommenting
-let g:NERDTrimTrailingWhitespace = 1
-
-" Enable NERDCommenterToggle to check all selected lines is commented or not
-let g:NERDToggleCheckAllLines = 1
 
 " ============================================================================ "
 " ===                                UI                                    === "
@@ -681,7 +494,6 @@ nmap <leader>y :StripWhitespace<CR>
 "   <leader>h - Find and replace
 "   <leader>/ - Claer highlighted search terms while preserving history
 map <leader>h :%s///<left><left>
-nmap <silent> <bs> :nohlsearch<CR>
 
 " === Easy-motion shortcuts ==="
 "   <leader>w - Easy-motion highlights first word letters bi-directionally
@@ -716,17 +528,10 @@ set smartcase
 " Automatically re-read file if a change was detected outside of vim
 set autoread
 
-" Set backups
-if has('persistent_undo')
-  set undofile
-  set undolevels=3000
-  set undoreload=10000
-endif
-
+set nobackup writebackup noswapfile noundofile
 set backupcopy=yes
-set backupext=.nvbak
-set nobackup noswapfile     " stop backup and swap files
-set backupdir=~/.local/share/nvim/backup " Don't put backups in current dir
+set backupext=.vbak
+set backupdir=/tmp/.vim/.backup// " Don't put backups in current dir
 
 " Reload icons after init source
 if exists('g:loaded_webdevicons')
