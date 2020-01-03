@@ -32,6 +32,9 @@ if command -v pyenv 1>/dev/null 2>&1; then
 fi
 
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+
+[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
+
 # add alias
 
 alias ls='ls -GFhl'
@@ -53,7 +56,7 @@ alias .5='cd ../../../../../'             # Go back 5 directory levels
 alias .6='cd ../../../../../../'          # Go back 6 directory levels
 alias f='open -a Finder ./'               # f:            Opens current directory in MacOS Finder
 alias ~="cd ~"                            # ~:            Go Home
-alias c='clear'                           # c:            Clear terminal display
+# alias c='clear'                           # c:            Clear terminal display
 alias which='type -all'                   # which:        Find executables
 alias path='echo -e ${PATH//:/\\n}'       # path:         Echo all executable Paths
 alias show_options='shopt'                # Show_options: display bash options settings
@@ -79,3 +82,5 @@ if [ -f "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh" ]; then
 fi
 source ~/git/cameljava_github/configFiles/bash/forgit.plugin.sh
 export PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
+
+[ -s "$HOME/.scm_breeze/scm_breeze.sh" ] && source "$HOME/.scm_breeze/scm_breeze.sh"

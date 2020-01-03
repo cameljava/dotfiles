@@ -97,7 +97,7 @@ set clipboard+=unnamed " Add the unnamed register to the clipboard
 set autoread  "Automatically read a file that has changed on disk
 set nobackup writebackup noswapfile noundofile
 if !isdirectory("/tmp/.vim/.backup")
-  call mkdir("/tmp/.vim/.backup", "", 0700)
+  call mkdir("/tmp/.vim/.backup", "p", 0700)
 endif
 set backupcopy=yes
 set backupext=.vbak

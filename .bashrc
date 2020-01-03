@@ -1,6 +1,8 @@
 export PS1='$ '
 export TERM=xterm-256color
-
+export PAGER="most"
+export VISUAL="/usr/local/Cellar/macvim/8.1-161/bin/mvim"
+export EDITOR="/usr/local/bin/vim"
 # Prevent file overwrite on stdout redirection
 # Use `>|` to force redirection to an existing file
 set -o noclobber
@@ -12,8 +14,8 @@ export XDG_DATA_HOME="$HOME/.local/share"
 alias hs='history | grep $1'
 
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                                             # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"                           # This loads nvm bash_completion
 
 [ -s "/usr/local/etc/bash_completion.d/pass" ] && \. "/usr/local/etc/bash_completion.d/pass" # This loads pass bash_completion
 
@@ -114,19 +116,19 @@ alias n="nvim "
 alias v="vim "
 alias m="mvim "
 alias g="git "
-alias gs="git status"
-alias gc="git commit"
-# alias ga="git add "
-alias g.="git add ."
-# alias gd="git diff "
-alias gd.="git diff ."
-alias gdc="git diff --cached"
-alias gdc.="git diff --cached ."
-alias gb="git branch"
-alias gh="git checkout"
-alias gp="git push"
-alias gl="git lg -15"
-alias gm="git merge --no-commit "
+# alias gs="git status"
+# alias gc="git commit"
+# # alias ga="git add "
+# alias g.="git add ."
+# # alias gd="git diff "
+# alias gd.="git diff ."
+# alias gdc="git diff --cached"
+# alias gdc.="git diff --cached ."
+# alias gb="git branch"
+# alias gh="git checkout"
+# alias gp="git push"
+# alias gl="git lg -15"
+# alias gm="git merge --no-commit "
 alias fzfp="fzf --preview 'bat --style=numbers --color=always {} | head -500'"
 export SLS_DEBUG=true
 
@@ -161,6 +163,3 @@ function dirdiff() {
   shift
   vim $@ -c "DirDiff $DIR1 $DIR2"
 }
-
-# https://medium.com/adorableio/modern-javascript-ctags-configuration-199884dbcc1
-# alias jtags="ctags -R app config lib && sed -i '' -E '/^(if|switch|function|module\.exports|it|describe).+language:js$/d' tags"
