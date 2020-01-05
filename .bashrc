@@ -10,8 +10,6 @@ set -o noclobber
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 
-#History search (use: hs sometext)
-alias hs='history | grep $1'
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                                             # This loads nvm
@@ -116,8 +114,14 @@ alias n="nvim "
 alias v="vim "
 alias m="mvim "
 alias g="git "
+#History search (use: hs sometext)
+alias hs='history | grep $1'
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 alias fzfp="fzf --preview 'bat --style=numbers --color=always {} | head -500'"
-export SLS_DEBUG=true
+alias config='/usr/bin/git --git-dir=/Users/kevlee/git/cameljava_github/dotfiles --work-tree=/Users/kevlee'
+# search all files in current folder including hidden and git ignore, except .rgignore
+export FZF_DEFAULT_COMMAND="rg --files --no-ignore-vcs --hidden --follow --glob '!.git'"
 
 #export HISTCONTROL=ignoreboth:erasedups
 
@@ -130,15 +134,15 @@ export SLS_DEBUG=true
 # tabtab source for slss package
 # uninstall by removing these lines or running `tabtab uninstall slss`
 [ -f /Users/kevlee/git/cochlear_gitlab/drx-serverless/auth/node_modules/tabtab/.completions/slss.bash ] && . /Users/kevlee/git/cochlear_gitlab/drx-serverless/auth/node_modules/tabtab/.completions/slss.bash
-alias config='/usr/bin/git --git-dir=/Users/kevlee/git/cameljava_github/dotfiles --work-tree=/Users/kevlee'
+
 config config --local status.showUntrackedFiles no
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-
-export EDITOR='vim'
-# search all files in current folder including hidden and git ignore, except .rgignore
-export FZF_DEFAULT_COMMAND="rg --files --no-ignore-vcs --hidden --follow --glob '!.git'"
 eval $(thefuck --alias)
+
+# Applications env setting
+export SLS_DEBUG=true
+
+# customized function
 
 tre() { command tre "$@" -e && source "/tmp/tre_aliases_$USER" 2>/dev/null; }
 
