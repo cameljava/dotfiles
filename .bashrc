@@ -1,6 +1,7 @@
 export PS1='$ '
 export TERM=xterm-256color
-export PAGER="most"
+export PAGER="less"
+# export PAGER="most"
 export VISUAL="/usr/local/Cellar/macvim/8.1-161/bin/mvim"
 export EDITOR="/usr/local/bin/vim"
 # Prevent file overwrite on stdout redirection

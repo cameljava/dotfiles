@@ -84,3 +84,4 @@ source ~/git/cameljava_github/configFiles/bash/forgit.plugin.sh
 export PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
 
 [ -s "$HOME/.scm_breeze/scm_breeze.sh" ] && source "$HOME/.scm_breeze/scm_breeze.sh"
+eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib=$HOME/perl5)"
