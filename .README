@@ -36,5 +36,14 @@ https://www.freecodecamp.org/news/coding-like-a-hacker-in-the-terminal-79e229549
 actions:
 20191215
 add https://github.com/wfxr/forgit
-and inspired by that, also look at https://terminalsare.sexy/  
+and inspired by that, also look at https://terminalsare.sexy/
 a whole new world.
+20200106
+installed git-prompt:
+https://github.com/magicmonty/bash-git-prompt
+install:
+colordiff
+
+fix: bat 
+my default pager is most, however currently bat only support less.
+create customized bat bin to wrap bat.
