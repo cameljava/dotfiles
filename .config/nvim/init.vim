@@ -90,9 +90,9 @@ set softtabstop=2
 set shiftwidth=2
 
 " do not wrap long lines by default
-set nowrap
+" set nowrap
 
-" Don't highlight current cursor line
+" highlight current cursor line
 set cursorline
 
 " Disable line/column number in status line
@@ -100,7 +100,7 @@ set cursorline
 set noruler
 
 " two line for command line
-set cmdheight=2
+" set cmdheight=2
 
 " === Completion Settings === "
 

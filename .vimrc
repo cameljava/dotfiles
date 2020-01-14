@@ -39,6 +39,8 @@ Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 " use standard regex instead of vim format
 Plug 'othree/eregex.vim'
+" use easegrep for refactor name
+Plug 'dkprice/vim-easygrep'
 " airline
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -179,7 +181,8 @@ set pastetoggle=<F6>
 noremap Y y$
 " highlight last inserted text
 nnoremap gV `[v`]
-
+" abbrev for split buffer vertically
+cabbrev vb vert sb
 
 " press * to search for the term under the cursor or a visual selection and
 " then press a key below to replace all instances of it in the current file.
@@ -321,8 +324,12 @@ let g:ale_open_list = 1
 
 " gitgutter settings
 " eregex setting, use / to find. :%S// (uppercase S) to replace
-nnoremap / :M/
-nnoremap ,/ /
+" nnoremap / :M/
+" nnoremap ,/ /
+" Explicit enable eregex, use PCRE style grep
+let g:eregex_default_enable = 1
+" force case sensitive like perl, you can change it by adding /i modifier
+let g:eregex_force_case = 1
 
 " dirdiff
 let g:DirDiffExcludes = "CVS,*.class,*.exe,.*.swp,.git"
