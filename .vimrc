@@ -49,6 +49,8 @@ Plug 'airblade/vim-gitgutter'
 " git command wrapper
 Plug 'tpope/vim-fugitive'
 " Format
+" auto pair
+Plug 'jiangmiao/auto-pairs'
 " easy align(=)
 Plug 'junegunn/vim-easy-align'
 " Automatically clear search highlights after you move your cursor.
