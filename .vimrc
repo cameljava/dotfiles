@@ -85,8 +85,8 @@ nnoremap ; :
 " do we really need below mapping?if on will affect below remap
 " nnoremap : ;
 
-let mapleader = ","
-let maplocalleader = ";"   "not sure about this, TODO
+let mapleader = ','
+let maplocalleader = ';'   "not sure about this, TODO
 " Basic settings and variables"
 set updatetime=100
 set ignorecase smartcase
@@ -95,11 +95,12 @@ set cursorline
 set encoding=utf-8
 set fileencoding=utf-8
 set fileencodings=utf-8
+scriptencoding utf-8
 set clipboard+=unnamed " Add the unnamed register to the clipboard
 set autoread  "Automatically read a file that has changed on disk
 set nobackup writebackup noswapfile noundofile
-if !isdirectory("/tmp/.vim/.backup")
-  call mkdir("/tmp/.vim/.backup", "p", 0700)
+if !isdirectory('/tmp/.vim/.backup')
+  call mkdir('/tmp/.vim/.backup', 'p', 0700)
 endif
 set backupcopy=yes
 set backupext=.vbak
@@ -128,7 +129,7 @@ set incsearch
 " confusing.
 set nrformats-=octal
 " Don't use Ex mode, use Q for formatting.
-" Revert with ":unmap Q".
+" Revert with ':unmap Q'.
 noremap Q gq
 " In many terminal emulators the mouse works just fine.  By enabling it you
 " can position the cursor, Visually select and scroll with the mouse.
@@ -140,15 +141,15 @@ set completeopt=menu,menuone,preview,noselect,noinsert
 
 " Switch syntax highlighting on when the terminal has colors or when using the
 " GUI (which always has colors).
-if &t_Co > 2 || has("gui_running")
-  " Revert with ":syntax off".
+if &t_Co > 2 || has('gui_running')
+  " Revert with ':syntax off'.
   syntax on
 
   " I like highlighting strings inside C comments.
-  " Revert with ":unlet c_comment_strings".
+  " Revert with ':unlet c_comment_strings'.
   let c_comment_strings=1
 endif
-set nu rnu                      " show line numbers
+set number rnu                      " show line numbers
 "-- FOLDING --
 " set foldmethod=syntax "syntax highlighting items specify folds
 " set foldcolumn=1 "defines 1 col at window left, to indicate folding
@@ -165,7 +166,7 @@ set gdefault                " global replace by default
 set nowrapscan " turn off wrap scan, stop search at end/start of file
 "set guioptions=a            " hide scrollbars/menu/tabs
 set listchars=tab:\|\ ,trail:·,eol:¬
-if v:version > 703 || v:version == 703 && has("patch541")
+if v:version > 703 || v:version == 703 && has('patch541')
   set formatoptions+=j " Delete comment character when joining commented lines
 endif
 set history=1000
@@ -248,7 +249,7 @@ function! RestoreRegister()
 endfunction
 function! s:Repl()
   let s:restore_reg = @"
-  return "p@=RestoreRegister()\<cr>"
+  return 'p@=RestoreRegister()\<cr>'
 endfunction
 vmap <silent> <expr> p <sid>Repl()
 
@@ -332,7 +333,7 @@ let g:eregex_default_enable = 1
 let g:eregex_force_case = 1
 
 " dirdiff
-let g:DirDiffExcludes = "CVS,*.class,*.exe,.*.swp,.git"
+let g:DirDiffExcludes = 'CVS,*.class,*.exe,.*.swp,.git'
 
 " End Plugins configuration"}}}
 
@@ -376,7 +377,7 @@ endif
 " file it was loaded from, thus the changes you made.
 " Only define it when not defined already.
 " Revert with: ":delcommand DiffOrig".
-if !exists(":DiffOrig")
+if !exists(':DiffOrig')
   command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
         \ | wincmd p | diffthis
 endif
