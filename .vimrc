@@ -344,14 +344,17 @@ let g:DirDiffExcludes = 'CVS,*.class,*.exe,.*.swp,.git'
 " -----------------------------------------------------------------------------
 " from nickjj/dotfiles
 
-" Auto-resize splits when Vim gets resized.
-autocmd VimResized * wincmd =
+augroup vimRefresh
+  autocmd!
+  " Auto-resize splits when Vim gets resized.
+  autocmd VimResized * wincmd =
 
-" Update a buffer's contents on focus if it changed outside of Vim.
-au FocusGained,BufEnter * :checktime
+  " Update a buffer's contents on focus if it changed outside of Vim.
+  au FocusGained,BufEnter * :checktime
 
-" Unset paste on InsertLeave.
-autocmd InsertLeave * silent! set nopaste
+  " Unset paste on InsertLeave.
+  autocmd InsertLeave * silent! set nopaste
+augroup END
 
 " Only do this part when Vim was compiled with the +eval feature.
 if 1
