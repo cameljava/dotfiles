@@ -1,0 +1,6 @@
+---
+extends: default
+
+rules:
+  line-length: disable  # don't bother me with this rule
+  document-start: disable
