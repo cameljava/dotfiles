@@ -11,10 +11,9 @@ set -o noclobber
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 
-
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                                             # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"                           # This loads nvm bash_completion
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
 [ -s "/usr/local/etc/bash_completion.d/pass" ] && \. "/usr/local/etc/bash_completion.d/pass" # This loads pass bash_completion
 
@@ -109,12 +108,15 @@ shopt -s cdable_vars
 # export dropbox="$HOME/Dropbox"
 
 # alias
+# alias diff="diff-so-fancy"
 alias rm="rm -i"
 alias sls="sls --region ap-southeast-2 "
 alias n="nvim "
 alias v="vim "
+alias vs="vim -S"
 alias m="mvim "
 alias g="git "
+alias b="brew "
 #History search (use: hs sometext)
 alias hs='history | grep $1'
 

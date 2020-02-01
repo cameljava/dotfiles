@@ -166,7 +166,7 @@ set scrolloff=5 "keeps cursor away from top/bottom of screen
 set sidescrolloff=5 "keeps cursor away from side of screen
 set hlsearch " hightlight search search
 set gdefault                " global replace by default
-set nowrapscan " turn off wrap scan, stop search at end/start of file
+" set nowrapscan " turn off wrap scan, stop search at end/start of file
 "set guioptions=a            " hide scrollbars/menu/tabs
 set listchars=tab:\|\ ,trail:·,eol:¬
 if v:version > 703 || v:version == 703 && has('patch541')
