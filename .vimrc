@@ -1,18 +1,19 @@
 " .vimrc
 " Author: Kevin Lee
 
+" comment out compatible checking, avoid vint complaint
 " Use Vim settings, rather than Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
 " Avoid side effects when it was already reset.
-if &compatible
-  set nocompatible
-endif
+" if &compatible
+"   set nocompatible
+" endif
 
 " When the +eval feature is missing, the set command above will be skipped.
 " Use a trick to reset compatible only when the +eval feature is missing.
-silent! while 0
-set nocompatible
-silent! endwhile
+" silent! while 0
+" set nocompatible
+" silent! endwhile
 
 " to worry about: from bronson/dotfiles
 filetype on   " work around stupid osx bug
@@ -71,6 +72,8 @@ Plug 'majutsushi/tagbar'
 " Plug 'vim-scripts/argtextobj.vim'
 " sort: gs+motion/object
 " Plug 'christoomey/vim-sort-motion'
+" highlight yank
+Plug 'machakann/vim-highlightedyank'
 
 Plug 'rafi/awesome-vim-colorschemes'
 " Dim paragraphs above and below the active paragraph.
@@ -153,6 +156,8 @@ if &t_Co > 2 || has('gui_running')
   let c_comment_strings=1
 endif
 set number rnu                      " show line numbers
+
+
 "-- FOLDING --
 " set foldmethod=syntax "syntax highlighting items specify folds
 " set foldcolumn=1 "defines 1 col at window left, to indicate folding
@@ -290,6 +295,7 @@ endif
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
 let g:airline#extensions#tabline#enabled = 1
+
 " ale setting
 " let g:jsx_ext_required = 0
 " individual fixer and liner defined in ft folder
@@ -321,6 +327,13 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_set_loclist = 0
 let g:ale_set_quickfix = 1
 let g:ale_open_list = 1
+
+" Do not lint or fix minified files.
+let g:ale_pattern_options = {
+\ '\.min\.js$': {'ale_linters': [], 'ale_fixers': []},
+\ '\.min\.css$': {'ale_linters': [], 'ale_fixers': []},
+\}
+
 " Set this if you want to.
 " This can be useful if you are combining ALE with
 " some other plugin which sets quickfix errors, etc.
@@ -417,3 +430,6 @@ let g:rehash256 = 1
 colorscheme molokai
 
 " colorscheme gruvbox
+
+" Gui vim setting
+map <silent> <C-F2> :if &guioptions =~# 'T' <Bar>  set guioptions-=T <Bar>  set guioptions-=m <bar>  else <Bar>  set guioptions+=T <Bar> set guioptions+=m <Bar> endif<CR>

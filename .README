@@ -1,3 +1,11 @@
+ctags for javascript:
+ref:
+https://medium.com/adorableio/modern-javascript-ctags-configuration-199884dbcc1
+https://medium.com/trabe/navigate-es6-projects-with-vim-using-ctags-948d114b94f3
+
+follow: https://github.com/romainl/ctags-patterns-for-javascript
+
+
 my fancy fonts:
 JetBrains Mono
 Office Code Pro D
@@ -49,6 +57,6 @@ https://github.com/magicmonty/bash-git-prompt
 install:
 colordiff
 
-fix: bat 
+fix: bat
 my default pager is most, however currently bat only support less.
 create customized bat bin to wrap bat.
