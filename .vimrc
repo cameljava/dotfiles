@@ -224,8 +224,8 @@ inoremap jh <ESC>:wq<CR>
 nnoremap <silent> <leader>rv :source ~/.vimrc<CR>
 "show spaces"
 nnoremap <silent> <leader>l :set nolist!<CR>
-"hide hightlight of searches"
-nnoremap <silent> <BS> :nohlsearch<CR>
+"hide hightlight of searches" comment out as installed is
+" nnoremap <silent> <BS> :nohlsearch<CR>
 " Insert mode mapping
 " delete text you have typed in insert mode, recoverable by u
 inoremap <c-u> <c-g>u<c-u>
@@ -310,7 +310,7 @@ highlight ALEErrorSign ctermbg=NONE ctermfg=red
 highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
 let g:ale_linters_explicit = 1
 let g:ale_lint_on_save = 1
-let g:ale_fix_on_save = 1
+let g:ale_fix_on_save = 0
 let g:ale_completion_enabled = 1
 " Set this. Airline will handle the rest.
 let g:airline#extensions#ale#enabled = 1
@@ -322,7 +322,7 @@ noremap <Leader>lf :ALEFix<CR>
 
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
-let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%][%code%]'
 " turn on quickfix list
 let g:ale_set_loclist = 0
 let g:ale_set_quickfix = 1
@@ -340,6 +340,7 @@ let g:ale_pattern_options = {
 " let g:ale_keep_list_window_open = 1
 
 " gitgutter settings
+let g:gitgutter_max_signs = 500  " default value
 " eregex setting, use / to find. :%S// (uppercase S) to replace
 " nnoremap / :M/
 " nnoremap ,/ /
@@ -350,6 +351,14 @@ let g:eregex_force_case = 1
 
 " dirdiff
 let g:DirDiffExcludes = 'CVS,*.class,*.exe,.*.swp,.git'
+
+" easy alignment
+
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
 
 " End Plugins configuration"}}}
 
@@ -395,7 +404,7 @@ endif
 " Convenient command to see the difference between the current buffer and the
 " file it was loaded from, thus the changes you made.
 " Only define it when not defined already.
-" Revert with: ":delcommand DiffOrig".
+" Revert with: :delcommand DiffOrig.
 if !exists(':DiffOrig')
   command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
         \ | wincmd p | diffthis
@@ -422,7 +431,6 @@ set termguicolors
 " colorscheme OceanicNext
 
 " colorscheme nord
-
 " colorscheme onedark
 " colorscheme purify
 

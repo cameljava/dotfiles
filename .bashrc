@@ -119,6 +119,7 @@ alias g="git "
 alias b="brew "
 #History search (use: hs sometext)
 alias hs='history | grep $1'
+alias d='rmtrash'
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 alias fzfp="fzf --preview 'bat --style=numbers --color=always {} | head -500'"
