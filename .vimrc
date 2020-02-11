@@ -236,6 +236,8 @@ inoremap <c-w> <c-g>u<c-w>
 " Buffer switching/management, might as well use those keys for something useful
 nnoremap <Tab> :bnext<CR>
 nnoremap <S-Tab> :bprev<CR>
+nnoremap <leader>b :bd<CR>
+
 " Maximize only this window"
 nnoremap <silent> <leader>m :only<CR>
 "vertical split"
