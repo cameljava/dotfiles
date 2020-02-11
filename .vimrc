@@ -157,9 +157,12 @@ if &t_Co > 2 || has('gui_running')
 endif
 set number rnu                      " show line numbers
 
+inoremap <F2> <C-o>:w<CR>
+" someone say add c-\ can prevent moving one character left
+" inoremap <F2> <C-\><C-o>:w<CR>
 
 "-- FOLDING --
-" set foldmethod=syntax "syntax highlighting items specify folds
+" set k foldmethod=syntax before F2 test f2 h  "syntax highlighting items specify folds
 " set foldcolumn=1 "defines 1 col at window left, to indicate folding
 " let javaScript_fold=1 "activate folding by JS syntax
 " set foldlevelstart=99 "start file with all folds opened
@@ -216,10 +219,6 @@ inoremap kk <ESC>
 cnoremap <silent> kk <C-c>
 inoremap <silent> jj <ESC>:w<CR>
 inoremap jh <ESC>:wq<CR>
-" TODO
-" inoremap <F9> <C-O><F9>
-" onoremap <expr> <F9> <C-C>&foldlevel ? 'zM':'zR'
-" vnoremap <expr> <F9> &foldlevel ? 'zM':'zR'
 "reload the .vimrc
 nnoremap <silent> <leader>rv :source ~/.vimrc<CR>
 "show spaces"
@@ -237,6 +236,8 @@ inoremap <c-w> <c-g>u<c-w>
 nnoremap <Tab> :bnext<CR>
 nnoremap <S-Tab> :bprev<CR>
 nnoremap <leader>b :bd<CR>
+
+nnoremap <leader>t :w<CR>
 
 " Maximize only this window"
 nnoremap <silent> <leader>m :only<CR>
