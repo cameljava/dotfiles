@@ -30,12 +30,15 @@ Plug 'dense-analysis/ale'
 " Nerdtree
 Plug 'scrooloose/nerdtree'
 Plug 'PhilRunninger/nerdtree-buffer-ops'
-Plug 'Xuyuanp/nerdtree-git-plugin'
+" Plug 'Xuyuanp/nerdtree-git-plugin'
 " Tim pope
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-obsession'
+" kana
+Plug 'kana/vim-textobj-user'
+Plug 'kana/vim-textobj-function'
 " fzf
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
@@ -73,7 +76,7 @@ Plug 'majutsushi/tagbar'
 " sort: gs+motion/object
 " Plug 'christoomey/vim-sort-motion'
 " highlight yank
-Plug 'machakann/vim-highlightedyank'
+" Plug 'machakann/vim-highlightedyank'
 
 Plug 'rafi/awesome-vim-colorschemes'
 " Dim paragraphs above and below the active paragraph.

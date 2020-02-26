@@ -17,6 +17,23 @@ Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-obsession'
+" kana
+Plug 'kana/vim-textobj-user'
+Plug 'kana/vim-textobj-function'
+
+" search
+" Automatically clear search highlights after you move your cursor.
+Plug 'haya14busa/is.vim'
+" asterisk.vim provides improved * motions
+Plug 'haya14busa/vim-asterisk'
+" show search status
+Plug 'osyo-manga/vim-anzu'
+
+" use standard regex instead of vim format
+Plug 'othree/eregex.vim'
+" use easegrep for refactor name
+Plug 'dkprice/vim-easygrep'
 
 " Intellisense Engine
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -26,13 +43,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " tagbar like view
 Plug 'liuchengxu/vista.vim'
-
-" Denite - Fuzzy finding, buffer management
-" Plug 'Shougo/denite.nvim'
-
-" " Snippet support
-" Plug 'Shougo/neosnippet'
-" Plug 'Shougo/neosnippet-snippets'
 
 " === Git Plugins === "
 " Enable git changes to be shown in sign column
@@ -45,17 +55,25 @@ Plug 'heavenshell/vim-jsdoc'
 " Syntax highlighting language pack for vim
 Plug 'sheerun/vim-polyglot'
 
+" Run a diff on 2 directories.
+Plug 'will133/vim-dirdiff'
+" Run a diff on 2 blocks of text.
+Plug 'AndrewRadev/linediff.vim'
+
 " === UI === "
 " File explorer
 Plug 'scrooloose/nerdtree'
-
-" Colorscheme
-Plug 'mhartington/oceanic-next'
-"Plug 'trevordmiller/nova-vim'
+Plug 'PhilRunninger/nerdtree-buffer-ops'
 
 " Customized vim status line
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+
+Plug 'rafi/awesome-vim-colorschemes'
+" Dim paragraphs above and below the active paragraph.
+Plug 'junegunn/limelight.vim'
+" Distraction free writing by removing UI elements and centering everything.
+Plug 'junegunn/goyo.vim'
 
 " Initialize plugin system
 call plug#end()
