@@ -29,6 +29,8 @@ Plug 'haya14busa/is.vim'
 Plug 'haya14busa/vim-asterisk'
 " show search status
 Plug 'osyo-manga/vim-anzu'
+" highlight yank
+Plug 'machakann/vim-highlightedyank'
 
 " use standard regex instead of vim format
 Plug 'othree/eregex.vim'
@@ -135,7 +137,7 @@ set signcolumn=yes
 " ============================================================================ "
 " ===                           PLUGIN SETUP                               === "
 " ============================================================================ "
-
+set grepprg=rg\ $*
 let g:python3_host_prog = '$HOME/.pyenv/versions/py3nvim/bin/python'
 
 " === Coc.nvim === "
@@ -353,6 +355,9 @@ catch
   echo 'Airline not installed. It should work after running :PlugInstall'
 endtry
 
+" ==== easygrep setting =====
+let g:EasyGrepCommand=1
+let g:EasyGrepPerlStyle=1
 
 " ============================================================================ "
 " ===                                UI                                    === "
@@ -455,8 +460,8 @@ inoremap <silent> jj <esc>:w<cr>
 noremap Y y$
 
 " j/k will move virtual lines (lines that wrap)
-noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
-noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
+" noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
+" noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
 
 " Stay in visual mode when indenting. You will never have to run gv after
 " performing an indentation.
@@ -471,10 +476,10 @@ noremap <Space> <PageDown>
 
 " Quick window switching
 " TODO below not working, only if press with shit as well
-nmap <C-h> <C-w>h
-nmap <C-j> <C-w>j
-nmap <C-k> <C-w>k
-nmap <C-l> <C-w>l
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
 
 " Quick editing
 " Edit the .bashrc"
@@ -492,6 +497,7 @@ nmap <silent> <leader>eh :e ~/scratch.txt<CR>
 "reload the .vimrc
 nmap <silent> <leader>rv :so ~/.config/nvim/init.vim<CR>
 "show spaces"
+set listchars=tab:\|\ ,trail:·,eol:¬
 nmap <silent> <leader>l :set nolist!<CR>
 "hide hightlight of searches"
 nmap <silent> <BS> :nohlsearch<CR>

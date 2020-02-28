@@ -25,12 +25,25 @@ call plug#begin('~/.vim/plugged')
 Plug 'junegunn/vim-plug'
 " language syntax
 Plug 'sheerun/vim-polyglot'
+Plug 'Chiel92/vim-autoformat'
+
+" Automatically clear search highlights after you move your cursor.
+Plug 'haya14busa/is.vim'
+" highlight yank
+Plug 'machakann/vim-highlightedyank'
+" asterisk.vim provides improved * motions
+Plug 'haya14busa/vim-asterisk'
+" show search status
+Plug 'osyo-manga/vim-anzu'
+
 " ALE
 Plug 'dense-analysis/ale'
 " Nerdtree
 Plug 'scrooloose/nerdtree'
 Plug 'PhilRunninger/nerdtree-buffer-ops'
 " Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'majutsushi/tagbar'
+
 " Tim pope
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
@@ -49,6 +62,7 @@ Plug 'dkprice/vim-easygrep'
 " airline
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+
 " git related
 Plug 'airblade/vim-gitgutter'
 " git command wrapper
@@ -58,8 +72,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'jiangmiao/auto-pairs'
 " easy align(=)
 Plug 'junegunn/vim-easy-align'
-" Automatically clear search highlights after you move your cursor.
-Plug 'haya14busa/is.vim'
 " Run a diff on 2 directories.
 Plug 'will133/vim-dirdiff'
 " Run a diff on 2 blocks of text.
@@ -67,16 +79,12 @@ Plug 'AndrewRadev/linediff.vim'
 
 " easymotion
 " Plug 'easymotion/vim-easymotion'
-Plug 'Chiel92/vim-autoformat'
 Plug 'mbbill/undotree'
 Plug 'michaeljsmith/vim-indent-object'
 " Plug 'ludovicchabant/vim-gutentags'
-Plug 'majutsushi/tagbar'
 " Plug 'vim-scripts/argtextobj.vim'
 " sort: gs+motion/object
 " Plug 'christoomey/vim-sort-motion'
-" highlight yank
-" Plug 'machakann/vim-highlightedyank'
 
 Plug 'rafi/awesome-vim-colorschemes'
 " Dim paragraphs above and below the active paragraph.
@@ -283,7 +291,8 @@ nnoremap <silent> <leader>et :e ~/.tmux.conf<CR>
 nnoremap <silent> <leader>eh :e ~/scratch.txt<CR>
 
 " Plugins configuration"
-
+" TODO how to set grepprg
+set grepprg=rg\ $*
 " fzf
 " Allow passing optional flags into the Rg command.
 "   Example :Rg myterm -g '*.md'
@@ -291,6 +300,7 @@ command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-hea
 
 " Nerdtree "
 noremap <leader>n :NERDTreeToggle<CR>
+noremap <Leader>f :NERDTreeFind<CR>
 let NERDTreeIgnore=['node_modules$[[dir]]', '\.git$[[dir]]']
 
 " Vim Airline
