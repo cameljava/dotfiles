@@ -291,7 +291,7 @@ let g:nerdtree_tabs_focus_on_files=1
 let g:NERDTreeIgnore = ['^\.DS_Store$', '^tags$', '\.git$[[dir]]', '\.idea$[[dir]]', '\.sass-cache$']
 
 " Wrap in try/catch to avoid errors on initial install before plugin is available
-try
+" try
 
   " tags
   " set tags=~/.cache/tags/.tags;,.tags
@@ -309,7 +309,7 @@ try
   "
   " === Vim airline ==== "
   " Enable extensions
-  let g:airline_extensions = ['branch', 'hunks', 'coc']
+  let g:airline_extensions = ['tabline', 'branch', 'hunks', 'coc']
 
   " Update section z to just have line number
   let g:airline_section_z = airline#section#create(['linenr'])
@@ -318,7 +318,11 @@ try
   let g:airline_skip_empty_sections = 1
 
   " Smartly uniquify buffers names with similar filename, suppressing common parts of paths.
-  let g:airline#extensions#tabline#formatter = 'unique_tail'
+  let g:airline#extensions#tabline#enabled = 1
+  let g:airline#extensions#tabline#left_sep = ' '
+  let g:airline#extensions#tabline#left_alt_sep = '|'
+  let g:airline#extensions#tabline#buffer_nr_show = 1
+  let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 
   " Custom setup that removes filetype/whitespace from default vim airline bar
   let g:airline#extensions#default#layout = [['a', 'b', 'c'], ['x', 'z', 'warning', 'error']]
@@ -342,7 +346,6 @@ try
 
   " Enable caching of syntax highlighting groups
   let g:airline_highlighting_cache = 1
-
   " Define custom airline symbols
   if !exists('g:airline_symbols')
     let g:airline_symbols = {}
@@ -351,9 +354,9 @@ try
   " Don't show git changes to current file in airline
   let g:airline#extensions#hunks#enabled=0
 
-catch
-  echo 'Airline not installed. It should work after running :PlugInstall'
-endtry
+" catch
+"   echo 'Airline not installed. It should work after running :PlugInstall'
+" endtry
 
 " ==== easygrep setting =====
 let g:EasyGrepCommand=1
@@ -451,6 +454,7 @@ endfunction
 nnoremap ; :
 nnoremap <silent> <tab> :bnext<cr>
 nnoremap <silent> <s-tab> :bprevious<cr>
+nnoremap <leader>x :bd<cr>
 inoremap <silent> kk <esc>
 inoremap <silent> jj <esc>:w<cr>
 
@@ -476,10 +480,10 @@ noremap <Space> <PageDown>
 
 " Quick window switching
 " TODO below not working, only if press with shit as well
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
+" nnoremap <C-h> <C-w>h
+" nnoremap <C-j> <C-w>j
+" nnoremap <C-k> <C-w>k
+" nnoremap <C-l> <C-w>l
 
 " Quick editing
 " Edit the .bashrc"
@@ -499,8 +503,8 @@ nmap <silent> <leader>rv :so ~/.config/nvim/init.vim<CR>
 "show spaces"
 set listchars=tab:\|\ ,trail:·,eol:¬
 nmap <silent> <leader>l :set nolist!<CR>
-"hide hightlight of searches"
-nmap <silent> <BS> :nohlsearch<CR>
+"hide hightlight of searches" no need after install is plugin
+" nmap <silent> <BS> :nohlsearch<CR>
 " TODO turn off this, as neovim constant frozen, finally find c-o can get
 " out..
 " Insert mode mapping
@@ -508,10 +512,6 @@ nmap <silent> <BS> :nohlsearch<CR>
 " inoremap <c-u> <c-g>u<c-u>
 " delete word before cursor, recoverable by u
 " inoremap <c-w> <c-g>u<c-w>
-
-" === vim-better-whitespace === "
-"   <leader>y - Automatically remove trailing whitespace
-nmap <leader>y :StripWhitespace<CR>
 
 " === Search shorcuts === "
 "   <leader>h - Find and replace

@@ -256,8 +256,8 @@ nnoremap <silent> <leader>m :only<CR>
 nnoremap <silent> <leader>v :bel :vne<CR>
 "horizontal split"
 nnoremap <silent> <leader>h :bel :new<CR>
-"close viewport buffer"
-nnoremap <silent> <leader>x :hid<CR>
+"remove buffer
+nnoremap <leader>x :bd<CR>
 "format file
 nnoremap <silent> <leader>f :Autoformat<CR>
 " Paste and visual paste improvments
@@ -400,7 +400,7 @@ if 1
 
 
   " Put these in an autocmd group, so that you can revert them with:
-  " ":augroup vimStartup | au! | augroup END"
+  " ':augroup vimStartup | au! | augroup END'
   augroup vimStartup
     au!
 
