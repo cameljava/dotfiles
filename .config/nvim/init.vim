@@ -71,6 +71,8 @@ Plug 'PhilRunninger/nerdtree-buffer-ops'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
+Plug 'Yggdroot/indentLine'
+
 Plug 'rafi/awesome-vim-colorschemes'
 " Dim paragraphs above and below the active paragraph.
 Plug 'junegunn/limelight.vim'
@@ -272,8 +274,9 @@ let g:neosnippet#enable_conceal_markers = 0
 " === Nerdtree shorcuts === "
 "  <leader>n - Toggle NERDTree on/off
 "  <leader>f - Opens current file location in NERDTree
-nmap <leader>n :NERDTreeToggle<CR>
-nmap <leader>l :NERDTreeFind<CR>
+" nmap <leader>n :NERDTreeToggle<CR>
+nnoremap <space>l :NERDTreeToggle<CR>
+nnoremap <leader>n :NERDTreeFind<CR>
 
 " --- Nerdtree setting --- "
 " Show hidden files/directories
@@ -454,9 +457,10 @@ endfunction
 nnoremap ; :
 nnoremap <silent> <tab> :bnext<cr>
 nnoremap <silent> <s-tab> :bprevious<cr>
-nnoremap <leader>x :bd<cr>
-inoremap <silent> kk <esc>
-inoremap <silent> jj <esc>:w<cr>
+nnoremap <leader>x <ESC>:bd<cr>
+inoremap  kk <esc>
+inoremap  jj <esc>:w<cr>
+inoremap jh <ESC>:wq<CR>
 
 " Make Y yank everything from the cursor to the end of the line. This makes Y
 " act more like C or D because by default, Y yanks the current line (i.e. the
@@ -499,7 +503,7 @@ nmap <silent> <leader>et :e ~/.tmux.conf<CR>
 " Open a scratch file
 nmap <silent> <leader>eh :e ~/scratch.txt<CR>
 "reload the .vimrc
-nmap <silent> <leader>rv :so ~/.config/nvim/init.vim<CR>
+nmap <leader>rv :so ~/.config/nvim/init.vim<CR>
 "show spaces"
 set listchars=tab:\|\ ,trail:·,eol:¬
 nmap <silent> <leader>l :set nolist!<CR>
@@ -514,13 +518,26 @@ nmap <silent> <leader>l :set nolist!<CR>
 " inoremap <c-w> <c-g>u<c-w>
 
 " === Search shorcuts === "
-"   <leader>h - Find and replace
-"   <leader>/ - Claer highlighted search terms while preserving history
-map <leader>h :%s///<left><left>
+" press * to search for the term under the cursor or a visual selection and
+" then press a key below to replace all instances of it in the current file.
+nnoremap <Leader>r :%s///g<Left><Left>
+nnoremap <Leader>rc :%s///gc<Left><Left><Left>
+
+" The same as above but instead of acting on the whole file it will be
+" restricted to the previously visually selected range. You can do that by
+" pressing *, visually selecting the range you want it to apply to and then
+" press a key below to replace all instances of it in the current selection.
+xnoremap <Leader>r :s///g<Left><Left>
+xnoremap <Leader>rc :s///gc<Left><Left><Left>
+
+" Type a replacement term and press . to repeat the replacement again. Useful
+" for replacing a few instances of the term (comparable to multiple cursors).
+nnoremap <silent> s* :let @/='\<'.expand('<cword>').'\>'<CR>cgn
+xnoremap <silent> s* "sy:let @/=@s<CR>cgn
 
 " === Easy-motion shortcuts ==="
 "   <leader>w - Easy-motion highlights first word letters bi-directionally
-map <leader>w <Plug>(easymotion-bd-w)
+" map <leader>w <Plug>(easymotion-bd-w)
 
 " Allows you to save files you opened without write permissions via sudo
 cmap w!! w !sudo tee %
