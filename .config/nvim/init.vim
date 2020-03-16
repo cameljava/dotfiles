@@ -38,19 +38,19 @@ Plug 'machakann/vim-highlightedyank'
 
 " use standard regex instead of vim format
 Plug 'othree/eregex.vim'
-" use easegrep for refactor name
-Plug 'dkprice/vim-easygrep'
+" Handle multi-file find and replace.
+Plug 'mhinz/vim-grepper'
 
 " Intellisense Engine
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " auto generate tags file
-Plug 'ludovicchabant/vim-gutentags'
+" Plug 'ludovicchabant/vim-gutentags'
 
 " tagbar like view
 Plug 'liuchengxu/vista.vim'
 " Edit the quickfix/location list freely
-Plug 'itchyny/vim-qfedit'
+" Plug 'itchyny/vim-qfedit'
 
 " === Git Plugins === "
 " Enable git changes to be shown in sign column
@@ -145,7 +145,6 @@ set signcolumn=yes
 " ============================================================================ "
 " ===                           PLUGIN SETUP                               === "
 " ============================================================================ "
-set grepprg=rg\ $*
 let g:python3_host_prog = '$HOME/.pyenv/versions/py3nvim/bin/python'
 
 " === Coc.nvim === "
@@ -318,7 +317,7 @@ let g:NERDTreeIgnore = ['^\.DS_Store$', '^tags$', '\.git$[[dir]]', '\.idea$[[dir
   "
   " === Vim airline ==== "
   " Enable extensions
-  let g:airline_extensions = ['tabline', 'branch', 'hunks', 'coc']
+  let g:airline_extensions = ['tabline', 'branch', 'hunks', 'coc', 'quickfix', 'unicode', 'vista', 'grepper']
 
   " Update section z to just have line number
   let g:airline_section_z = airline#section#create(['linenr'])
@@ -367,9 +366,30 @@ let g:NERDTreeIgnore = ['^\.DS_Store$', '^tags$', '\.git$[[dir]]', '\.idea$[[dir
 "   echo 'Airline not installed. It should work after running :PlugInstall'
 " endtry
 
-" ==== easygrep setting =====
-let g:EasyGrepCommand=1
-let g:EasyGrepPerlStyle=1
+" .............................................................................
+" mhinz/vim-grepper
+" .............................................................................
+
+let g:grepper={}
+let g:grepper.tools=["rg"]
+
+xmap gr <plug>(GrepperOperator)
+
+" After searching for text, press this mapping to do a project wide find and
+" replace. It's similar to <leader>r except this one applies to all matches
+" across all files instead of just the current file.
+nnoremap <Leader>R
+  \ :let @s='\<'.expand('<cword>').'\>'<CR>
+  \ :Grepper -cword -noprompt<CR>
+  \ :cfdo %s/<C-r>s//g \| update
+  \<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
+
+" The same as above except it works with a visual selection.
+xmap <Leader>R
+    \ "sy
+    \ gvgr
+    \ :cfdo %s/<C-r>s//g \| update
+     \<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
 
 " ============================================================================ "
 " ===                                UI                                    === "
