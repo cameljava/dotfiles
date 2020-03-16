@@ -60,9 +60,9 @@
   untrack = rm --cache --
 [core]
   # Don't paginate output by default
-	# pager = delta --dark # --light for light terminal backgrounds
+	pager = delta --dark # --light for light terminal backgrounds, switch from diff-so-fancy
 	; pager = most # --light for light terminal backgrounds
-  pager = diff-so-fancy | less --tab=2 -RFX
+  ; pager = diff-so-fancy | less --tab=2 -RFX
   # Global ignore file (not shared)
   excludesfile = /Users/kevlee/.gitignore_global
   # Global shared hooks directory

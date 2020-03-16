@@ -21,6 +21,10 @@ Plug 'tpope/vim-obsession'
 " kana
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-function'
+" syntax based text-object for function
+Plug 'haya14busa/vim-textobj-function-syntax'
+" comment out as already included in ployglot
+" Plug 'pangloss/vim-javascript'
 
 " search
 " Automatically clear search highlights after you move your cursor.
@@ -41,10 +45,12 @@ Plug 'dkprice/vim-easygrep'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " auto generate tags file
-" Plug 'ludovicchabant/vim-gutentags'
+Plug 'ludovicchabant/vim-gutentags'
 
 " tagbar like view
 Plug 'liuchengxu/vista.vim'
+" Edit the quickfix/location list freely
+Plug 'itchyny/vim-qfedit'
 
 " === Git Plugins === "
 " Enable git changes to be shown in sign column
@@ -482,13 +488,6 @@ noremap <Space> <PageDown>
 " TODO below seems not working
 "noremap - <PageUp>
 
-" Quick window switching
-" TODO below not working, only if press with shit as well
-" nnoremap <C-h> <C-w>h
-" nnoremap <C-j> <C-w>j
-" nnoremap <C-k> <C-w>k
-" nnoremap <C-l> <C-w>l
-
 " Quick editing
 " Edit the .bashrc"
 nmap <silent> <leader>eb :e ~/.bashrc<CR>
@@ -571,11 +570,54 @@ set autoread
 set nobackup writebackup noswapfile noundofile
 set backupcopy=yes
 set backupext=.vbak
-set backupdir=/tmp/.vim/.backup// " Don't put backups in current dir
+set backupdir=~/tmp/.vim/.backup 
 
 " Reload icons after init source
 if exists('g:loaded_webdevicons')
   call webdevicons#refresh()
 endif
+
 " TODO read https://vi.stackexchange.com/questions/2003/how-do-i-debug-my-vimrc-file
 " silent !mkdir ~/.config/nvim/backups > /dev/null 2>&1
+augroup vimRefresh
+  autocmd!
+  " Auto-resize splits when Vim gets resized.
+  autocmd VimResized * wincmd =
+
+  " Update a buffer's contents on focus if it changed outside of Vim.
+  au FocusGained,BufEnter * :checktime
+
+  " Unset paste on InsertLeave.
+  autocmd InsertLeave * silent! set nopaste
+augroup END
+
+" Only do this part when Vim was compiled with the +eval feature.
+if 1
+
+  " Put these in an autocmd group, so that you can revert them with:
+  " ':augroup vimStartup | au! | augroup END'
+  augroup vimStartup
+    au!
+
+    " When editing a file, always jump to the last known cursor position.
+    " Don't do it when the position is invalid, when inside an event handler
+    " (happens when dropping a file on gvim) and for a commit message (it's
+    " likely a different one than last time).
+    autocmd BufReadPost *
+          \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
+          \ |   exe "normal! g`\""
+          \ | endif
+
+  augroup END
+
+endif
+
+" Convenient command to see the difference between the current buffer and the
+" file it was loaded from, thus the changes you made.
+" Only define it when not defined already.
+" Revert with: :delcommand DiffOrig.
+if !exists(':DiffOrig')
+  command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
+        \ | wincmd p | diffthis
+endif
+
