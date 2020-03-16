@@ -298,73 +298,52 @@ let g:nerdtree_tabs_focus_on_files=1
 " Hide certain files and directories from NERDTree
 let g:NERDTreeIgnore = ['^\.DS_Store$', '^tags$', '\.git$[[dir]]', '\.idea$[[dir]]', '\.sass-cache$']
 
-" Wrap in try/catch to avoid errors on initial install before plugin is available
-" try
+" === Vim airline ==== "
+" Enable extensions
+let g:airline_extensions = ['tabline', 'branch', 'hunks', 'coc', 'quickfix', 'unicode', 'vista', 'grepper']
 
-  " tags
-  " set tags=~/.cache/tags/.tags;,.tags
-  " let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
-  " let g:gutentags_ctags_tagfile = '.tags'
-  "
-  " let g:gutentags_modules = ['ctags']
-  "
-  " let g:gutentags_cache_dir = expand('~/.cache/tags')
-  " let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
-  " let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
-  " let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
-  " let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']
-  " let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
-  "
-  " === Vim airline ==== "
-  " Enable extensions
-  let g:airline_extensions = ['tabline', 'branch', 'hunks', 'coc', 'quickfix', 'unicode', 'vista', 'grepper']
+" Update section z to just have line number
+let g:airline_section_z = airline#section#create(['linenr'])
 
-  " Update section z to just have line number
-  let g:airline_section_z = airline#section#create(['linenr'])
+" Do not draw separators for empty sections (only for the active window) >
+let g:airline_skip_empty_sections = 1
 
-  " Do not draw separators for empty sections (only for the active window) >
-  let g:airline_skip_empty_sections = 1
+" Smartly uniquify buffers names with similar filename, suppressing common parts of paths.
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline#extensions#tabline#buffer_nr_show = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 
-  " Smartly uniquify buffers names with similar filename, suppressing common parts of paths.
-  let g:airline#extensions#tabline#enabled = 1
-  let g:airline#extensions#tabline#left_sep = ' '
-  let g:airline#extensions#tabline#left_alt_sep = '|'
-  let g:airline#extensions#tabline#buffer_nr_show = 1
-  let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+" Custom setup that removes filetype/whitespace from default vim airline bar
+let g:airline#extensions#default#layout = [['a', 'b', 'c'], ['x', 'z', 'warning', 'error']]
 
-  " Custom setup that removes filetype/whitespace from default vim airline bar
-  let g:airline#extensions#default#layout = [['a', 'b', 'c'], ['x', 'z', 'warning', 'error']]
+let airline#extensions#coc#stl_format_err = '%E{[%e(#%fe)]}'
 
-  let airline#extensions#coc#stl_format_err = '%E{[%e(#%fe)]}'
+let airline#extensions#coc#stl_format_warn = '%W{[%w(#%fw)]}'
 
-  let airline#extensions#coc#stl_format_warn = '%W{[%w(#%fw)]}'
+" Configure error/warning section to use coc.nvim
+let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
+let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
 
-  " Configure error/warning section to use coc.nvim
-  let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
-  let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
+" Hide the Nerdtree status line to avoid clutter
+let g:NERDTreeStatusline = ''
 
-  " Hide the Nerdtree status line to avoid clutter
-  let g:NERDTreeStatusline = ''
+" Disable vim-airline in preview mode
+let g:airline_exclude_preview = 1
 
-  " Disable vim-airline in preview mode
-  let g:airline_exclude_preview = 1
+" Enable powerline fonts
+let g:airline_powerline_fonts = 1
 
-  " Enable powerline fonts
-  let g:airline_powerline_fonts = 1
+" Enable caching of syntax highlighting groups
+let g:airline_highlighting_cache = 1
+" Define custom airline symbols
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
 
-  " Enable caching of syntax highlighting groups
-  let g:airline_highlighting_cache = 1
-  " Define custom airline symbols
-  if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-  endif
-
-  " Don't show git changes to current file in airline
-  let g:airline#extensions#hunks#enabled=0
-
-" catch
-"   echo 'Airline not installed. It should work after running :PlugInstall'
-" endtry
+" Don't show git changes to current file in airline
+let g:airline#extensions#hunks#enabled=0
 
 " .............................................................................
 " mhinz/vim-grepper
