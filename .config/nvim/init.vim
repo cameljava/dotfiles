@@ -12,6 +12,7 @@ Plug 'junegunn/fzf.vim'
 
 " Improved motion in Vim
 Plug 'easymotion/vim-easymotion'
+Plug 'chrisbra/unicode.vim'
 
 " Tim pope
 Plug 'tpope/vim-repeat'
@@ -51,6 +52,8 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'liuchengxu/vista.vim'
 " Edit the quickfix/location list freely
 " Plug 'itchyny/vim-qfedit'
+" Plug 'jceb/vim-editqf'
+Plug 'romainl/vim-qf'
 
 " === Git Plugins === "
 " Enable git changes to be shown in sign column
@@ -345,6 +348,27 @@ endif
 " Don't show git changes to current file in airline
 let g:airline#extensions#hunks#enabled=0
 
+
+" .............................................................................
+" fzf setting
+" .............................................................................
+" Empty value to disable preview window altogether
+" let g:fzf_preview_window = ''
+" Always enable preview window on the right with 60% width
+let g:fzf_preview_window = 'right:60%'
+
+" [Buffers] Jump to the existing window if possible
+let g:fzf_buffers_jump = 1
+
+" [[B]Commits] Customize the options used by 'git log':
+let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
+
+" [Tags] Command to generate tags file
+let g:fzf_tags_command = 'ctags -R'
+
+" [Commands] --expect expression for directly executing the command
+let g:fzf_commands_expect = 'alt-enter,ctrl-x'
+
 " .............................................................................
 " mhinz/vim-grepper
 " .............................................................................
@@ -352,6 +376,7 @@ let g:airline#extensions#hunks#enabled=0
 let g:grepper={}
 let g:grepper.tools=["rg"]
 
+nmap gs <plug>(GrepperOperator)
 xmap gr <plug>(GrepperOperator)
 
 " After searching for text, press this mapping to do a project wide find and
@@ -489,22 +514,22 @@ noremap <Space> <PageDown>
 
 " Quick editing
 " Edit the .bashrc"
-nmap <silent> <leader>eb :e ~/.bashrc<CR>
+nmap  <leader>eb :e ~/.bashrc<CR>
 " Edit the .vimrc"
-nmap <silent> <leader>ev :e ~/.config/nvim/init.vim<CR>
+nmap  <leader>ev :e ~/.config/nvim/init.vim<CR>
 " Edit the .gitconfig"
-nmap <silent> <leader>eg :e ~/.gitconfig<CR>
+nmap  <leader>eg :e ~/.gitconfig<CR>
 " Edit the .tmux.conf"
-nmap <silent> <leader>et :e ~/.tmux.conf<CR>
+nmap  <leader>et :e ~/.tmux.conf<CR>
 " Edit slate configuration
 "nmap <silent> <leader>el :e ~/.slate<cr>
 " Open a scratch file
-nmap <silent> <leader>eh :e ~/scratch.txt<CR>
+nmap  <leader>eh :e ~/scratch.txt<CR>
 "reload the .vimrc
 nmap <leader>rv :so ~/.config/nvim/init.vim<CR>
 "show spaces"
 set listchars=tab:\|\ ,trail:·,eol:¬
-nmap <silent> <leader>l :set nolist!<CR>
+nmap  <leader>l :set nolist!<CR>
 "hide hightlight of searches" no need after install is plugin
 " nmap <silent> <BS> :nohlsearch<CR>
 " TODO turn off this, as neovim constant frozen, finally find c-o can get
