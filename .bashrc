@@ -17,6 +17,8 @@ export NVM_DIR="$HOME/.nvm"
 
 [ -s "/usr/local/etc/bash_completion.d/pass" ] && \. "/usr/local/etc/bash_completion.d/pass" # This loads pass bash_completion
 
+export XML_CATALOG_FILES="/usr/local/etc/xml/catalog"
+
 # tmp set default profile to kev. turn it off when having cochlear
 #export AWS_DEFAULT_PROFILE=kev
 
