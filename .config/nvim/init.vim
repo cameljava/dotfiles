@@ -59,6 +59,7 @@ Plug 'romainl/vim-qf'
 " Enable git changes to be shown in sign column
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
+Plug 'junegunn/gv.vim'
 
 " Generate JSDoc commands based on function signature
 Plug 'heavenshell/vim-jsdoc'
@@ -377,7 +378,7 @@ let g:grepper={}
 let g:grepper.tools=["rg"]
 
 nmap gs <plug>(GrepperOperator)
-xmap gr <plug>(GrepperOperator)
+xmap gs <plug>(GrepperOperator)
 
 " After searching for text, press this mapping to do a project wide find and
 " replace. It's similar to <leader>r except this one applies to all matches
@@ -391,7 +392,7 @@ nnoremap <Leader>R
 " The same as above except it works with a visual selection.
 xmap <Leader>R
     \ "sy
-    \ gvgr
+    \ gvgs
     \ :cfdo %s/<C-r>s//g \| update
      \<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
 
