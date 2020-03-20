@@ -59,7 +59,11 @@ Plug 'romainl/vim-qf'
 " Enable git changes to be shown in sign column
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
+" git commit browse
 Plug 'junegunn/gv.vim'
+" git branch
+Plug 'sodapopcan/vim-twiggy'
 
 " Generate JSDoc commands based on function signature
 Plug 'heavenshell/vim-jsdoc'
