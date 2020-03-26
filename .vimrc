@@ -105,7 +105,8 @@ nnoremap ; :
 let mapleader = ','
 let maplocalleader = ';'   "not sure about this, TODO
 " Basic settings and variables"
-set updatetime=100
+" Timeout of user inactivity. Used to save swap file, and by vim-gitgutter plugin
+set updatetime=1000
 set ignorecase smartcase
 set lazyredraw
 set cursorline
@@ -132,7 +133,7 @@ set wrap linebreak nolist "allow wrap, not wrap within work
 " Syntax coloring lines that are too long just slows down the world
 set synmaxcol=2048
 set ttimeout    " time out for key codes
-set ttimeoutlen=100 " wait up to 100ms after Esc for special key
+set ttimeoutlen=30 " wait up to 100ms after Esc for special key
 " Show @@@ in the last line if it is truncated.
 set display=truncate
 " Do incremental searching when it's possible to timeout.

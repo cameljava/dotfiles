@@ -143,6 +143,7 @@ set cmdheight=2
 " or 'The only match'
 set shortmess+=c
 
+" Timeout of user inactivity. Used to save swap file, and by vim-gitgutter plugin
 " You will have bad experience for cmc diagnostic messages when it's default 4000.
 set updatetime=300
 
