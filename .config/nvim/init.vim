@@ -64,6 +64,7 @@ Plug 'tpope/vim-rhubarb'
 Plug 'junegunn/gv.vim'
 " git branch
 Plug 'sodapopcan/vim-twiggy'
+Plug 'jreybert/vimagit'
 
 " Generate JSDoc commands based on function signature
 Plug 'heavenshell/vim-jsdoc'
