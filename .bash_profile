@@ -6,13 +6,6 @@ fi
 ########### start ssh agent
 eval "$(keychain --eval --agents ssh --inherit any id_rsa)"
 
-export PATH=$HOME/kbin:$PATH
-# use  GNU versions coreutils instead of macos version
-export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-export PATH="$(brew --prefix grep)/libexec/gnubin:$PATH"
-export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
-export PATH="/usr/local/opt/findutils/libexec/gnubin:$PATH"
-
 [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
 
 ######### add vsCode
@@ -37,44 +30,14 @@ test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shel
 
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
-# add alias
-
-alias ls='ls -GFhl'
-alias cp='cp -iv'                         # Preferred 'cp' implementation
-alias mv='mv -iv'                         # Preferred 'mv' implementation
-alias mkdir='mkdir -pv'                   # Preferred 'mkdir' implementation
-alias l='ls -FGlAhp'                      # Preferred 'ls' implementation
-alias less='less -FSRXc'                  # Preferred 'less' implementation
 cd() {
   builtin cd "$@"
 } # Always list directory contents upon 'cd'
-alias cd..='cd ../'                       # Go back 1 directory level (for fast typers)
-alias ..='cd ../'                         # Go back 1 directory level
-alias ...='cd ../../'                     # Go back 2 directory levels
-alias .3='cd ../../../'                   # Go back 3 directory levels
-alias .4='cd ../../../../'                # Go back 4 directory levels
-alias .5='cd ../../../../../'             # Go back 5 directory levels
-alias .6='cd ../../../../../../'          # Go back 6 directory levels
-alias f='open -a Finder ./'               # f:            Opens current directory in MacOS Finder
-alias ~="cd ~"                            # ~:            Go Home
-# alias c='clear'                           # c:            Clear terminal display
-alias which='type -all'                   # which:        Find executables
-alias path='echo -e ${PATH//:/\\n}'       # path:         Echo all executable Paths
-alias show_options='shopt'                # Show_options: display bash options settings
-alias fix_stty='stty sane'                # fix_stty:     Restore terminal settings when screwed up
-alias cic='set completion-ignore-case On' # cic:          Make tab-completion case-insensitive
 mcd() { mkdir -p "$1" && cd "$1"; }       # mcd:          Makes new Dir and jumps inside
 # trash() { command mv "$@" ~/.Trash; }     # trash:        Moves a file to the MacOS trash
 ql() { qlmanage -p "$*" >&/dev/null; }    # ql:           Opens any file in MacOS Quicklook Preview
-alias DT='tee ~/Desktop/terminalOut.txt'  # DT:           Pipe content to file on MacOS Desktop
 
-export PATH="$HOME/.jenv/bin:$PATH"
 eval "$(jenv init -)"
-export PATH="/usr/local/sbin:$PATH"
-export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
-export LDFLAGS="-L/usr/local/opt/openssl@1.1/lib"
-export CPPFLAGS="-I/usr/local/opt/openssl@1.1/include"
-export PKG_CONFIG_PATH="/usr/local/opt/openssl@1.1/lib/pkgconfig"
 
 if [ -f "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh" ]; then
   __GIT_PROMPT_DIR=$(brew --prefix)/opt/bash-git-prompt/share
@@ -82,12 +45,7 @@ if [ -f "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh" ]; then
   source "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh"
 fi
 source ~/git/cameljava_github/configFiles/bash/forgit.plugin.sh
-export PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
 
 [ -s "$HOME/.scm_breeze/scm_breeze.sh" ] && source "$HOME/.scm_breeze/scm_breeze.sh"
 eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib=$HOME/perl5)"
-# use brew version curl
-export PATH="/usr/local/opt/curl/bin:$PATH"
-export LDFLAGS="-L/usr/local/opt/curl/lib"
-export CPPFLAGS="-I/usr/local/opt/curl/include"
-export PKG_CONFIG_PATH="/usr/local/opt/curl/lib/pkgconfig"
+

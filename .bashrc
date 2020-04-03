@@ -1,9 +1,6 @@
-export PS1='$ '
-export TERM=xterm-256color
-export PAGER="less"
-# export PAGER="most"
-export VISUAL="/usr/local/Cellar/macvim/8.1-161/bin/mvim"
-export EDITOR="/usr/local/bin/vim"
+. "$HOME/.config/shell/export.sh"
+. "$HOME/.config/shell/alias.sh"
+
 # Prevent file overwrite on stdout redirection
 # Use `>|` to force redirection to an existing file
 set -o noclobber
@@ -38,10 +35,10 @@ PROMPT_DIRTRIM=2
 bind Space:magic-space
 
 # Turn on recursive globbing (enables ** to recurse all directories)
-shopt -s globstar 2>/dev/null
+# shopt -s globstar 2>/dev/null
 
 # Case-insensitive globbing (used in pathname expansion)
-shopt -s nocaseglob
+# shopt -s nocaseglob
 ## SMARTER TAB-COMPLETION (Readline bindings) ##
 
 # Perform file completion in a case insensitive fashion
@@ -111,29 +108,13 @@ shopt -s cdable_vars
 # export documents="$HOME/Documents"
 # export dropbox="$HOME/Dropbox"
 
-# alias
-# alias diff="diff-so-fancy"
-alias rm="rm -i"
-alias sls="sls --region ap-southeast-2 "
-alias n="nvim "
-alias v="vim "
-alias vm="vim -u ~/.vimrc-minimal"
-alias vs="vim -S"
-alias ns="nvim -S"
-alias m="mvim "
-alias g="git "
-alias b="brew "
-#History search (use: hs sometext)
-alias hs='history | grep $1'
-alias d='rmtrash'
-
+# fzf settings
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 alias fzfp="fzf --preview 'bat --style=numbers --color=always {} | head -500'"
 alias config='/usr/bin/git --git-dir=/Users/kevlee/git/cameljava_github/dotfiles --work-tree=/Users/kevlee'
 # search all files in current folder including hidden and git ignore, except .rgignore
 export FZF_DEFAULT_COMMAND="rg --files --no-ignore-vcs --hidden --follow --glob '!.git'"
 
-#export HISTCONTROL=ignoreboth:erasedups
 
 # tabtab source for serverless package
 # uninstall by removing these lines or running `tabtab uninstall serverless`
