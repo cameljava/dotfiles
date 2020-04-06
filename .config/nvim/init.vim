@@ -14,11 +14,15 @@ Plug 'junegunn/fzf.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'chrisbra/unicode.vim'
 
+" change buffer name both in vim and filesystem
+Plug 'danro/rename.vim'
+
 " Tim pope
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-obsession'
+Plug 'tpope/vim-projectionist'
 " kana
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-function'
@@ -283,6 +287,17 @@ let g:neosnippet#snippets_directory='~/.config/nvim/snippets'
 
 " Hide conceal markers
 let g:neosnippet#enable_conceal_markers = 0
+
+
+" ===== gitgutter ====="
+" TODO gitgutter setting seems notworking
+" Hunk-add and hunk-revert for chunk staging
+" nmap <Leader>ga <Plug>GitGutterStageHunk
+" nmap <Leader>gu <Plug>GitGutterUndoHunk
+
+" Jump between hunks
+" nmap <Leader>gn <Plug>GitGutterNextHunk
+" nmap <Leader>gN <Plug>GitGutterPrevHunk
 
 " === NERDTree === "
 
