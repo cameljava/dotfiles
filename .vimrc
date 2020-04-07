@@ -41,7 +41,7 @@ Plug 'dense-analysis/ale'
 " Nerdtree
 Plug 'scrooloose/nerdtree'
 Plug 'PhilRunninger/nerdtree-buffer-ops'
-" Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'majutsushi/tagbar'
 
 " Tim pope
@@ -170,13 +170,6 @@ inoremap <F2> <C-o>:w<CR>
 " someone say add c-\ can prevent moving one character left
 " inoremap <F2> <C-\><C-o>:w<CR>
 
-"-- FOLDING --
-" set k foldmethod=syntax before F2 test f2 h  "syntax highlighting items specify folds
-" set foldcolumn=1 "defines 1 col at window left, to indicate folding
-" let javaScript_fold=1 "activate folding by JS syntax
-" set foldlevelstart=99 "start file with all folds opened
-" F9 to toggle all folds for quick checking.
-" nnoremap <expr> <F9> &foldlevel ? 'zM':'zR'
 " no fold
 set nofoldenable
 set scrolloff=5 "keeps cursor away from top/bottom of screen
@@ -300,6 +293,13 @@ command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-hea
 noremap <leader>n :NERDTreeToggle<CR>
 noremap <Leader>f :NERDTreeFind<CR>
 let NERDTreeIgnore=['node_modules$[[dir]]', '\.git$[[dir]]']
+" automatically close NerdTree when you open a file
+let NERDTreeQuitOnOpen = 1
+" Automatically delete the buffer of the file you just deleted with nerdtree
+let NERDTreeAutoDeleteBuffer = 1
+" setting to make nerdtree look prettier
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
 
 " Vim Airline
 set laststatus=2
@@ -338,9 +338,9 @@ let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%][%code%]'
 " turn on quickfix list
-let g:ale_set_loclist = 0
-let g:ale_set_quickfix = 1
-let g:ale_open_list = 1
+let g:ale_set_loclist = 1
+let g:ale_set_quickfix = 0
+let g:ale_open_list = 0
 
 " Do not lint or fix minified files.
 let g:ale_pattern_options = {
@@ -455,3 +455,4 @@ colorscheme molokai
 
 " Gui vim setting
 map <silent> <C-F2> :if &guioptions =~# 'T' <Bar>  set guioptions-=T <Bar>  set guioptions-=m <bar>  else <Bar>  set guioptions+=T <Bar> set guioptions+=m <Bar> endif<CR>
+
