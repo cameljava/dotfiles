@@ -50,7 +50,7 @@ Plug 'mhinz/vim-grepper'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " auto generate tags file
-" Plug 'ludovicchabant/vim-gutentags'
+Plug 'ludovicchabant/vim-gutentags'
 
 " tagbar like view
 Plug 'liuchengxu/vista.vim'
