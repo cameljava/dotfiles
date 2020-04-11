@@ -83,6 +83,10 @@ Plug 'will133/vim-dirdiff'
 Plug 'AndrewRadev/linediff.vim'
 
 " === UI === "
+
+" Zoom in and out of a specific split pane (similar to tmux).
+Plug 'dhruvasagar/vim-zoom'
+
 " File explorer
 Plug 'scrooloose/nerdtree'
 Plug 'PhilRunninger/nerdtree-buffer-ops'
@@ -161,6 +165,9 @@ set signcolumn=yes
 " ===                           PLUGIN SETUP                               === "
 " ============================================================================ "
 let g:python3_host_prog = '$HOME/.pyenv/versions/py3nvim/bin/python'
+
+" === fugitive.nvim === "
+
 
 " === Coc.nvim === "
 
@@ -553,6 +560,7 @@ noremap <Space> <PageDown>
 
 " Quick editing
 nnoremap <leader>w :w<CR>
+
 " Edit the .bashrc"
 nnoremap <leader>eb :e ~/.bashrc<CR>
 " Edit the .vimrc"
