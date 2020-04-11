@@ -23,6 +23,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-projectionist'
+Plug 'tpope/vim-unimpaired'
 " kana
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-function'
@@ -174,7 +175,7 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
 " Use K to show documentation in preview window
-nnoremap <silent> K :call <SID>show_documentation()<CR>
+nmap <silent> K :call <SID>show_documentation()<CR>
 
 command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')
 
@@ -257,21 +258,21 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 
 " Using CocList
 " Show all diagnostics
-nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+nmap <silent> <space>a  :<C-u>CocList diagnostics<cr>
 " Manage extensions
-nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+nmap <silent> <space>e  :<C-u>CocList extensions<cr>
 " Show commands
-nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+nmap <silent> <space>c  :<C-u>CocList commands<cr>
 " Find symbol of current document
-nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
+nmap <silent> <space>o  :<C-u>CocList outline<cr>
 " Search workspace symbols
-nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+nmap <silent> <space>s  :<C-u>CocList -I symbols<cr>
 " Do default action for next item.
-nnoremap <silent> <space>j  :<C-u>CocNext<CR>
+nmap <silent> <space>j  :<C-u>CocNext<CR>
 " Do default action for previous item.
-nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
+nmap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
-nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+nmap <silent> <space>p  :<C-u>CocListResume<CR>
 
 "Close preview window when completion is done.
 autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
@@ -535,25 +536,26 @@ noremap <Space> <PageDown>
 "noremap - <PageUp>
 
 " Quick editing
+nnoremap <leader>w :w<CR>
 " Edit the .bashrc"
-nmap  <leader>eb :e ~/.bashrc<CR>
+nnoremap <leader>eb :e ~/.bashrc<CR>
 " Edit the .vimrc"
-nmap  <leader>ev :e ~/.config/nvim/init.vim<CR>
+nnoremap  <leader>ev :e ~/.config/nvim/init.vim<CR>
 " Edit the .gitconfig"
-nmap  <leader>eg :e ~/.gitconfig<CR>
+nnoremap  <leader>eg :e ~/.gitconfig<CR>
 " Edit the .tmux.conf"
-nmap  <leader>et :e ~/.tmux.conf<CR>
+nnoremap  <leader>et :e ~/.tmux.conf<CR>
 " Edit slate configuration
 "nmap <silent> <leader>el :e ~/.slate<cr>
 " Open a scratch file
-nmap  <leader>eh :e ~/scratch.txt<CR>
+nnoremap  <leader>eh :e ~/scratch.txt<CR>
 "reload the .vimrc
-nmap <leader>rv :so ~/.config/nvim/init.vim<CR>
+nnoremap <leader>rv :so ~/.config/nvim/init.vim<CR>
 "show spaces"
 set listchars=tab:\|\ ,trail:·,eol:¬
-nmap  <leader>l :set nolist!<CR>
+nnoremap  <leader>l :set nolist!<CR>
 "hide hightlight of searches" no need after install is plugin
-" nmap <silent> <BS> :nohlsearch<CR>
+" nnoremap <silent> <BS> :nohlsearch<CR>
 " TODO turn off this, as neovim constant frozen, finally find c-o can get
 " out..
 " Insert mode mapping
@@ -589,7 +591,7 @@ cmap w!! w !sudo tee %
 
 " === vim-jsdoc shortcuts ==="
 " Generate jsdoc for function under cursor
-nmap <leader>z :JsDoc<CR>
+nnoremap <leader>z :JsDoc<CR>
 
 " Delete current visual selection and dump in black hole buffer before pasting
 " Used when you want to paste over something without it getting copied to
