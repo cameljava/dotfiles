@@ -315,6 +315,7 @@ let g:NERDTreeShowHidden = 1
 
 " Remove bookmarks and help text from NERDTree
 let g:NERDTreeMinimalUI = 1
+let g:NERDTreeAutoDeleteBuffer=1
 
 " Custom icons for expandable/expanded directories
 let g:NERDTreeDirArrowExpandable = '⬏'
@@ -375,6 +376,21 @@ let g:airline#extensions#hunks#enabled=0
 " .............................................................................
 " fzf setting
 " .............................................................................
+let $FZF_DEFAULT_OPTS = '--bind ctrl-a:select-all'
+
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-v': 'vsplit',
+  \ 'ctrl-y': {lines -> setreg('*', join(lines, "\n"))}}
+
+" Launch fzf with CTRL+P.
+nnoremap <silent> <C-p> :FZF -m<CR>
+
+" Allow passing optional flags into the Rg command.
+"   Example: :Rg myterm -g '*.md'
+command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case " . <q-args>, 1, <bang>0)
+
 " Empty value to disable preview window altogether
 " let g:fzf_preview_window = ''
 " Always enable preview window on the right with 60% width
