@@ -581,7 +581,7 @@
                         "key_code": "f7"
                     },
                     "to": {
-                        "key_code": "vk_launchpad"
+                        "key_code": "f7"
                     }
                 },
                 {
@@ -589,7 +589,7 @@
                         "key_code": "f8"
                     },
                     "to": {
-                        "key_code": "vk_consumer_brightness_down"
+                        "key_code": "f8"
                     }
                 },
                 {
@@ -597,7 +597,7 @@
                         "key_code": "f9"
                     },
                     "to": {
-                        "key_code": "vk_consumer_brightness_up"
+                        "key_code": "f9"
                     }
                 },
                 {
@@ -605,7 +605,7 @@
                         "key_code": "f10"
                     },
                     "to": {
-                        "key_code": "mute"
+                        "key_code": "f10"
                     }
                 },
                 {
@@ -630,7 +630,16 @@
                 "delay_milliseconds_before_open_device": 1000
             },
             "selected": true,
-            "simple_modifications": [],
+            "simple_modifications": [
+                {
+                    "from": {
+                        "key_code": "print_screen"
+                    },
+                    "to": {
+                        "consumer_key_code": "mute"
+                    }
+                }
+            ],
             "virtual_hid_keyboard": {
                 "caps_lock_delay_milliseconds": 0,
                 "country_code": 0,
