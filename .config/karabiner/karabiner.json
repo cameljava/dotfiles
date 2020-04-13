@@ -494,14 +494,6 @@
                     "simple_modifications": [
                         {
                             "from": {
-                                "key_code": "left_option"
-                            },
-                            "to": {
-                                "key_code": "left_command"
-                            }
-                        },
-                        {
-                            "from": {
                                 "key_code": "left_command"
                             },
                             "to": {
@@ -510,10 +502,10 @@
                         },
                         {
                             "from": {
-                                "key_code": "right_option"
+                                "key_code": "left_option"
                             },
                             "to": {
-                                "key_code": "right_command"
+                                "key_code": "left_command"
                             }
                         },
                         {
@@ -522,6 +514,14 @@
                             },
                             "to": {
                                 "key_code": "right_option"
+                            }
+                        },
+                        {
+                            "from": {
+                                "key_code": "right_option"
+                            },
+                            "to": {
+                                "key_code": "right_command"
                             }
                         }
                     ]
@@ -533,7 +533,7 @@
                         "key_code": "f1"
                     },
                     "to": {
-                        "key_code": "vk_consumer_brightness_down"
+                        "key_code": "f1"
                     }
                 },
                 {
@@ -541,7 +541,7 @@
                         "key_code": "f2"
                     },
                     "to": {
-                        "key_code": "vk_consumer_brightness_up"
+                        "key_code": "f2"
                     }
                 },
                 {
@@ -549,7 +549,7 @@
                         "key_code": "f3"
                     },
                     "to": {
-                        "key_code": "vk_mission_control"
+                        "key_code": "f3"
                     }
                 },
                 {
@@ -557,7 +557,7 @@
                         "key_code": "f4"
                     },
                     "to": {
-                        "key_code": "vk_launchpad"
+                        "key_code": "f4"
                     }
                 },
                 {
@@ -581,7 +581,7 @@
                         "key_code": "f7"
                     },
                     "to": {
-                        "key_code": "vk_consumer_previous"
+                        "key_code": "vk_launchpad"
                     }
                 },
                 {
@@ -589,7 +589,7 @@
                         "key_code": "f8"
                     },
                     "to": {
-                        "key_code": "vk_consumer_play"
+                        "key_code": "vk_consumer_brightness_down"
                     }
                 },
                 {
@@ -597,7 +597,7 @@
                         "key_code": "f9"
                     },
                     "to": {
-                        "key_code": "vk_consumer_next"
+                        "key_code": "vk_consumer_brightness_up"
                     }
                 },
                 {
