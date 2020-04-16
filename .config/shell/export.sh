@@ -25,3 +25,12 @@ export PAGER="less"
 # export PAGER="most"
 export VISUAL="mvim"
 export EDITOR="vim"
+
+
+# If you need to have gettext first in your PATH run:
+export PATH="/usr/local/opt/gettext/bin:$PATH"
+
+# For compilers to find gettext you may need to set:
+export LDFLAGS="-L/usr/local/opt/gettext/lib"
+export CPPFLAGS="-I/usr/local/opt/gettext/include"
+
