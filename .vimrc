@@ -106,7 +106,7 @@ let mapleader = ','
 let maplocalleader = ';'   "not sure about this, TODO
 " Basic settings and variables"
 " Timeout of user inactivity. Used to save swap file, and by vim-gitgutter plugin
-set updatetime=1000
+set updatetime=300
 set ignorecase smartcase
 set lazyredraw
 set cursorline
@@ -116,10 +116,13 @@ set fileencodings=utf-8
 scriptencoding utf-8
 set clipboard+=unnamed " Add the unnamed register to the clipboard
 set autoread  "Automatically read a file that has changed on disk
-set nobackup writebackup noswapfile noundofile
+set nobackup nowritebackup noswapfile noundofile
 set backupcopy=yes
 set backupext=.vbak
 set backupdir=~/tmp/.vim/.backup
+" allways show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved.
+set signcolumn=yes
 "turn on hidden to allow toggle between buffer with unsaved
 set hidden
 set autoindent
@@ -165,10 +168,6 @@ if &t_Co > 2 || has('gui_running')
   let c_comment_strings=1
 endif
 set number rnu                      " show line numbers
-
-inoremap <F2> <C-o>:w<CR>
-" someone say add c-\ can prevent moving one character left
-" inoremap <F2> <C-\><C-o>:w<CR>
 
 " no fold
 set nofoldenable
@@ -216,10 +215,12 @@ nnoremap <silent> s* :let @/='\<'.expand('<cword>').'\>'<CR>cgn
 xnoremap <silent> s* "sy:let @/=@s<CR>cgn
 
 " Keyboard Shortcuts and remappings   "
+nnoremap <leader>w :w<CR>
+" cursor not moving left when you exit from insert mode
+inoremap <Esc> <Esc>`^
 "changes with less keystrokes
-inoremap kk <ESC>
 cnoremap <silent> kk <C-c>
-inoremap <silent> jj <ESC>:w<CR>
+inoremap jj <ESC>`^:update<CR>
 inoremap jh <ESC>:wq<CR>
 "reload the .vimrc
 nnoremap <silent> <leader>rv :source ~/.vimrc<CR>

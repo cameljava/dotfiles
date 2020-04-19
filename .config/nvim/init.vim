@@ -151,6 +151,7 @@ set cmdheight=2
 " === Completion Settings === "
 " Don't give completion messages like 'match 1 of 2'
 " or 'The only match'
+" from coc, Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
 
 " Timeout of user inactivity. Used to save swap file, and by vim-gitgutter plugin
@@ -181,43 +182,46 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
+command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')
+
 " Use K to show documentation in preview window
 nmap <silent> K :call <SID>show_documentation()<CR>
 
-command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')
-
 function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
+if (index(['vim','help'], &filetype) >= 0)
+  execute 'h '.expand('<cword>')
+else
+  call CocAction('doHover')
+endif
 endfunction
 
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
 
-" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
-" Coc only does snippet and additional edit on confirm.
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-" Or use `complete_info` if your vim support it, like:
-" inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
+" position. Coc only does snippet and additional edit on confirm.
+if exists('*complete_info')
+  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+else
+  imap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+endif
 
-" use <tab> for trigger completion and navigate to next complete item
+" use <tab> for trigger completion with characters ahead and navigate
+inoremap <silent><expr> <TAB>
+    \ pumvisible() ? "\<C-n>" :
+    \ <SID>check_back_space() ? "\<TAB>" :
+    \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
 function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~ '\s'
+let col = col('.') - 1
+return !col || getline('.')[col - 1]  =~ '\s'
 endfunction
 
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-
-" Highlight symbol underk cursor on CursorHold
+" Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
-" Remap for rename current word
+" Symbol renaming 
 nmap <leader>rn <Plug>(coc-rename)
 
 " Remap for format selected region
@@ -232,7 +236,7 @@ augroup mycocgroup
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
 
-" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
+" Applying codeAction to the selected region, ex: `<leader>aap` for current paragraph
 xmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <leader>a  <Plug>(coc-codeaction-selected)
 
@@ -281,8 +285,9 @@ nmap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nmap <silent> <space>p  :<C-u>CocListResume<CR>
 
+" cant find below config in coc setting any more, to be deleted.
 "Close preview window when completion is done.
-autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
+" autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 
 " === NeoSnippet === "
 " Map <C-k> as shortcut to activate snippet if available
@@ -373,7 +378,7 @@ let g:airline_powerline_fonts = 1
 let g:airline_highlighting_cache = 1
 " Define custom airline symbols
 if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
+let g:airline_symbols = {}
 endif
 
 " Don't show git changes to current file in airline
@@ -386,10 +391,10 @@ let g:airline#extensions#hunks#enabled=0
 let $FZF_DEFAULT_OPTS = '--bind ctrl-a:select-all'
 
 let g:fzf_action = {
-  \ 'ctrl-t': 'tab split',
-  \ 'ctrl-x': 'split',
-  \ 'ctrl-v': 'vsplit',
-  \ 'ctrl-y': {lines -> setreg('*', join(lines, "\n"))}}
+\ 'ctrl-t': 'tab split',
+\ 'ctrl-x': 'split',
+\ 'ctrl-v': 'vsplit',
+\ 'ctrl-y': {lines -> setreg('*', join(lines, "\n"))}}
 
 " Launch fzf with CTRL+P.
 nnoremap <silent> <C-p> :FZF -m<CR>
@@ -429,17 +434,17 @@ xmap gs <plug>(GrepperOperator)
 " replace. It's similar to <leader>r except this one applies to all matches
 " across all files instead of just the current file.
 nnoremap <Leader>R
-  \ :let @s='\<'.expand('<cword>').'\>'<CR>
-  \ :Grepper -cword -noprompt<CR>
-  \ :cfdo %s/<C-r>s//g \| update
-  \<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
+\ :let @s='\<'.expand('<cword>').'\>'<CR>
+\ :Grepper -cword -noprompt<CR>
+\ :cfdo %s/<C-r>s//g \| update
+\<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
 
 " The same as above except it works with a visual selection.
 xmap <Leader>R
-    \ "sy
-    \ gvgs
-    \ :cfdo %s/<C-r>s//g \| update
-     \<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
+  \ "sy
+  \ gvgs
+  \ :cfdo %s/<C-r>s//g \| update
+   \<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
 
 " ============================================================================ "
 " ===                                UI                                    === "
@@ -451,9 +456,9 @@ set termguicolors
 " Editor theme
 set background=dark
 try
-  colorscheme OceanicNext
+colorscheme OceanicNext
 catch
-  colorscheme slate
+colorscheme slate
 endtry
 
 " Vim airline theme
@@ -462,14 +467,14 @@ endtry
 " Add custom highlights in method that is executed every time a colorscheme is sourced
 " See https://gist.github.com/romainl/379904f91fa40533175dfaec4c833f2f for details
 function! MyHighlights() abort
-  " Hightlight trailing whitespace
-  highlight Trail ctermbg=red guibg=red
-  call matchadd('Trail', '\s\+$', 100)
+" Hightlight trailing whitespace
+highlight Trail ctermbg=red guibg=red
+call matchadd('Trail', '\s\+$', 100)
 endfunction
 
 augroup MyColors
-  autocmd!
-  autocmd ColorScheme * call MyHighlights()
+autocmd!
+autocmd ColorScheme * call MyHighlights()
 augroup END
 
 " Change vertical split character to be a space (essentially hide it)
@@ -516,15 +521,15 @@ hi! SignifySignChange guifg=#c594c5
 
 " Call method on window enter
 augroup WindowManagement
-  autocmd!
-  autocmd WinEnter * call Handle_Win_Enter()
+autocmd!
+autocmd WinEnter * call Handle_Win_Enter()
 augroup END
 
 " Change highlight group of preview window when open
 function! Handle_Win_Enter()
-  if &previewwindow
-    setlocal winhighlight=Normal:MarkdownError
-  endif
+if &previewwindow
+  setlocal winhighlight=Normal:MarkdownError
+endif
 endfunction
 
 " ============================================================================ "
@@ -534,8 +539,12 @@ nnoremap ; :
 nnoremap <silent> <tab> :bnext<cr>
 nnoremap <silent> <s-tab> :bprevious<cr>
 nnoremap <leader>x <ESC>:bd<cr>
-inoremap  kk <esc>
-inoremap  jj <esc>:w<cr>
+
+" quick map for escape and save
+nnoremap <leader>w :w<CR>
+inoremap kk <ESC>`^
+cnoremap <silent> kk <C-c>
+inoremap jj <ESC>`^:update<CR>
 inoremap jh <ESC>:wq<CR>
 
 " Make Y yank everything from the cursor to the end of the line. This makes Y
@@ -559,7 +568,6 @@ noremap <Space> <PageDown>
 "noremap - <PageUp>
 
 " Quick editing
-nnoremap <leader>w :w<CR>
 
 " Edit the .bashrc"
 nnoremap <leader>eb :e ~/.bashrc<CR>
@@ -646,7 +654,7 @@ set smartcase
 " Automatically re-read file if a change was detected outside of vim
 set autoread
 
-set nobackup writebackup noswapfile noundofile
+set nobackup nowritebackup noswapfile noundofile
 set backupcopy=yes
 set backupext=.vbak
 set backupdir=~/tmp/.vim/.backup 
