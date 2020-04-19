@@ -189,6 +189,40 @@ function hs.window.right70(win)
 end
 
 -- +-----------------+
+-- |          |      |
+-- |   HERE   |      |
+-- |          |      |
+-- +-----------------+
+function hs.window.left70(win)
+  local f = win:frame()
+  local screen = win:screen()
+  local max = screen:frame()
+
+  f.x = max.x
+  f.y = max.y
+  f.w = max.w * 0.7
+  f.h = max.h
+  win:setFrame(f)
+end
+
+-- +-----------------+
+-- |          |      |
+-- |          | HERE |
+-- |          |      |
+-- +-----------------+
+function hs.window.right30(win)
+  local f = win:frame()
+  local screen = win:screen()
+  local max = screen:frame()
+
+  f.x = max.x + (max.w * 0.7)
+  f.y = max.y
+  f.w = max.w * 0.3
+  f.h = max.h
+  win:setFrame(f)
+end
+
+-- +-----------------+
 -- |     HERE        |
 -- +-----------------|
 -- |                 |

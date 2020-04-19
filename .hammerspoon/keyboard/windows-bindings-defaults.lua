@@ -38,6 +38,8 @@ return {
     { {},         'm',      'middle' },
     { {'shift'},  'h',      'left30' },
     { {'shift'},  'l',      'right70' },
+    { {'alt'},    'h',      'left70' },
+    { {'alt'},    'l',      'right30' },
     { {'shift'},  'k',      'top40' },
     { {'shift'},  'j',      'bottow60' },
     { {},         'i',      'upLeft' },
