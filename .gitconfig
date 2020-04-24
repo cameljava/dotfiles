@@ -16,13 +16,13 @@
   current = yellow reverse
   local = yellow
   remote = blue
-[color "diff"]
-  meta = yellow
-  frag = magenta bold
-  commit = yellow bold
-  old = red bold
-  new = blue bold
-  whitespace = red reverse
+; [color "diff"]
+  ; meta = yellow
+  ; frag = magenta bold
+  ; commit = yellow bold
+  ; old = red bold
+  ; new = blue bold
+  ; whitespace = red reverse
 [color "diff-highlight"]
   oldNormal = red bold
   oldHightlight= red bold 52
@@ -60,7 +60,8 @@
   untrack = rm --cache --
 [core]
   # Don't paginate output by default
-	pager = delta --dark # --light for light terminal backgrounds, switch from diff-so-fancy
+  pager = delta --dark --plus-color="#024200" --minus-color="#620001"  --theme="Solarized\\ \\(dark\\)"
+  # --light for light terminal backgrounds, switch from diff-so-fancy
 	; pager = most # --light for light terminal backgrounds
   ; pager = diff-so-fancy | less --tab=2 -RFX
   # Global ignore file (not shared)
@@ -118,9 +119,8 @@
 [merge]
   # Display common-ancestor blocks in conflict hunks
   conflictStyle = diff3
-  # Disable fast-forward merges as default merge strategy.
-  # Force explicit call of `git merge --ff …`.
-  ff = false
+  # fast-forward merges as default merge strategy.
+  ff = true
   # tool = smerge
   tool = vimdiff
   # Custom/dedicated merge drive for npm lock files (`package-lock.json`).
