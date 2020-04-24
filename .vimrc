@@ -131,7 +131,6 @@ set visualbell noerrorbells " don't beep
 set shortmess=atI           " disable welcome screen
 set showmode showcmd ttyfast
 set ruler " Show the line and column number of the cursor position
-set wildmenu " Display completion matches on your status line
 set wrap linebreak nolist "allow wrap, not wrap within work
 " Syntax coloring lines that are too long just slows down the world
 set synmaxcol=2048
@@ -198,6 +197,22 @@ noremap Y y$
 nnoremap gV `[v`]
 " abbrev for split buffer vertically
 cabbrev vb vert sb
+
+
+" wildmenu completion "
+set wildmenu
+set wildmode=list:longest
+set wildignore+=.hg,.git,.svn " Version Controls"
+set wildignore+=*.aux,*.out,*.toc "Latex Indermediate files"
+set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg "Binary Imgs"
+set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest "Compiled Object files"
+set wildignore+=*.spl "Compiled speolling world list"
+set wildignore+=*.sw? "Vim swap files"
+set wildignore+=*.DS_Store "OSX SHIT"
+set wildignore+=*.luac "Lua byte code"
+set wildignore+=migrations "Django migrations"
+set wildignore+=*.pyc "Python Object codes"
+set wildignore+=*.orig,*.rej "Merge resolution files"
 
 " press * to search for the term under the cursor or a visual selection and
 " then press a key below to replace all instances of it in the current file.
