@@ -154,7 +154,9 @@ noremap Q gq
 if has('mouse')
   set mouse=a
 endif
-
+if &diff
+    set noreadonly
+endif
 set completeopt=menu,menuone,preview,noselect,noinsert
 
 " Switch syntax highlighting on when the terminal has colors or when using the
