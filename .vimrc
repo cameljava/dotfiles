@@ -1,5 +1,5 @@
-" .vimrc
-" Author: Kevin Lee
+" vimrc
+" author: Kevin Lee
 
 " comment out compatible checking, avoid vint complaint
 " Use Vim settings, rather than Vi settings (much better!).
@@ -197,7 +197,6 @@ noremap Y y$
 nnoremap gV `[v`]
 " abbrev for split buffer vertically
 cabbrev vb vert sb
-
 
 " wildmenu completion "
 set wildmenu
