@@ -11,12 +11,7 @@ eval "$(keychain --eval --agents ssh --inherit any id_rsa)"
 [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 
-
-######## add awscli
-# export PATH=~/Library/Python/3.7/bin:$PATH
-# export PATH="/usr/local/opt/libressl/bin:$PATH"
-
-
+complete -C '/usr/local/bin/aws_completer' aws
 
 ######## navigate
 . "$HOME/git/cameljava_github/tools/z/z.sh"
