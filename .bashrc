@@ -1,18 +1,7 @@
 . "$HOME/.config/shell/export.sh"
 . "$HOME/.config/shell/alias.sh"
+. "$HOME/.config/shell/function.sh"
 
-# Prevent file overwrite on stdout redirection
-# Use `>|` to force redirection to an existing file
-set -o noclobber
-
-. "$HOME/git/cameljava_github/tools/z/z.sh"
-
-export XDG_CONFIG_HOME="$HOME/.config"
-export XDG_DATA_HOME="$HOME/.local/share"
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
 [ -s "/usr/local/etc/bash_completion.d/pass" ] && \. "/usr/local/etc/bash_completion.d/pass" # This loads pass bash_completion
 
@@ -20,9 +9,6 @@ export XML_CATALOG_FILES="/usr/local/etc/xml/catalog"
 
 # tmp set default profile to kev. turn it off when having cochlear
 #export AWS_DEFAULT_PROFILE=kev
-
-# enable aws cli auto complete
-complete -C '/Users/kevlee/Library/Python/3.7/bin/aws_completer' aws
 
 # Update window size after every command
 shopt -s checkwinsize
@@ -115,16 +101,16 @@ alias config='/usr/bin/git --git-dir=/Users/kevlee/git/cameljava_github/dotfiles
 # search all files in current folder including hidden and git ignore, except .rgignore
 export FZF_DEFAULT_COMMAND="rg --files --no-ignore-vcs --hidden --follow --glob '!.git'"
 
-
+# TODO set serverless properly instead point to certain project
 # tabtab source for serverless package
 # uninstall by removing these lines or running `tabtab uninstall serverless`
-[ -f /Users/kevlee/git/cochlear_gitlab/drx-serverless/auth/node_modules/tabtab/.completions/serverless.bash ] && . /Users/kevlee/git/cochlear_gitlab/drx-serverless/auth/node_modules/tabtab/.completions/serverless.bash
+# [ -f /Users/kevlee/git/cochlear_gitlab/drx-serverless/auth/node_modules/tabtab/.completions/serverless.bash ] && . /Users/kevlee/git/cochlear_gitlab/drx-serverless/auth/node_modules/tabtab/.completions/serverless.bash
 # tabtab source for sls package
 # uninstall by removing these lines or running `tabtab uninstall sls`
-[ -f /Users/kevlee/git/cochlear_gitlab/drx-serverless/auth/node_modules/tabtab/.completions/sls.bash ] && . /Users/kevlee/git/cochlear_gitlab/drx-serverless/auth/node_modules/tabtab/.completions/sls.bash
+# [ -f /Users/kevlee/git/cochlear_gitlab/drx-serverless/auth/node_modules/tabtab/.completions/sls.bash ] && . /Users/kevlee/git/cochlear_gitlab/drx-serverless/auth/node_modules/tabtab/.completions/sls.bash
 # tabtab source for slss package
 # uninstall by removing these lines or running `tabtab uninstall slss`
-[ -f /Users/kevlee/git/cochlear_gitlab/drx-serverless/auth/node_modules/tabtab/.completions/slss.bash ] && . /Users/kevlee/git/cochlear_gitlab/drx-serverless/auth/node_modules/tabtab/.completions/slss.bash
+# [ -f /Users/kevlee/git/cochlear_gitlab/drx-serverless/auth/node_modules/tabtab/.completions/slss.bash ] && . /Users/kevlee/git/cochlear_gitlab/drx-serverless/auth/node_modules/tabtab/.completions/slss.bash
 
 config config --local status.showUntrackedFiles no
 
@@ -133,15 +119,3 @@ eval $(thefuck --alias)
 # Applications env setting
 export SLS_DEBUG=true
 
-# customized function
-
-tre() { command tre "$@" -e && source "/tmp/tre_aliases_$USER" 2>/dev/null; }
-
-function dirdiff() {
-  # Shell-escape each path:
-  DIR1=$(printf '%q' "$1")
-  shift
-  DIR2=$(printf '%q' "$1")
-  shift
-  vim $@ -c "DirDiff $DIR1 $DIR2"
-}
