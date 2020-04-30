@@ -19,9 +19,9 @@ export NVM_DIR="$HOME/.nvm"
 ################################ set PATH ##############################
 
 
-export PATH=$HOME/kbin:$PATH
+export PATH="$HOME/kbin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
-
+export PATH="$HOME/.local/bin:$PATH"
 # use  GNU versions coreutils instead of macos version
 # export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 export PATH="/usr/local/opt/openssl/bin:$PATH"

@@ -165,7 +165,10 @@ set signcolumn=yes
 " ============================================================================ "
 " ===                           PLUGIN SETUP                               === "
 " ============================================================================ "
-let g:python3_host_prog = '$HOME/.pyenv/versions/py3nvim/bin/python'
+" let g:loaded_python_provider = 0
+" let g:loaded_python3_provider = 1
+let g:python3_host_prog = '$HOME/.pyenv/shims/python'
+let g:python_host_prog = '$HOME/.pyenv/shims/python2'
 
 " === fugitive.nvim === "
 
