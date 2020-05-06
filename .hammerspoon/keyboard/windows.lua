@@ -200,7 +200,7 @@ function hs.window.left70(win)
 
   f.x = max.x
   f.y = max.y
-  f.w = max.w * 0.7
+  f.w = max.w * 0.65
   f.h = max.h
   win:setFrame(f)
 end
@@ -215,9 +215,9 @@ function hs.window.right30(win)
   local screen = win:screen()
   local max = screen:frame()
 
-  f.x = max.x + (max.w * 0.7)
+  f.x = max.x + (max.w * 0.65)
   f.y = max.y
-  f.w = max.w * 0.3
+  f.w = max.w * 0.35
   f.h = max.h
   win:setFrame(f)
 end
