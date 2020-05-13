@@ -428,10 +428,13 @@ let g:fzf_commands_expect = 'alt-enter,ctrl-x'
 " .............................................................................
 
 let g:grepper={}
-let g:grepper.tools=["rg"]
+let g:grepper.tools=['rg', 'git']
 
 nmap gs <plug>(GrepperOperator)
 xmap gs <plug>(GrepperOperator)
+
+nnoremap <leader>g :Grepper<cr>
+let g:grepper.prompt_mapping_tool = '<leader>g'
 
 " After searching for text, press this mapping to do a project wide find and
 " replace. It's similar to <leader>r except this one applies to all matches
