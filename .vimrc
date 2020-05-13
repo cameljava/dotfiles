@@ -44,6 +44,11 @@ Plug 'PhilRunninger/nerdtree-buffer-ops'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'majutsushi/tagbar'
 
+" Change code right in quickfix/location list
+Plug 'stefandtw/quickfix-reflector.vim'
+" change buffer name both in vim and filesystem
+Plug 'danro/rename.vim'
+
 " Tim pope
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
@@ -317,6 +322,9 @@ let NERDTreeAutoDeleteBuffer = 1
 " setting to make nerdtree look prettier
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
+
+" Symbol renaming 
+nmap <leader>rn <Plug>(coc-rename)
 
 " Vim Airline
 set laststatus=2
