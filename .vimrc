@@ -305,11 +305,11 @@ nnoremap <silent> <leader>eh :e ~/scratch.txt<CR>
 
 " Plugins configuration"
 " TODO how to set grepprg
-set grepprg=rg\ $*
+" set grepprg=rg\ $*
 " fzf
 " Allow passing optional flags into the Rg command.
 "   Example :Rg myterm -g '*.md'
-command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case " . <q-args>, 1, <bang>0)
+" command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case " . <q-args>, 1, <bang>0)
 
 " Nerdtree "
 noremap <leader>n :NERDTreeToggle<CR>
@@ -322,9 +322,6 @@ let NERDTreeAutoDeleteBuffer = 1
 " setting to make nerdtree look prettier
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
-
-" Symbol renaming 
-nmap <leader>rn <Plug>(coc-rename)
 
 " Vim Airline
 set laststatus=2
