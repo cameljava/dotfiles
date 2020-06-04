@@ -261,7 +261,9 @@ nnoremap <Tab> :bnext<CR>
 nnoremap <S-Tab> :bprev<CR>
 nnoremap <leader>b :bd<CR>
 
-nnoremap <leader>t :w<CR>
+" create window size by 1.5 ; decreate window size by 0.67
+nnoremap <silent> <Leader>+ :exe "resize " . (winheight(0) * 3/2)<CR>
+nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
 
 " Maximize only this window"
 nnoremap <silent> <leader>m :only<CR>
