@@ -203,6 +203,9 @@ nnoremap gV `[v`]
 " abbrev for split buffer vertically
 cabbrev vb vert sb
 
+xnoremap K :move '<-2<CR>gv-gv
+xnoremap J :move '>+1<CR>gv-gv
+
 " wildmenu completion "
 set wildmenu
 set wildmode=list:longest
@@ -259,26 +262,37 @@ inoremap <c-w> <c-g>u<c-w>
 " Buffer switching/management, might as well use those keys for something useful
 nnoremap <Tab> :bnext<CR>
 nnoremap <S-Tab> :bprev<CR>
-nnoremap <leader>b :bd<CR>
+nnoremap <leader>x :bd<CR>
 
 " create window size by 1.5 ; decreate window size by 0.67
 nnoremap <silent> <Leader>+ :exe "resize " . (winheight(0) * 3/2)<CR>
 nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
+
+nnoremap <Up> :resize +2<CR>
+nnoremap <Down> :resize -2<CR>
+nnoremap <Left> :vertical resize +2<CR>
+nnoremap <Right> :vertical resize -2<CR>
+
+nnoremap <leader>h <C-W>h
+nnoremap <leader>j <C-W>j
+nnoremap <leader>k <C-W>k
+nnoremap <leader>l <C-W>l
 
 " Maximize only this window"
 nnoremap <silent> <leader>m :only<CR>
 "vertical split"
 nnoremap <silent> <leader>v :bel :vne<CR>
 "horizontal split"
-nnoremap <silent> <leader>h :bel :new<CR>
-"remove buffer
-nnoremap <leader>x :bd<CR>
+nnoremap <silent> <leader>s :bel :new<CR>
 "format file
 nnoremap <silent> <leader>f :Autoformat<CR>
+
+" todo findout what does below do
 " Paste and visual paste improvments
 vnoremap <silent> y y`]
 vnoremap <silent> p p`]
 nnoremap <silent> p p`]
+
 " vp doesn't replace paste buffer
 function! RestoreRegister()
   let @" = s:restore_reg

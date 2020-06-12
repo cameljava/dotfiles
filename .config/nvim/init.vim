@@ -307,7 +307,7 @@ let g:neosnippet#enable_conceal_markers = 0
 
 " ===== gitgutter ====="
 " TODO gitgutter setting seems notworking
-" Hunk-add and hunk-revert for chunk staging
+" Hunk-add adisable below as not sure what they dond hunk-revert for chunk staging
 " nmap <Leader>ga <Plug>GitGutterStageHunk
 " nmap <Leader>gu <Plug>GitGutterUndoHunk
 
@@ -544,7 +544,7 @@ endfunction
 nnoremap ; :
 nnoremap <silent> <tab> :bnext<cr>
 nnoremap <silent> <s-tab> :bprevious<cr>
-nnoremap <leader>x <ESC>:bd<cr>
+nnoremap <leader>x :bd<cr>
 
 " quick map for escape and save
 nnoremap <leader>w :w<CR>
@@ -558,18 +558,42 @@ inoremap jh <ESC>:wq<CR>
 " same as yy).
 noremap Y y$
 
-" j/k will move virtual lines (lines that wrap)
-" noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
-" noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
+" move up/down virtual selected lines
+xnoremap K :move '<-2<CR>gv-gv
+xnoremap J :move '>+1<CR>gv-gv
+
+" create window size by 1.5 ; decreate window size by 0.67
+nnoremap <silent> <Leader>+ :exe "resize " . (winheight(0) * 3/2)<CR>
+nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
+
+" use arrow key to resize window
+nnoremap <Up> :resize +2<CR>
+nnoremap <Down> :resize -2<CR>
+nnoremap <Left> :vertical resize +2<CR>
+nnoremap <Right> :vertical resize -2<CR>
+
+" Maximize only this window"
+nnoremap <silent> <leader>m :only<CR>
+"vertical split"
+nnoremap <silent> <leader>v :bel :vne<CR>
+"horizontal split"
+nnoremap <silent> <leader>s :bel :new<CR>
+"format file
+nnoremap <silent> <leader>f :Autoformat<CR>
 
 " Stay in visual mode when indenting. You will never have to run gv after
 " performing an indentation.
 vnoremap < <gv
 vnoremap > >gv
 
+nnoremap <leader>h <C-W>h
+nnoremap <leader>j <C-W>j
+nnoremap <leader>k <C-W>k
+nnoremap <leader>l <C-W>l
+
 "   <Space> - PageDown
 "   -       - PageUp
-noremap <Space> <PageDown>
+" noremap <Space> <PageDown>
 " TODO below seems not working
 "noremap - <PageUp>
 
@@ -591,7 +615,7 @@ nnoremap  <leader>eh :e ~/scratch.txt<CR>
 nnoremap <leader>rv :so ~/.config/nvim/init.vim<CR>
 "show spaces"
 set listchars=tab:\|\ ,trail:·,eol:¬
-nnoremap  <leader>l :set nolist!<CR>
+" nnoremap  <leader>l :set nolist!<CR>
 "hide hightlight of searches" no need after install is plugin
 " nnoremap <silent> <BS> :nohlsearch<CR>
 " TODO turn off this, as neovim constant frozen, finally find c-o can get
