@@ -20,67 +20,121 @@ filetype on   " work around stupid osx bug
 filetype off
 filetype plugin indent on
 
-
 call plug#begin('~/.vim/plugged')
-Plug 'junegunn/vim-plug'
-" language syntax
-Plug 'sheerun/vim-polyglot'
-Plug 'Chiel92/vim-autoformat'
-
-" Automatically clear search highlights after you move your cursor.
-Plug 'haya14busa/is.vim'
-" highlight yank
-Plug 'machakann/vim-highlightedyank'
-" asterisk.vim provides improved * motions
-Plug 'haya14busa/vim-asterisk'
-" show search status
-Plug 'osyo-manga/vim-anzu'
-
-" ALE
-Plug 'dense-analysis/ale'
-" Nerdtree
-Plug 'scrooloose/nerdtree'
-Plug 'PhilRunninger/nerdtree-buffer-ops'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'majutsushi/tagbar'
-
-" Change code right in quickfix/location list
-Plug 'stefandtw/quickfix-reflector.vim'
-" change buffer name both in vim and filesystem
-Plug 'danro/rename.vim'
-
+Plug 'chrisbra/unicode.vim'
 " Tim pope
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-obsession'
-" kana
+Plug 'tpope/vim-projectionist'
+Plug 'tpope/vim-unimpaired'
+
+"  === vim basic enhancement
+" text obj
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-function'
+" syntax based text-object for function
+Plug 'haya14busa/vim-textobj-function-syntax'
+
+" search
+" use standard regex instead of vim format
+Plug 'othree/eregex.vim'
+
+" Automatically clear search highlights after you move your cursor.
+Plug 'haya14busa/is.vim'
+" asterisk.vim provides improved * motions
+Plug 'haya14busa/vim-asterisk'
+" show search status
+Plug 'osyo-manga/vim-anzu'
+" highlight yank
+Plug 'machakann/vim-highlightedyank'
+
 " fzf
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
-" use standard regex instead of vim format
-Plug 'othree/eregex.vim'
+
+" Handle multi-file find and replace. turn off this - used in nvim, experience different
+" plugin here.
+" Plug 'mhinz/vim-grepper'
 " use easegrep for refactor name
 Plug 'dkprice/vim-easygrep'
-" airline
+
+" Improved motion in Vim
+Plug 'easymotion/vim-easymotion'
+
+" Run a diff on 2 directories.
+Plug 'will133/vim-dirdiff'
+" Run a diff on 2 blocks of text.
+Plug 'AndrewRadev/linediff.vim'
+
+" File explorer
+Plug 'scrooloose/nerdtree'
+Plug 'PhilRunninger/nerdtree-buffer-ops'
+
+" Syntax highlighting language pack for vim
+Plug 'sheerun/vim-polyglot'
+
+" === Git Plugins === "
+" Enable git changes to be shown in sign column
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
+" git commit browse
+Plug 'junegunn/gv.vim'
+" git branch
+Plug 'sodapopcan/vim-twiggy'
+Plug 'jreybert/vimagit'
+
+" ====  IDE feature
+
+" change buffer name both in vim and filesystem
+Plug 'danro/rename.vim'
+
+" auto generate tags file
+Plug 'ludovicchabant/vim-gutentags'
+" tagbar like view
+Plug 'liuchengxu/vista.vim'
+
+" Edit the quickfix/location list freely
+" Plug 'itchyny/vim-qfedit'
+" Plug 'jceb/vim-editqf'
+" Plug 'romainl/vim-qf' -- tested in nvim
+" Change code right in quickfix/location list
+Plug 'stefandtw/quickfix-reflector.vim'
+
+" Generate JSDoc commands based on function signature
+Plug 'heavenshell/vim-jsdoc'
+
+" Zoom in and out of a specific split pane (similar to tmux).
+" Plug 'dhruvasagar/vim-zoom'
+
+" Customized vim status line
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
-" git related
-Plug 'airblade/vim-gitgutter'
-" git command wrapper
-Plug 'tpope/vim-fugitive'
+Plug 'Yggdroot/indentLine'
+
+Plug 'rafi/awesome-vim-colorschemes'
+" Dim paragraphs above and below the active paragraph.
+Plug 'junegunn/limelight.vim'
+" Distraction free writing by removing UI elements and centering everything.
+Plug 'junegunn/goyo.vim'
+
+" *********** vim different from nvim
+
+" ALE
+Plug 'dense-analysis/ale'
+
+" Plug 'majutsushi/tagbar'
+
 " Format
+Plug 'Chiel92/vim-autoformat'
 " auto pair
 Plug 'jiangmiao/auto-pairs'
 " easy align(=)
 Plug 'junegunn/vim-easy-align'
 " Run a diff on 2 directories.
-Plug 'will133/vim-dirdiff'
-" Run a diff on 2 blocks of text.
-Plug 'AndrewRadev/linediff.vim'
 
 " easymotion
 " Plug 'easymotion/vim-easymotion'
@@ -90,12 +144,6 @@ Plug 'michaeljsmith/vim-indent-object'
 " Plug 'vim-scripts/argtextobj.vim'
 " sort: gs+motion/object
 " Plug 'christoomey/vim-sort-motion'
-
-Plug 'rafi/awesome-vim-colorschemes'
-" Dim paragraphs above and below the active paragraph.
-Plug 'junegunn/limelight.vim'
-" Distraction free writing by removing UI elements and centering everything.
-Plug 'junegunn/goyo.vim'
 
 " Run test suites for various languages.
 Plug 'janko/vim-test'

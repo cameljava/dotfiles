@@ -6,17 +6,7 @@ scriptencoding utf-8
 call plug#begin('~/.config/nvim/plugged')
 
 " === Editing Plugins === "
-" fzf
-Plug '/usr/local/opt/fzf'
-Plug 'junegunn/fzf.vim'
-
-" Improved motion in Vim
-Plug 'easymotion/vim-easymotion'
 Plug 'chrisbra/unicode.vim'
-
-" change buffer name both in vim and filesystem
-Plug 'danro/rename.vim'
-
 " Tim pope
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
@@ -24,15 +14,18 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-projectionist'
 Plug 'tpope/vim-unimpaired'
-" kana
+
+"  === vim basic enhancement
+" text obj
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-function'
 " syntax based text-object for function
 Plug 'haya14busa/vim-textobj-function-syntax'
-" comment out as already included in ployglot
-" Plug 'pangloss/vim-javascript'
 
 " search
+" use standard regex instead of vim format
+Plug 'othree/eregex.vim'
+
 " Automatically clear search highlights after you move your cursor.
 Plug 'haya14busa/is.vim'
 " asterisk.vim provides improved * motions
@@ -42,23 +35,27 @@ Plug 'osyo-manga/vim-anzu'
 " highlight yank
 Plug 'machakann/vim-highlightedyank'
 
-" use standard regex instead of vim format
-Plug 'othree/eregex.vim'
+" fzf
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
+
 " Handle multi-file find and replace.
 Plug 'mhinz/vim-grepper'
 
-" Intellisense Engine
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Improved motion in Vim
+Plug 'easymotion/vim-easymotion'
 
-" auto generate tags file
-Plug 'ludovicchabant/vim-gutentags'
+" Run a diff on 2 directories.
+Plug 'will133/vim-dirdiff'
+" Run a diff on 2 blocks of text.
+Plug 'AndrewRadev/linediff.vim'
 
-" tagbar like view
-Plug 'liuchengxu/vista.vim'
-" Edit the quickfix/location list freely
-" Plug 'itchyny/vim-qfedit'
-" Plug 'jceb/vim-editqf'
-Plug 'romainl/vim-qf'
+" File explorer
+Plug 'scrooloose/nerdtree'
+Plug 'PhilRunninger/nerdtree-buffer-ops'
+
+" Syntax highlighting language pack for vim
+Plug 'sheerun/vim-polyglot'
 
 " === Git Plugins === "
 " Enable git changes to be shown in sign column
@@ -71,25 +68,29 @@ Plug 'junegunn/gv.vim'
 Plug 'sodapopcan/vim-twiggy'
 Plug 'jreybert/vimagit'
 
+
+" ====  IDE feature
+" Intellisense Engine
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+" change buffer name both in vim and filesystem
+Plug 'danro/rename.vim'
+
+" auto generate tags file
+Plug 'ludovicchabant/vim-gutentags'
+" tagbar like view
+Plug 'liuchengxu/vista.vim'
+
+" Edit the quickfix/location list freely
+" Plug 'itchyny/vim-qfedit'
+" Plug 'jceb/vim-editqf'
+Plug 'romainl/vim-qf'
+
 " Generate JSDoc commands based on function signature
 Plug 'heavenshell/vim-jsdoc'
 
-" Syntax highlighting language pack for vim
-Plug 'sheerun/vim-polyglot'
-
-" Run a diff on 2 directories.
-Plug 'will133/vim-dirdiff'
-" Run a diff on 2 blocks of text.
-Plug 'AndrewRadev/linediff.vim'
-
-" === UI === "
-
 " Zoom in and out of a specific split pane (similar to tmux).
-Plug 'dhruvasagar/vim-zoom'
-
-" File explorer
-Plug 'scrooloose/nerdtree'
-Plug 'PhilRunninger/nerdtree-buffer-ops'
+" Plug 'dhruvasagar/vim-zoom'
 
 " Customized vim status line
 Plug 'vim-airline/vim-airline'
