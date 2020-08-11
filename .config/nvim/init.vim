@@ -104,6 +104,9 @@ Plug 'junegunn/limelight.vim'
 " Distraction free writing by removing UI elements and centering everything.
 Plug 'junegunn/goyo.vim'
 
+" experience
+" search
+
 " Initialize plugin system
 call plug#end()
 
@@ -121,7 +124,7 @@ set nu rnu
 set showcmd
 
 " Yank and paste with the system clipboard
-set clipboard+=unnamed
+set clipboard=unnamed
 
 " Hides buffers instead of closing them
 set hidden
@@ -453,6 +456,11 @@ xmap <Leader>R
   \ :cfdo %s/<C-r>s//g \| update
    \<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
 
+" === vim-jsdoc shortcuts ==="
+
+" Generate jsdoc for function under cursor
+nnoremap <leader>z :JsDoc<CR>
+
 " ============================================================================ "
 " ===                                UI                                    === "
 " ============================================================================ "
@@ -645,21 +653,16 @@ xnoremap <Leader>rc :s///gc<Left><Left><Left>
 nnoremap <silent> s* :let @/='\<'.expand('<cword>').'\>'<CR>cgn
 xnoremap <silent> s* "sy:let @/=@s<CR>cgn
 
-" === Easy-motion shortcuts ==="
-"   <leader>w - Easy-motion highlights first word letters bi-directionally
-" map <leader>w <Plug>(easymotion-bd-w)
-
 " Allows you to save files you opened without write permissions via sudo
 cmap w!! w !sudo tee %
-
-" === vim-jsdoc shortcuts ==="
-" Generate jsdoc for function under cursor
-nnoremap <leader>z :JsDoc<CR>
 
 " Delete current visual selection and dump in black hole buffer before pasting
 " Used when you want to paste over something without it getting copied to
 " Vim's default buffer
 vnoremap <leader>p "_dP
+
+" To search for visually selected text
+vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 
 " ============================================================================ "
 " ===                                 MISC.                                === "

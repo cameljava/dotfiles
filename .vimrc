@@ -167,7 +167,7 @@ set encoding=utf-8
 set fileencoding=utf-8
 set fileencodings=utf-8
 scriptencoding utf-8
-set clipboard+=unnamed " Add the unnamed register to the clipboard
+set clipboard=unnamed " Add the unnamed register to the clipboard
 set autoread  "Automatically read a file that has changed on disk
 set nobackup nowritebackup noswapfile noundofile
 set backupcopy=yes
