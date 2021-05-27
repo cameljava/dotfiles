@@ -79,3 +79,14 @@ colordiff
 fix: bat
 my default pager is most, however currently bat only support less.
 create customized bat bin to wrap bat.
+
+backup brew install using brew bundle dump
+
+1, install homebrew tap:
+brew tap Homebrew/bundle
+
+2, dump all installation to Brewfile
+brew bundle dump
+
+it will generate file: Brewfile
+
