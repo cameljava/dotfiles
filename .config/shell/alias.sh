@@ -1,17 +1,20 @@
 
 # add alias
 
-alias ls='ls -GFhl'
+alias s='source '
+# alias ls='/bin/ls -GFhl|cat'
+alias ls='/bin/ls -GFhl'
 alias cp='cp -iv'                         # Preferred 'cp' implementation
 alias mv='mv -iv'                         # Preferred 'mv' implementation
 alias mkdir='mkdir -pv'                   # Preferred 'mkdir' implementation
-alias l='ls -FGlAhp'                      # Preferred 'ls' implementation
+alias l='/bin/ls -FGlAhp'                      # Preferred 'ls' implementation
+# alias l='/bin/ls -FGlAhp|cat'                      # Preferred 'ls' implementation
 alias less='less -FSRXc'                  # Preferred 'less' implementation
 
 # alias diff="diff-so-fancy"
 alias rm="rm -i"
 alias dd='rmtrash'
-alias sls="sls --region ap-southeast-2 "
+# alias sls="sls --region ap-southeast-2 "
 alias n="nvim "
 alias v="vim "
 alias vm="vim -u ~/.vimrc-minimal"
@@ -37,3 +40,6 @@ alias show_options='shopt'                # Show_options: display bash options s
 alias fix_stty='stty sane'                # fix_stty:     Restore terminal settings when screwed up
 alias cic='set completion-ignore-case On' # cic:          Make tab-completion case-insensitive
 alias DT='tee ~/Desktop/terminalOut.txt'  # DT:           Pipe content to file on MacOS Desktop
+
+#git alias
+alias gs='git status'

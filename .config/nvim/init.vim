@@ -18,10 +18,15 @@ Plug 'tpope/vim-unimpaired'
 "  === vim basic enhancement
 " text obj
 Plug 'kana/vim-textobj-user'
+Plug 'kana/vim-textobj-line'
+Plug 'kana/vim-textobj-indent'
 Plug 'kana/vim-textobj-function'
+Plug 'kana/vim-textobj-entire'
 " syntax based text-object for function
 Plug 'haya14busa/vim-textobj-function-syntax'
+Plug 'wellle/targets.vim'
 
+Plug 'kana/vim-gf-user'
 " search
 " use standard regex instead of vim format
 Plug 'othree/eregex.vim'
@@ -54,8 +59,11 @@ Plug 'AndrewRadev/linediff.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'PhilRunninger/nerdtree-buffer-ops'
 
+Plug 'vifm/vifm.vim'
+
 " Syntax highlighting language pack for vim
 Plug 'sheerun/vim-polyglot'
+Plug 'rust-lang/rust.vim'
 
 " === Git Plugins === "
 " Enable git changes to be shown in sign column
@@ -67,7 +75,7 @@ Plug 'junegunn/gv.vim'
 " git branch
 Plug 'sodapopcan/vim-twiggy'
 Plug 'jreybert/vimagit'
-
+Plug 'shumphrey/fugitive-gitlab.vim'
 
 " ====  IDE feature
 " Intellisense Engine
@@ -104,7 +112,10 @@ Plug 'junegunn/limelight.vim'
 " Distraction free writing by removing UI elements and centering everything.
 Plug 'junegunn/goyo.vim'
 
+" doc hub
+Plug 'rizzatti/dash.vim'
 " experience
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 " search
 
 " Initialize plugin system
@@ -175,9 +186,10 @@ let g:python3_host_prog = '$HOME/.pyenv/shims/python'
 let g:python_host_prog = '$HOME/.pyenv/shims/python2'
 
 " === fugitive.nvim === "
-
+let g:fugitive_gitlab_domains = ['https://gitlab.cochlear.dev']
 
 " === Coc.nvim === "
+let g:coc_global_extensions = ['coc-highlight', 'coc-yank', 'coc-eslint', 'coc-yaml', 'coc-prettier', 'coc-tsserver', 'coc-json', 'coc-git', 'coc-dictionary', 'coc-word', 'coc-tag']
 
 " Use `[g` and `]g` to navigate diagnostics
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
@@ -272,7 +284,7 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
 " Add status line support, for integration with other plugin, checkout `:h coc-status` TODO believe airline is auto done
-"set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+" set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " Using CocList
 " Show all diagnostics
@@ -330,19 +342,19 @@ nnoremap <leader>n :NERDTreeFind<CR>
 
 " --- Nerdtree setting --- "
 " Show hidden files/directories
-let g:NERDTreeShowHidden = 1
+" let g:NERDTreeShowHidden = 1
 
 " Remove bookmarks and help text from NERDTree
-let g:NERDTreeMinimalUI = 1
-let g:NERDTreeAutoDeleteBuffer=1
+" let g:NERDTreeMinimalUI = 1
+" let g:NERDTreeAutoDeleteBuffer=1
 
 " Custom icons for expandable/expanded directories
-let g:NERDTreeDirArrowExpandable = '⬏'
-let g:NERDTreeDirArrowCollapsible = '⬎'
-let g:NERDTreeShowBookmarks=1
-let g:nerdtree_tabs_focus_on_files=1
+" let g:NERDTreeDirArrowExpandable = '⬏'
+" let g:NERDTreeDirArrowCollapsible = '⬎'
+" let g:NERDTreeShowBookmarks=1
+" let g:nerdtree_tabs_focus_on_files=1
 " Hide certain files and directories from NERDTree
-let g:NERDTreeIgnore = ['^\.DS_Store$', '^tags$', '\.git$[[dir]]', '\.idea$[[dir]]', '\.sass-cache$']
+" let g:NERDTreeIgnore = ['^\.DS_Store$', '^tags$', '\.git$[[dir]]', '\.idea$[[dir]]', '\.sass-cache$']
 
 " === Vim airline ==== "
 " Enable extensions
@@ -522,7 +534,7 @@ hi! VertSplit gui=NONE guifg=#17252c guibg=#17252c
 hi! EndOfBuffer ctermbg=NONE ctermfg=NONE guibg=#17252c guifg=#17252c
 
 " Customize NERDTree directory
-hi! NERDTreeCWD guifg=#99c794
+" hi! NERDTreeCWD guifg=#99c794
 
 " Make background color transparent for git changes
 hi! SignifySignAdd guibg=NONE
@@ -676,7 +688,7 @@ augroup CursorLine
 augroup END
 
 " Automaticaly close nvim if NERDTree is only thing left open
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " === Search === "
 " ignore case when searching
@@ -689,9 +701,9 @@ set smartcase
 set autoread
 
 set nobackup nowritebackup noswapfile noundofile
-set backupcopy=yes
-set backupext=.vbak
-set backupdir=~/tmp/.vim/.backup 
+" set backupcopy=yes
+" set backupext=.vbak
+" set backupdir=~/tmp/.vim/.backup 
 
 " Reload icons after init source
 if exists('g:loaded_webdevicons')

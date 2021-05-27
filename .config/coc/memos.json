@@ -1,0 +1,10 @@
+{
+  "coc-eslint|global": {
+    "eslintLibraries": {
+      "libs": {
+        "/Users/kevlee/git/cochlear_gitlab/rla/clinic/node_modules/eslint/lib/api.js": true
+      }
+    },
+    "eslintAlwaysAllowExecution": true
+  }
+}
