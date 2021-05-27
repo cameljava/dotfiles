@@ -147,6 +147,9 @@ Plug 'michaeljsmith/vim-indent-object'
 
 " Run test suites for various languages.
 Plug 'janko/vim-test'
+
+Plug 'rizzatti/dash.vim'
+
 call plug#end()
 
 packadd! matchit
