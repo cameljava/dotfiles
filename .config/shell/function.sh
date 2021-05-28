@@ -1,3 +1,4 @@
+# shellcheck shell=bash
 # customized function
 
 # check why like this
@@ -17,7 +18,7 @@ cd() {
 
 mcd() { mkdir -p "$1" && cd "$1"; }       # mcd:          Makes new Dir and jumps inside
 
-# trash() { command mv "$@" ~/.Trash; }     # trash:        Moves a file to the MacOS trash
+trash() { command mv "$@" ~/.Trash; }     # trash:        Moves a file to the MacOS trash
 ql() { qlmanage -p "$*" >&/dev/null; }    # ql:           Opens any file in MacOS Quicklook Preview
 
 

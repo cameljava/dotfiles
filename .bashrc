@@ -1,3 +1,5 @@
+# shellcheck shell=bash
+
 . "$HOME/.config/shell/export.sh"
 . "$HOME/.config/shell/alias.sh"
 . "$HOME/.config/shell/function.sh"
@@ -95,7 +97,7 @@ shopt -s cdable_vars
 # export dropbox="$HOME/Dropbox"
 
 # fzf settings
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[ -f "$HOME/.fzf.bash" ] && source "$HOME/.fzf.bash"
 alias fzfp="fzf --preview 'bat --style=numbers --color=always {} | head -500'"
 alias config='/usr/bin/git --git-dir=/Users/kevlee/git/cameljava_github/dotfiles --work-tree=/Users/kevlee'
 # search all files in current folder including hidden and git ignore, except .rgignore
@@ -114,7 +116,7 @@ export FZF_DEFAULT_COMMAND="rg --files --no-ignore-vcs --hidden --follow --glob 
 
 config config --local status.showUntrackedFiles no
 
-eval $(thefuck --alias)
+eval "$(thefuck --alias)"
 eval "$(rbenv init -)"
 
 

@@ -1,10 +1,11 @@
+# shellcheck shell=bash
 ################################# terminal config ####################
 export PS1='$ '
 export TERM=xterm-256color
 
 export PAGER="less"
 # export PAGER="most"
-export VISUAL="mvim"
+export VISUAL="oni2"
 export EDITOR="vim"
 
 ################################# set ROOT/HOME ########################
@@ -39,8 +40,12 @@ export PATH="/usr/local/opt/curl/bin:$PATH"
 # jenv 
 export PATH="$HOME/.jenv/bin:$PATH"
 eval "$(jenv init -)"
+
 # pyenv
+export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init --path)"
+
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi

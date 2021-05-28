@@ -1,4 +1,4 @@
-
+# shellcheck shell=bash
 # add alias
 
 alias s='source '
@@ -13,14 +13,14 @@ alias less='less -FSRXc'                  # Preferred 'less' implementation
 
 # alias diff="diff-so-fancy"
 alias rm="rm -i"
-alias dd='rmtrash'
+alias dd='trash'
 # alias sls="sls --region ap-southeast-2 "
 alias n="nvim "
 alias v="vim "
 alias vm="vim -u ~/.vimrc-minimal"
 alias vs="vim -S"
 alias ns="nvim -S"
-alias m="mvim "
+alias m="oni2"
 alias g="git "
 alias b="brew "
 #History search (use: hs sometext)
