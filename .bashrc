@@ -96,12 +96,15 @@ shopt -s cdable_vars
 # export documents="$HOME/Documents"
 # export dropbox="$HOME/Dropbox"
 
+# my dofile file backup 
+alias config='/usr/bin/git --git-dir=/Users/kevlee/git/cameljava_github/dotfiles --work-tree=/Users/kevlee'
+
 # fzf settings
 [ -f "$HOME/.fzf.bash" ] && source "$HOME/.fzf.bash"
 alias fzfp="fzf --preview 'bat --style=numbers --color=always {} | head -500'"
-alias config='/usr/bin/git --git-dir=/Users/kevlee/git/cameljava_github/dotfiles --work-tree=/Users/kevlee'
 # search all files in current folder including hidden and git ignore, except .rgignore
 export FZF_DEFAULT_COMMAND="rg --files --no-ignore-vcs --hidden --follow --glob '!.git'"
+
 
 # TODO set serverless properly instead point to certain project
 # tabtab source for serverless package
@@ -119,6 +122,8 @@ config config --local status.showUntrackedFiles no
 eval "$(thefuck --alias)"
 eval "$(rbenv init -)"
 
-
-
 export SLS_DEBUG=true
+
+# setting for forgit
+# ctrl-e to view the logs in a vim buffer (glo specific)
+FORGIT_LOG_FZF_OPTS=' --bind="ctrl-e:execute(echo {} |grep -Eo [a-f0-9]+ |head -1 |xargs git show |nvim -)"'

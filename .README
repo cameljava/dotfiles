@@ -90,3 +90,7 @@ brew bundle dump
 
 it will generate file: Brewfile
 
+30052021
+1, turn vi mode for inputrc, practice bash default keybinding;
+2, install rust by brew. 
+
