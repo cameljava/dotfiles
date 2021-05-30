@@ -1,12 +1,26 @@
 {
+  "coc.preferences.extensionUpdateCheck": "weekly",
   "suggest.echodocSupport": true,
   "suggest.maxCompleteItemCount": 20,
-  "coc.preferences.formatOnSaveFiletypes": ["javascript", "typescript", "typescriptreact", "json", "javascriptreact", "typescript.tsx", "yaml", "html", "xml", "java", "css"],
+  "coc.preferences.formatOnSaveFiletypes": [
+    "javascript",
+    "typescript",
+    "typescriptreact",
+    "json",
+    "javascriptreact",
+    "typescript.tsx",
+    "yaml",
+    "html",
+    "xml",
+    "java",
+    "css"
+  ],
   "tsserver.formatOnType": false,
   "coc.source.tag.enable": true,
   "coc.source.file.enable": true,
   "coc.source.word.enable": true,
   "coc.source.buffer.enable": true,
+  "coc.source.around.enable": true,
   "eslint.run": "onSave",
   "eslint.debug": true,
   "eslint.alwaysShowStatus": true,
@@ -16,5 +30,18 @@
   "yaml.schemaStore.enable": true,
   "yaml.validate": true,
   "yaml.completion": true,
-  "yaml.trace.server": "verbose"
+  "yaml.trace.server": "verbose",
+  "languageserver": {
+    "efm": {
+      "command": "efm-langserver",
+      "args": [],
+      // custom config path
+      // "args": ["-c", "/path/to/your/config.yaml"],
+      "filetypes": [
+        "vim",
+        "eruby",
+        "markdown"
+      ]
+    }
+  }
 }

@@ -56,8 +56,9 @@ Plug 'will133/vim-dirdiff'
 Plug 'AndrewRadev/linediff.vim'
 
 " File explorer
-Plug 'scrooloose/nerdtree'
-Plug 'PhilRunninger/nerdtree-buffer-ops'
+" turn off nerdtree, to try out coc explore
+" Plug 'scrooloose/nerdtree'
+" Plug 'PhilRunninger/nerdtree-buffer-ops'
 
 Plug 'vifm/vifm.vim'
 
@@ -189,7 +190,7 @@ let g:python_host_prog = '$HOME/.pyenv/shims/python2'
 let g:fugitive_gitlab_domains = ['https://gitlab.cochlear.dev']
 
 " === Coc.nvim === "
-let g:coc_global_extensions = ['coc-highlight', 'coc-yank', 'coc-eslint', 'coc-yaml', 'coc-prettier', 'coc-tsserver', 'coc-json', 'coc-git', 'coc-dictionary', 'coc-word', 'coc-tag']
+let g:coc_global_extensions = ['coc-markdownlint', 'coc-sh', 'coc-vimlsp', 'coc-rust-analyzer', 'coc-highlight', 'coc-yank', 'coc-eslint', 'coc-yaml', 'coc-prettier', 'coc-tsserver', 'coc-json', 'coc-git', 'coc-dictionary', 'coc-word', 'coc-tag', 'coc-swagger', 'coc-calc', 'coc-explorer']
 
 " Use `[g` and `]g` to navigate diagnostics
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
@@ -207,17 +208,14 @@ command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')
 nmap <silent> K :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
-if (index(['vim','help'], &filetype) >= 0)
-  execute 'h '.expand('<cword>')
-else
-  call CocAction('doHover')
-endif
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call cocaction('dohover')
+  endif
 endfunction
 
-" Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
-
-" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
+" use <cr> to confirm completion, `<c-g>u` means break undo chain at current
 " position. Coc only does snippet and additional edit on confirm.
 if exists('*complete_info')
   inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
@@ -226,6 +224,8 @@ else
 endif
 
 " use <tab> for trigger completion with characters ahead and navigate
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
 inoremap <silent><expr> <TAB>
     \ pumvisible() ? "\<C-n>" :
     \ <SID>check_back_space() ? "\<TAB>" :
@@ -233,8 +233,8 @@ inoremap <silent><expr> <TAB>
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
-let col = col('.') - 1
-return !col || getline('.')[col - 1]  =~ '\s'
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
 " Highlight the symbol and its references when holding the cursor.
@@ -333,12 +333,15 @@ let g:neosnippet#enable_conceal_markers = 0
 
 " === NERDTree === "
 
+" replace shortcut using coc explore
+nmap <leader>n :CocCommand explorer<CR>
+
 " === Nerdtree shorcuts === "
 "  <leader>n - Toggle NERDTree on/off
 "  <leader>f - Opens current file location in NERDTree
 " nmap <leader>n :NERDTreeToggle<CR>
-nnoremap <space>l :NERDTreeToggle<CR>
-nnoremap <leader>n :NERDTreeFind<CR>
+" nnoremap <space>l :NERDTreeToggle<CR>
+" nnoremap <leader>n :NERDTreeFind<CR>
 
 " --- Nerdtree setting --- "
 " Show hidden files/directories
@@ -400,8 +403,8 @@ if !exists('g:airline_symbols')
 let g:airline_symbols = {}
 endif
 
-" Don't show git changes to current file in airline
-let g:airline#extensions#hunks#enabled=0
+"  show git changes to current file in airline
+let g:airline#extensions#hunks#enabled=1
 
 
 " .............................................................................
@@ -590,8 +593,8 @@ nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
 " use arrow key to resize window
 nnoremap <Up> :resize +2<CR>
 nnoremap <Down> :resize -2<CR>
-nnoremap <Left> :vertical resize +2<CR>
-nnoremap <Right> :vertical resize -2<CR>
+nnoremap <Left> :vertical resize -2<CR>
+nnoremap <Right> :vertical resize +2<CR>
 
 " Maximize only this window"
 nnoremap <silent> <leader>m :only<CR>
