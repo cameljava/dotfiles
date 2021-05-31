@@ -118,7 +118,8 @@ Plug 'rizzatti/dash.vim'
 " experience
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 " search
-
+" tbd
+" Plug 'neovim/nvim-lspconfig'
 " Initialize plugin system
 call plug#end()
 
@@ -284,7 +285,7 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
 " Add status line support, for integration with other plugin, checkout `:h coc-status` TODO believe airline is auto done
-" set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " Using CocList
 " Show all diagnostics
@@ -388,7 +389,7 @@ let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_er
 let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
 
 " Hide the Nerdtree status line to avoid clutter
-let g:NERDTreeStatusline = ''
+" let g:NERDTreeStatusline = ''
 
 " Disable vim-airline in preview mode
 let g:airline_exclude_preview = 1

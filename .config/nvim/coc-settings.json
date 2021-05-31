@@ -30,18 +30,18 @@
   "yaml.schemaStore.enable": true,
   "yaml.validate": true,
   "yaml.completion": true,
-  "yaml.trace.server": "verbose",
-  "languageserver": {
-    "efm": {
-      "command": "efm-langserver",
-      "args": [],
-      // custom config path
-      // "args": ["-c", "/path/to/your/config.yaml"],
-      "filetypes": [
-        "vim",
-        "eruby",
-        "markdown"
-      ]
-    }
-  }
+  "yaml.trace.server": "verbose"
+  /* "languageserver": { */
+  /*   "efm": { */
+  /*     "command": "efm-langserver", */
+  /*     "args": [], */
+  /*     // custom config path */
+  /*     // "args": ["-c", "/path/to/your/config.yaml"], */
+  /*     "filetypes": [ */
+  /*       "vim", */
+  /*       "eruby", */
+  /*       "markdown" */
+  /*     ] */
+  /*   } */
+  /* } */
 }
