@@ -25,6 +25,8 @@
   "eslint.debug": true,
   "eslint.alwaysShowStatus": true,
   "eslint.autoFixOnSave": true,
+  "eslint.probe": ["javascript", "typescript", "markdown","html"],
+  "eslint.workingDirectories": ["src", "test"],
   "prettier.eslintIntegration": true,
   "yaml.format.enable": true,
   "yaml.schemaStore.enable": true,
