@@ -117,6 +117,7 @@ Plug 'junegunn/goyo.vim'
 Plug 'rizzatti/dash.vim'
 " experience
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
+Plug 'honza/vim-snippets'
 " search
 " tbd
 " Plug 'neovim/nvim-lspconfig'
@@ -191,7 +192,7 @@ let g:python_host_prog = '$HOME/.pyenv/shims/python2'
 let g:fugitive_gitlab_domains = ['https://gitlab.cochlear.dev']
 
 " === Coc.nvim === "
-let g:coc_global_extensions = ['coc-markdownlint', 'coc-sh', 'coc-vimlsp', 'coc-rust-analyzer', 'coc-highlight', 'coc-yank', 'coc-eslint', 'coc-yaml', 'coc-prettier', 'coc-tsserver', 'coc-json', 'coc-git', 'coc-dictionary', 'coc-word', 'coc-tag', 'coc-swagger', 'coc-calc', 'coc-explorer']
+let g:coc_global_extensions = ['coc-snippets', 'coc-markdownlint', 'coc-sh', 'coc-vimlsp', 'coc-rust-analyzer', 'coc-highlight', 'coc-yank', 'coc-eslint', 'coc-yaml', 'coc-prettier', 'coc-tsserver', 'coc-json', 'coc-git', 'coc-dictionary', 'coc-word', 'coc-tag', 'coc-swagger', 'coc-calc', 'coc-explorer']
 
 " Use `[g` and `]g` to navigate diagnostics
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
@@ -225,7 +226,7 @@ else
 endif
 
 " use <tab> for trigger completion with characters ahead and navigate
-" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" NOPlug 'honza/vim-snippets'TE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.
 inoremap <silent><expr> <TAB>
     \ pumvisible() ? "\<C-n>" :
@@ -305,47 +306,29 @@ nmap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nmap <silent> <space>p  :<C-u>CocListResume<CR>
 
-" cant find below config in coc setting any more, to be deleted.
-"Close preview window when completion is done.
-" autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 
-" ===== gitgutter ====="
-" TODO gitgutter setting seems notworking
-" Hunk-add adisable below as not sure what they dond hunk-revert for chunk staging
-" nmap <Leader>ga <Plug>GitGutterStageHunk
-" nmap <Leader>gu <Plug>GitGutterUndoHunk
+"coc snippets setting:
+" Use <C-l> for trigger snippet expand.
+imap <C-l> <Plug>(coc-snippets-expand)
 
-" Jump between hunks
-" nmap <Leader>gn <Plug>GitGutterNextHunk
-" nmap <Leader>gN <Plug>GitGutterPrevHunk
+" Use <C-j> for select text for visual placeholder of snippet.
+vmap <C-j> <Plug>(coc-snippets-select)
 
-" === NERDTree === "
+" Use <C-j> for jump to next placeholder, it's default of coc.nvim
+let g:coc_snippet_next = '<c-j>'
+
+" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+let g:coc_snippet_prev = '<c-k>'
+
+" Use <C-j> for both expand and jump (make expand higher priority.)
+imap <C-j> <Plug>(coc-snippets-expand-jump)
+
+" Use <leader>x for convert visual selected code to snippet
+xmap <leader>x  <Plug>(coc-convert-snippet)
 
 " replace shortcut using coc explore
 nmap <leader>n :CocCommand explorer<CR>
 
-" === Nerdtree shorcuts === "
-"  <leader>n - Toggle NERDTree on/off
-"  <leader>f - Opens current file location in NERDTree
-" nmap <leader>n :NERDTreeToggle<CR>
-" nnoremap <space>l :NERDTreeToggle<CR>
-" nnoremap <leader>n :NERDTreeFind<CR>
-
-" --- Nerdtree setting --- "
-" Show hidden files/directories
-" let g:NERDTreeShowHidden = 1
-
-" Remove bookmarks and help text from NERDTree
-" let g:NERDTreeMinimalUI = 1
-" let g:NERDTreeAutoDeleteBuffer=1
-
-" Custom icons for expandable/expanded directories
-" let g:NERDTreeDirArrowExpandable = '⬏'
-" let g:NERDTreeDirArrowCollapsible = '⬎'
-" let g:NERDTreeShowBookmarks=1
-" let g:nerdtree_tabs_focus_on_files=1
-" Hide certain files and directories from NERDTree
-" let g:NERDTreeIgnore = ['^\.DS_Store$', '^tags$', '\.git$[[dir]]', '\.idea$[[dir]]', '\.sass-cache$']
 
 " === Vim airline ==== "
 " Enable extensions
@@ -374,9 +357,6 @@ let airline#extensions#coc#stl_format_warn = '%W{[%w(#%fw)]}'
 " Configure error/warning section to use coc.nvim
 let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
 let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
-
-" Hide the Nerdtree status line to avoid clutter
-" let g:NERDTreeStatusline = ''
 
 " Disable vim-airline in preview mode
 let g:airline_exclude_preview = 1
@@ -463,6 +443,10 @@ xmap <Leader>R
 
 " Generate jsdoc for function under cursor
 nnoremap <leader>z :JsDoc<CR>
+
+" ctag gutentags config
+" set tmp folder for ctags used
+" g:gutentags_cache_dir = '$HOME/.config/nvim/.tmp'
 
 " ============================================================================ "
 " ===                                UI                                    === "
@@ -627,11 +611,6 @@ nnoremap  <leader>eh :e ~/scratch.txt<CR>
 nnoremap <leader>rv :so ~/.config/nvim/init.vim<CR>
 "show spaces"
 set listchars=tab:\|\ ,trail:·,eol:¬
-" nnoremap  <leader>l :set nolist!<CR>
-"hide hightlight of searches" no need after install is plugin
-" nnoremap <silent> <BS> :nohlsearch<CR>
-" TODO turn off this, as neovim constant frozen, finally find c-o can get
-" out..
 " Insert mode mapping
 " delete text you have typed in insert mode, recoverable by u
 " inoremap <c-u> <c-g>u<c-u>

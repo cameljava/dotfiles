@@ -119,7 +119,6 @@ export FZF_DEFAULT_COMMAND="rg --files --no-ignore-vcs --hidden --follow --glob 
 
 config config --local status.showUntrackedFiles no
 
-eval "$(thefuck --alias)"
 eval "$(rbenv init -)"
 
 export SLS_DEBUG=true
