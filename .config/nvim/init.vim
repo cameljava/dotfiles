@@ -25,7 +25,7 @@ Plug 'kana/vim-textobj-entire'
 " syntax based text-object for function
 Plug 'haya14busa/vim-textobj-function-syntax'
 Plug 'wellle/targets.vim'
-
+" extended version of gf from kana
 Plug 'kana/vim-gf-user'
 " search
 " use standard regex instead of vim format
@@ -47,8 +47,8 @@ Plug 'junegunn/fzf.vim'
 " Handle multi-file find and replace.
 Plug 'mhinz/vim-grepper'
 
-" Improved motion in Vim
-Plug 'easymotion/vim-easymotion'
+" Improved motion in Vim , comment out easymotion as never use it
+" Plug 'easymotion/vim-easymotion'
 
 " Run a diff on 2 directories.
 Plug 'will133/vim-dirdiff'
@@ -75,7 +75,7 @@ Plug 'tpope/vim-rhubarb'
 Plug 'junegunn/gv.vim'
 " git branch
 Plug 'sodapopcan/vim-twiggy'
-Plug 'jreybert/vimagit'
+" Plug 'jreybert/vimagit'
 Plug 'shumphrey/fugitive-gitlab.vim'
 
 " ====  IDE feature
@@ -94,6 +94,7 @@ Plug 'liuchengxu/vista.vim'
 " Plug 'itchyny/vim-qfedit'
 " Plug 'jceb/vim-editqf'
 Plug 'romainl/vim-qf'
+Plug 'bfrg/vim-qf-preview'
 
 " Generate JSDoc commands based on function signature
 Plug 'heavenshell/vim-jsdoc'
@@ -213,7 +214,7 @@ function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
   else
-    call cocaction('dohover')
+    call CocAction('doHover')
   endif
 endfunction
 
