@@ -145,6 +145,9 @@ Plug 'michaeljsmith/vim-indent-object'
 " sort: gs+motion/object
 " Plug 'christoomey/vim-sort-motion'
 
+" a text searching plugin
+Plug 'dyng/ctrlsf.vim'
+
 " Run test suites for various languages.
 Plug 'janko/vim-test'
 
