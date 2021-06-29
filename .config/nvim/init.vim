@@ -75,7 +75,6 @@ Plug 'tpope/vim-rhubarb'
 Plug 'junegunn/gv.vim'
 " git branch
 Plug 'sodapopcan/vim-twiggy'
-" Plug 'jreybert/vimagit'
 Plug 'shumphrey/fugitive-gitlab.vim'
 
 " ====  IDE feature
