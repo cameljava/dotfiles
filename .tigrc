@@ -1,0 +1,2 @@
+bind generic 8 !@sh -c "printf '%s' %(commit) | pbcopy"
+bind generic 9 !@sh -c "printf '%s' $(git rev-parse --short %(commit)) | pbcopy"
