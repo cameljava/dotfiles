@@ -640,7 +640,7 @@ nnoremap <silent> <s-tab> :bprevious<cr>
 nnoremap <leader>x :bd<cr>
 
 " quick map for escape and save
-nnoremap <leader>w :w<CR>
+nnoremap <leader>w :up<CR>
 inoremap kk <ESC>`^
 cnoremap <silent> kk <C-c>
 inoremap jj <ESC>`^:update<CR>
