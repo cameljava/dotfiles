@@ -293,7 +293,7 @@ nnoremap <silent> s* :let @/='\<'.expand('<cword>').'\>'<CR>cgn
 xnoremap <silent> s* "sy:let @/=@s<CR>cgn
 
 " Keyboard Shortcuts and remappings   "
-nnoremap <leader>w :w<CR>
+nnoremap <leader>w :up<CR>
 " cursor not moving left when you exit from insert mode
 inoremap <Esc> <Esc>`^
 "changes with less keystrokes
