@@ -13,7 +13,8 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-projectionist'
-Plug 'tpope/vim-unimpaired'
+" Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-sensible'
 
 "  === vim basic enhancement
 " text obj
@@ -32,11 +33,11 @@ Plug 'kana/vim-gf-user'
 Plug 'othree/eregex.vim'
 
 " Automatically clear search highlights after you move your cursor.
-Plug 'haya14busa/is.vim'
+" Plug 'haya14busa/is.vim'
 " asterisk.vim provides improved * motions
-Plug 'haya14busa/vim-asterisk'
+" Plug 'haya14busa/vim-asterisk'
 " show search status
-Plug 'osyo-manga/vim-anzu'
+" Plug 'osyo-manga/vim-anzu'
 " highlight yank
 Plug 'machakann/vim-highlightedyank'
 
@@ -45,7 +46,7 @@ Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 
 " Handle multi-file find and replace.
-Plug 'mhinz/vim-grepper'
+" Plug 'mhinz/vim-grepper'
 
 " Improved motion in Vim , comment out easymotion as never use it
 " Plug 'easymotion/vim-easymotion'
@@ -105,7 +106,7 @@ Plug 'heavenshell/vim-jsdoc'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
-Plug 'Yggdroot/indentLine'
+" Plug 'Yggdroot/indentLine'
 
 Plug 'rafi/awesome-vim-colorschemes'
 " Dim paragraphs above and below the active paragraph.
@@ -122,6 +123,7 @@ Plug 'honza/vim-snippets'
 " Neovim Tree shitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/playground'
+Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 
 " telescope requirements...
 Plug 'nvim-lua/popup.nvim'
@@ -194,13 +196,18 @@ set signcolumn=yes
 "lua settings
 
 lua <<EOF
-require'nvim-treesitter.configs'.setup {
+require('nvim-treesitter.configs').setup {
   highlight ={
   enable = true,
   custom_captures = {
       -- Highlight the @foo.bar capture group with the "Identifier" highlight group.
       ["foo.bar"] = "Identifier",
     },
+    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+    -- Using this option may slow down your editor, and you may see some duplicate highlights.
+    -- Instead of true it can also be a list of languages
+    additional_vim_regex_highlighting = false,
   },
   incremental_selection = {
     enable = true,
@@ -429,7 +436,8 @@ nmap <leader>n :CocCommand explorer<CR>
 
 " === Vim airline ==== "
 " Enable extensions
-let g:airline_extensions = ['tabline', 'branch', 'hunks', 'coc', 'quickfix', 'unicode', 'vista', 'grepper']
+" let g:airline_extensions = ['tabline', 'branch', 'hunks', 'coc', 'quickfix', 'unicode', 'vista', 'grepper']
+let g:airline_extensions = ['tabline', 'branch', 'hunks', 'coc', 'quickfix', 'unicode', 'vista']
 
 " Update section z to just have line number
 let g:airline_section_z = airline#section#create(['linenr'])
@@ -442,24 +450,24 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#tabline#buffer_nr_show = 1
-let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+" let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 
 " Custom setup that removes filetype/whitespace from default vim airline bar
-let g:airline#extensions#default#layout = [['a', 'b', 'c'], ['x', 'z', 'warning', 'error']]
+" let g:airline#extensions#default#layout = [['a', 'b', 'c'], ['x', 'z', 'warning', 'error']]
 
 let airline#extensions#coc#stl_format_err = '%E{[%e(#%fe)]}'
 
 let airline#extensions#coc#stl_format_warn = '%W{[%w(#%fw)]}'
 
 " Configure error/warning section to use coc.nvim
-let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
-let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
+let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),1)}'
+let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),1)}'
 
 " Disable vim-airline in preview mode
 let g:airline_exclude_preview = 1
 
 " Enable powerline fonts
-let g:airline_powerline_fonts = 1
+" let g:airline_powerline_fonts = 1
 
 " Enable caching of syntax highlighting groups
 let g:airline_highlighting_cache = 1
@@ -469,7 +477,7 @@ let g:airline_symbols = {}
 endif
 
 "  show git changes to current file in airline
-let g:airline#extensions#hunks#enabled=1
+let g:airline#extensions#hunks#enabled=0
 
 
 " .............................................................................
@@ -511,30 +519,30 @@ let g:fzf_commands_expect = 'alt-enter,ctrl-x'
 " mhinz/vim-grepper
 " .............................................................................
 
-let g:grepper={}
-let g:grepper.tools=['rg', 'git']
+" let g:grepper={}
+" let g:grepper.tools=['rg', 'git']
 
-nmap gs <plug>(GrepperOperator)
-xmap gs <plug>(GrepperOperator)
+" nmap gs <plug>(GrepperOperator)
+" xmap gs <plug>(GrepperOperator)
 
-nnoremap <leader>g :Grepper<cr>
-let g:grepper.prompt_mapping_tool = '<leader>g'
+" nnoremap <leader>g :Grepper<cr>
+" let g:grepper.prompt_mapping_tool = '<leader>g'
 
 " After searching for text, press this mapping to do a project wide find and
 " replace. It's similar to <leader>r except this one applies to all matches
 " across all files instead of just the current file.
-nnoremap <Leader>R
-\ :let @s='\<'.expand('<cword>').'\>'<CR>
-\ :Grepper -cword -noprompt<CR>
-\ :cfdo %s/<C-r>s//g \| update
-\<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
+" nnoremap <Leader>R
+" \ :let @s='\<'.expand('<cword>').'\>'<CR>
+" \ :Grepper -cword -noprompt<CR>
+" \ :cfdo %s/<C-r>s//g \| update
+" \<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
 
 " The same as above except it works with a visual selection.
-xmap <Leader>R
-  \ "sy
-  \ gvgs
-  \ :cfdo %s/<C-r>s//g \| update
-   \<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
+" xmap <Leader>R
+"   \ "sy
+"   \ gvgs
+"   \ :cfdo %s/<C-r>s//g \| update
+"    \<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
 
 " === vim-jsdoc shortcuts ==="
 
