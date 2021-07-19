@@ -81,6 +81,8 @@ Plug 'shumphrey/fugitive-gitlab.vim'
 " ====  IDE feature
 " Intellisense Engine
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'voldikss/vim-floaterm'
+
 
 " change buffer name both in vim and filesystem
 Plug 'danro/rename.vim'
@@ -201,6 +203,7 @@ lua <<EOF
 require('nvim-treesitter.configs').setup {
   highlight ={
   enable = true,
+  disable = { },
   custom_captures = {
       -- Highlight the @foo.bar capture group with the "Identifier" highlight group.
       ["foo.bar"] = "Identifier",
@@ -348,7 +351,7 @@ let g:python_host_prog = '$HOME/.pyenv/shims/python2'
 let g:fugitive_gitlab_domains = ['https://gitlab.cochlear.dev']
 
 " === Coc.nvim === "
-let g:coc_global_extensions = ['coc-snippets', 'coc-markdownlint', 'coc-sh', 'coc-vimlsp', 'coc-rust-analyzer', 'coc-highlight', 'coc-yank', 'coc-eslint', 'coc-yaml', 'coc-prettier', 'coc-tsserver', 'coc-json', 'coc-git', 'coc-dictionary', 'coc-word', 'coc-tag', 'coc-swagger', 'coc-calc', 'coc-explorer']
+let g:coc_global_extensions = ['coc-floaterm','coc-snippets', 'coc-markdownlint', 'coc-sh', 'coc-vimlsp', 'coc-rust-analyzer', 'coc-highlight', 'coc-yank', 'coc-eslint', 'coc-yaml', 'coc-prettier', 'coc-tsserver', 'coc-json', 'coc-git', 'coc-dictionary', 'coc-word', 'coc-tag', 'coc-swagger', 'coc-calc', 'coc-explorer']
 
 " Use `[g` and `]g` to navigate diagnostics
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
@@ -539,6 +542,13 @@ let g:airline#extensions#hunks#enabled=0
 " .............................................................................
 let $FZF_DEFAULT_OPTS = '--bind ctrl-a:select-all'
 
+" This is the default option:
+"   - Preview window on the right with 50% width
+"   - CTRL-/ will toggle preview window.
+" - Note that this array is passed as arguments to fzf#vim#with_preview function.
+" - To learn more about preview window options, see `--preview-window` section of `man fzf`.
+let g:fzf_preview_window = ['right:50%', 'ctrl-/']
+
 let g:fzf_action = {
 \ 'ctrl-t': 'tab split',
 \ 'ctrl-x': 'split',
@@ -550,7 +560,10 @@ nnoremap <silent> <C-p> :FZF -m ~<CR>
 
 " Allow passing optional flags into the Rg command.
 "   Example: :Rg myterm -g '*.md'
-command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case " . <q-args>, 1, <bang>0)
+" without preview
+" command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case " . <q-args>, 1, <bang>0)
+" with preview
+command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case " . <q-args>, 1, fzf#vim#with_preview(), <bang>0)
 
 " Empty value to disable preview window altogether
 " let g:fzf_preview_window = ''
