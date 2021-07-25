@@ -44,11 +44,8 @@ Plug 'machakann/vim-highlightedyank'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 
-" Handle multi-file find and replace.
-Plug 'mhinz/vim-grepper'
-
-" Improved motion in Vim , comment out easymotion as never use it
-" Plug 'easymotion/vim-easymotion'
+Plug 'vim-autoformat/vim-autoformat'
+Plug 'dense-analysis/ale'
 
 " Run a diff on 2 directories.
 Plug 'will133/vim-dirdiff'
@@ -56,12 +53,10 @@ Plug 'will133/vim-dirdiff'
 Plug 'AndrewRadev/linediff.vim'
 
 " File explorer
-" turn off nerdtree, to try out coc explore
 Plug 'scrooloose/nerdtree'
 Plug 'PhilRunninger/nerdtree-buffer-ops'
-Plug 'Xuyuanp/nerdtree-git-plugin'
 
-Plug 'vifm/vifm.vim'
+" Plug 'vifm/vifm.vim'
 
 " Syntax highlighting language pack for vim
 Plug 'sheerun/vim-polyglot'
@@ -69,7 +64,8 @@ Plug 'rust-lang/rust.vim'
 
 " === Git Plugins === "
 " Enable git changes to be shown in sign column
-Plug 'airblade/vim-gitgutter'
+" Plug 'airblade/vim-gitgutter'
+Plug 'mhinz/vim-signify'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 " git commit browse
@@ -79,11 +75,10 @@ Plug 'sodapopcan/vim-twiggy'
 Plug 'shumphrey/fugitive-gitlab.vim'
 
 " ====  IDE feature
-" Intellisense Engine
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'voldikss/vim-floaterm'
 
 " change buffer name both in vim and filesystem
-Plug 'danro/rename.vim'
+" Plug 'danro/rename.vim'
 
 " auto generate tags file
 Plug 'ludovicchabant/vim-gutentags'
@@ -115,15 +110,12 @@ Plug 'junegunn/limelight.vim'
 Plug 'junegunn/goyo.vim'
 
 " doc hub
-Plug 'rizzatti/dash.vim'
+" Plug 'rizzatti/dash.vim'
 " experience
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 Plug 'honza/vim-snippets'
-" search
-" tbd
-" Plug 'neovim/nvim-lspconfig'
-" Initialize plugin system
 
+"
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
@@ -135,7 +127,7 @@ Plug 'nvim-treesitter/playground'
 
 " using neovim native lsp and autocomplete
 Plug 'neovim/nvim-lspconfig'
-Plug 'glepnir/lspsaga.nvim'
+" Plug 'glepnir/lspsaga.nvim'
 Plug 'hrsh7th/nvim-compe'
 
 call plug#end()
@@ -143,6 +135,8 @@ call plug#end()
 " ============================================================================ "
 " ===                           EDITING OPTIONS                            === "
 " ============================================================================ "
+
+let verbose=1
 
 " Remap leader key to ,
 let g:mapleader=','
@@ -185,20 +179,306 @@ set cmdheight=2
 " === Completion Settings === "
 " Don't give completion messages like 'match 1 of 2'
 " or 'The only match'
-" from coc, Don't pass messages to |ins-completion-menu|.
-set shortmess+=c
+" set shortmess+=c
+" au BufWrite * :Autoformat
 
 " Timeout of user inactivity. Used to save swap file, and by vim-gitgutter plugin
 " You will have bad experience for cmc diagnostic messages when it's default 4000.
-set updatetime=300
+set updatetime=100
 
 " always show signcolumns
-set signcolumn=yes
+set signcolumn=yes:2
 
+" In many terminal emulators the mouse works just fine.  By enabling it you
+" can position the cursor, Visually select and scroll with the mouse.
+if has('mouse')
+  set mouse=a
+endif
+
+nnoremap <silent> <BS> :nohlsearch<CR>
+"format file
+" nnoremap <silent> <leader>f :Autoformat<CR>
 
 " ============================================================================ "
 " ===                           PLUGIN SETUP                               === "
 " ============================================================================ "
+
+"ALE settings:
+let g:ale_disable_lsp = 1
+
+" Only run linters named in ale_linters settings.
+let g:ale_linters_explicit = 1
+
+" In ~/.vim/vimrc, or somewhere similar.
+let g:ale_linters = { 'javascript': ['eslint'] }
+
+" In ~/.vim/vimrc, or somewhere similar.
+let g:ale_fixers = { '*': ['remove_trailing_lines', 'trim_whitespace'],    'javascript': ['eslint','prettier'] }
+
+
+lua <<EOF
+
+-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% treesitter setting %%%%%%%%%%%%%%%%%%
+
+require('nvim-treesitter.configs').setup {
+ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+-- k turn off this comment not sure
+-- ignore_install = { "javascript" }, -- List of parsers to ignore installing
+highlight ={
+  enable = true,
+  disable = { },
+  custom_captures = {
+    -- Highlight the @foo.bar capture group with the "Identifier" highlight group.
+    ["foo.bar"] = "Identifier",
+    },
+  -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+  -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+  -- Using this option may slow down your editor, and you may see some duplicate highlights.
+  -- Instead of true it can also be a list of languages
+  additional_vim_regex_highlighting = false,
+  },
+incremental_selection = {
+enable = true,
+keymaps = {
+  init_selection = "gnn",
+  node_incremental = "gnr",
+  scope_incremental = "gnc",
+  node_decremental = "gnd",
+  },
+},
+textobjects = {
+  move = {
+  enable = true,
+  set_jumps = true, -- whether to set jumps in the jumplist
+  goto_next_start = {
+    ["]m"] = "@function.outer",
+    ["]]"] = "@class.outer",
+    },
+  goto_next_end = {
+    ["]M"] = "@function.outer",
+    ["]["] = "@class.outer",
+    },
+  goto_previous_start = {
+    ["[m"] = "@function.outer",
+    ["[["] = "@class.outer",
+    },
+  goto_previous_end = {
+    ["[M"] = "@function.outer",
+    ["[]"] = "@class.outer",
+    },
+  },
+},
+}
+
+-- %%%%%%%%%%%%%%%%%%% Telescope setting %%%%%%%%%%%%%%%%%%%%%%%
+
+require('telescope').setup{
+defaults = {
+  vimgrep_arguments = {
+    'rg',
+    '--color=never',
+    '--no-heading',
+    '--with-filename',
+    '--line-number',
+    '--column',
+    '--smart-case'
+    },
+  prompt_prefix = "> ",
+  selection_caret = "> ",
+entry_prefix = "  ",
+initial_mode = "insert",
+selection_strategy = "reset",
+sorting_strategy = "descending",
+layout_strategy = "horizontal",
+layout_config = {
+  horizontal = {
+    mirror = false,
+    },
+  vertical = {
+    mirror = false,
+    },
+  },
+file_sorter =  require'telescope.sorters'.get_fuzzy_file,
+file_ignore_patterns = {},
+generic_sorter =  require'telescope.sorters'.get_generic_fuzzy_sorter,
+winblend = 0,
+border = {},
+borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
+color_devicons = true,
+use_less = true,
+path_display = {},
+set_env = { ['COLORTERM'] = 'truecolor' }, -- default = nil,
+file_previewer = require'telescope.previewers'.vim_buffer_cat.new,
+grep_previewer = require'telescope.previewers'.vim_buffer_vimgrep.new,
+qflist_previewer = require'telescope.previewers'.vim_buffer_qflist.new,
+
+-- Developer configurations: Not meant for general override
+buffer_previewer_maker = require'telescope.previewers'.buffer_previewer_maker
+},
+  extensions = {
+    fzf = {
+      fuzzy = true,                    -- false will only do exact matching
+      override_generic_sorter = false, -- override the generic sorter
+      override_file_sorter = true,     -- override the file sorter
+      case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
+      -- the default case_mode is "smart_case"
+      }
+    }
+  }
+
+-- This will load fzy_native and have it override the default file sorter
+require('telescope').load_extension('fzf')
+
+-- %%%%%%%%%%%%%%%%%%% LSP setting %%%%%%%%%%%%%%%%%%%%%%%
+-- my correct setting to turn on js and viml lsp
+local nvim_lsp = require('lspconfig')
+
+nvim_lsp.tsserver.setup{}
+nvim_lsp.vimls.setup{}
+nvim_lsp.bashls.setup{}
+nvim_lsp.yamlls.setup{}
+
+vim.lsp.set_log_level("debug")
+-- Use an on_attach function to only map the following keys
+-- after the language server attaches to the current buffer
+local on_attach = function(client, bufnr)
+local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+
+--Enable completion triggered by <c-x><c-o>
+buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+-- Mappings.
+local opts = { noremap=true, silent=true }
+
+-- See `:help vim.lsp.*` for documentation on any of the below functions
+buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
+buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
+buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
+buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+--  buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+
+end
+
+-- Use a loop to conveniently call 'setup' on multiple servers and
+-- map buffer local keybindings when the language server attaches
+local servers = { "tsserver", "vimls", "bashls", "yamlls" }
+for _, lsp in ipairs(servers) do
+  nvim_lsp[lsp].setup {
+    on_attach = on_attach,
+    flags = {
+      debounce_text_changes = 150,
+      }
+    }
+end
+
+-- %%%%%%%%%%%%%%%%%%%%%%% compe setting %%%%%%%%%%%%%%%
+
+vim.o.completeopt = "menuone,noselect"
+
+require'compe'.setup {
+enabled = true;
+autocomplete = true;
+debug = false;
+min_length = 1;
+preselect = 'enable';
+throttle_time = 80;
+source_timeout = 200;
+resolve_timeout = 800;
+incomplete_delay = 400;
+max_abbr_width = 100;
+max_kind_width = 100;
+max_menu_width = 100;
+documentation = {
+  border = { '', '' ,'', ' ', '', '', '', ' ' }, -- the border option is the same as `|help nvim_open_win|`
+  winhighlight = "NormalFloat:CompeDocumentation,FloatBorder:CompeDocumentationBorder",
+  max_width = 120,
+  min_width = 60,
+  max_height = math.floor(vim.o.lines * 0.3),
+  min_height = 1,
+  };
+
+source = {
+  path = true;
+  buffer = true;
+  calc = true;
+  nvim_lsp = true;
+  nvim_lua = true;
+  vsnip = true;
+  ultisnips = true;
+  luasnip = true;
+  };
+}
+
+local t = function(str)
+return vim.api.nvim_replace_termcodes(str, true, true, true)
+end
+
+local check_back_space = function()
+local col = vim.fn.col('.') - 1
+return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') ~= nil
+end
+
+-- Use (s-)tab to:
+--- move to prev/next item in completion menuone
+--- jump to prev/next snippet's placeholder
+_G.tab_complete = function()
+if vim.fn.pumvisible() == 1 then
+  return t "<C-n>"
+elseif vim.fn['vsnip#available'](1) == 1 then
+  return t "<Plug>(vsnip-expand-or-jump)"
+elseif check_back_space() then
+  return t "<Tab>"
+else
+  return vim.fn['compe#complete']()
+end
+end
+_G.s_tab_complete = function()
+if vim.fn.pumvisible() == 1 then
+  return t "<C-p>"
+elseif vim.fn['vsnip#jumpable'](-1) == 1 then
+  return t "<Plug>(vsnip-jump-prev)"
+else
+  -- If <S-Tab> is not working in your terminal, change it to <C-h>
+  return t "<S-Tab>"
+end
+end
+
+vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
+vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
+vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
+vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
+
+
+-- %%%%%%%%%%%%%%%%%%%%%%% setting %%%%%%%%%%%%%%%
+
+EOF
+
+" telescope mapping
+nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
+nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
+nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
+nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
+
+" compe mapping
+inoremap <silent><expr> <C-Space> compe#complete()
+inoremap <silent><expr> <CR>      compe#confirm('<CR>')
+inoremap <silent><expr> <C-e>     compe#close('<C-e>')
+inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
+inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
+
 " let g:loaded_python_provider = 0
 " let g:loaded_python3_provider = 1
 let g:python3_host_prog = '$HOME/.pyenv/shims/python'
@@ -206,155 +486,12 @@ let g:python_host_prog = '$HOME/.pyenv/shims/python2'
 
 " === fugitive.nvim === "
 let g:fugitive_gitlab_domains = ['https://gitlab.cochlear.dev']
-
-" === Coc.nvim === "
-"let g:coc_global_extensions = ['coc-snippets', 'coc-markdownlint', 'coc-sh', 'coc-vimlsp', 'coc-rust-analyzer', 'coc-highlight', 'coc-yank', 'coc-eslint', 'coc-yaml', 'coc-prettier', 'coc-tsserver', 'coc-json', 'coc-git', 'coc-dictionary', 'coc-word', 'coc-tag', 'coc-swagger', 'coc-calc', 'coc-explorer']
-
-"" Use `[g` and `]g` to navigate diagnostics
-"nmap <silent> [g <Plug>(coc-diagnostic-prev)
-"nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-"" Remap keys for gotos
-"nmap <silent> gd <Plug>(coc-definition)
-"nmap <silent> gy <Plug>(coc-type-definition)
-"nmap <silent> gi <Plug>(coc-implementation)
-"nmap <silent> gr <Plug>(coc-references)
-
-"command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')
-
-"" Use K to show documentation in preview window
-"nmap <silent> K :call <SID>show_documentation()<CR>
-
-"function! s:show_documentation()
-"  if (index(['vim','help'], &filetype) >= 0)
-"    execute 'h '.expand('<cword>')
-"  elseif (coc#rpc#ready())
-"    call CocActionAsync('doHover')
-"  else
-"    execute '!' . &keywordprg . " " . expand('<cword>')
-"  endif
-"endfunction
-
-"" use <cr> to confirm completion, `<c-g>u` means break undo chain at current
-"" position. Coc only does snippet and additional edit on confirm.
-"if exists('*complete_info')
-"  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
-"else
-"  imap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-"endif
-
-"" use <tab> for trigger completion with characters ahead and navigate
-"" NOPlug 'honza/vim-snippets'TE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
-"" other plugin before putting this into your config.
-"inoremap <silent><expr> <TAB>
-"    \ pumvisible() ? "\<C-n>" :
-"    \ <SID>check_back_space() ? "\<TAB>" :
-"    \ coc#refresh()
-"inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-"function! s:check_back_space() abort
-"  let col = col('.') - 1
-"  return !col || getline('.')[col - 1]  =~# '\s'
-"endfunction
-
-"" Highlight the symbol and its references when holding the cursor.
-"autocmd CursorHold * silent call CocActionAsync('highlight')
-
-"" Symbol renaming 
-"nmap <leader>rn <Plug>(coc-rename)
-
-"" Remap for format selected region
-"xmap <leader>f  <Plug>(coc-format-selected)
-"nmap <leader>f  <Plug>(coc-format-selected)
-
-"augroup mycocgroup
-"  autocmd!
-"  " Setup formatexpr specified filetype(s).
-"  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-"  " Update signature help on jump placeholder
-"  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-"augroup end
-
-"" Applying codeAction to the selected region, ex: `<leader>aap` for current paragraph
-"xmap <leader>a  <Plug>(coc-codeaction-selected)
-"nmap <leader>a  <Plug>(coc-codeaction-selected)
-
-"" Remap for do codeAction of current line
-"nmap <leader>ac  <Plug>(coc-codeaction)
-"" Fix autofix problem of current line
-"nmap <space>f  <Plug>(coc-fix-current)
-
-"" Create mappings for function text object, requires document symbols feature of languageserver.
-"xmap if <Plug>(coc-funcobj-i)
-"xmap af <Plug>(coc-funcobj-a)
-"omap if <Plug>(coc-funcobj-i)
-"omap af <Plug>(coc-funcobj-a)
-
-"" Use <C-d> for select selections ranges, needs server support, like: coc-tsserver, coc-python
-"nmap <silent> <C-d> <Plug>(coc-range-select)
-"xmap <silent> <C-d> <Plug>(coc-range-select)
-
-"" Use `:Format` to format current buffer
-"command! -nargs=0 Format :call CocAction('format')
-
-"" Use `:Fold` to fold current buffer
-"command! -nargs=? Fold :call     CocAction('fold', <f-args>)
-
-"" use `:OR` for organize import of current buffer
-"command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
-
-"" Add status line support, for integration with other plugin, checkout `:h coc-status` TODO believe airline is auto done
-"set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-
-"" Using CocList
-"" Show all diagnostics
-"nmap <silent> <space>a  :<C-u>CocList diagnostics<cr>
-"" Manage extensions
-"nmap <silent> <space>e  :<C-u>CocList extensions<cr>
-"" Show commands
-"nmap <silent> <space>c  :<C-u>CocList commands<cr>
-"" Find symbol of current document
-"nmap <silent> <space>o  :<C-u>CocList outline<cr>
-"" Search workspace symbols
-"nmap <silent> <space>s  :<C-u>CocList -I symbols<cr>
-"" Do default action for next item.
-"nmap <silent> <space>j  :<C-u>CocNext<CR>
-"" Do default action for previous item.
-"nmap <silent> <space>k  :<C-u>CocPrev<CR>
-"" Resume latest coc list
-"nmap <silent> <space>p  :<C-u>CocListResume<CR>
-
-
-""coc snippets setting:
-"" Use <C-l> for trigger snippet expand.
-"imap <C-l> <Plug>(coc-snippets-expand)
-
-"" Use <C-j> for select text for visual placeholder of snippet.
-"vmap <C-j> <Plug>(coc-snippets-select)
-
-"" Use <C-j> for jump to next placeholder, it's default of coc.nvim
-"let g:coc_snippet_next = '<c-j>'
-
-"" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
-"let g:coc_snippet_prev = '<c-k>'
-
-"" Use <C-j> for both expand and jump (make expand higher priority.)
-"imap <C-j> <Plug>(coc-snippets-expand-jump)
-
-"" Use <leader>x for convert visual selected code to snippet
-"xmap <leader>x  <Plug>(coc-convert-snippet)
-
-"" replace shortcut using coc explore
-"nmap <leader>n :CocCommand explorer<CR>
-
-
-" === Vim NERTTree ==== "
 nmap <leader>n :NERDTreeToggle<CR>
+
 
 " === Vim airline ==== "
 " Enable extensions
-" let g:airline_extensions = ['tabline', 'branch', 'hunks', 'coc', 'quickfix', 'unicode', 'vista', 'grepper']
-let g:airline_extensions = ['tabline', 'branch', 'hunks', 'quickfix', 'unicode', 'vista', 'grepper']
+let g:airline_extensions = ['ale', 'tabline', 'branch', 'hunks', 'quickfix', 'unicode', 'vista']
 
 " Update section z to just have line number
 let g:airline_section_z = airline#section#create(['linenr'])
@@ -372,14 +509,6 @@ let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 " Custom setup that removes filetype/whitespace from default vim airline bar
 let g:airline#extensions#default#layout = [['a', 'b', 'c'], ['x', 'z', 'warning', 'error']]
 
-" let airline#extensions#coc#stl_format_err = '%E{[%e(#%fe)]}'
-
-" let airline#extensions#coc#stl_format_warn = '%W{[%w(#%fw)]}'
-
-" Configure error/warning section to use coc.nvim
-" let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
-" let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
-
 " Disable vim-airline in preview mode
 let g:airline_exclude_preview = 1
 
@@ -390,7 +519,7 @@ let g:airline_powerline_fonts = 1
 let g:airline_highlighting_cache = 1
 " Define custom airline symbols
 if !exists('g:airline_symbols')
-let g:airline_symbols = {}
+  let g:airline_symbols = {}
 endif
 
 "  show git changes to current file in airline
@@ -403,10 +532,10 @@ let g:airline#extensions#hunks#enabled=1
 let $FZF_DEFAULT_OPTS = '--bind ctrl-a:select-all'
 
 let g:fzf_action = {
-\ 'ctrl-t': 'tab split',
-\ 'ctrl-x': 'split',
-\ 'ctrl-v': 'vsplit',
-\ 'ctrl-y': {lines -> setreg('*', join(lines, "\n"))}}
+      \ 'ctrl-t': 'tab split',
+      \ 'ctrl-x': 'split',
+      \ 'ctrl-v': 'vsplit',
+      \ 'ctrl-y': {lines -> setreg('*', join(lines, "\n"))}}
 
 " Launch fzf with CTRL+_.
 nnoremap <silent> <C-_> :FZF -m<CR>
@@ -432,145 +561,13 @@ let g:fzf_tags_command = 'ctags -R'
 " [Commands] --expect expression for directly executing the command
 let g:fzf_commands_expect = 'alt-enter,ctrl-x'
 
-" .............................................................................
-" mhinz/vim-grepper
-" .............................................................................
-
-let g:grepper={}
-let g:grepper.tools=['rg', 'git']
-
-nmap gs <plug>(GrepperOperator)
-xmap gs <plug>(GrepperOperator)
-
-nnoremap <leader>g :Grepper<cr>
-let g:grepper.prompt_mapping_tool = '<leader>g'
-
-" After searching for text, press this mapping to do a project wide find and
-" replace. It's similar to <leader>r except this one applies to all matches
-" across all files instead of just the current file.
-nnoremap <Leader>R
-\ :let @s='\<'.expand('<cword>').'\>'<CR>
-\ :Grepper -cword -noprompt<CR>
-\ :cfdo %s/<C-r>s//g \| update
-\<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
-
-" The same as above except it works with a visual selection.
-xmap <Leader>R
-  \ "sy
-  \ gvgs
-  \ :cfdo %s/<C-r>s//g \| update
-   \<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
-
-" === vim-jsdoc shortcuts ==="
-
-" Generate jsdoc for function under cursor
-nnoremap <leader>z :JsDoc<CR>
 
 " ctag gutentags config
 " set tmp folder for ctags used
 " g:gutentags_cache_dir = '$HOME/.config/nvim/.tmp'
 
-" Telescope setting:
-" Using Lua functions
-nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
-nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
-nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
-nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
-
-lua << EOF
-require('telescope').setup{
-  extensions = {
-    fzf = {
-      fuzzy = true,                    -- false will only do exact matching
-      override_generic_sorter = false, -- override the generic sorter
-      override_file_sorter = true,     -- override the file sorter
-      case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
-                                       -- the default case_mode is "smart_case"
-    }
-  }
-}
--- To get fzf loaded and working with telescope, you need to call
--- load_extension, somewhere after setup function:
-require('telescope').load_extension('fzf')
-
-require'nvim-treesitter.configs'.setup {
-  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-  -- k turn off this comment not sure
- -- ignore_install = { "javascript" }, -- List of parsers to ignore installing
-  highlight = {
-    enable = true,              -- false will disable the whole extension
-    -- disable = { "c", "rust" },  -- list of language that will be disabled
-  },
-}
-
-require'lspconfig'.tsserver.setup{}
-require'lspconfig'.vimls.setup{}
-require'lspconfig'.yamlls.setup{}
-require'lspconfig'.jsonls.setup {
-    commands = {
-      Format = {
-        function()
-          vim.lsp.buf.range_formatting({},{0,0},{vim.fn.line("$"),0})
-        end
-      }
-    }
-}
-
-require'lspconfig'.graphql.setup{}
-require'lspconfig'.dockerls.setup{}
-require'lspconfig'.bashls.setup{}
 
 
---Enable (broadcasting) snippet capability for completion
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-
-require'lspconfig'.html.setup {
-  capabilities = capabilities,
-}
-require'lspconfig'.cssls.setup {
-  capabilities = capabilities,
-}
-
-
--- lsp saga setting
-local saga = require 'lspsaga'
-saga.init_lsp_saga()
-
-
-EOF
-
-"===== Vim lsp saga ======"
-nnoremap <silent> gh :Lspsaga lsp_finder<CR>
-nnoremap <silent><leader>ca :Lspsaga code_action<CR>
-vnoremap <silent><leader>ca :<C-U>Lspsaga range_code_action<CR>
-nnoremap <silent>K :Lspsaga hover_doc<CR>
-"scroll down hover doc or scroll in definition preview
-nnoremap <silent> <C-f> <cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>
-"scroll up hover doc
-nnoremap <silent> <C-b> <cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>
-nnoremap <silent> gs :Lspsaga signature_help<CR>
-nnoremap <silent>gr :Lspsaga rename<CR>
-nnoremap <silent> gd :Lspsaga preview_definition<CR>
-nnoremap <silent> <leader>cd :Lspsaga show_line_diagnostics<CR>
-" only show diagnostic if cursor is over the area
-nnoremap <silent><leader>cc <cmd>lua require'lspsaga.diagnostic'.show_cursor_diagnostics()<CR>
-" jump diagnostic
-nnoremap <silent> [e :Lspsaga diagnostic_jump_next<CR>
-nnoremap <silent> ]e :Lspsaga diagnostic_jump_prev<CR>
-" float terminal
-nnoremap <silent> <A-d> :Lspsaga open_floaterm<CR>
-tnoremap <silent> <A-d> <C-\><C-n>:Lspsaga close_floaterm<CR>
-
-"===== Vim lsconfig ======"
-" nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
-" nnoremap <silent> gD <cmd>lua vim.lsp.buf.declaration()<CR>
-" nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
-" nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>
-" nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
-" nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
-" nnoremap <silent> <C-n> <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
-" nnoremap <silent> <C-p> <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
 
 
 " ============================================================================ "
@@ -583,9 +580,9 @@ set termguicolors
 " Editor theme
 set background=dark
 try
-colorscheme OceanicNext
+  colorscheme OceanicNext
 catch
-colorscheme slate
+  colorscheme slate
 endtry
 
 " Vim airline theme
@@ -594,14 +591,14 @@ endtry
 " Add custom highlights in method that is executed every time a colorscheme is sourced
 " See https://gist.github.com/romainl/379904f91fa40533175dfaec4c833f2f for details
 function! MyHighlights() abort
-" Hightlight trailing whitespace
-highlight Trail ctermbg=red guibg=red
-call matchadd('Trail', '\s\+$', 100)
+  " Hightlight trailing whitespace
+  highlight Trail ctermbg=red guibg=red
+  call matchadd('Trail', '\s\+$', 100)
 endfunction
 
 augroup MyColors
-autocmd!
-autocmd ColorScheme * call MyHighlights()
+  autocmd!
+  autocmd ColorScheme * call MyHighlights()
 augroup END
 
 " Change vertical split character to be a space (essentially hide it)
@@ -616,10 +613,6 @@ set noshowmode
 " Set floating window to be slightly transparent
 set winbl=10
 
-" " coc.nvim color changes
-" hi! link CocErrorSign WarningMsg
-" hi! link CocWarningSign Number
-" hi! link CocInfoSign Type
 
 " Make background transparent for many things
 hi! Normal ctermbg=NONE guibg=NONE
@@ -637,36 +630,42 @@ hi! EndOfBuffer ctermbg=NONE ctermfg=NONE guibg=#17252c guifg=#17252c
 hi! NERDTreeCWD guifg=#99c794
 
 " Make background color transparent for git changes
-hi! SignifySignAdd guibg=NONE
-hi! SignifySignDelete guibg=NONE
-hi! SignifySignChange guibg=NONE
+" hi! SignifySignAdd guibg=NONE
+" hi! SignifySignDelete guibg=NONE
+" hi! SignifySignChange guibg=NONE
 
 " Highlight git change signs
-hi! SignifySignAdd guifg=#99c794
-hi! SignifySignDelete guifg=#ec5f67
-hi! SignifySignChange guifg=#c594c5
+" hi! SignifySignAdd guifg=#99c794
+" hi! SignifySignDelete guifg=#ec5f67
+" hi! SignifySignChange guifg=#c594c5
 
 " Call method on window enter
 augroup WindowManagement
-autocmd!
-autocmd WinEnter * call Handle_Win_Enter()
+  autocmd!
+  autocmd WinEnter * call Handle_Win_Enter()
+
+  "Autoformat buffer while write, setting use Autoformat
+  au BufWrite * :Autoformat
 augroup END
 
 " Change highlight group of preview window when open
 function! Handle_Win_Enter()
-if &previewwindow
-  setlocal winhighlight=Normal:MarkdownError
-endif
+  if &previewwindow
+    setlocal winhighlight=Normal:MarkdownError
+  endif
 endfunction
 
 " ============================================================================ "
 " ===                             KEY MAPPINGS                             === "
 " ============================================================================ "
 nnoremap ; :
+
 nnoremap <silent> <tab> :bnext<cr>
 nnoremap <silent> <s-tab> :bprevious<cr>
 nnoremap <leader>x :bd<cr>
 
+" cursor not moving left when you exit from insert mode
+inoremap <Esc> <Esc>`^
 " quick map for escape and save
 nnoremap <leader>w :w<CR>
 inoremap kk <ESC>`^
@@ -682,10 +681,6 @@ noremap Y y$
 " move up/down virtual selected lines
 xnoremap K :move '<-2<CR>gv-gv
 xnoremap J :move '>+1<CR>gv-gv
-
-" create window size by 1.5 ; decreate window size by 0.67
-nnoremap <silent> <Leader>+ :exe "resize " . (winheight(0) * 3/2)<CR>
-nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
 
 " use arrow key to resize window
 nnoremap <Up> :resize +2<CR>
@@ -711,12 +706,6 @@ nnoremap <leader>h <C-W>h
 nnoremap <leader>j <C-W>j
 nnoremap <leader>k <C-W>k
 nnoremap <leader>l <C-W>l
-
-"   <Space> - PageDown
-"   -       - PageUp
-" noremap <Space> <PageDown>
-" TODO below seems not working
-"noremap - <PageUp>
 
 " Quick editing
 
@@ -777,13 +766,12 @@ vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 
 " Only show the cursor line in the active buffer.
 augroup CursorLine
-    au!
-    au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
-    au WinLeave * setlocal nocursorline
-    " Automaticaly close nvim if NERDTree is only thing left open
-    autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+  au!
+  au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+  au WinLeave * setlocal nocursorline
+  " Automaticaly close nvim if NERDTree is only thing left open
+  autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 augroup END
-
 
 " === Search === "
 " ignore case when searching
