@@ -127,7 +127,7 @@ Plug 'nvim-treesitter/playground'
 
 " using neovim native lsp and autocomplete
 Plug 'neovim/nvim-lspconfig'
-" Plug 'glepnir/lspsaga.nvim'
+Plug 'glepnir/lspsaga.nvim'
 Plug 'hrsh7th/nvim-compe'
 
 call plug#end()
@@ -462,7 +462,9 @@ vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 
 
--- %%%%%%%%%%%%%%%%%%%%%%% setting %%%%%%%%%%%%%%%
+-- %%%%%%%%%%%%%%%%%%%%%%% saga setting %%%%%%%%%%%%%%%
+local saga = require 'lspsaga'
+saga.init_lsp_saga()
 
 EOF
 
@@ -479,7 +481,20 @@ inoremap <silent><expr> <C-e>     compe#close('<C-e>')
 inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
 inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
 
-" let g:loaded_python_provider = 0
+" saga mapping
+" finder window stay forever, bug not fixed yet
+" nnoremap <silent> gh :Lspsaga lsp_finder<CR>
+nnoremap <silent><leader>cc <cmd>lua require'lspsaga.diagnostic'.show_cursor_diagnostics()<CR>
+
+" jump diagnostic
+nnoremap <silent> [e <cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_prev()<CR>
+nnoremap <silent> ]e <cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_next()<CR>
+
+"floating terminal
+nnoremap <silent> <A-d> :Lspsaga open_floaterm<CR>
+tnoremap <silent> <A-d> <C-\><C-n>:Lspsaga close_floaterm<CR>
+
+" let g:loaded_python_provider = 1
 " let g:loaded_python3_provider = 1
 let g:python3_host_prog = '$HOME/.pyenv/shims/python'
 let g:python_host_prog = '$HOME/.pyenv/shims/python2'
