@@ -44,7 +44,9 @@ Plug 'machakann/vim-highlightedyank'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 
-Plug 'vim-autoformat/vim-autoformat'
+" Plug 'sbdchd/neoformat'
+
+" Plug 'vim-autoformat/vim-autoformat'
 Plug 'dense-analysis/ale'
 
 " Run a diff on 2 directories.
@@ -123,6 +125,7 @@ Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 
 " tree sitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
+Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'nvim-treesitter/playground'
 
 " using neovim native lsp and autocomplete
@@ -204,17 +207,29 @@ nnoremap <silent> <BS> :nohlsearch<CR>
 " ============================================================================ "
 
 "ALE settings:
+let g:ale_fix_on_save = 1
+
 let g:ale_disable_lsp = 1
 
 " Only run linters named in ale_linters settings.
 let g:ale_linters_explicit = 1
 
-" In ~/.vim/vimrc, or somewhere similar.
-let g:ale_linters = { 'javascript': ['eslint'] }
+let g:ale_sign_error = '✘'
+let g:ale_sign_warning = '⚠'
+
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 
 " In ~/.vim/vimrc, or somewhere similar.
-let g:ale_fixers = { '*': ['remove_trailing_lines', 'trim_whitespace'],    'javascript': ['eslint','prettier'] }
+let g:ale_linters = {'markdown':'markdownlint', 'javascript': ['eslint'] , 'json': ['jq', 'jsonlint'], 'yaml': ['yamllint', 'swaglint'], 'vim': ['vint']}
 
+" In ~/.vim/vimrc, or somewhere similar.
+let g:ale_fixers = { '*': ['remove_trailing_lines', 'trim_whitespace'],'javascript': ['eslint','prettier'] ,'json':['jq','prettier', 'trim_whitespace'], 'yaml':['trim_whitespace','prettier', 'yamlfix']}
+
+nmap <silent> <space>k <Plug>(ale_previous_wrap)
+nmap <silent> <space>j <Plug>(ale_next_wrap)
 
 lua <<EOF
 
@@ -595,6 +610,7 @@ set termguicolors
 " Editor theme
 set background=dark
 try
+  " colorscheme gruvbox
   colorscheme OceanicNext
 catch
   colorscheme slate
@@ -660,7 +676,7 @@ augroup WindowManagement
   autocmd WinEnter * call Handle_Win_Enter()
 
   "Autoformat buffer while write, setting use Autoformat
-  au BufWrite * :Autoformat
+  " au BufWrite * :Autoformat
 augroup END
 
 " Change highlight group of preview window when open
@@ -851,4 +867,3 @@ if !exists(':DiffOrig')
   command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
         \ | wincmd p | diffthis
 endif
-
