@@ -46,7 +46,6 @@ Plug 'junegunn/fzf.vim'
 
 " Plug 'sbdchd/neoformat'
 
-" Plug 'vim-autoformat/vim-autoformat'
 Plug 'dense-analysis/ale'
 
 " Run a diff on 2 directories.
@@ -195,7 +194,6 @@ set cmdheight=2
 " Don't give completion messages like 'match 1 of 2'
 " or 'The only match'
 " set shortmess+=c
-" au BufWrite * :Autoformat
 
 " Timeout of user inactivity. Used to save swap file, and by vim-gitgutter plugin
 " You will have bad experience for cmc diagnostic messages when it's default 4000.
@@ -211,8 +209,6 @@ if has('mouse')
 endif
 
 nnoremap <silent> <BS> :nohlsearch<CR>
-"format file
-" nnoremap <silent> <leader>f :Autoformat<CR>
 
 " ============================================================================ "
 " ===                           PLUGIN SETUP                               === "
@@ -546,6 +542,9 @@ nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
 nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
 nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
 nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
+nnoremap <leader>fc <cmd>lua require('telescope.builtin').commands()<cr>
+nnoremap <leader>fs <cmd>lua require('telescope.builtin').colorscheme()<cr>
+nnoremap <leader>ca <cmd>lua require('telescope.builtin').lsp_code_actions()<cr>
 
 " compe mapping
 inoremap <silent><expr> <C-Space> compe#complete()
@@ -628,7 +627,7 @@ let g:fzf_action = {
       \ 'ctrl-y': {lines -> setreg('*', join(lines, "\n"))}}
 
 " Launch fzf with CTRL+_.
-nnoremap <silent> <C-_> :FZF -m<CR>
+nnoremap <silent> <C-_> :FZF -m ~<CR>
 
 " Allow passing optional flags into the Rg command.
 "   Example: :Rg myterm -g '*.md'
@@ -730,8 +729,6 @@ augroup WindowManagement
   autocmd!
   autocmd WinEnter * call Handle_Win_Enter()
 
-  "Autoformat buffer while write, setting use Autoformat
-  " au BufWrite * :Autoformat
 augroup END
 
 " Change highlight group of preview window when open
@@ -781,8 +778,6 @@ nnoremap <silent> <leader>m :only<CR>
 nnoremap <silent> <leader>v :bel :vne<CR>
 "horizontal split"
 nnoremap <silent> <leader>s :bel :new<CR>
-"format file
-nnoremap <silent> <leader>f :Autoformat<CR>
 
 " Stay in visual mode when indenting. You will never have to run gv after
 " performing an indentation.
