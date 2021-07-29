@@ -13,7 +13,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-projectionist'
-Plug 'tpope/vim-unimpaired'
+" Plug 'tpope/vim-unimpaired'
 
 "  === vim basic enhancement
 " text obj
@@ -61,7 +61,7 @@ Plug 'PhilRunninger/nerdtree-buffer-ops'
 " Plug 'vifm/vifm.vim'
 
 " Syntax highlighting language pack for vim
-Plug 'sheerun/vim-polyglot'
+" Plug 'sheerun/vim-polyglot'
 Plug 'rust-lang/rust.vim'
 
 " === Git Plugins === "
@@ -76,14 +76,22 @@ Plug 'junegunn/gv.vim'
 Plug 'sodapopcan/vim-twiggy'
 Plug 'shumphrey/fugitive-gitlab.vim'
 
+" experience neogit see if it can replace fugitive
+Plug 'TimUntersberger/neogit'
+Plug 'sindrets/diffview.nvim'
+
 " ====  IDE feature
 Plug 'voldikss/vim-floaterm'
+
+Plug 'kassio/neoterm'
+
+Plug 'vim-test/vim-test'
 
 " change buffer name both in vim and filesystem
 " Plug 'danro/rename.vim'
 
 " auto generate tags file
-Plug 'ludovicchabant/vim-gutentags'
+" Plug 'ludovicchabant/vim-gutentags'
 " tagbar like view
 Plug 'liuchengxu/vista.vim'
 
@@ -110,6 +118,8 @@ Plug 'rafi/awesome-vim-colorschemes'
 Plug 'junegunn/limelight.vim'
 " Distraction free writing by removing UI elements and centering everything.
 Plug 'junegunn/goyo.vim'
+" evaluate goyo alternative
+Plug 'Pocco81/TrueZen.nvim'
 
 " doc hub
 " Plug 'rizzatti/dash.vim'
@@ -138,6 +148,8 @@ call plug#end()
 " ============================================================================ "
 " ===                           EDITING OPTIONS                            === "
 " ============================================================================ "
+
+syntax on
 
 let verbose=1
 
@@ -223,13 +235,17 @@ let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 
 " In ~/.vim/vimrc, or somewhere similar.
-let g:ale_linters = {'markdown':'markdownlint', 'javascript': ['eslint'] , 'json': ['jq', 'jsonlint'], 'yaml': ['yamllint', 'swaglint'], 'vim': ['vint']}
+let g:ale_linters = {'markdown':'markdownlint', 'javascript': ['eslint'] , 'json': ['jq', 'jsonlint'], 'yaml': ['spectral','yamllint', 'swaglint'], 'vim': ['vint'], 'sh': ['shellcheck']}
 
 " In ~/.vim/vimrc, or somewhere similar.
-let g:ale_fixers = { '*': ['remove_trailing_lines', 'trim_whitespace'],'javascript': ['eslint','prettier'] ,'json':['jq','prettier', 'trim_whitespace'], 'yaml':['trim_whitespace','prettier', 'yamlfix']}
+let g:ale_fixers = { '*': ['remove_trailing_lines', 'trim_whitespace'],'javascript': ['eslint','prettier'] ,'json':['jq','prettier', 'trim_whitespace'], 'yaml':['trim_whitespace','prettier', 'yamlfix'], 'html':['prettier'], 'css':['prettier'], 'sh':['shfmt'] }
 
 nmap <silent> <space>k <Plug>(ale_previous_wrap)
 nmap <silent> <space>j <Plug>(ale_next_wrap)
+
+" vim test setting
+let g:test#javascript#runner = 'mocha'
+
 
 lua <<EOF
 
@@ -481,6 +497,48 @@ vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 local saga = require 'lspsaga'
 saga.init_lsp_saga()
 
+
+-- %%%%%%%%%%%%%%%%%%%%%%% diffview setting %%%%%%%%%%%%%%%
+
+local cb = require'diffview.config'.diffview_callback
+
+require'diffview'.setup {
+  diff_binaries = false,    -- Show diffs for binaries
+  file_panel = {
+    width = 35,
+    use_icons = true        -- Requires nvim-web-devicons
+  },
+  key_bindings = {
+    disable_defaults = false,                   -- Disable the default key bindings
+    -- The `view` bindings are active in the diff buffers, only when the current
+    -- tabpage is a Diffview.
+    view = {
+      ["<tab>"]     = cb("select_next_entry"),  -- Open the diff for the next file
+      ["<s-tab>"]   = cb("select_prev_entry"),  -- Open the diff for the previous file
+      ["<leader>e"] = cb("focus_files"),        -- Bring focus to the files panel
+      ["<leader>b"] = cb("toggle_files"),       -- Toggle the files panel.
+    },
+    file_panel = {
+      ["j"]             = cb("next_entry"),         -- Bring the cursor to the next file entry
+      ["<down>"]        = cb("next_entry"),
+      ["k"]             = cb("prev_entry"),         -- Bring the cursor to the previous file entry.
+      ["<up>"]          = cb("prev_entry"),
+      ["<cr>"]          = cb("select_entry"),       -- Open the diff for the selected entry.
+      ["o"]             = cb("select_entry"),
+      ["<2-LeftMouse>"] = cb("select_entry"),
+      ["-"]             = cb("toggle_stage_entry"), -- Stage / unstage the selected entry.
+      ["S"]             = cb("stage_all"),          -- Stage all entries.
+      ["U"]             = cb("unstage_all"),        -- Unstage all entries.
+      ["X"]             = cb("restore_entry"),      -- Restore entry to the state on the left side.
+      ["R"]             = cb("refresh_files"),      -- Update stats and entries in the file list.
+      ["<tab>"]         = cb("select_next_entry"),
+      ["<s-tab>"]       = cb("select_prev_entry"),
+      ["<leader>e"]     = cb("focus_files"),
+      ["<leader>b"]     = cb("toggle_files"),
+    }
+  }
+}
+
 EOF
 
 " telescope mapping
@@ -516,12 +574,14 @@ let g:python_host_prog = '$HOME/.pyenv/shims/python2'
 
 " === fugitive.nvim === "
 let g:fugitive_gitlab_domains = ['https://gitlab.cochlear.dev']
-nmap <leader>n :NERDTreeToggle<CR>
+nnoremap <leader>n :NERDTreeToggle<CR>
 
 
 " === Vim airline ==== "
 " Enable extensions
-let g:airline_extensions = ['ale', 'tabline', 'branch', 'hunks', 'quickfix', 'unicode', 'vista']
+" let g:airline_extensions = ['ale', 'tabline', 'branch', 'hunks', 'quickfix', 'unicode', 'vista', 'fugitive', 'signify']
+let g:airline_extensions = ['ale', 'tabline', 'branch', 'hunks', 'quickfix', 'unicode', 'vista', 'fugitive']
+" let g:airline_extensions = ['ale', 'tabline', 'branch', 'hunks', 'quickfix', 'unicode', 'vista', 'signify']
 
 " Update section z to just have line number
 let g:airline_section_z = airline#section#create(['linenr'])
@@ -594,9 +654,7 @@ let g:fzf_commands_expect = 'alt-enter,ctrl-x'
 
 " ctag gutentags config
 " set tmp folder for ctags used
-" g:gutentags_cache_dir = '$HOME/.config/nvim/.tmp'
-
-
+" let g:gutentags_cache_dir = '$HOME/.config/nvim/.tmp'
 
 
 
@@ -605,32 +663,37 @@ let g:fzf_commands_expect = 'alt-enter,ctrl-x'
 " ============================================================================ "
 
 " Enable true color support
-set termguicolors
+if (has('termguicolors'))
+ set termguicolors
+endif
 
+syntax on
 " Editor theme
 set background=dark
+
+let g:oceanic_next_terminal_bold = 1
+let g:oceanic_next_terminal_italic = 1
+let g:airline_theme='oceanicnext'
+
 try
   " colorscheme gruvbox
   colorscheme OceanicNext
 catch
-  colorscheme slate
+  colorscheme gruvbox
 endtry
-
-" Vim airline theme
-"let g:airline_theme='space'
 
 " Add custom highlights in method that is executed every time a colorscheme is sourced
 " See https://gist.github.com/romainl/379904f91fa40533175dfaec4c833f2f for details
-function! MyHighlights() abort
+" function! MyHighlights() abort
   " Hightlight trailing whitespace
-  highlight Trail ctermbg=red guibg=red
-  call matchadd('Trail', '\s\+$', 100)
-endfunction
+  " highlight Trail ctermbg=red guibg=red
+  " call matchadd('Trail', '\s\+$', 100)
+" endfunction
 
-augroup MyColors
-  autocmd!
-  autocmd ColorScheme * call MyHighlights()
-augroup END
+" augroup MyColors
+  " autocmd!
+  " autocmd ColorScheme * call MyHighlights()
+" augroup END
 
 " Change vertical split character to be a space (essentially hide it)
 set fillchars+=vert:.
@@ -644,14 +707,6 @@ set noshowmode
 " Set floating window to be slightly transparent
 set winbl=10
 
-
-" Make background transparent for many things
-hi! Normal ctermbg=NONE guibg=NONE
-hi! NonText ctermbg=NONE guibg=NONE
-hi! LineNr ctermfg=NONE guibg=NONE
-hi! SignColumn ctermfg=NONE guibg=NONE
-hi! StatusLine guifg=#16252b guibg=#6699CC
-hi! StatusLineNC guifg=#16252b guibg=#16252b
 
 " Try to hide vertical spit and end of buffer symbol
 hi! VertSplit gui=NONE guifg=#17252c guibg=#17252c
@@ -690,6 +745,7 @@ endfunction
 " ===                             KEY MAPPINGS                             === "
 " ============================================================================ "
 nnoremap ; :
+nnoremap : ;
 
 nnoremap <silent> <tab> :bnext<cr>
 nnoremap <silent> <s-tab> :bprevious<cr>
@@ -820,9 +876,9 @@ set nobackup nowritebackup noswapfile noundofile
 " set backupdir=~/tmp/.vim/.backup
 
 " Reload icons after init source
-if exists('g:loaded_webdevicons')
-  call webdevicons#refresh()
-endif
+" if exists('g:loaded_webdevicons')
+  " call webdevicons#refresh()
+" endif
 
 " TODO read https://vi.stackexchange.com/questions/2003/how-do-i-debug-my-vimrc-file
 " silent !mkdir ~/.config/nvim/backups > /dev/null 2>&1
