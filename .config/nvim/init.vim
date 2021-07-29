@@ -15,6 +15,11 @@ Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-projectionist'
 " Plug 'tpope/vim-unimpaired'
 
+" color picker
+Plug 'KabbAmine/vCoolor.vim'
+" show color
+Plug 'chrisbra/Colorizer'
+
 "  === vim basic enhancement
 " text obj
 Plug 'kana/vim-textobj-user'
@@ -201,6 +206,7 @@ set updatetime=100
 
 " always show signcolumns
 set signcolumn=yes:2
+" set signcolumn=yes
 
 " In many terminal emulators the mouse works just fine.  By enabling it you
 " can position the cursor, Visually select and scroll with the mouse.
@@ -238,6 +244,10 @@ let g:ale_fixers = { '*': ['remove_trailing_lines', 'trim_whitespace'],'javascri
 
 nmap <silent> <space>k <Plug>(ale_previous_wrap)
 nmap <silent> <space>j <Plug>(ale_next_wrap)
+
+" signify settings;
+
+let g:signify_sign_change  = '~'
 
 " vim test setting
 let g:test#javascript#runner = 'mocha'
@@ -574,12 +584,15 @@ let g:python_host_prog = '$HOME/.pyenv/shims/python2'
 " === fugitive.nvim === "
 let g:fugitive_gitlab_domains = ['https://gitlab.cochlear.dev']
 nnoremap <leader>n :NERDTreeToggle<CR>
+nnoremap <leader>f :NERDTreeFind<CR>
 
 
 " === Vim airline ==== "
+" disable_rtp_load
+let g:airline#extensions#disable_rtp_load = 1
 " Enable extensions
 " let g:airline_extensions = ['ale', 'tabline', 'branch', 'hunks', 'quickfix', 'unicode', 'vista', 'fugitive', 'signify']
-let g:airline_extensions = ['ale', 'tabline', 'branch', 'hunks', 'quickfix', 'unicode', 'vista', 'fugitive']
+let g:airline_extensions = ['ale', 'tabline', 'branch', 'hunks', 'quickfix', 'unicode', 'vista', 'fugitive', 'wordcount', 'searchcount']
 " let g:airline_extensions = ['ale', 'tabline', 'branch', 'hunks', 'quickfix', 'unicode', 'vista', 'signify']
 
 " Update section z to just have line number
@@ -596,7 +609,7 @@ let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 
 " Custom setup that removes filetype/whitespace from default vim airline bar
-let g:airline#extensions#default#layout = [['a', 'b', 'c'], ['x', 'z', 'warning', 'error']]
+let g:airline#extensions#default#layout = [['a', 'b', 'c'], ['x', 'y', 'z', 'warning', 'error']]
 
 " Disable vim-airline in preview mode
 let g:airline_exclude_preview = 1
@@ -613,7 +626,8 @@ endif
 
 "  show git changes to current file in airline
 let g:airline#extensions#hunks#enabled=1
-
+let g:airline#extensions#wordcount#enabled = 1
+let g:airline#extensions#searchcount#enabled = 1
 
 " .............................................................................
 " fzf setting
