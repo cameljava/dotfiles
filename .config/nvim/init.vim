@@ -251,7 +251,16 @@ let g:signify_sign_change  = '~'
 
 " vim test setting
 let g:test#javascript#runner = 'mocha'
-
+let test#strategy = "neoterm"
+" let g:neoterm_default_mod='vertical'
+let g:neoterm_callbacks = {}
+    function! g:neoterm_callbacks.before_new()
+      if winwidth('.') > 100
+        let g:neoterm_default_mod = 'botright vertical'
+      else
+        let g:neoterm_default_mod = 'botright'
+      end
+    endfunction
 
 lua <<EOF
 
@@ -695,6 +704,8 @@ catch
   colorscheme gruvbox
 endtry
 
+let g:colorizer_auto_filetype='css,html'
+
 " Add custom highlights in method that is executed every time a colorscheme is sourced
 " See https://gist.github.com/romainl/379904f91fa40533175dfaec4c833f2f for details
 " function! MyHighlights() abort
@@ -713,6 +724,7 @@ set fillchars+=vert:.
 
 " Set preview window to appear at bottom
 set splitbelow
+set splitright
 
 " Don't dispay mode in command line (airilne already shows it)
 set noshowmode
@@ -789,9 +801,9 @@ nnoremap <Right> :vertical resize +2<CR>
 " Maximize only this window"
 nnoremap <silent> <leader>m :only<CR>
 "vertical split"
-nnoremap <silent> <leader>v :bel :vne<CR>
+nnoremap <silent> <leader>v :vne<CR>
 "horizontal split"
-nnoremap <silent> <leader>s :bel :new<CR>
+nnoremap <silent> <leader>s :new<CR>
 
 " Stay in visual mode when indenting. You will never have to run gv after
 " performing an indentation.
