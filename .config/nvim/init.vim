@@ -443,7 +443,7 @@ preselect = 'enable';
 throttle_time = 80;
 source_timeout = 200;
 resolve_timeout = 800;
-incomplete_delay = 400;
+incomplete_delay = 40;
 max_abbr_width = 100;
 max_kind_width = 100;
 max_menu_width = 100;
@@ -801,9 +801,9 @@ nnoremap <Right> :vertical resize +2<CR>
 " Maximize only this window"
 nnoremap <silent> <leader>m :only<CR>
 "vertical split"
-nnoremap <silent> <leader>v :vne<CR>
+nnoremap <silent> <leader>v :vs<CR>
 "horizontal split"
-nnoremap <silent> <leader>s :new<CR>
+nnoremap <silent> <leader>s :sp<CR>
 
 " Stay in visual mode when indenting. You will never have to run gv after
 " performing an indentation.
