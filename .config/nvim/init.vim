@@ -106,7 +106,10 @@ Plug 'romainl/vim-qf'
 Plug 'bfrg/vim-qf-preview'
 
 " Generate JSDoc commands based on function signature
-Plug 'heavenshell/vim-jsdoc'
+Plug 'heavenshell/vim-jsdoc', {
+  \ 'for': ['javascript', 'javascript.jsx','typescript'],
+  \ 'do': 'make install'
+\}
 
 " Zoom in and out of a specific split pane (similar to tmux).
 " Plug 'dhruvasagar/vim-zoom'
@@ -770,6 +773,9 @@ endfunction
 nnoremap ; :
 nnoremap : ;
 
+vnoremap ; :
+vnoremap : ;
+
 nnoremap <silent> <tab> :bnext<cr>
 nnoremap <silent> <s-tab> :bprevious<cr>
 nnoremap <leader>x :bd<cr>
@@ -868,6 +874,8 @@ vnoremap <leader>p "_dP
 " To search for visually selected text
 vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 
+" keymap for JsDoc
+nnoremap <silent> <C-l> <Plug>(jsdoc)
 " ============================================================================ "
 " ===                                 MISC.                                === "
 " ============================================================================ "

@@ -104,8 +104,10 @@ Plug 'liuchengxu/vista.vim'
 Plug 'stefandtw/quickfix-reflector.vim'
 
 " Generate JSDoc commands based on function signature
-Plug 'heavenshell/vim-jsdoc'
-
+Plug 'heavenshell/vim-jsdoc', { 
+  \ 'for': ['javascript', 'javascript.jsx','typescript'], 
+  \ 'do': 'make install'
+\}
 " Zoom in and out of a specific split pane (similar to tmux).
 " Plug 'dhruvasagar/vim-zoom'
 
