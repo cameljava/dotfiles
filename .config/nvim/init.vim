@@ -19,6 +19,7 @@ Plug 'tpope/vim-projectionist'
 Plug 'KabbAmine/vCoolor.vim'
 " show color
 Plug 'chrisbra/Colorizer'
+Plug 'szw/vim-maximizer'
 
 "  === vim basic enhancement
 " text obj
@@ -217,7 +218,10 @@ if has('mouse')
   set mouse=a
 endif
 
+set scrolloff=50
+
 nnoremap <silent> <BS> :nohlsearch<CR>
+
 
 " ============================================================================ "
 " ===                           PLUGIN SETUP                               === "
@@ -702,6 +706,7 @@ let g:airline_theme='oceanicnext'
 
 try
   " colorscheme gruvbox
+  " colorscheme OceanicNextLight
   colorscheme OceanicNext
 catch
   colorscheme gruvbox
@@ -792,7 +797,11 @@ inoremap jh <ESC>:wq<CR>
 " Make Y yank everything from the cursor to the end of the line. This makes Y
 " act more like C or D because by default, Y yanks the current line (i.e. the
 " same as yy).
-noremap Y y$
+nnoremap Y y$
+
+" this only work for j,k , maybe try scrolloff
+" nnoremap k kzz
+" nnoremap j jzz
 
 " move up/down virtual selected lines
 xnoremap K :move '<-2<CR>gv-gv
@@ -805,7 +814,10 @@ nnoremap <Left> :vertical resize -2<CR>
 nnoremap <Right> :vertical resize +2<CR>
 
 " Maximize only this window"
-nnoremap <silent> <leader>m :only<CR>
+nnoremap <silent><leader>m :MaximizerToggle<CR>
+vnoremap <silent><leader>m :MaximizerToggle<CR>gv
+" inoremap <silent><F3> <C-o>:MaximizerToggle<CR>
+
 "vertical split"
 nnoremap <silent> <leader>v :vs<CR>
 "horizontal split"
