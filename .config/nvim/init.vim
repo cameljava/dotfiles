@@ -685,6 +685,8 @@ let g:fzf_commands_expect = 'alt-enter,ctrl-x'
 " set tmp folder for ctags used
 " let g:gutentags_cache_dir = '$HOME/.config/nvim/.tmp'
 
+" --------------------- vim test -----------------
+nnoremap <C-t> :TestFile<cr>
 
 
 " ============================================================================ "
