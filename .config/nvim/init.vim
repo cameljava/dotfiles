@@ -18,7 +18,8 @@ Plug 'tpope/vim-projectionist'
 " color picker
 Plug 'KabbAmine/vCoolor.vim'
 " show color
-Plug 'chrisbra/Colorizer'
+" Plug 'chrisbra/Colorizer'
+Plug 'norcalli/nvim-colorizer.lua'
 Plug 'szw/vim-maximizer'
 
 "  === vim basic enhancement
@@ -151,6 +152,8 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'glepnir/lspsaga.nvim'
 Plug 'hrsh7th/nvim-compe'
 
+Plug 'p00f/nvim-ts-rainbow'
+
 call plug#end()
 
 " ============================================================================ "
@@ -227,6 +230,7 @@ nnoremap <silent> <BS> :nohlsearch<CR>
 " ===                           PLUGIN SETUP                               === "
 " ============================================================================ "
 
+
 "ALE settings:
 let g:ale_fix_on_save = 1
 
@@ -274,21 +278,28 @@ lua <<EOF
 -- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% treesitter setting %%%%%%%%%%%%%%%%%%
 
 require('nvim-treesitter.configs').setup {
-ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
--- k turn off this comment not sure
--- ignore_install = { "javascript" }, -- List of parsers to ignore installing
-highlight ={
+ensure_installed = "maintained",
+highlight = {
   enable = true,
-  disable = { },
-  custom_captures = {
-    -- Highlight the @foo.bar capture group with the "Identifier" highlight group.
-    ["foo.bar"] = "Identifier",
-    },
   -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
   -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
   -- Using this option may slow down your editor, and you may see some duplicate highlights.
   -- Instead of true it can also be a list of languages
   additional_vim_regex_highlighting = false,
+  },
+rainbow = {
+  enable = true,  -- turn it off, look too much
+  extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean#FD751D
+  max_file_lines = 1000, -- Do not enable for files with more than n lines, int
+  colors = {
+  "#FC0107",
+  "#FD8008",
+  "#FFFF0A",
+  "#21FF06",
+  "#20FFFF",
+  "#0000FF",
+  "#800080"
+  }
   },
 incremental_selection = {
 enable = true,
@@ -561,6 +572,18 @@ require'diffview'.setup {
   }
 }
 
+-- %%%%%%%%%%%%%%%%%%%%%%% colorizer setting %%%%%%%%%%%%%%%
+
+-- Attach to certain Filetypes, add special configuration for `html`
+-- Use `background` for everything else.
+require 'colorizer'.setup {
+  'css';
+  'javascript';
+  html = {
+    mode = 'foreground';
+  }
+}
+
 EOF
 
 " telescope mapping
@@ -714,7 +737,7 @@ catch
   colorscheme gruvbox
 endtry
 
-let g:colorizer_auto_filetype='css,html'
+" let g:colorizer_auto_filetype='css,html'
 
 " Add custom highlights in method that is executed every time a colorscheme is sourced
 " See https://gist.github.com/romainl/379904f91fa40533175dfaec4c833f2f for details
