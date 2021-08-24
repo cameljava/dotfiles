@@ -3,6 +3,11 @@ scriptencoding utf-8
 " ===                               PLUGINS                                === "
 " ============================================================================ "
 
+" Enable true color support
+if (has('termguicolors'))
+ set termguicolors
+endif
+
 call plug#begin('~/.config/nvim/plugged')
 
 " === Editing Plugins === "
@@ -152,7 +157,7 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'glepnir/lspsaga.nvim'
 Plug 'hrsh7th/nvim-compe'
 
-Plug 'p00f/nvim-ts-rainbow'
+" Plug 'p00f/nvim-ts-rainbow'
 
 call plug#end()
 
@@ -168,7 +173,7 @@ let verbose=1
 let g:mapleader=','
 
 " enable line numbers and relative line number
-set nu rnu
+set number relativenumber
 
 " show last command
 set showcmd
@@ -262,7 +267,7 @@ let g:signify_sign_change  = '~'
 
 " vim test setting
 let g:test#javascript#runner = 'mocha'
-let test#strategy = "neoterm"
+let test#strategy = 'neoterm'
 " let g:neoterm_default_mod='vertical'
 let g:neoterm_callbacks = {}
     function! g:neoterm_callbacks.before_new()
@@ -286,20 +291,6 @@ highlight = {
   -- Using this option may slow down your editor, and you may see some duplicate highlights.
   -- Instead of true it can also be a list of languages
   additional_vim_regex_highlighting = false,
-  },
-rainbow = {
-  enable = true,  -- turn it off, look too much
-  extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean#FD751D
-  max_file_lines = 1000, -- Do not enable for files with more than n lines, int
-  colors = {
-  "#FC0107",
-  "#FD8008",
-  "#FFFF0A",
-  "#21FF06",
-  "#20FFFF",
-  "#0000FF",
-  "#800080"
-  }
   },
 incremental_selection = {
 enable = true,
@@ -576,7 +567,7 @@ require'diffview'.setup {
 
 -- Attach to certain Filetypes, add special configuration for `html`
 -- Use `background` for everything else.
-require 'colorizer'.setup {
+require'colorizer'.setup {
   'css';
   'javascript';
   html = {
@@ -630,9 +621,7 @@ nnoremap <leader>f :NERDTreeFind<CR>
 " disable_rtp_load
 let g:airline#extensions#disable_rtp_load = 1
 " Enable extensions
-" let g:airline_extensions = ['ale', 'tabline', 'branch', 'hunks', 'quickfix', 'unicode', 'vista', 'fugitive', 'signify']
-let g:airline_extensions = ['ale', 'tabline', 'branch', 'hunks', 'quickfix', 'unicode', 'vista', 'fugitive', 'wordcount', 'searchcount']
-" let g:airline_extensions = ['ale', 'tabline', 'branch', 'hunks', 'quickfix', 'unicode', 'vista', 'signify']
+let g:airline_extensions = ['nvimlsp','fzf','ale', 'tabline', 'branch', 'hunks', 'quickfix', 'unicode', 'vista', 'fugitiveline', 'wordcount', 'searchcount']
 
 " Update section z to just have line number
 let g:airline_section_z = airline#section#create(['linenr'])
@@ -716,10 +705,6 @@ nnoremap <C-t> :TestFile<cr>
 " ===                                UI                                    === "
 " ============================================================================ "
 
-" Enable true color support
-if (has('termguicolors'))
- set termguicolors
-endif
 
 syntax on
 " Editor theme
