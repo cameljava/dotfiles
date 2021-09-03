@@ -283,7 +283,7 @@ lua <<EOF
 -- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% treesitter setting %%%%%%%%%%%%%%%%%%
 
 require('nvim-treesitter.configs').setup {
-ensure_installed = "maintained",
+ensure_installed ={ "javascript", "java", "html", "json", "yaml","rust","vim","graphql","css", "dockerfile", "typescript", "python","bash","fish", "json5", "lua", "jsdoc", "regex"},
 highlight = {
   enable = true,
   -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
