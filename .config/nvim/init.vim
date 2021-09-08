@@ -27,6 +27,8 @@ Plug 'KabbAmine/vCoolor.vim'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'szw/vim-maximizer'
 
+" code scratch
+Plug 'metakirby5/codi.vim'
 "  === vim basic enhancement
 " text obj
 Plug 'kana/vim-textobj-user'
