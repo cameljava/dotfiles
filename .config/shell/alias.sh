@@ -3,14 +3,16 @@
 
 alias s='source '
 # alias ls='/bin/ls -GFhl|cat'
-alias lss='exa -alT --git'
-alias ls='exa -alT --git -L 3'
+alias ls='exa -alT --git -L 3 --git-ignore -I .git'
+alias la='exa -alT --git -L 3'
+alias laa='exa -alT --git'
 alias cp='cp -iv'       # Preferred 'cp' implementation
 alias mv='mv -iv'       # Preferred 'mv' implementation
 alias mkdir='mkdir -pv' # Preferred 'mkdir' implementation
 alias l='exa -al --git' # Preferred 'ls' implementation
 # alias l='/bin/ls -FGlAhp|cat'                      # Preferred 'ls' implementation
 alias less='less -FSRXc' # Preferred 'less' implementation
+alias fd='fd -H '
 
 # alias diff="diff-so-fancy"
 alias rm="rm -i"
