@@ -3,13 +3,14 @@
 
 alias s='source '
 # alias ls='/bin/ls -GFhl|cat'
-alias ls='/bin/ls -GFhl'
-alias cp='cp -iv'                         # Preferred 'cp' implementation
-alias mv='mv -iv'                         # Preferred 'mv' implementation
-alias mkdir='mkdir -pv'                   # Preferred 'mkdir' implementation
-alias l='/bin/ls -FGlAhp'                      # Preferred 'ls' implementation
+alias lss='exa -alT --git'
+alias ls='exa -alT --git -L 3'
+alias cp='cp -iv'       # Preferred 'cp' implementation
+alias mv='mv -iv'       # Preferred 'mv' implementation
+alias mkdir='mkdir -pv' # Preferred 'mkdir' implementation
+alias l='exa -al --git' # Preferred 'ls' implementation
 # alias l='/bin/ls -FGlAhp|cat'                      # Preferred 'ls' implementation
-alias less='less -FSRXc'                  # Preferred 'less' implementation
+alias less='less -FSRXc' # Preferred 'less' implementation
 
 # alias diff="diff-so-fancy"
 alias rm="rm -i"
@@ -31,7 +32,7 @@ alias .3='cd ../../../'                   # Go back 3 directory levels
 alias .4='cd ../../../../'                # Go back 4 directory levels
 alias .5='cd ../../../../../'             # Go back 5 directory levels
 alias .6='cd ../../../../../../'          # Go back 6 directory levels
-alias ff='open -a Finder ./'               # ff:            Opens current directory in MacOS Finder
+alias ff='open -a Finder ./'              # ff:            Opens current directory in MacOS Finder
 alias ~="cd ~"                            # ~:            Go Home
 alias c='clear'                           # c:            Clear terminal display
 alias which='type -all'                   # which:        Find executables
