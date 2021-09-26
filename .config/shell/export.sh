@@ -19,7 +19,6 @@ export NVM_DIR="$HOME/.nvm"
 
 ################################ set PATH ##############################
 
-
 export PATH="$HOME/kbin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
@@ -37,7 +36,7 @@ export PATH="/usr/local/opt/gettext/bin:$PATH"
 # use brew version curl
 export PATH="/usr/local/opt/curl/bin:$PATH"
 
-# jenv 
+# jenv
 export PATH="$HOME/.jenv/bin:$PATH"
 eval "$(jenv init -)"
 
@@ -56,6 +55,7 @@ fi
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
-
 ######### add vsCode
 export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+
+export GEM_HOME="$HOME/.gem"
