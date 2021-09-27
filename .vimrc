@@ -60,9 +60,6 @@ Plug 'junegunn/fzf.vim'
 " use easegrep for refactor name
 Plug 'dkprice/vim-easygrep'
 
-" Improved motion in Vim
-Plug 'easymotion/vim-easymotion'
-
 " Run a diff on 2 directories.
 Plug 'will133/vim-dirdiff'
 " Run a diff on 2 blocks of text.
@@ -543,9 +540,9 @@ set termguicolors
 " colorscheme purify
 
 let g:rehash256 = 1
-colorscheme molokai
+" colorscheme molokai
 
-" colorscheme gruvbox
+colorscheme gruvbox
 
 " Gui vim setting
 map <silent> <C-F2> :if &guioptions =~# 'T' <Bar>  set guioptions-=T <Bar>  set guioptions-=m <bar>  else <Bar>  set guioptions+=T <Bar> set guioptions+=m <Bar> endif<CR>
