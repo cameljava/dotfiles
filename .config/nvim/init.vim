@@ -667,7 +667,7 @@ nmap <space>dw <cmd>lua require('vimway-lsp-diag').open_all_diagnostics()<cr>
 nmap <space>d0 <cmd>lua require('vimway-lsp-diag').open_buffer_diagnostics()<cr>
 
 " telescope mapping
-nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
+nnoremap <leader>f <cmd>lua require('telescope.builtin').find_files()<cr>
 nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
 nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
 nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
@@ -697,7 +697,7 @@ let g:python_host_prog = '$HOME/.pyenv/shims/python2'
 " === fugitive.nvim === "
 let g:fugitive_gitlab_domains = ['https://gitlab.cochlear.dev']
 nnoremap <leader>n :NERDTreeToggle<CR>
-nnoremap <leader>f :NERDTreeFind<CR>
+nnoremap <leader>ff :NERDTreeFind<CR>
 
 
 " === Vim airline ==== "
@@ -753,8 +753,8 @@ let g:fzf_action = {
       \ 'ctrl-v': 'vsplit',
       \ 'ctrl-y': {lines -> setreg('*', join(lines, "\n"))}}
 
-" Launch fzf with CTRL+_.
-nnoremap <silent> <C-_> :FZF -m ~<CR>
+" Launch fzf with CTRL+p.
+nnoremap <silent> <C-p> :FZF -m ~<CR>
 
 " Allow passing optional flags into the Rg command.
 "   Example: :Rg myterm -g '*.md'
