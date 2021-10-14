@@ -1,10 +1,14 @@
+Manually global npm /yarn installation (eg, for language server, etc)
+run script in .config/kManulInstall
+
+
 github project to checkout:
 CS-Notes
 JavaGuide
 javadesignpatterns
 interviews
 
-Happy day got filco minila air. 
+Happy day got filco minila air.
 
 
 vim Tips
@@ -92,5 +96,4 @@ it will generate file: Brewfile
 
 30052021
 1, turn vi mode for inputrc, practice bash default keybinding;
-2, install rust by brew. 
-
+2, install rust by brew.
