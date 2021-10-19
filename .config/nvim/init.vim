@@ -174,7 +174,7 @@ Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/vim-vsnip'
 Plug 'onsails/lspkind-nvim'
-Plug 'onsails/vimway-lsp-diag.nvim'
+" Plug 'onsails/vimway-lsp-diag.nvim'
 " Plug 'p00f/nvim-ts-rainbow'
 
 call plug#end()
@@ -428,21 +428,6 @@ buffer_previewer_maker = require'telescope.previewers'.buffer_previewer_maker
 
 -- This will load fzy_native and have it override the default file sorter
 require('telescope').load_extension('fzf')
-
--- %%%%%%%%%%%%%%%%%%%%%%% lsp diag setting %%%%%%%%%%%%%%%
-
-require("vimway-lsp-diag").init({
-    -- optional settings
-    -- below are defaults
-
-    -- increase for noisy servers
-    debounce_ms = 50,
-
-    -- list in quickfix only diagnostics from clients
-    -- attached to a current buffer
-    -- if false, all buffers' clients diagnostics is collected
-    buf_clients_only = true
-})
 
 -- %%%%%%%%%%%%%%%%%%%%%%% lspkind setting %%%%%%%%%%%%%%%
 

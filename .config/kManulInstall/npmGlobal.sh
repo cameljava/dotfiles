@@ -5,6 +5,7 @@
 # cli tools
 npm i -g graphqurl
 npm i -g iterm2-tab-set
+npm i -g neovim
 # neovim language servers
 npm i -g bash-language-server
 # check doc, need config and start server
