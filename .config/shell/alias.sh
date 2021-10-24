@@ -3,8 +3,8 @@
 
 alias s='source '
 # alias ls='/bin/ls -GFhl|cat'
-alias ls='exa -alT --git -L 3 --git-ignore -I .git'
-alias la='exa -alT --git -L 3'
+alias ls='exa -alT --git -L 2 --git-ignore -I .git'
+alias la='exa -alT --git -L 2'
 alias laa='exa -alT --git'
 alias cp='cp -iv'       # Preferred 'cp' implementation
 alias mv='mv -iv'       # Preferred 'mv' implementation
