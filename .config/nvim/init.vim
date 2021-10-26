@@ -291,11 +291,11 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 
 " In ~/.vim/vimrc, or somewhere similar.
 " let g:ale_linters = {'markdown':'markdownlint', 'javascript': ['eslint'] , 'json': ['jq', 'jsonlint'], 'yaml': ['spectral','yamllint', 'swaglint'], 'vim': ['vint'], 'sh': ['shellcheck']}
-let g:ale_linters = {'markdown':'markdownlint', 'javascript': ['eslint'] , 'json': ['jq', 'jsonlint'], 'yaml': ['spectral','yamllint', 'swaglint'], 'vim': ['vint'], 'sh': ['shellcheck']}
+let g:ale_linters = {'markdown':'remark-lint', 'javascript': ['eslint'] , 'json': ['jq', 'jsonlint'], 'yaml': ['spectral','yamllint', 'swaglint'], 'vim': ['vint'], 'sh': ['shellcheck']}
 
 " In ~/.vim/vimrc, or somewhere similar.
 " let g:ale_fixers = { '*': ['remove_trailing_lines', 'trim_whitespace'],'javascript': ['eslint','prettier'] ,'json':['jq','prettier', 'trim_whitespace'], 'yaml':['trim_whitespace','prettier', 'yamlfix'], 'html':['prettier'], 'css':['prettier'], 'sh':['shfmt'] }
-let g:ale_fixers = { '*': ['remove_trailing_lines', 'trim_whitespace'],'javascript': ['eslint'] ,'json':['prettier'], 'yaml':['trim_whitespace','prettier', 'yamlfix'], 'html':['prettier'], 'css':['prettier'], 'sh':['shfmt'] }
+let g:ale_fixers = { '*': ['remove_trailing_lines', 'trim_whitespace'],'javascript': ['eslint'] ,'json':['prettier'], 'yaml':['trim_whitespace','prettier', 'yamlfix'], 'html':['prettier'], 'css':['prettier'], 'sh':['shfmt'], 'markdown':['remark-lint'] }
 
 nmap <silent> <space>k <Plug>(ale_previous_wrap)
 nmap <silent> <space>j <Plug>(ale_next_wrap)
