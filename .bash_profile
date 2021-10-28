@@ -41,3 +41,5 @@ export NVM_DIR="$HOME/.nvm"
 
 export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH" 
 
+
+alias luamake=/Users/kevlee/.config/nvim/lua-language-server/3rd/luamake/luamake
