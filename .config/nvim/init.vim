@@ -173,6 +173,8 @@ Plug 'hrsh7th/nvim-cmp'
 " For vsnip user.
 Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/vim-vsnip'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
 Plug 'onsails/lspkind-nvim'
 " Plug 'onsails/vimway-lsp-diag.nvim'
 " Plug 'p00f/nvim-ts-rainbow'
@@ -466,44 +468,21 @@ cmp.setup({
       end,
     },
     mapping = {
-      ['<C-k>'] = cmp.mapping.select_prev_item(),
-      ['<C-j>'] = cmp.mapping.select_next_item(),
-      ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-      ['<C-f>'] = cmp.mapping.scroll_docs(4),
-      ['<C-Space>'] = cmp.mapping.complete(),
-      ['<C-e>'] = cmp.mapping.close(),
+      ['<C-k>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+      ['<C-j>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+      ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
+      ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
+      ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+      ['<C-y>'] = cmp.config.disable, -- If you want to remove the default `<C-y>` mapping, You can specify `cmp.config.disable` value.
+      ['<C-e>'] = cmp.mapping({
+        i = cmp.mapping.abort(),
+        c = cmp.mapping.close(),
+      }),
       ['<CR>'] = cmp.mapping.confirm({ select = true }),
-      ['<Tab>'] = function(fallback)
-        if vim.fn.pumvisible() == 1 then
-          vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<C-n>', true, true, true), 'n')
-        elseif luasnip.expand_or_jumpable() then
-          vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<Plug>luasnip-expand-or-jump', true, true, true), '')
-        else
-          fallback()
-        end
-      end,
-      ['<S-Tab>'] = function(fallback)
-        if vim.fn.pumvisible() == 1 then
-          vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<C-p>', true, true, true), 'n')
-        elseif luasnip.jumpable(-1) then
-          vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<Plug>luasnip-jump-prev', true, true, true), '')
-        else
-          fallback()
-        end
-      end,
     },
     sources = {
       { name = 'nvim_lsp' },
-
-      -- For vsnip user.
       { name = 'vsnip' },
-
-      -- For luasnip user.
-      -- { name = 'luasnip' },
-
-      -- For ultisnips user.
-      -- { name = 'ultisnips' },
-
       { name = 'buffer' },
     },
     formatting = {
@@ -521,11 +500,24 @@ cmp.setup({
         })[entry.source.name]
         return vim_item
       end
-    },
-  completion = {
-    completeopt = 'menu,menuone,noinsert',
-  }
+    }
 })
+
+ -- Use buffer source for `/`.
+  cmp.setup.cmdline('/', {
+    sources = {
+      { name = 'buffer' }
+    }
+  })
+
+  -- Use cmdline & path source for ':'.
+  cmp.setup.cmdline(':', {
+    sources = cmp.config.sources({
+      { name = 'path' }
+    }, {
+      { name = 'cmdline' }
+    })
+  })
 
 -- %%%%%%%%%%%%%%%%%%% LSP setting %%%%%%%%%%%%%%%%%%%%%%%
 -- my correct setting to turn on js and viml lsp
