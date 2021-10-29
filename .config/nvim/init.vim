@@ -178,6 +178,8 @@ Plug 'hrsh7th/cmp-cmdline'
 Plug 'onsails/lspkind-nvim'
 " Plug 'onsails/vimway-lsp-diag.nvim'
 " Plug 'p00f/nvim-ts-rainbow'
+"
+Plug 'tyru/open-browser.vim'
 
 call plug#end()
 
@@ -468,8 +470,8 @@ cmp.setup({
       end,
     },
     mapping = {
-      ['<C-k>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-      ['<C-j>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+      ['<C-j>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+      ['<C-k>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
       ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
       ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
       ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
@@ -764,6 +766,10 @@ let g:fzf_commands_expect = 'alt-enter,ctrl-x'
 " --------------------- vim test -----------------
 nnoremap <C-t> :TestFile<cr>
 
+" --------------------- vim open-browser setting -----------------
+let g:netrw_nogx = 1 " disable netrw's gx mapping.
+nmap gx <Plug>(openbrowser-smart-search)
+vmap gx <Plug>(openbrowser-smart-search)
 
 " ============================================================================ "
 " ===                                UI                                    === "
