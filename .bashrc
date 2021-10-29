@@ -4,7 +4,6 @@
 . "$HOME/.config/shell/alias.sh"
 . "$HOME/.config/shell/function.sh"
 
-
 [ -s "/usr/local/etc/bash_completion.d/pass" ] && \. "/usr/local/etc/bash_completion.d/pass" # This loads pass bash_completion
 
 export XML_CATALOG_FILES="/usr/local/etc/xml/catalog"
@@ -96,7 +95,7 @@ shopt -s cdable_vars
 # export documents="$HOME/Documents"
 # export dropbox="$HOME/Dropbox"
 
-# my dofile file backup 
+# my dofile file backup
 alias config='/usr/bin/git --git-dir=/Users/kevlee/git/cameljava_github/dotfiles --work-tree=/Users/kevlee'
 
 # fzf settings
@@ -104,7 +103,6 @@ alias config='/usr/bin/git --git-dir=/Users/kevlee/git/cameljava_github/dotfiles
 alias fzfp="fzf --preview 'bat --style=numbers --color=always {} | head -500'"
 # search all files in current folder including hidden and git ignore, except .rgignore
 export FZF_DEFAULT_COMMAND="rg --files --no-ignore-vcs --hidden --follow --glob '!.git'"
-
 
 # TODO set serverless properly instead point to certain project
 # tabtab source for serverless package

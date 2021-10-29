@@ -5,8 +5,7 @@
 # Configure option + left arrow to move backward one word in iTerm2
 # https://www.gnu.org/software/bash/manual/bashref.html#Commands-For-Moving
 "\e\e[D": backward-word
-# kevin after set editing mode to vi above config for iterm2 move one word seems not working, 
+# kevin after set editing mode to vi above config for iterm2 move one word seems not working,
 # comment them out
 #
-# set editing-mode vi
-
+set editing-mode vi
