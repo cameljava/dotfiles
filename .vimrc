@@ -152,6 +152,8 @@ Plug 'janko/vim-test'
 
 Plug 'rizzatti/dash.vim'
 
+Plug 'nanotee/zoxide.vim'
+
 call plug#end()
 
 packadd! matchit

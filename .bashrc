@@ -124,3 +124,8 @@ export SLS_DEBUG=true
 # setting for forgit
 # ctrl-e to view the logs in a vim buffer (glo specific)
 FORGIT_LOG_FZF_OPTS=' --bind="ctrl-e:execute(echo {} |grep -Eo [a-f0-9]+ |head -1 |xargs git show |nvim -)"'
+
+# add zoxide to shell
+export _ZO_ECHO=1
+export _ZO_RESOLVE_SYMLINKS=1
+eval "$(zoxide init bash)"
