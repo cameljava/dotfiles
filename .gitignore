@@ -1,0 +1,4 @@
+.config/alacritty/colors/
+.config/nvim/plugged/
+.config/tmux/plugins/
+Brewfile.lock.json

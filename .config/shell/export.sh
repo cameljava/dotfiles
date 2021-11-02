@@ -19,9 +19,8 @@ export PYENV_ROOT="$HOME/.pyenv"
 export NVM_DIR="$HOME/.nvm"
 
 ################################ set PATH ##############################
-
-export PATH="$HOME/kbin:$PATH"
-export PATH="/usr/local/sbin:$PATH"
+export PATH="/opt/homebrew/bin:$PATH"
+export PATH="$HOME/kdata/kbin:$PATH"
 export PATH="/usr/local/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 # use  GNU versions coreutils instead of macos version

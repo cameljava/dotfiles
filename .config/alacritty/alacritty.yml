@@ -3,7 +3,7 @@
 import:
   - /Users/kevlee/.config/alacritty/colors/oceanic_next.yaml
 shell:
-  program: /usr/local/bin/bash
+  program: /opt/homebrew/bin/bash
   # args:
   #   - -l
   #   - -c

@@ -95,9 +95,6 @@ shopt -s cdable_vars
 # export documents="$HOME/Documents"
 # export dropbox="$HOME/Dropbox"
 
-# my dofile file backup
-alias config='/usr/bin/git --git-dir=/Users/kevlee/git/cameljava_github/dotfiles --work-tree=/Users/kevlee'
-
 # fzf settings
 [ -f "$HOME/.fzf.bash" ] && source "$HOME/.fzf.bash"
 alias fzfp="fzf --preview 'bat --style=numbers --color=always {} | head -500'"
@@ -114,8 +111,6 @@ export FZF_DEFAULT_COMMAND="rg --files --no-ignore-vcs --hidden --follow --glob 
 # tabtab source for slss package
 # uninstall by removing these lines or running `tabtab uninstall slss`
 # [ -f /Users/kevlee/git/cochlear_gitlab/drx-serverless/auth/node_modules/tabtab/.completions/slss.bash ] && . /Users/kevlee/git/cochlear_gitlab/drx-serverless/auth/node_modules/tabtab/.completions/slss.bash
-
-config config --local status.showUntrackedFiles no
 
 eval "$(rbenv init -)"
 
