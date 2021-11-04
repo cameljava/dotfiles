@@ -1,6 +1,6 @@
 [user]
 	name = Kevin Lee
-	email = kevlee@cochlear.com
+	email = cameljava@gmail.com
   username = kevlee
 [includeIf "gitdir:~/git/cameljava_github/"]
   path = .gitconfig-cameljava-github
