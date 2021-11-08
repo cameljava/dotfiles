@@ -6,7 +6,7 @@ export TERM=screen-256color
 
 export PAGER="less"
 # export PAGER="most"
-export VISUAL="oni2"
+export VISUAL="macvim"
 export EDITOR="vim"
 
 ################################# set ROOT/HOME ########################
@@ -44,14 +44,10 @@ eval "$(jenv init -)"
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init --path)"
-
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
 # rust
 export PATH="$HOME/.cargo/bin:$PATH"
-
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
-fi
 
 eval "$(rbenv init -)"
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
