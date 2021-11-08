@@ -6,7 +6,7 @@ export TERM=screen-256color
 
 export PAGER="less"
 # export PAGER="most"
-export VISUAL="macvim"
+export VISUAL="MacVim"
 export EDITOR="vim"
 
 ################################# set ROOT/HOME ########################
