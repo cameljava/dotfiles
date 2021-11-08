@@ -93,7 +93,7 @@ Plug 'sodapopcan/vim-twiggy'
 Plug 'shumphrey/fugitive-gitlab.vim'
 
 " experience neogit see if it can replace fugitive
-Plug 'TimUntersberger/neogit'
+" Plug 'TimUntersberger/neogit'
 Plug 'sindrets/diffview.nvim'
 
 " ====  IDE feature
