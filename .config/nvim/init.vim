@@ -194,12 +194,14 @@ set background=dark
 
 let g:oceanic_next_terminal_bold = 1
 let g:oceanic_next_terminal_italic = 1
-let g:airline_theme='oceanicnext'
+" let g:airline_theme='oceanicnext'
+let g:airline_theme='nord'
 
 try
   " colorscheme gruvbox
   " colorscheme OceanicNextLight
-  colorscheme OceanicNext
+  " colorscheme OceanicNext
+  colorscheme nord
 catch
   colorscheme gruvbox
 endtry
