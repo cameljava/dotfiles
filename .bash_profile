@@ -12,7 +12,7 @@ fi
 [[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
 # [ -f "$HOME/.iterm2_shell_integration.bash" ] && source "$HOME/.iterm2_shell_integration.bash"
 
-complete -C '/usr/local/bin/aws_completer' aws
+# complete -C '/usr/local/bin/aws_completer' aws
 
 ######## git
 # git+fzf
