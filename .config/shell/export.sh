@@ -19,23 +19,23 @@ export PYENV_ROOT="$HOME/.pyenv"
 export NVM_DIR="$HOME/.nvm"
 
 ################################ set PATH ##############################
-export PATH="/opt/homebrew/bin:$PATH"
+# export PATH="/opt/homebrew/bin:$PATH"
 export PATH="$HOME/kdata/kbin:$PATH"
-export PATH="/usr/local/bin:$PATH"
+# export PATH="/usr/local/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 # use  GNU versions coreutils instead of macos version
 # export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
-export PATH="/usr/local/opt/openssl/bin:$PATH"
-export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-export PATH="$(brew --prefix grep)/libexec/gnubin:$PATH"
-export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
-export PATH="/usr/local/opt/findutils/libexec/gnubin:$PATH"
-export PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+# export PATH="$(brew --prefix grep)/libexec/gnubin:$PATH"
+# export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
+# export PATH="/usr/local/opt/findutils/libexec/gnubin:$PATH"
+# export PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
 # If you need to have gettext first in your PATH run:
-export PATH="/usr/local/opt/gettext/bin:$PATH"
+# export PATH="/usr/local/opt/gettext/bin:$PATH"
 
-# use brew version curl
-export PATH="/usr/local/opt/curl/bin:$PATH"
+#brew
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # jenv
 export PATH="$HOME/.jenv/bin:$PATH"
@@ -53,8 +53,8 @@ if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
 
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
+eval "$(rbenv init -)"
+export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 
 ######### add vsCode
 export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"

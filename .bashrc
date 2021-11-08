@@ -4,9 +4,9 @@
 . "$HOME/.config/shell/alias.sh"
 . "$HOME/.config/shell/function.sh"
 
-[ -s "/usr/local/etc/bash_completion.d/pass" ] && \. "/usr/local/etc/bash_completion.d/pass" # This loads pass bash_completion
+# [ -s "/usr/local/etc/bash_completion.d/pass" ] && \. "/usr/local/etc/bash_completion.d/pass" # This loads pass bash_completion
 
-export XML_CATALOG_FILES="/usr/local/etc/xml/catalog"
+# export XML_CATALOG_FILES="/usr/local/etc/xml/catalog"
 
 # tmp set default profile to kev. turn it off when having cochlear
 #export AWS_DEFAULT_PROFILE=kev
@@ -112,8 +112,6 @@ export FZF_DEFAULT_COMMAND="rg --files --no-ignore-vcs --hidden --follow --glob 
 # uninstall by removing these lines or running `tabtab uninstall slss`
 # [ -f /Users/kevlee/git/cochlear_gitlab/drx-serverless/auth/node_modules/tabtab/.completions/slss.bash ] && . /Users/kevlee/git/cochlear_gitlab/drx-serverless/auth/node_modules/tabtab/.completions/slss.bash
 
-eval "$(rbenv init -)"
-
 export SLS_DEBUG=true
 
 # setting for forgit
@@ -124,3 +122,5 @@ FORGIT_LOG_FZF_OPTS=' --bind="ctrl-e:execute(echo {} |grep -Eo [a-f0-9]+ |head -
 export _ZO_ECHO=1
 export _ZO_RESOLVE_SYMLINKS=1
 eval "$(zoxide init bash)"
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
