@@ -57,7 +57,7 @@ Plug 'osyo-manga/vim-anzu'
 Plug 'machakann/vim-highlightedyank'
 
 " fzf
-Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
 " Plug 'sbdchd/neoformat'
@@ -133,7 +133,8 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'Yggdroot/indentLine'
 
 Plug 'rafi/awesome-vim-colorschemes'
-
+Plug 'sainnhe/everforest'
+Plug 'EdenEast/nightFox.nvim'
 " Plug 'folke/lsp-colors.nvim'
 
 " Dim paragraphs above and below the active paragraph.
@@ -202,6 +203,7 @@ try
   " colorscheme OceanicNextLight
   " colorscheme OceanicNext
   colorscheme nord
+  " colorscheme everforest
 catch
   colorscheme gruvbox
 endtry

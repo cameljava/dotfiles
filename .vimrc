@@ -51,7 +51,7 @@ Plug 'osyo-manga/vim-anzu'
 Plug 'machakann/vim-highlightedyank'
 
 " fzf
-Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
 " Handle multi-file find and replace. turn off this - used in nvim, experience different
@@ -115,6 +115,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'Yggdroot/indentLine'
 
 Plug 'rafi/awesome-vim-colorschemes'
+Plug 'sainnhe/everforest'
 " Dim paragraphs above and below the active paragraph.
 Plug 'junegunn/limelight.vim'
 " Distraction free writing by removing UI elements and centering everything.

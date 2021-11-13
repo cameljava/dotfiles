@@ -37,10 +37,6 @@ export PATH="$HOME/.local/bin:$PATH"
 #brew
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
-# jenv
-export PATH="$HOME/.jenv/bin:$PATH"
-eval "$(jenv init -)"
-
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
