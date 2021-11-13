@@ -6,7 +6,7 @@ if [ -f "$HOME/.bashrc" ]; then
 fi
 
 ########### start ssh agent
-# eval "$(keychain --eval --agents ssh --inherit any id_rsa)"
+eval "$(keychain --eval --agents ssh --inherit any id_rsa)"
 
 ####### bash
 [[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
