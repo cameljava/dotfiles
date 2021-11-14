@@ -6,7 +6,7 @@ export TERM=screen-256color
 
 export PAGER="less"
 # export PAGER="most"
-export VISUAL="oni2"
+export VISUAL="MacVim"
 export EDITOR="vim"
 
 ################################# set ROOT/HOME ########################
@@ -21,7 +21,7 @@ export NVM_DIR="$HOME/.nvm"
 ################################ set PATH ##############################
 
 export PATH="$HOME/kbin:$PATH"
-export PATH="/usr/local/sbin:$PATH"
+# export PATH="/usr/local/sbin:$PATH"
 export PATH="/usr/local/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 # use  GNU versions coreutils instead of macos version
@@ -50,12 +50,9 @@ eval "$(pyenv init --path)"
 # rust
 export PATH="$HOME/.cargo/bin:$PATH"
 
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
-fi
-
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
+export NVM_DIR="$HOME/.nvm"
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"                                       # This loads nvm
+[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm" # This loads nvm bash_completion
 
 ######### add vsCode
 export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
