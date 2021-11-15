@@ -9,11 +9,11 @@ sshRestart() {
         eval `/usr/bin/ssh-agent -k`
     fi
     eval `ssh-agent -s`
-    ssh-add ~/.ssh/YOUR_KEY_FILE
+    ssh-add ~/.ssh/id_rsa
     echo "Restarted SSH agent"
 }
 
 if [ -z "$SSH_AUTH_SOCK" ] || [[ $SSH_AUTH_SOCK == *"/private/tmp/"* ]] ; then
     eval `ssh-agent -s` > /dev/null 2>&1
-    ssh-add ~/.ssh/YOUR_KEY_FILE > /dev/null 2>&1
+    ssh-add ~/.ssh/id_rsa > /dev/null 2>&1
 fi
