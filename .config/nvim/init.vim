@@ -275,6 +275,10 @@ set scrolloff=50
 
 nnoremap <silent> <BS> :nohlsearch<CR>
 
+nnoremap <c-v> "0p
+" Delete without yank
+nnoremap <leader>d "_d
+nnoremap x "_x
 
 " ============================================================================ "
 " ===                           PLUGIN SETUP                               === "
