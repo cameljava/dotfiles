@@ -681,7 +681,7 @@ tnoremap <silent> <A-d> <C-\><C-n>:Lspsaga close_floaterm<CR>
 
 " let g:loaded_python_provider = 1
 " let g:loaded_python3_provider = 1
-let g:python3_host_prog = '$HOME/.pyenv/shims/python'
+let g:python3_host_prog = '$HOME/.pyenv/shims/python3'
 let g:python_host_prog = '$HOME/.pyenv/shims/python2'
 
 " === fugitive.nvim === "

@@ -101,17 +101,6 @@ alias fzfp="fzf --preview 'bat --style=numbers --color=always {} | head -500'"
 # search all files in current folder including hidden and git ignore, except .rgignore
 export FZF_DEFAULT_COMMAND="rg --files --no-ignore-vcs --hidden --follow --glob '!.git'"
 
-# TODO set serverless properly instead point to certain project
-# tabtab source for serverless package
-# uninstall by removing these lines or running `tabtab uninstall serverless`
-# [ -f /Users/kevlee/git/cochlear_gitlab/drx-serverless/auth/node_modules/tabtab/.completions/serverless.bash ] && . /Users/kevlee/git/cochlear_gitlab/drx-serverless/auth/node_modules/tabtab/.completions/serverless.bash
-# tabtab source for sls package
-# uninstall by removing these lines or running `tabtab uninstall sls`
-# [ -f /Users/kevlee/git/cochlear_gitlab/drx-serverless/auth/node_modules/tabtab/.completions/sls.bash ] && . /Users/kevlee/git/cochlear_gitlab/drx-serverless/auth/node_modules/tabtab/.completions/sls.bash
-# tabtab source for slss package
-# uninstall by removing these lines or running `tabtab uninstall slss`
-# [ -f /Users/kevlee/git/cochlear_gitlab/drx-serverless/auth/node_modules/tabtab/.completions/slss.bash ] && . /Users/kevlee/git/cochlear_gitlab/drx-serverless/auth/node_modules/tabtab/.completions/slss.bash
-
 export SLS_DEBUG=true
 
 # setting for forgit
@@ -122,5 +111,3 @@ FORGIT_LOG_FZF_OPTS=' --bind="ctrl-e:execute(echo {} |grep -Eo [a-f0-9]+ |head -
 export _ZO_ECHO=1
 export _ZO_RESOLVE_SYMLINKS=1
 eval "$(zoxide init bash)"
-
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
