@@ -147,6 +147,7 @@ Plug 'Pocco81/TrueZen.nvim'
 " doc hub
 " Plug 'rizzatti/dash.vim'
 " experience
+" Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 " Plug 'honza/vim-snippets'
 
@@ -779,8 +780,12 @@ let g:netrw_nogx = 1 " disable netrw's gx mapping.
 nmap gx <Plug>(openbrowser-smart-search)
 vmap gx <Plug>(openbrowser-smart-search)
 
+" -------------------- markdown and preview setting -------------------
+let g:mkdp_browser='/Applications/Firefox.app/Contents/MacOS/firefox'
+let g:mkdp_auto_close = 0
+
 " ============================================================================ "
-" ===                                UI                                    === "
+" ===                UI                                    === "
 " ============================================================================ "
 
 
