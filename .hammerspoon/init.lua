@@ -1,43 +1,40 @@
-local log = hs.logger.new('init.lua', 'debug')
-
 -- Use Control+` to reload Hammerspoon config
-hs.hotkey.bind({'ctrl'}, '\\', nil, function()
+hs.hotkey.bind({'ctrl'}, '\\',  function()
   hs.reload()
 end)
 
-keyUpDown = function(modifiers, key)
-  -- Un-comment & reload config to log each keystroke that we're triggering
-  -- log.d('Sending keystroke:', hs.inspect(modifiers), key)
+hs.hotkey.bind({"cmd", "alt", "ctrl"}, "H", function()
+  local win = hs.window.focusedWindow()
+  local f = win:frame()
 
-  hs.eventtap.keyStroke(modifiers, key, 0)
-end
+  f.x = f.x - 20
+  -- f.x = f.x + 20
+  win:setFrame(f)
+end)
 
--- Subscribe to the necessary events on the given window filter such that the
--- given hotkey is enabled for windows that match the window filter and disabled
--- for windows that don't match the window filter.
---
--- windowFilter - An hs.window.filter object describing the windows for which
---                the hotkey should be enabled.
--- hotkey       - The hs.hotkey object to enable/disable.
---
--- Returns nothing.
-enableHotkeyForWindowsMatchingFilter = function(windowFilter, hotkey)
-  windowFilter:subscribe(hs.window.filter.windowFocused, function()
-    hotkey:enable()
-  end)
+hs.hotkey.bind({"cmd", "alt", "ctrl"}, "L", function()
+  local win = hs.window.focusedWindow()
+  local f = win:frame()
 
-  windowFilter:subscribe(hs.window.filter.windowUnfocused, function()
-    hotkey:disable()
-  end)
-end
+  f.x = f.x + 20
+  win:setFrame(f)
+end)
 
-require('keyboard.control-escape')
-require('keyboard.delete-words')
-require('keyboard.hyper')
-require('keyboard.markdown')
-require('keyboard.microphone')
-require('keyboard.panes')
-require('keyboard.super')
-require('keyboard.windows')
+hs.hotkey.bind({"cmd", "alt", "ctrl"}, "K", function()
+  local win = hs.window.focusedWindow()
+  local f = win:frame()
 
-hs.notify.new({title='Hammerspoon', informativeText='Ready to rock 🤘'}):send()
+  f.y = f.y - 20
+  win:setFrame(f)
+end)
+
+hs.hotkey.bind({"cmd", "alt", "ctrl"}, "J", function()
+  local win = hs.window.focusedWindow()
+  local f = win:frame()
+
+  f.y = f.y + 20
+  win:setFrame(f)
+end)
+
+hs.loadSpoon("Lunette")
+spoon.Lunette:bindHotkeys()
