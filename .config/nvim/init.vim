@@ -135,7 +135,6 @@ Plug 'Yggdroot/indentLine'
 Plug 'rafi/awesome-vim-colorschemes'
 Plug 'sainnhe/everforest'
 Plug 'EdenEast/nightFox.nvim'
-" Plug 'folke/lsp-colors.nvim'
 
 " Dim paragraphs above and below the active paragraph.
 Plug 'junegunn/limelight.vim'
@@ -147,8 +146,16 @@ Plug 'Pocco81/TrueZen.nvim'
 " doc hub
 " Plug 'rizzatti/dash.vim'
 " experience
-" Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown'
+
+" markdown preview in browser, preinstall brew install markdown
+" command, :MarkdownPreview
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
+
+" markdown preview in terminal, terminal rander preinstall glow
+" :PreviewMarkdown
+" 'MichaelMure/mdr', install binary
+Plug 'skanehira/preview-markdown.vim'
+
 " Plug 'honza/vim-snippets'
 
 "
@@ -781,9 +788,8 @@ nmap gx <Plug>(openbrowser-smart-search)
 vmap gx <Plug>(openbrowser-smart-search)
 
 " -------------------- markdown and preview setting -------------------
-let g:mkdp_browser='/Applications/Firefox.app/Contents/MacOS/firefox'
-let g:mkdp_auto_close = 0
-
+"
+let g:preview_markdown_parser = 'glow'
 " ============================================================================ "
 " ===                UI                                    === "
 " ============================================================================ "

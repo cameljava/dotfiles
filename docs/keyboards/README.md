@@ -2,6 +2,75 @@
 
 Explore the way to use hotkeys/window manager to control position and max/min app window in mac.
 
+## hammerspoon
+
+Set following [scottwhudson lunette](https://github.com/scottwhudson/Lunette)
+
+Default Keybindings:
+
+| CommandName  | (Chord) Activator |
+| -------------|:-------------------:|
+| `center`     | (⌥ ⌘) C          |
+| `fullScreen` | (⌥ ⌘) F          |
+| `leftHalf`   | (⌥ ⌘) ←          |
+| `rightHalf`  | (⌥ ⌘) →          |
+| `topHalf`    | (⌥ ⌘) ↑          |
+| `bottomHalf` | (⌥ ⌘) ↓          |
+| `topLeft`    | (⌃ ⌘) ←          |
+| `bottomLeft` | (⌃ ⌘ ⇧) ←        |
+| `topRight`   | (⌃ ⌘) →          |
+| `bottomRight`| (⌃ ⌘ ⇧) →        |
+| `nextDisplay`| (⌃ ⌥ ⌘) →        |
+| `prevDisplay`| (⌃ ⌥ ⌘) ←        |
+| `nextThird`  | (⌃ ⌥) →          |
+| `prevThird`  | (⌃ ⌥) ←          |
+| `enlarge`    | (⌃ ⌥ ⇧) →        |
+| `shrink`     | (⌃ ⌥ ⇧) ←        |
+| `undo`       | (⌥ ⌘) Z          |
+| `redo`       | (⌥ ⌘ ⇧) Z        |
+
+## kitty
+
+Start to move to kitty as default terminal, utilise default kitty window management
+
+### Scrolling
+
+|Action           | Shortcut                                     |
+|-----------------|:---------------------------------------------:|
+|Scroll line up   | ctrl+shift+up (also ⌥+⌘+⇞ and ⌘+↑ on macOS)
+|Scroll line down |ctrl+shift+down (also ⌥+⌘+⇟ and ⌘+↓ on macOS)
+|Scroll page up   |ctrl+shift+page\_up (also ⌘+⇞ on macOS)
+|Scroll page down |ctrl+shift+page\_down (also ⌘+⇟ on macOS)
+|Scroll to top    |ctrl+shift+home (also ⌘+↖ on macOS)
+|Scroll to bottom |ctrl+shift+end (also ⌘+↘ on macOS)
+
+### Tabs
+
+|Action            | Shortcut                                        |
+|------------------|:------------------------------------------------:|
+|New tab           | ctrl+shift+t (also ⌘+t on macOS)
+|Close tab         | ctrl+shift+q (also ⌘+w on macOS)
+|Next tab          | ctrl+shift+right (also ^+⇥ and ⇧+⌘+] on macOS)
+|Previous tab      | trl+shift+left (also ⇧+^+⇥ and ⇧+⌘+\[ on macOS)
+|Next layout       | ctrl+shift+l
+|Move tab forward  | ctrl+shift+.
+|Move tab backward | ctrl+shift+,
+|Set tab title     | ctrl+shift+alt+t (also ⇧+⌘+i on macOS)
+
+### Windows
+
+|Action                | Shortcut                                 |
+|----------------------|:-----------------------------------------:|
+|New window            | ctrl+shift+enter (also ⌘+↩ on macOS)
+|New OS window         | ctrl+shift+n (also ⌘+n on macOS)
+|Close window          | ctrl+shift+w (also ⇧+⌘+d on macOS)
+|Next window           | ctrl+shift+]
+|Previous window       | ctrl+shift+\[
+|Move window forward   | ctrl+shift+f
+|Move window backward  | ctrl+shift+b
+|Move window to top    | ctrl+shift+\`
+|Focus specific window | ctrl+shift+1, ctrl+shift+2 … ctrl+shift+0 (also ⌘+1, ⌘+2 … ⌘+9 on macOS) (clockwise from the top-left)
+
 ## Reference
 
 *   \[turn-your-keyboard-into-a-text-editing-rocket by Owen Caulfield] (
