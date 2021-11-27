@@ -3,3 +3,4 @@
 .config/tmux/plugins/
 Brewfile.lock.json
 lnav/
+.DS_Store
