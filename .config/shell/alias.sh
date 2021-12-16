@@ -46,3 +46,5 @@ alias DT='tee ~/Desktop/terminalOut.txt'  # DT:           Pipe content to file o
 
 #git alias
 alias gs='git status'
+
+alias icat='kitty +kitten icat'

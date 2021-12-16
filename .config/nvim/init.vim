@@ -190,6 +190,8 @@ Plug 'onsails/lspkind-nvim'
 "
 Plug 'tyru/open-browser.vim'
 
+Plug 'christoomey/vim-tmux-navigator'
+
 call plug#end()
 
 " ============================================================================ "
@@ -912,11 +914,17 @@ nnoremap <silent> <leader>s :sp<CR>
 vnoremap < <gv
 vnoremap > >gv
 
-nnoremap <leader>h <C-W>h
-nnoremap <leader>j <C-W>j
-nnoremap <leader>k <C-W>k
-nnoremap <leader>l <C-W>l
+" nnoremap <leader>h <C-W>h
+" nnoremap <leader>j <C-W>j
+" nnoremap <leader>k <C-W>k
+" nnoremap <leader>l <C-W>l
 
+" make vim aware tmux pane, can move to tmux pane using vim move
+" but from tmux pane move back to vim need use tmux prefix move
+nnoremap <leader>h :TmuxNavigateLeft<cr>
+nnoremap <leader>l :TmuxNavigateRight<cr>
+nnoremap <leader>k :TmuxNavigateUp<cr>
+nnoremap <leader>j :TmuxNavigateDown<cr>
 " Quick editing
 
 " Edit the .bashrc"
