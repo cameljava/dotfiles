@@ -34,14 +34,17 @@ fi
 
 ####### navigate
 
-eval "$(lua /usr/local/opt/z.lua/share/z.lua/z.lua --init bash)"
+# eval "$(lua /usr/local/opt/z.lua/share/z.lua/z.lua --init bash)"
 # /path/to/z.lua --init bash)"" /path/to/z.lua --init bash)"" . "$HOME/git/cameljava_github/tools/z/z.sh"
 # [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
 ######## git
 # git+fzf
 source "$HOME/git/cameljava_github/prog/forgit/forgit.plugin.sh"
-# [ -s "$HOME/.scm_breeze/scm_breeze.sh" ] && source "$HOME/.scm_breeze/scm_breeze.sh"
+
+# setting for forgit
+# ctrl-e to view the logs in a vim buffer (glo specific)
+FORGIT_LOG_FZF_OPTS=' --bind="ctrl-e:execute(echo {} |grep -Eo [a-f0-9]+ |head -1 |xargs git show |nvim -)"'
 
 # prompt show git status
 if [ -f "/usr/local/opt/bash-git-prompt/share/gitprompt.sh" ]; then
