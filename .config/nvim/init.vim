@@ -843,6 +843,25 @@ let g:netrw_nogx = 1 " disable netrw's gx mapping.
 nmap gx <Plug>(openbrowser-smart-search)
 vmap gx <Plug>(openbrowser-smart-search)
 
+
+
+" --------------------- vim neoterm setting -----------------
+
+" kassio/neoterm
+let g:neoterm_default_mod = 'vertical'
+" let g:neoterm_size = 100
+let g:neoterm_autoinsert = 1
+let g:neoterm_autoscroll = 1
+let g:neoterm_term_per_tab = 1
+nnoremap <c-y> :Ttoggle<CR>
+inoremap <c-y> <Esc>:Ttoggle<CR>
+tnoremap <c-y> <c-\><c-n>:Ttoggle<CR>
+nnoremap <leader>x :TREPLSendLine<CR>
+vnoremap <leader>x :TREPLSendSelection<CR>
+if has('nvim')
+  au! TermOpen * tnoremap <buffer> <Esc> <c-\><c-n>
+endif
+
 " ============================================================================ "
 " ===                                UI                                    === "
 " ============================================================================ "
@@ -920,7 +939,7 @@ vnoremap : ;
 
 nnoremap <silent> <tab> :bnext<cr>
 nnoremap <silent> <s-tab> :bprevious<cr>
-nnoremap <leader>x :bd<cr>
+" nnoremap <leader>x :bd<cr>
 
 " cursor not moving left when you exit from insert mode
 inoremap <Esc> <Esc>`^
