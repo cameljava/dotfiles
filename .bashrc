@@ -125,3 +125,7 @@ export SLS_DEBUG=true
 export _ZO_ECHO=1
 export _ZO_RESOLVE_SYMLINKS=1
 eval "$(zoxide init bash)"
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+complete -C /usr/local/bin/aws_completer aws
