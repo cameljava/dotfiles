@@ -93,7 +93,7 @@ Plug 'sodapopcan/vim-twiggy'
 Plug 'shumphrey/fugitive-gitlab.vim'
 
 " experience neogit see if it can replace fugitive
-Plug 'TimUntersberger/neogit'
+" Plug 'TimUntersberger/neogit'
 Plug 'sindrets/diffview.nvim'
 
 " ====  IDE feature
@@ -175,7 +175,7 @@ Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
-Plug 'onsails/lspkind-nvim'
+" Plug 'onsails/lspkind-nvim'
 " Plug 'onsails/vimway-lsp-diag.nvim'
 " Plug 'p00f/nvim-ts-rainbow'
 "
@@ -442,26 +442,11 @@ require('telescope').load_extension('fzf')
 
 -- %%%%%%%%%%%%%%%%%%%%%%% lspkind setting %%%%%%%%%%%%%%%
 
-require('lspkind').init({
-    -- enables text annotations
-    --
-    -- default: true
-    with_text = true,
-
-    -- default symbol map
-    -- can be either 'default' (requires nerd-fonts font) or
-    -- 'codicons' for codicon preset (requires vscode-codicons font)
-    --
-    -- default: 'default'
-    -- preset = 'codicons'
-    preset = 'default'
-
-})
 
 -- %%%%%%%%%%%%%%%%%%%%%%% cmp setting %%%%%%%%%%%%%%%
 
 local cmp = require'cmp'
-local lspkind = require('lspkind')
+-- local lspkind = require('lspkind')
 
 cmp.setup({
     snippet = {
@@ -497,7 +482,7 @@ cmp.setup({
     formatting = {
       format = function(entry, vim_item)
         -- fancy icons and a name of kind
-        vim_item.kind = require("lspkind").presets.default[vim_item.kind] .. " " .. vim_item.kind
+     --   vim_item.kind = require("lspkind").presets.default[vim_item.kind] .. " " .. vim_item.kind
 
         -- set a name for each source
         vim_item.menu = ({
