@@ -1,0 +1,9 @@
+set up alacritty, switch from iterm2 to alacritty and tmux.
+
+follow https://github.com/toggle-corp/alacritty-colorscheme to set up alacritty scheme.
+
+softlink git checkout scheme, and import to alacritty config file
+
+# tips
+remove ~/.local/share/nvim folder, fix some treesitter parser problem
+https://github.com/nvim-treesitter/nvim-treesitter/issues/2295
