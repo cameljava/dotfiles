@@ -450,28 +450,9 @@ buffer_previewer_maker = require'telescope.previewers'.buffer_previewer_maker
 -- This will load fzy_native and have it override the default file sorter
 require('telescope').load_extension('fzf')
 
--- %%%%%%%%%%%%%%%%%%%%%%% lspkind setting %%%%%%%%%%%%%%%
-
--- require('lspkind').init({
-    -- enables text annotations
-    --
-    -- default: true
---    with_text = true,
-
-    -- default symbol map
-    -- can be either 'default' (requires nerd-fonts font) or
-    -- 'codicons' for codicon preset (requires vscode-codicons font)
-    --
-    -- default: 'default'
-    -- preset = 'codicons'
-    -- preset = 'default'
-
--- })
-
 -- %%%%%%%%%%%%%%%%%%%%%%% cmp setting %%%%%%%%%%%%%%%
 
 local cmp = require'cmp'
--- local lspkind = require('lspkind')
 
 cmp.setup({
     snippet = {
