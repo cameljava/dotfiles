@@ -1,3 +1,9 @@
+hammerspoon
+https://github.com/scottwhudson/Lunette
+
+for window Manager keybinding
+
+
 Manually global npm /yarn installation (eg, for language server, etc)
 run script in .config/kManulInstall
 
