@@ -1,7 +1,7 @@
 # shellcheck shell=bash
 ################################# terminal config ####################
 export PS1='$ '
-export TERM=xterm-256color
+# export TERM=xterm-256color
 # export TERM=screen-256color
 
 export PAGER="less"
