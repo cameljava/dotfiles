@@ -895,17 +895,19 @@ nnoremap <silent> <leader>s :sp<CR>
 vnoremap < <gv
 vnoremap > >gv
 
-" nnoremap <leader>h <C-W>h
-" nnoremap <leader>j <C-W>j
-" nnoremap <leader>k <C-W>k
-" nnoremap <leader>l <C-W>l
-
-" make vim aware tmux pane, can move to tmux pane using vim move
-" but from tmux pane move back to vim need use tmux prefix move
-nnoremap <leader>h :TmuxNavigateLeft<cr>
-nnoremap <leader>l :TmuxNavigateRight<cr>
-nnoremap <leader>k :TmuxNavigateUp<cr>
-nnoremap <leader>j :TmuxNavigateDown<cr>
+" use same <leader> hjkl navigate within vim modes
+tnoremap <leader>h <C-\><C-N><C-w>h
+tnoremap <leader>j <C-\><C-N><C-w>j
+tnoremap <leader>k <C-\><C-N><C-w>k
+tnoremap <leader>l <C-\><C-N><C-w>l
+inoremap <leader>h <C-\><C-N><C-w>h
+inoremap <leader>j <C-\><C-N><C-w>j
+inoremap <leader>k <C-\><C-N><C-w>k
+inoremap <leader>l <C-\><C-N><C-w>l
+nnoremap <leader>h <C-W>h
+nnoremap <leader>j <C-W>j
+nnoremap <leader>k <C-W>k
+nnoremap <leader>l <C-W>l
 " Quick editing
 
 " Edit the .bashrc"
