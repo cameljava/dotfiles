@@ -283,12 +283,6 @@ endif
 
 set scrolloff=50
 
-nnoremap <silent> <BS> :nohlsearch<CR>
-
-nnoremap <c-v> "0p
-" Delete without yank
-nnoremap <leader>d "_d
-nnoremap x "_x
 
 " ============================================================================ "
 " ===                           PLUGIN SETUP                               === "
@@ -773,6 +767,22 @@ vmap gx <Plug>(openbrowser-smart-search)
 " -------------------- markdown and preview setting -------------------
 "
 let g:preview_markdown_parser = 'glow'
+
+" --------------------- vim neoterm setting -----------------
+" kassio/neoterm
+let g:neoterm_default_mod = 'vertical'
+" let g:neoterm_size = 100
+let g:neoterm_autoinsert = 1
+let g:neoterm_autoscroll = 1
+let g:neoterm_term_per_tab = 1
+nnoremap <c-y> :Ttoggle<CR>
+inoremap <c-y> <Esc>:Ttoggle<CR>
+tnoremap <c-y> <c-\><c-n>:Ttoggle<CR>
+nnoremap <leader>x :TREPLSendLine<CR>
+vnoremap <leader>x :TREPLSendSelection<CR>
+if has('nvim')
+  au! TermOpen * tnoremap <buffer> <Esc> <c-\><c-n>
+endif
 " ============================================================================ "
 " ===                UI                                    === "
 " ============================================================================ "
@@ -851,6 +861,20 @@ vnoremap : ;
 nnoremap <silent> <tab> :bnext<cr>
 nnoremap <silent> <s-tab> :bprevious<cr>
 nnoremap <leader>x :bd<cr>
+
+nnoremap <silent> <BS> :nohlsearch<CR>
+
+" Delete current visual selection and dump in black hole buffer before pasting
+" Used when you want to paste over something without it getting copied to
+" Vim's default buffer
+vnoremap <c-v> "_d"0P
+
+" leader p to paste last copied
+nnoremap <leader>p "0p
+
+" Delete without yank
+nnoremap <leader>d "_d
+nnoremap x "_x
 
 " cursor not moving left when you exit from insert mode
 inoremap <Esc> <Esc>`^
@@ -952,11 +976,6 @@ xnoremap <silent> s* "sy:let @/=@s<CR>cgn
 
 " Allows you to save files you opened without write permissions via sudo
 cmap w!! w !sudo tee %
-
-" Delete current visual selection and dump in black hole buffer before pasting
-" Used when you want to paste over something without it getting copied to
-" Vim's default buffer
-vnoremap <leader>p "_dP
 
 " To search for visually selected text
 vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
