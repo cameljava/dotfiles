@@ -4,6 +4,7 @@
 alias s='source '
 # alias ls='/bin/ls -GFhl|cat'
 alias ls='exa -alT --git -L 2 --git-ignore -I .git'
+alias ll='exa -L 2'
 alias la='exa -alT --git -L 2'
 alias laa='exa -alT --git'
 alias cp='cp -iv'       # Preferred 'cp' implementation
@@ -16,7 +17,7 @@ alias fd='fd -H '
 
 # alias diff="diff-so-fancy"
 alias rm="rm -i"
-alias dd='trash'
+alias dd='trash '
 # alias sls="sls --region ap-southeast-2 "
 alias n="nvim "
 alias v="vim "
@@ -25,7 +26,7 @@ alias vs="vim -S"
 alias ns="nvim -S"
 alias m="oni2"
 alias g="git "
-alias b="brew "
+alias b="bat "
 #History search (use: hs sometext)
 alias hs='history | grep $1'
 alias ..='cd ../'                         # Go back 1 directory level

@@ -8,4 +8,4 @@
 # kevin after set editing mode to vi above config for iterm2 move one word seems not working,
 # comment them out
 #
-set editing-mode vi
+# set editing-mode vi

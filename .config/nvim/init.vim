@@ -191,6 +191,8 @@ Plug 'hrsh7th/cmp-cmdline'
 Plug 'tyru/open-browser.vim'
 
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'francoiscabrol/ranger.vim'
+Plug 'rbgrouleff/bclose.vim'
 
 call plug#end()
 
@@ -783,6 +785,12 @@ vnoremap <leader>x :TREPLSendSelection<CR>
 if has('nvim')
   au! TermOpen * tnoremap <buffer> <Esc> <c-\><c-n>
 endif
+
+" --------------------- vim neoterm setting -----------------
+"  default opening ranger mapping is <leader>f, below disable default key
+"  mapping
+let g:ranger_map_keys = 0
+
 " ============================================================================ "
 " ===                UI                                    === "
 " ============================================================================ "

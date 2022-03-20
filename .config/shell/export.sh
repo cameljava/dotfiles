@@ -6,7 +6,7 @@ export PS1='$ '
 
 export PAGER="less"
 # export PAGER="most"
-export VISUAL="MacVim"
+export VISUAL="nvim"
 export EDITOR="vim"
 
 ################################# set ROOT/HOME ########################
