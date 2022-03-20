@@ -879,11 +879,12 @@ nnoremap x "_x
 " cursor not moving left when you exit from insert mode
 inoremap <Esc> <Esc>`^
 " quick map for escape and save
-nnoremap <leader>w :w<CR>
+" update leader w to update. only wirte if buffer changed
+nnoremap <leader>w :update<CR>
 inoremap kk <ESC>`^
 cnoremap <silent> kk <C-c>
 inoremap jj <ESC>`^:update<CR>
-inoremap jh <ESC>:wq<CR>
+inoremap jh <ESC>:xa<CR>
 
 " Make Y yank everything from the cursor to the end of the line. This makes Y
 " act more like C or D because by default, Y yanks the current line (i.e. the
