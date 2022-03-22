@@ -17,10 +17,11 @@ Plug 'ryanoasis/vim-devicons'
 " Tim pope
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
-Plug 'tpope/vim-commentary'
+" Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-obsession'
 " Plug 'tpope/vim-projectionist'
 " Plug 'tpope/vim-unimpaired'
+Plug 'numToStr/Comment.nvim'
 
 " color picker
 Plug 'KabbAmine/vCoolor.vim'
@@ -28,6 +29,8 @@ Plug 'KabbAmine/vCoolor.vim'
 " Plug 'chrisbra/Colorizer'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'szw/vim-maximizer'
+
+Plug 'pangloss/vim-javascript'
 
 " code scratch
 Plug 'metakirby5/codi.vim'
@@ -147,8 +150,16 @@ Plug 'Pocco81/TrueZen.nvim'
 " Plug 'rizzatti/dash.vim'
 " experience
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
-" Plug 'honza/vim-snippets'
 
+Plug 'hrsh7th/vim-vsnip'
+Plug 'hrsh7th/vim-vsnip-integ'
+
+" Track the engine.
+" Plug 'SirVer/ultisnips'
+
+" Snippets are separated from the engine. Add this if you want them:
+" Plug 'honza/vim-snippets'
+Plug 'rafamadriz/friendly-snippets'
 "
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
@@ -173,8 +184,10 @@ Plug 'hrsh7th/nvim-cmp'
 " For vsnip user.
 Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/vim-vsnip'
+
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
+" Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 " Plug 'onsails/lspkind-nvim'
 " Plug 'onsails/vimway-lsp-diag.nvim'
 " Plug 'p00f/nvim-ts-rainbow'
@@ -283,8 +296,15 @@ tnoremap <expr> <C-R> '<C-\><C-N>"'.nr2char(getchar()).'pi'
 " ===                           PLUGIN SETUP                               === "
 " ============================================================================ "
 
+" ------------------------------ vsnip settings --------------------------------
+let g:vsnip_snippet_dir = expand('~/.config/nvim/ksettings/vsnip')
 
-"ALE settings:
+" ------------------------------ JsDoc settings --------------------------------
+let g:jsdoc_lehre_path = '/Users/kevlee/.nvm/versions/node/v14.18.1/bin/lehre'
+" vim-javascript
+let g:javascript_plugin_jsdoc = 1
+
+" ------------------------------ ALE settings --------------------------------
 let g:ale_fix_on_save = 1
 
 let g:ale_disable_lsp = 1
@@ -335,6 +355,76 @@ let g:neoterm_callbacks = {}
 lua <<EOF
 
 -- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ls color plugin setting TODO default seems not working %%%%%%%%%%%%%%%%%%
+
+
+require('Comment').setup {
+    ---Add a space b/w comment and the line
+    ---@type boolean
+    padding = true,
+
+    ---Whether the cursor should stay at its position
+    ---NOTE: This only affects NORMAL mode mappings and doesn't work with dot-repeat
+    ---@type boolean
+    sticky = true,
+
+    ---Lines to be ignored while comment/uncomment.
+    ---Could be a regex string or a function that returns a regex string.
+    ---Example: Use '^$' to ignore empty lines
+    ---@type string|fun():string
+    ignore = nil,
+
+    ---LHS of toggle mappings in NORMAL + VISUAL mode
+    ---@type table
+    toggler = {
+        ---Line-comment toggle keymap
+        line = 'gcc',
+        ---Block-comment toggle keymap
+        block = 'gbc',
+    },
+
+    ---LHS of operator-pending mappings in NORMAL + VISUAL mode
+    ---@type table
+    opleader = {
+        ---Line-comment keymap
+        line = 'gc',
+        ---Block-comment keymap
+        block = 'gb',
+    },
+
+    ---LHS of extra mappings
+    ---@type table
+    extra = {
+        ---Add comment on the line above
+        above = 'gcO',
+        ---Add comment on the line below
+        below = 'gco',
+        ---Add comment at the end of line
+        eol = 'gcA',
+    },
+
+    ---Create basic (operator-pending) and extended mappings for NORMAL + VISUAL mode
+    ---@type table
+    mappings = {
+        ---Operator-pending mapping
+        ---Includes `gcc`, `gbc`, `gc[count]{motion}` and `gb[count]{motion}`
+        ---NOTE: These mappings can be changed individually by `opleader` and `toggler` config
+        basic = true,
+        ---Extra mapping
+        ---Includes `gco`, `gcO`, `gcA`
+        extra = true,
+        ---Extended mapping
+        ---Includes `g>`, `g<`, `g>[count]{motion}` and `g<[count]{motion}`
+        extended = false,
+    },
+
+    ---Pre-hook, called before commenting the line
+    ---@type fun(ctx: Ctx):string
+    pre_hook = nil,
+
+    ---Post-hook, called after commenting is done
+    ---@type fun(ctx: Ctx)
+    post_hook = nil,
+}
 
 -- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% treesitter setting %%%%%%%%%%%%%%%%%%
 
@@ -476,8 +566,10 @@ cmp.setup({
     },
     sources = {
       { name = 'nvim_lsp' },
+      { name = 'path' },
       { name = 'vsnip' },
-      { name = 'buffer' },
+      -- { name = 'ultisnips' }, -- For ultisnips users
+      { name = 'buffer', keyword_length=4 },
     },
     formatting = {
       format = function(entry, vim_item)
@@ -488,7 +580,8 @@ cmp.setup({
         vim_item.menu = ({
           buffer = "[Buffer]",
           nvim_lsp = "[LSP]",
-          vsnip = "[VSnip]",
+          vsnips = "[VSnip]",
+          -- ultisnips = "[UltiSnip]",
           nvim_lua = "[Lua]",
           latex_symbols = "[Latex]",
         })[entry.source.name]
@@ -552,7 +645,7 @@ buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnosti
 buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
 buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
 buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
---  buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+ buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
 
 end
 
@@ -1031,6 +1124,9 @@ cmap w!! w !sudo tee %
 " Used when you want to paste over something without it getting copied to
 " Vim's default buffer
 vnoremap <leader>p "_dP
+
+" paste last thing yanked, not deleted
+nnoremap <leader>p "0p
 
 " To search for visually selected text
 vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>

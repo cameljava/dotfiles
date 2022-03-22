@@ -1,0 +1,18 @@
+{
+  "filename": {
+    "prefix": ["fna"],
+    "body": "$TM_FILENAME_BASE"
+  },
+  "log-debug": {
+    "prefix": ["lld"],
+    "body": "log.debug(${1:$TM_SELECTED_TEXT});"
+  },
+  "log-info": {
+    "prefix": ["lli"],
+    "body": "log.info('${1:$TM_SELECTED_TEXT}');"
+  },
+  "log-error": {
+    "prefix": ["lle"],
+    "body": "log.info(${1:$TM_SELECTED_TEXT});"
+  }
+}

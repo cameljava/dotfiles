@@ -13,9 +13,9 @@
   status = auto
   diff = auto
 [color "branch"]
-  current = yellow reverse
-  local = yellow
-  remote = blue
+  ; current = yellow reverse
+  ; local = yellow
+  ; remote = blue
 ; [color "diff"]
   ; meta = yellow
   ; frag = magenta bold
@@ -24,10 +24,10 @@
   ; new = blue bold
   ; whitespace = red reverse
 [color "diff-highlight"]
-  oldNormal = red bold
-  oldHightlight= red bold 52
-  newNormal = blue bold
-  newHightlight = blue bold 22
+  ; oldNormal = red bold
+  ; oldHightlight= red bold 52
+  ; newNormal = blue bold
+  ; newHightlight = blue bold 22
 [color "status"]
   added = yellow
   changed = red
@@ -62,7 +62,7 @@
   untrack = rm --cache --
 [core]
   # Don't paginate output by default
-  pager = delta --dark --plus-color="#024200" --minus-color="#620001"  --theme="Solarized\\ \\(dark\\)"
+  pager = delta --dark --diff-so-fancy
   # --light for light terminal backgrounds, switch from diff-so-fancy
 	; pager = most # --light for light terminal backgrounds
   ; pager = diff-so-fancy | less --tab=2 -RFX
