@@ -17,10 +17,11 @@ Plug 'ryanoasis/vim-devicons'
 " Tim pope
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
-Plug 'tpope/vim-commentary'
+" Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-projectionist'
 " Plug 'tpope/vim-unimpaired'
+Plug 'numToStr/Comment.nvim'
 
 " color picker
 Plug 'KabbAmine/vCoolor.vim'
@@ -28,6 +29,8 @@ Plug 'KabbAmine/vCoolor.vim'
 " Plug 'chrisbra/Colorizer'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'szw/vim-maximizer'
+
+Plug 'pangloss/vim-javascript'
 
 " code scratch
 Plug 'metakirby5/codi.vim'
@@ -133,8 +136,6 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'Yggdroot/indentLine'
 
 Plug 'rafi/awesome-vim-colorschemes'
-Plug 'sainnhe/everforest'
-Plug 'EdenEast/nightFox.nvim'
 
 " Dim paragraphs above and below the active paragraph.
 Plug 'junegunn/limelight.vim'
@@ -156,8 +157,12 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 " 'MichaelMure/mdr', install binary
 Plug 'skanehira/preview-markdown.vim'
 
-" Plug 'honza/vim-snippets'
 
+Plug 'hrsh7th/vim-vsnip'
+Plug 'hrsh7th/vim-vsnip-integ'
+
+" Plug 'honza/vim-snippets'
+Plug 'rafamadriz/friendly-snippets'
 "
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
@@ -215,7 +220,6 @@ try
   " colorscheme OceanicNextLight
   " colorscheme OceanicNext
   colorscheme nord
-  " colorscheme everforest
 catch
   colorscheme gruvbox
 endtry
@@ -290,7 +294,15 @@ set scrolloff=50
 " ===                           PLUGIN SETUP                               === "
 " ============================================================================ "
 
-"ALE settings:
+" ------------------------------ vsnip settings --------------------------------
+let g:vsnip_snippet_dir = expand('~/.config/nvim/ksettings/vsnip')
+
+" ------------------------------ JsDoc settings --------------------------------
+let g:jsdoc_lehre_path = '/Users/kevlee/.nvm/versions/node/v14.18.1/bin/lehre'
+" vim-javascript
+let g:javascript_plugin_jsdoc = 1
+
+" ------------------------------ ALE settings --------------------------------
 let g:ale_fix_on_save = 1
 
 let g:ale_disable_lsp = 1
@@ -342,6 +354,74 @@ lua <<EOF
 
 -- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ls color plugin setting TODO default seems not working %%%%%%%%%%%%%%%%%%
 
+require('Comment').setup {
+    ---Add a space b/w comment and the line
+    ---@type boolean
+    padding = true,
+
+    ---Whether the cursor should stay at its position
+    ---NOTE: This only affects NORMAL mode mappings and doesn't work with dot-repeat
+    ---@type boolean
+    sticky = true,
+
+    ---Lines to be ignored while comment/uncomment.
+    ---Could be a regex string or a function that returns a regex string.
+    ---Example: Use '^$' to ignore empty lines
+    ---@type string|fun():string
+    ignore = nil,
+
+    ---LHS of toggle mappings in NORMAL + VISUAL mode
+    ---@type table
+    toggler = {
+        ---Line-comment toggle keymap
+        line = 'gcc',
+        ---Block-comment toggle keymap
+        block = 'gbc',
+    },
+
+    ---LHS of operator-pending mappings in NORMAL + VISUAL mode
+    ---@type table
+    opleader = {
+        ---Line-comment keymap
+        line = 'gc',
+        ---Block-comment keymap
+        block = 'gb',
+    },
+
+    ---LHS of extra mappings
+    ---@type table
+    extra = {
+        ---Add comment on the line above
+        above = 'gcO',
+        ---Add comment on the line below
+        below = 'gco',
+        ---Add comment at the end of line
+        eol = 'gcA',
+    },
+
+    ---Create basic (operator-pending) and extended mappings for NORMAL + VISUAL mode
+    ---@type table
+    mappings = {
+        ---Operator-pending mapping
+        ---Includes `gcc`, `gbc`, `gc[count]{motion}` and `gb[count]{motion}`
+        ---NOTE: These mappings can be changed individually by `opleader` and `toggler` config
+        basic = true,
+        ---Extra mapping
+        ---Includes `gco`, `gcO`, `gcA`
+        extra = true,
+        ---Extended mapping
+        ---Includes `g>`, `g<`, `g>[count]{motion}` and `g<[count]{motion}`
+        extended = false,
+    },
+
+    ---Pre-hook, called before commenting the line
+    ---@type fun(ctx: Ctx):string
+    pre_hook = nil,
+
+    ---Post-hook, called after commenting is done
+    ---@type fun(ctx: Ctx)
+    post_hook = nil,
+}
 -- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% treesitter setting %%%%%%%%%%%%%%%%%%
 
 require('nvim-treesitter.configs').setup {
@@ -478,8 +558,9 @@ cmp.setup({
     },
     sources = {
       { name = 'nvim_lsp' },
+      { name = 'path' },
       { name = 'vsnip' },
-      { name = 'buffer' },
+      { name = 'buffer', keyword_length=4 },
     },
     formatting = {
       format = function(entry, vim_item)
@@ -554,7 +635,7 @@ buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnosti
 buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
 buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
 buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
---  buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+ buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
 
 end
 
@@ -581,7 +662,6 @@ saga.init_lsp_saga()
 -- require('gitsigns').setup()
 
 -- %%%%%%%%%%%%%%%%%%%%%%% diffview setting %%%%%%%%%%%%%%%
-
 local cb = require'diffview.config'.diffview_callback
 
 require'diffview'.setup {
@@ -642,7 +722,7 @@ EOF
 " nmap <space>d0 <cmd>lua require('vimway-lsp-diag').open_buffer_diagnostics()<cr>
 
 " telescope mapping
-nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
+nnoremap <leader>ff <cmd>Telescope git_files<cr>
 nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
 nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
 nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
@@ -868,7 +948,7 @@ vnoremap : ;
 
 nnoremap <silent> <tab> :bnext<cr>
 nnoremap <silent> <s-tab> :bprevious<cr>
-nnoremap <leader>x :bd<cr>
+" nnoremap <leader>x :bd<cr>
 
 nnoremap <silent> <BS> :nohlsearch<CR>
 
