@@ -292,6 +292,8 @@ tnoremap <Esc> <C-\><C-n>
 " simulate ctrl r in terminal mode
 tnoremap <expr> <C-R> '<C-\><C-N>"'.nr2char(getchar()).'pi'
 
+nnoremap <c-space> ggVGy
+
 " ============================================================================ "
 " ===                           PLUGIN SETUP                               === "
 " ============================================================================ "
