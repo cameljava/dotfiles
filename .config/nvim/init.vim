@@ -605,7 +605,7 @@ nvim_lsp.vimls.setup{}
 nvim_lsp.bashls.setup{}
 nvim_lsp.yamlls.setup{}
 
-vim.lsp.set_log_level("debug")
+vim.lsp.set_log_level("info")
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
@@ -726,7 +726,7 @@ nnoremap <leader>ff <cmd>Telescope git_files<cr>
 nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
 nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
 nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
-nnoremap <leader>fb <cmd>lua require('telescope.builtin').file_browser()<cr>
+nnoremap <leader>fb <cmd>lua require('telescope.builtin').git_branches()<cr>
 nnoremap <leader>fc <cmd>lua require('telescope.builtin').commands()<cr>
 nnoremap <leader>fs <cmd>lua require('telescope.builtin').colorscheme()<cr>
 nnoremap <leader>ca <cmd>lua require('telescope.builtin').lsp_code_actions()<cr>
@@ -1112,7 +1112,7 @@ augroup vimRefresh
   autocmd VimResized * wincmd =
 
   " Update a buffer's contents on focus if it changed outside of Vim.
-  au FocusGained,BufEnter * :checktime
+  au FocusGained,BufEnter * silent! :checktime
 
   " Unset paste on InsertLeave.
   autocmd InsertLeave * silent! set nopaste
