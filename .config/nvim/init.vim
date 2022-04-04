@@ -176,7 +176,6 @@ Plug 'nvim-treesitter/playground'
 
 " using neovim native lsp and autocomplete
 Plug 'neovim/nvim-lspconfig'
-Plug 'glepnir/lspsaga.nvim'
 
 " Plug 'hrsh7th/nvim-compe'
 " TODO try new cmp as recommend
@@ -652,10 +651,6 @@ for _, lsp in ipairs(servers) do
     }
 end
 
--- %%%%%%%%%%%%%%%%%%%%%%% saga setting %%%%%%%%%%%%%%%
-local saga = require 'lspsaga'
-saga.init_lsp_saga()
-
 
 -- %%%%%%%%%%%%%%%%%%%%%%% gitsign setting %%%%%%%%%%%%%%%
 
@@ -732,18 +727,6 @@ nnoremap <leader>fs <cmd>lua require('telescope.builtin').colorscheme()<cr>
 nnoremap <leader>ca <cmd>lua require('telescope.builtin').lsp_code_actions()<cr>
 
 
-" saga mapping
-" finder window stay forever, bug not fixed yet
-" nnoremap <silent> gh :Lspsaga lsp_finder<CR>
-nnoremap <silent><leader>cc <cmd>lua require'lspsaga.diagnostic'.show_cursor_diagnostics()<CR>
-
-" jump diagnostic
-nnoremap <silent> [e <cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_prev()<CR>
-nnoremap <silent> ]e <cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_next()<CR>
-
-"floating terminal
-nnoremap <silent> <A-d> :Lspsaga open_floaterm<CR>
-tnoremap <silent> <A-d> <C-\><C-n>:Lspsaga close_floaterm<CR>
 
 " let g:loaded_python_provider = 1
 " let g:loaded_python3_provider = 1
