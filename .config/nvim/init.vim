@@ -169,6 +169,7 @@ Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+Plug 'BurntSushi/ripgrep'
 
 " tree sitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
@@ -794,11 +795,27 @@ let g:fzf_action = {
       \ 'ctrl-y': {lines -> setreg('*', join(lines, "\n"))}}
 
 " Launch fzf with CTRL+p.
-nnoremap <silent> <C-p> :FZF -m ~<CR>
+nnoremap <silent> <C-p> :FZF -m ~/.config<CR>
 
-" Allow passing optional flags into the Rg command.
-"   Example: :Rg myterm -g '*.md'
-command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case " . <q-args>, 1, <bang>0)
+"  Rg all in workdir.
+" command! -bang -nargs=* Rg call fzf#vim#grep(  'rg --column --line-number --no-heading --color=always --smart-case -- '.shellescape(<q-args>), 1, fzf#vim#with_preview(), <bang>0)
+" ripgrep
+
+if executable('rg')
+
+let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
+set grepprg=rg\ --vimgrep
+
+command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --no-ignore --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
+
+command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case --hidden --no-ignore --follow ".(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
+
+" Rg
+nnoremap <silent> <Leader>fa :Find<CR>
+" Rg current worda
+nnoremap <Leader>fw :Rg <C-R><C-W><space>
+
+endif
 
 " Empty value to disable preview window altogether
 " let g:fzf_preview_window = ''
