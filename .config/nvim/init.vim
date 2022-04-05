@@ -19,7 +19,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 " Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-obsession'
-Plug 'tpope/vim-projectionist'
+" Plug 'tpope/vim-projectionist'
 " Plug 'tpope/vim-unimpaired'
 Plug 'numToStr/Comment.nvim'
 
@@ -44,6 +44,7 @@ Plug 'kana/vim-textobj-entire'
 " syntax based text-object for function
 Plug 'haya14busa/vim-textobj-function-syntax'
 Plug 'wellle/targets.vim'
+Plug 'thinca/vim-textobj-function-javascript'
 " extended version of gf from kana
 Plug 'kana/vim-gf-user'
 " search

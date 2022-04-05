@@ -20,6 +20,7 @@ alias rm="rm -i"
 alias dd='trash '
 # alias sls="sls --region ap-southeast-2 "
 alias n="nvim "
+alias nn="nvim ."
 alias v="vim "
 alias vm="vim -u ~/.vimrc-minimal"
 alias vs="vim -S"

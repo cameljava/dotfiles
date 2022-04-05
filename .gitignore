@@ -1,6 +1,7 @@
 .config/alacritty/colors/
 .config/nvim/plugged/
 .config/tmux/plugins/
+.config/configstore
 Brewfile.lock.json
 lnav/
 .DS_Store
