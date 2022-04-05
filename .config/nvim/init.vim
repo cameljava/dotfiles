@@ -788,7 +788,15 @@ let g:airline#extensions#searchcount#enabled = 1
 " .............................................................................
 let $FZF_DEFAULT_OPTS = '--bind ctrl-a:select-all'
 
+" An action can be a reference to a function that processes selected lines
+function! s:build_quickfix_list(lines)
+  call setqflist(map(copy(a:lines), '{ "filename": v:val }'))
+  copen
+  cc
+endfunction
+
 let g:fzf_action = {
+      \ 'ctrl-q': function('s:build_quickfix_list'),
       \ 'ctrl-t': 'tab split',
       \ 'ctrl-x': 'split',
       \ 'ctrl-v': 'vsplit',
@@ -806,12 +814,25 @@ if executable('rg')
 let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
 set grepprg=rg\ --vimgrep
 
-command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --no-ignore --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
+command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --smart-case --hidden --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
 
 command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case --hidden --no-ignore --follow ".(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
 
+
+function! RipgrepFzf(query, fullscreen)
+  let command_fmt = 'rg --column --line-number --no-heading --color=always --ignore-case --no-ignore --hidden --follow -- %s || true'
+  let initial_command = printf(command_fmt, shellescape(a:query))
+  let reload_command = printf(command_fmt, '{q}')
+  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
+  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
+endfunction
+
+command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
+
 " Rg
 nnoremap <silent> <Leader>fa :Find<CR>
+" Rg
+nnoremap <silent> <Leader>fv :RG<CR>
 " Rg current worda
 nnoremap <Leader>fw :Rg <C-R><C-W><space>
 
