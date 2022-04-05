@@ -39,11 +39,12 @@ Plug 'metakirby5/codi.vim'
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-line'
 Plug 'kana/vim-textobj-indent'
-Plug 'kana/vim-textobj-function'
+" Plug 'kana/vim-textobj-function'
 Plug 'kana/vim-textobj-entire'
 " syntax based text-object for function
-Plug 'haya14busa/vim-textobj-function-syntax'
+" Plug 'haya14busa/vim-textobj-function-syntax'
 Plug 'wellle/targets.vim'
+Plug 'thinca/vim-textobj-function-javascript'
 " extended version of gf from kana
 Plug 'kana/vim-gf-user'
 " search
@@ -173,7 +174,7 @@ Plug 'nvim-treesitter/playground'
 
 " using neovim native lsp and autocomplete
 Plug 'neovim/nvim-lspconfig'
-Plug 'glepnir/lspsaga.nvim'
+" Plug 'glepnir/lspsaga.nvim'
 
 " Plug 'hrsh7th/nvim-compe'
 " TODO try new cmp as recommend
@@ -665,8 +666,8 @@ for _, lsp in ipairs(servers) do
 end
 
 -- %%%%%%%%%%%%%%%%%%%%%%% saga setting %%%%%%%%%%%%%%%
-local saga = require 'lspsaga'
-saga.init_lsp_saga()
+-- local saga = require 'lspsaga'
+-- saga.init_lsp_saga()
 
 
 -- %%%%%%%%%%%%%%%%%%%%%%% gitsign setting %%%%%%%%%%%%%%%
@@ -812,15 +813,15 @@ nnoremap <leader>ca <cmd>lua require('telescope.builtin').lsp_code_actions()<cr>
 " saga mapping
 " finder window stay forever, bug not fixed yet
 " nnoremap <silent> gh :Lspsaga lsp_finder<CR>
-nnoremap <silent><leader>cc <cmd>lua require'lspsaga.diagnostic'.show_cursor_diagnostics()<CR>
+" nnoremap <silent><leader>cc <cmd>lua require'lspsaga.diagnostic'.show_cursor_diagnostics()<CR>
 
 " jump diagnostic
-nnoremap <silent> [e <cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_prev()<CR>
-nnoremap <silent> ]e <cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_next()<CR>
+" nnoremap <silent> [e <cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_prev()<CR>
+" nnoremap <silent> ]e <cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_next()<CR>
 
 "floating terminal
-nnoremap <silent> <A-d> :Lspsaga open_floaterm<CR>
-tnoremap <silent> <A-d> <C-\><C-n>:Lspsaga close_floaterm<CR>
+" nnoremap <silent> <A-d> :Lspsaga open_floaterm<CR>
+" tnoremap <silent> <A-d> <C-\><C-n>:Lspsaga close_floaterm<CR>
 
 " let g:loaded_python_provider = 1
 " let g:loaded_python3_provider = 1
