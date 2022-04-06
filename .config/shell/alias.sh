@@ -4,7 +4,7 @@
 alias s='source '
 # alias ls='/bin/ls -GFhl|cat'
 alias ls='exa -alT --git -L 2 --git-ignore -I .git'
-alias ll='exa -L 2'
+alias ll='exa -TL 2'
 alias la='exa -alT --git -L 2'
 alias laa='exa -alT --git'
 alias cp='cp -iv'       # Preferred 'cp' implementation
@@ -14,6 +14,8 @@ alias l='exa -al --git' # Preferred 'ls' implementation
 # alias l='/bin/ls -FGlAhp|cat'                      # Preferred 'ls' implementation
 alias less='less -FSRXc' # Preferred 'less' implementation
 alias fd='fd -H '
+alias Rg='rg --hidden '
+alias RG='rg --hidden --no-ignore --follow '
 
 # alias diff="diff-so-fancy"
 alias rm="rm -i"
