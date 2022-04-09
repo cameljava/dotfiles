@@ -1,0 +1,4 @@
+git clone kitty themes repo in dotfilesRefs
+current kitty theme softlink to Solarized_Dark
+
+ln -s ~/kdata/git/dotfilesRefs/kitty-themes/themes/Solarized_Dark.conf ~/kdata/git/dotfiles/.config/kitty/theme.conf

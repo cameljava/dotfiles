@@ -4,10 +4,13 @@
 . "$HOME/.config/shell/alias.sh"
 . "$HOME/.config/shell/function.sh"
 
+if [ -f $(brew --prefix)/etc/brew-wrap ]; then
+  source $(brew --prefix)/etc/brew-wrap
+fi
 
-[ -s "/usr/local/etc/bash_completion.d/pass" ] && \. "/usr/local/etc/bash_completion.d/pass" # This loads pass bash_completion
+# [ -s "/usr/local/etc/bash_completion.d/pass" ] && \. "/usr/local/etc/bash_completion.d/pass" # This loads pass bash_completion
 
-export XML_CATALOG_FILES="/usr/local/etc/xml/catalog"
+# export XML_CATALOG_FILES="/usr/local/etc/xml/catalog"
 
 # tmp set default profile to kev. turn it off when having cochlear
 #export AWS_DEFAULT_PROFILE=kev
@@ -96,33 +99,19 @@ shopt -s cdable_vars
 # export documents="$HOME/Documents"
 # export dropbox="$HOME/Dropbox"
 
-# my dofile file backup 
-alias config='/usr/bin/git --git-dir=/Users/kevlee/git/cameljava_github/dotfiles --work-tree=/Users/kevlee'
-
 # fzf settings
 [ -f "$HOME/.fzf.bash" ] && source "$HOME/.fzf.bash"
 alias fzfp="fzf --preview 'bat --style=numbers --color=always {} | head -500'"
 # search all files in current folder including hidden and git ignore, except .rgignore
 export FZF_DEFAULT_COMMAND="rg --files --no-ignore-vcs --hidden --follow --glob '!.git'"
 
-
-# TODO set serverless properly instead point to certain project
-# tabtab source for serverless package
-# uninstall by removing these lines or running `tabtab uninstall serverless`
-# [ -f /Users/kevlee/git/cochlear_gitlab/drx-serverless/auth/node_modules/tabtab/.completions/serverless.bash ] && . /Users/kevlee/git/cochlear_gitlab/drx-serverless/auth/node_modules/tabtab/.completions/serverless.bash
-# tabtab source for sls package
-# uninstall by removing these lines or running `tabtab uninstall sls`
-# [ -f /Users/kevlee/git/cochlear_gitlab/drx-serverless/auth/node_modules/tabtab/.completions/sls.bash ] && . /Users/kevlee/git/cochlear_gitlab/drx-serverless/auth/node_modules/tabtab/.completions/sls.bash
-# tabtab source for slss package
-# uninstall by removing these lines or running `tabtab uninstall slss`
-# [ -f /Users/kevlee/git/cochlear_gitlab/drx-serverless/auth/node_modules/tabtab/.completions/slss.bash ] && . /Users/kevlee/git/cochlear_gitlab/drx-serverless/auth/node_modules/tabtab/.completions/slss.bash
-
-config config --local status.showUntrackedFiles no
-
-eval "$(rbenv init -)"
-
 export SLS_DEBUG=true
 
 # setting for forgit
 # ctrl-e to view the logs in a vim buffer (glo specific)
 FORGIT_LOG_FZF_OPTS=' --bind="ctrl-e:execute(echo {} |grep -Eo [a-f0-9]+ |head -1 |xargs git show |nvim -)"'
+
+# add zoxide to shell
+export _ZO_ECHO=1
+export _ZO_RESOLVE_SYMLINKS=1
+eval "$(zoxide init bash)"

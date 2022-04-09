@@ -1,0 +1,216 @@
+
+# tap repositories and their packages
+
+tap homebrew/core
+brew aom
+brew apr
+brew apr-util
+brew autoconf
+brew awscli
+brew bash
+brew bash-completion@2
+brew bash-git-prompt
+brew bat
+brew bdw-gc
+brew brotli
+brew c-ares
+brew ca-certificates
+brew calcurse
+brew cask
+brew checkov
+brew coreutils
+brew cowsay
+brew cscope
+brew ctags
+brew docbook
+brew docbook-xsl
+brew docker
+brew dust
+brew elinks
+brew emacs
+brew exa
+brew fd
+brew fontconfig
+brew fortune
+brew freetype
+brew fzf
+brew gcc
+brew gdbm
+brew gettext
+brew ghostscript
+brew giflib
+brew git
+brew git-delta
+brew glib
+brew glow
+brew gmp
+brew gnu-getopt
+brew gnupg
+brew gnutls
+brew graphql-cli
+brew guile
+brew httpie
+brew icu4c
+brew imagemagick
+brew imath
+brew isl
+brew jansson
+brew jbig2dec
+brew jmeter
+brew jpeg
+brew jpeg-xl
+brew jq
+brew jsonlint
+brew keychain
+brew lazydocker
+brew lazygit
+brew lerna
+brew libarchive
+brew libassuan
+brew libb2
+brew libde265
+brew libevent
+brew libffi
+brew libgcrypt
+brew libgpg-error
+brew libheif
+brew libidn
+brew libidn2
+brew libksba
+brew liblqr
+brew libmpc
+brew libnghttp2
+brew libomp
+brew libpng
+brew libssh2
+brew libtasn1
+brew libtermkey
+brew libtiff
+brew libtool
+brew libunistring
+brew libusb
+brew libuv
+brew libvmaf
+brew libyaml
+brew libzip
+brew little-cms2
+brew llvm
+brew llvm@12
+brew lnav
+brew lua
+brew luajit --HEAD
+brew luajit-openresty
+brew luv
+brew lynx
+brew lz4
+brew m4
+brew markdown
+brew markdownlint-cli
+brew mas
+brew maven
+brew mockserver
+brew mpdecimal
+brew mpfr
+brew msgpack
+brew ncurses
+brew neovim
+brew nettle
+brew ninja
+brew node
+brew npth
+brew nvm
+brew oniguruma
+brew openexr
+brew openjdk
+brew openjdk@11
+brew openjpeg
+brew openssl@1.1
+brew p11-kit
+brew pandoc
+brew pass
+brew pcre
+brew pcre2
+brew pinentry
+brew pkg-config
+brew pmd
+brew pyenv
+brew pyenv-virtualenv
+brew python-tabulate
+brew python@3.10
+brew python@3.8
+brew python@3.9
+brew qrencode
+brew ranger
+brew rbenv
+brew readline
+brew reattach-to-user-namespace
+brew redis
+brew ripgrep
+brew ruby
+brew ruby-build
+brew rust
+brew shared-mime-info
+brew shellcheck
+brew shfmt
+brew six
+brew sqlite
+brew subversion
+brew tcl-tk
+brew telnet
+brew tig
+brew tldr
+brew tmux
+brew tokei
+brew tree
+brew tree-sitter
+brew unbound
+brew unibilium
+brew utf8proc
+brew vifm
+brew vint
+brew webp
+brew wget
+brew x265
+brew xmlto
+brew xz
+brew z.lua
+brew zig
+brew zoxide
+brew zstd
+
+tap homebrew/bundle
+
+tap homebrew/cask-fonts
+
+tap homebrew/cask
+cask cheatsheet
+cask graphql-playground
+cask hammerspoon
+cask karabiner-elements
+cask kitty
+cask maccy
+cask macdown
+cask macvim
+cask qutebrowser
+cask zoom
+
+tap aws/tap
+brew aws-sam-cli
+
+tap rcmdnk/file
+brew brew-file
+
+# App Store applications
+appstore 572304633   Desktop Verse         (2.2)
+appstore 682658836   GarageBand            (10.4.6)
+appstore 408981434   iMovie                (10.3.1)
+appstore 409183694   Keynote               (12.0)
+appstore 462058435   Microsoft Excel       (16.59)
+appstore 784801555   Microsoft OneNote     (16.59)
+appstore 985367838   Microsoft Outlook     (16.59)
+appstore 462062816   Microsoft PowerPoint  (16.59)
+appstore 462054704   Microsoft Word        (16.59)
+appstore 409203825   Numbers               (12.0)
+appstore 823766827   OneDrive              (22.055.0313)
+appstore 409201541   Pages                 (12.0)
+appstore 497799835   Xcode                 (13.3)

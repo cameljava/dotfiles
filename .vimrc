@@ -51,7 +51,7 @@ Plug 'osyo-manga/vim-anzu'
 Plug 'machakann/vim-highlightedyank'
 
 " fzf
-Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
 " Handle multi-file find and replace. turn off this - used in nvim, experience different
@@ -59,9 +59,6 @@ Plug 'junegunn/fzf.vim'
 " Plug 'mhinz/vim-grepper'
 " use easegrep for refactor name
 Plug 'dkprice/vim-easygrep'
-
-" Improved motion in Vim
-Plug 'easymotion/vim-easymotion'
 
 " Run a diff on 2 directories.
 Plug 'will133/vim-dirdiff'
@@ -104,8 +101,10 @@ Plug 'liuchengxu/vista.vim'
 Plug 'stefandtw/quickfix-reflector.vim'
 
 " Generate JSDoc commands based on function signature
-Plug 'heavenshell/vim-jsdoc'
-
+Plug 'heavenshell/vim-jsdoc', { 
+  \ 'for': ['javascript', 'javascript.jsx','typescript'], 
+  \ 'do': 'make install'
+\}
 " Zoom in and out of a specific split pane (similar to tmux).
 " Plug 'dhruvasagar/vim-zoom'
 
@@ -116,6 +115,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'Yggdroot/indentLine'
 
 Plug 'rafi/awesome-vim-colorschemes'
+Plug 'sainnhe/everforest'
 " Dim paragraphs above and below the active paragraph.
 Plug 'junegunn/limelight.vim'
 " Distraction free writing by removing UI elements and centering everything.
@@ -152,6 +152,8 @@ Plug 'dyng/ctrlsf.vim'
 Plug 'janko/vim-test'
 
 Plug 'rizzatti/dash.vim'
+
+Plug 'nanotee/zoxide.vim'
 
 call plug#end()
 
@@ -541,9 +543,9 @@ set termguicolors
 " colorscheme purify
 
 let g:rehash256 = 1
-colorscheme molokai
+" colorscheme molokai
 
-" colorscheme gruvbox
+colorscheme gruvbox
 
 " Gui vim setting
 map <silent> <C-F2> :if &guioptions =~# 'T' <Bar>  set guioptions-=T <Bar>  set guioptions-=m <bar>  else <Bar>  set guioptions+=T <Bar> set guioptions+=m <Bar> endif<CR>
