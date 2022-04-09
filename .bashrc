@@ -4,6 +4,10 @@
 . "$HOME/.config/shell/alias.sh"
 . "$HOME/.config/shell/function.sh"
 
+if [ -f $(brew --prefix)/etc/brew-wrap ]; then
+  source $(brew --prefix)/etc/brew-wrap
+fi
+
 # [ -s "/usr/local/etc/bash_completion.d/pass" ] && \. "/usr/local/etc/bash_completion.d/pass" # This loads pass bash_completion
 
 # export XML_CATALOG_FILES="/usr/local/etc/xml/catalog"
