@@ -82,6 +82,7 @@ Plug 'PhilRunninger/nerdtree-buffer-ops'
 " Syntax highlighting language pack for vim
 " Plug 'sheerun/vim-polyglot'
 Plug 'rust-lang/rust.vim'
+Plug 'jparise/vim-graphql'
 
 " === Git Plugins === "
 " Enable git changes to be shown in sign column
@@ -294,6 +295,8 @@ set scrolloff=50
 " ============================================================================ "
 " ===                           PLUGIN SETUP                               === "
 " ============================================================================ "
+
+" ------------------------------ graphql settings --------------------------------
 
 " ------------------------------ vsnip settings --------------------------------
 let g:vsnip_snippet_dir = expand('~/.config/nvim/ksettings/vsnip')
@@ -724,8 +727,9 @@ nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
 nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
 nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
 nnoremap <leader>fb <cmd>lua require('telescope.builtin').git_branches()<cr>
+nnoremap <leader>fm <cmd>lua require('telescope.builtin').git_commits()<cr>
 nnoremap <leader>fc <cmd>lua require('telescope.builtin').commands()<cr>
-nnoremap <leader>fs <cmd>lua require('telescope.builtin').colorscheme()<cr>
+nnoremap <leader>fs <cmd>lua require('telescope.builtin').grep_string()<cr>
 nnoremap <leader>ca <cmd>lua require('telescope.builtin').lsp_code_actions()<cr>
 
 
@@ -879,6 +883,8 @@ let g:neoterm_default_mod = 'vertical'
 let g:neoterm_autoinsert = 1
 let g:neoterm_autoscroll = 1
 let g:neoterm_term_per_tab = 1
+" free default ,tt mapping
+let g:neoterm_automap_keys = '<>xxxxxx'
 nnoremap <c-y> :Ttoggle<CR>
 inoremap <c-y> <Esc>:Ttoggle<CR>
 tnoremap <c-y> <c-\><c-n>:Ttoggle<CR>
@@ -1097,6 +1103,10 @@ nnoremap <silent> <C-l> <Plug>(jsdoc)
 " ===                                 MISC.                                === "
 " ============================================================================ "
 
+augroup graphqlHighlight
+  au BufNewFile,BufRead *.prisma setfiletype graphql
+augroup END
+
 " Only show the cursor line in the active buffer.
 augroup CursorLine
   au!
@@ -1125,7 +1135,6 @@ set nobackup nowritebackup noswapfile noundofile
 " if exists('g:loaded_webdevicons')
   " call webdevicons#refresh()
 " endif
-
 " TODO read https://vi.stackexchange.com/questions/2003/how-do-i-debug-my-vimrc-file
 " silent !mkdir ~/.config/nvim/backups > /dev/null 2>&1
 augroup vimRefresh
