@@ -23,7 +23,7 @@ export PATH="$HOME/.local/bin:$PATH"
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 ########### start ssh agent
-eval "$(keychain --eval --agents ssh --inherit any id_rsa)"
+# eval "$(keychain --eval --agents ssh --inherit any id_rsa)"
 # rust
 export PATH="$HOME/.cargo/bin:$PATH"
 
