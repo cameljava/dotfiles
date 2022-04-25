@@ -3,9 +3,10 @@
 
 alias s='source '
 # alias ls='/bin/ls -GFhl|cat'
-alias ls='exa -alT --git -L 2 --git-ignore -I .git'
-alias ll='exa -TL 2'
-alias la='exa -alT --git -L 2'
+alias e='exa'
+alias ls='exa -alT --git -L 2 -I .git -I node_modules'
+alias ll='exa -T --git --git-ignore -L 2'
+alias la='exa -alT -L 2'
 alias laa='exa -alT --git'
 alias cp='cp -iv'       # Preferred 'cp' implementation
 alias mv='mv -iv'       # Preferred 'mv' implementation
