@@ -62,7 +62,8 @@
   untrack = rm --cache --
 [core]
   # Don't paginate output by default
-  pager = delta --dark --plus-color="#024200" --minus-color="#620001"  --theme="Solarized\\ \\(dark\\)"
+  ; pager = delta --dark --plus-style="#024200" --minus-style="#620001"  --theme="Solarized\\ \\(dark\\)"
+  pager = delta --dark -s --syntax-theme ="DarkNeo" ;"Solarized\\ \\(dark\\)" ;"Coldark-Cold"
   # --light for light terminal backgrounds, switch from diff-so-fancy
 	; pager = most # --light for light terminal backgrounds
   ; pager = diff-so-fancy | less --tab=2 -RFX
@@ -196,7 +197,7 @@
 	template = /Users/kevlee/.stCommitMsg
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
+	path =
 [mergetool "sourcetree"]
 	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
