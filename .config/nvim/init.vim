@@ -183,6 +183,7 @@ Plug 'nvim-treesitter/playground'
 
 " using neovim native lsp and autocomplete
 Plug 'neovim/nvim-lspconfig'
+Plug 'williamboman/nvim-lsp-installer'
 
 " Plug 'hrsh7th/nvim-compe'
 " TODO try new cmp as recommend
@@ -289,9 +290,9 @@ set signcolumn=yes:2
 
 " In many terminal emulators the mouse works just fine.  By enabling it you
 " can position the cursor, Visually select and scroll with the mouse.
-if has('mouse')
+" if has('mouse')
   set mouse=a
-endif
+" endif
 
 set scrolloff=50
 
@@ -604,13 +605,24 @@ cmp.setup({
     })
   })
 
+-- %%%%%%%%%%%%%%%%%%%  lsp language server setting %%%%%%%%%%%%%%%%%%%%%%%
+require("nvim-lsp-installer").setup {}
+
 -- %%%%%%%%%%%%%%%%%%% LSP setting %%%%%%%%%%%%%%%%%%%%%%%
 -- my correct setting to turn on js and viml lsp
 local nvim_lsp = require('lspconfig')
 
+nvim_lsp.bashls.setup{}
+nvim_lsp.eslint.setup{}
+nvim_lsp.graphql.setup{}
+nvim_lsp.dockerls.setup{}
+nvim_lsp.html.setup{}
+nvim_lsp.jsonls.setup{}
+nvim_lsp.prismals.setup{}
+nvim_lsp.sqlls.setup{}
+nvim_lsp.sumneko_lua.setup{}
 nvim_lsp.tsserver.setup{}
 nvim_lsp.vimls.setup{}
-nvim_lsp.bashls.setup{}
 nvim_lsp.yamlls.setup{}
 
 vim.lsp.set_log_level("error")
