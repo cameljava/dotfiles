@@ -1,6 +1,7 @@
 # shellcheck shell=bash
 ################################# terminal config ####################
-export PS1='$ '
+export PS1="$ "
+export SHELL="/opt/homebrew/bin/bash"
 # export TERM=xterm-256color
 # export TERM=screen-256color
 
