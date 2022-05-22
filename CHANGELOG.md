@@ -1,3 +1,17 @@
+Branch out from master to manage work laptop.
+
+principle to manage apps:
+1, use sdkman for java related: jdk, maven, etc (preferrable way than brew)
+2, use brew for all other app;
+3, use cargo for rust apps not covered by brew.
+
+sdkman installation so far:
+jdk 17
+maven 
+springboot
+tomcat
+
+
 hammerspoon
 https://github.com/scottwhudson/Lunette
 
