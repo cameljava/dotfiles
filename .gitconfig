@@ -63,7 +63,7 @@
 [core]
   # Don't paginate output by default
   ; pager = delta --dark --plus-style="#024200" --minus-style="#620001"  --theme="Solarized\\ \\(dark\\)"
-  pager = delta --dark -s --syntax-theme ="DarkNeo" ;"Solarized\\ \\(dark\\)" ;"Coldark-Cold"
+  pager = delta --dark -s ;--syntax-theme ="DarkNeo" ;"Solarized\\ \\(dark\\)" ;"Coldark-Cold"
   # --light for light terminal backgrounds, switch from diff-so-fancy
 	; pager = most # --light for light terminal backgrounds
   ; pager = diff-so-fancy | less --tab=2 -RFX
@@ -86,6 +86,26 @@
   editor = vim
   # Don't consider trailing space change as a cause for merge conflicts
   whitespace = -trailing-space
+[interactive]
+  diffFilter = delta --color-only --features=interactive
+[delta]
+  features = decorations
+[delta "interactive"]
+    keep-plus-minus-markers = false
+
+[delta "decorations"]
+    commit-decoration-style = blue ol
+    commit-style = raw
+    file-style = omit
+    hunk-header-decoration-style = blue box
+    hunk-header-file-style = red
+    hunk-header-line-number-style = "#067a00"
+    hunk-header-style = file line-number syntax
+; To change your delta options in a one-off git command, use git -c. For example
+;git -c delta.line-numbers=false show
+;Delta can also be used as a shorthand for diffing two files: the following two commands do the same thing:
+;delta a.txt b.txt
+;Delta also handles unified diff format, e.g. diff -u a.txt b.txt | delta
 [diff]
   # Use better, descriptive initials (c, i, w) instead of a/b.
   mnemonicPrefix = true
