@@ -73,9 +73,9 @@ Plug 'junegunn/fzf.vim'
 Plug 'dense-analysis/ale'
 
 " Run a diff on 2 directories.
-Plug 'will133/vim-dirdiff'
+" Plug 'will133/vim-dirdiff'
 " Run a diff on 2 blocks of text.
-Plug 'AndrewRadev/linediff.vim'
+" Plug 'AndrewRadev/linediff.vim'
 
 " File explorer
 Plug 'scrooloose/nerdtree'
@@ -103,7 +103,10 @@ Plug 'shumphrey/fugitive-gitlab.vim'
 
 " experience neogit see if it can replace fugitive
 " Plug 'TimUntersberger/neogit'
-Plug 'sindrets/diffview.nvim'
+
+" Single tabpage interface for easily cycling through diffs for all modified
+" files for any git rev.
+" Plug 'sindrets/diffview.nvim'
 
 " ====  IDE feature
 Plug 'voldikss/vim-floaterm'
@@ -678,7 +681,7 @@ end
 -- require('gitsigns').setup()
 
 -- %%%%%%%%%%%%%%%%%%%%%%% diffview setting %%%%%%%%%%%%%%%
-local cb = require'diffview.config'.diffview_callback
+--[[ local cb = require'diffview.config'.diffview_callback
 
 require'diffview'.setup {
   diff_binaries = false,    -- Show diffs for binaries
@@ -715,7 +718,7 @@ require'diffview'.setup {
       ["<leader>b"]     = cb("toggle_files"),
     }
   }
-}
+} ]]
 
 -- %%%%%%%%%%%%%%%%%%%%%%% colorizer setting %%%%%%%%%%%%%%%
 
