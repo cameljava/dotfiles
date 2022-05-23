@@ -6,6 +6,8 @@
   path = .gitconfig-cameljava-github
 [includeIf "gitdir:~/git/cameljava_bitbucket/"]
   path = .gitconfig-cameljava-bitbucket
+[include]
+  path = ./.config/kManulInstall/deltaTheme/themes.gitconfig
 [color]
   # Enable colors in color-supporting terminals
   ui = auto
@@ -63,7 +65,7 @@
 [core]
   # Don't paginate output by default
   ; pager = delta --dark --plus-style="#024200" --minus-style="#620001"  --theme="Solarized\\ \\(dark\\)"
-  pager = delta --dark -s ;--syntax-theme ="DarkNeo" ;"Solarized\\ \\(dark\\)" ;"Coldark-Cold"
+  pager = delta  ;--syntax-theme ="DarkNeo" ;"Solarized\\ \\(dark\\)" ;"Coldark-Cold"
   # --light for light terminal backgrounds, switch from diff-so-fancy
 	; pager = most # --light for light terminal backgrounds
   ; pager = diff-so-fancy | less --tab=2 -RFX
@@ -89,7 +91,14 @@
 [interactive]
   diffFilter = delta --color-only --features=interactive
 [delta]
-  features = decorations
+  navigate = true ; use n and N to move between diff sections
+  light = false
+  side-by-side = true
+  lineNumbers = true
+  ; features = collared-trogon
+  ; features = zebra-dark
+  features = chameleon
+  ; features = decorations
 [delta "interactive"]
     keep-plus-minus-markers = false
 
@@ -107,6 +116,7 @@
 ;delta a.txt b.txt
 ;Delta also handles unified diff format, e.g. diff -u a.txt b.txt | delta
 [diff]
+  colorMoved = default
   # Use better, descriptive initials (c, i, w) instead of a/b.
   mnemonicPrefix = true
   # Show renames/moves as such
