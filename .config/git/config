@@ -97,7 +97,9 @@
   lineNumbers = true
   ; features = collared-trogon
   ; features = zebra-dark
-  features = chameleon
+  ; features = chameleon
+  features = Nord
+  ; features = TwoDark
   ; features = decorations
 [delta "interactive"]
     keep-plus-minus-markers = false

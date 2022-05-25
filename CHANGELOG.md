@@ -1,3 +1,38 @@
+To migrate existing data from a previous major version of PostgreSQL run:
+  brew postgresql-upgrade-database
+This formula has created a default database cluster with:
+  initdb --locale=C -E UTF-8 /opt/homebrew/var/postgres
+For more details, read:
+  https://www.postgresql.org/docs/14/app-initdb.html
+To restart postgresql after an upgrade:
+  brew services restart postgresql
+Or, if you don't want/need a background service you can just run:
+  /opt/homebrew/opt/postgresql/bin/postgres -D /opt/homebrew/var/postgres
+==> Summary
+🍺  /opt/homebrew/Cellar/postgresql/14.3: 3,306 files, 45MB
+==> Running `brew cleanup postgresql`...
+Disable this behaviour by setting HOMEBREW_NO_INSTALL_CLEANUP.
+Hide these hints with HOMEBREW_NO_ENV_HINTS (see `man brew`).
+==> Caveats
+==> postgresql
+To migrate existing data from a previous major version of PostgreSQL run:
+  brew postgresql-upgrade-database
+This formula has created a default database cluster with:
+  initdb --locale=C -E UTF-8 /opt/homebrew/var/postgres
+For more details, read:
+  https://www.postgresql.org/docs/14/app-initdb.html
+To restart postgresql after an upgrade:
+  brew services restart postgresql
+Or, if you don't want/need a background service you can just run:
+  /opt/homebrew/opt/postgresql/bin/postgres -D /opt/homebrew/var/postgres
+
+
+for preview markdown , commandline markdown render
+brew instal glow
+
+tmux tpm need manually git clone to .config/tmux/plugins and then run prefix + I
+
+
 Branch out from master to manage work laptop.
 
 principle to manage apps:
