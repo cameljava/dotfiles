@@ -22,6 +22,7 @@ brew coreutils
 brew cowsay
 brew cscope
 brew ctags
+brew dict
 brew docbook
 brew docbook-xsl
 brew docker
@@ -55,6 +56,7 @@ brew imagemagick
 brew imath
 brew isl
 brew jansson
+brew jasper
 brew jbig2dec
 brew jmeter
 brew jpeg
@@ -78,10 +80,12 @@ brew libidn
 brew libidn2
 brew libksba
 brew liblqr
+brew libmaa
 brew libmpc
 brew libnghttp2
 brew libomp
 brew libpng
+brew libraw
 brew libssh2
 brew libtasn1
 brew libtermkey
@@ -104,11 +108,14 @@ brew luv
 brew lynx
 brew lz4
 brew m4
+brew macos-term-size
 brew markdown
 brew markdownlint-cli
 brew mas
 brew maven
 brew mockserver
+brew mongodb-atlas-cli
+brew mongosh
 brew mpdecimal
 brew mpfr
 brew msgpack
@@ -117,6 +124,8 @@ brew neovim
 brew nettle
 brew ninja
 brew node
+brew node@14
+brew node@16
 brew npth
 brew nvm
 brew oniguruma
@@ -132,7 +141,6 @@ brew pcre
 brew pcre2
 brew pinentry
 brew pkg-config
-brew pmd
 brew pyenv
 brew pyenv-virtualenv
 brew python-tabulate
@@ -161,6 +169,7 @@ brew tig
 brew tldr
 brew tmux
 brew tokei
+brew trash
 brew tree
 brew tree-sitter
 brew unbound
@@ -197,19 +206,23 @@ cask zoom
 tap aws/tap
 brew aws-sam-cli
 
+tap mongodb/brew
+brew mongodb-community
+brew mongodb-database-tools
+
 tap rcmdnk/file
 brew brew-file
 
 # App Store applications
 appstore 572304633   Desktop Verse         (2.2)
 appstore 682658836   GarageBand            (10.4.6)
-appstore 408981434   iMovie                (10.3.1)
+appstore 408981434   iMovie                (10.3.2)
 appstore 409183694   Keynote               (12.0)
 appstore 462058435   Microsoft Excel       (16.59)
-appstore 784801555   Microsoft OneNote     (16.59)
-appstore 985367838   Microsoft Outlook     (16.59)
-appstore 462062816   Microsoft PowerPoint  (16.59)
-appstore 462054704   Microsoft Word        (16.59)
+appstore 784801555   Microsoft OneNote     (16.60)
+appstore 985367838   Microsoft Outlook     (16.60)
+appstore 462062816   Microsoft PowerPoint  (16.60)
+appstore 462054704   Microsoft Word        (16.60)
 appstore 409203825   Numbers               (12.0)
 appstore 823766827   OneDrive              (22.055.0313)
 appstore 409201541   Pages                 (12.0)
