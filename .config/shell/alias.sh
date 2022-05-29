@@ -31,6 +31,7 @@ alias ns="nvim -S"
 alias m="oni2"
 alias g="git "
 alias b="bat "
+alias bb="bat -p "
 #History search (use: hs sometext)
 alias hs='history | grep $1'
 alias ..='cd ../'                         # Go back 1 directory level

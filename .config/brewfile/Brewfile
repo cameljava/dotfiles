@@ -48,8 +48,10 @@ brew gmp
 brew gnu-getopt
 brew gnupg
 brew gnutls
+brew go
 brew graphql-cli
 brew guile
+brew htop
 brew httpie
 brew icu4c
 brew imagemagick
@@ -218,12 +220,12 @@ appstore 572304633   Desktop Verse         (2.2)
 appstore 682658836   GarageBand            (10.4.6)
 appstore 408981434   iMovie                (10.3.2)
 appstore 409183694   Keynote               (12.0)
-appstore 462058435   Microsoft Excel       (16.59)
-appstore 784801555   Microsoft OneNote     (16.60)
-appstore 985367838   Microsoft Outlook     (16.60)
-appstore 462062816   Microsoft PowerPoint  (16.60)
-appstore 462054704   Microsoft Word        (16.60)
+appstore 462058435   Microsoft Excel       (16.61.1)
+appstore 784801555   Microsoft OneNote     (16.61)
+appstore 985367838   Microsoft Outlook     (16.61)
+appstore 462062816   Microsoft PowerPoint  (16.61)
+appstore 462054704   Microsoft Word        (16.61)
 appstore 409203825   Numbers               (12.0)
-appstore 823766827   OneDrive              (22.055.0313)
+appstore 823766827   OneDrive              (22.077.0410)
 appstore 409201541   Pages                 (12.0)
-appstore 497799835   Xcode                 (13.3)
+appstore 497799835   Xcode                 (13.3.1)

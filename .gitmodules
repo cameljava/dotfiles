@@ -1,0 +1,3 @@
+[submodule ".config/kManulInstall/forgit"]
+	path = .config/kManulInstall/forgit
+	url = https://github.com/wfxr/forgit.git

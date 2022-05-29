@@ -3,10 +3,8 @@ https://github.com/scottwhudson/Lunette
 
 for window Manager keybinding
 
-
 Manually global npm /yarn installation (eg, for language server, etc)
 run script in .config/kManulInstall
-
 
 github project to checkout:
 CS-Notes
@@ -16,7 +14,6 @@ interviews
 
 Happy day got filco minila air.
 
-
 vim Tips
 learn from book: Vi improved
 from steve oualine
@@ -25,7 +22,6 @@ especially block v,
 filter !
 crtl-K
 
-
 ctags for javascript:
 
 ref:
@@ -33,7 +29,6 @@ https://medium.com/adorableio/modern-javascript-ctags-configuration-199884dbcc1
 https://medium.com/trabe/navigate-es6-projects-with-vim-using-ctags-948d114b94f3
 
 follow: https://github.com/romainl/ctags-patterns-for-javascript
-
 
 my fancy fonts:
 JetBrains Mono
@@ -45,8 +40,8 @@ set up my dotfile:
 Inspired by: https://www.atlassian.com/git/tutorials/dotfiles
 and start my vimrc based on: https://bitbucket.org/durdn/cfg/src/master/.vimrc
 
-mkdir $HOME/git/cameljava_github/dotfiles
-echo "alias config='/usr/bin/git --git-dir=$HOME/git/cameljava_github/dotfiles --work-tree=$HOME'" >> $HOME/.bashrc
+mkdir $HOME/git/cameljava\_github/dotfiles
+echo "alias config='/usr/bin/git --git-dir=$HOME/git/cameljava\_github/dotfiles --work-tree=$HOME'" >> $HOME/.bashrc
 echo "config config --local status.showUntrackedFiles no" >> $HOME/.bashrc
 
 setup remote repo
@@ -60,12 +55,9 @@ Goals:
 fuzzy refs:
 https://jesseleite.com/posts/2/its-dangerous-to-vim-alone-take-fzf
 
-
-
 good vimrc refs:
 https://github.com/jesseleite/dotfiles/tree/c5fc4a2569f505960eaa542ce6ec0750a801896e/vim
 https://github.com/sodiumjoe/dotfiles/blob/master/vimrc
-
 
 git mergetool plugin:
 https://github.com/samoshkin/vim-mergetool
@@ -73,7 +65,6 @@ https://github.com/samoshkin/vim-mergetool
 interesting ready;
 terminal:
 https://www.freecodecamp.org/news/coding-like-a-hacker-in-the-terminal-79e22954968e/
-
 
 actions:
 20191215
