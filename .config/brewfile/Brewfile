@@ -161,6 +161,7 @@ brew rust
 brew shared-mime-info
 brew shellcheck
 brew shfmt
+brew showkey
 brew six
 brew sqlite
 brew subversion
