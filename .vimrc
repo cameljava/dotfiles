@@ -101,8 +101,8 @@ Plug 'liuchengxu/vista.vim'
 Plug 'stefandtw/quickfix-reflector.vim'
 
 " Generate JSDoc commands based on function signature
-Plug 'heavenshell/vim-jsdoc', { 
-  \ 'for': ['javascript', 'javascript.jsx','typescript'], 
+Plug 'heavenshell/vim-jsdoc', {
+  \ 'for': ['javascript', 'javascript.jsx','typescript'],
   \ 'do': 'make install'
 \}
 " Zoom in and out of a specific split pane (similar to tmux).
@@ -530,13 +530,13 @@ nnoremap <F8> :TagbarToggle<CR>
 " Theme and Color
 set background=dark
 " set background=light
-set termguicolors
+" set termguicolors
 " colorscheme slate
 
 " let g:oceanic_next_terminal_bold = 1
 " let g:oceanic_next_terminal_italic = 1
 " let g:airline_theme='oceanicnext'
-" colorscheme OceanicNext
+colorscheme OceanicNext
 
 " colorscheme nord
 " colorscheme onedark
@@ -545,8 +545,7 @@ set termguicolors
 let g:rehash256 = 1
 " colorscheme molokai
 
-colorscheme gruvbox
+" colorscheme gruvbox
 
 " Gui vim setting
 map <silent> <C-F2> :if &guioptions =~# 'T' <Bar>  set guioptions-=T <Bar>  set guioptions-=m <bar>  else <Bar>  set guioptions+=T <Bar> set guioptions+=m <Bar> endif<CR>
-
