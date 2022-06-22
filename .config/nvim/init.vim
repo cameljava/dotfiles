@@ -310,7 +310,8 @@ set scrolloff=50
 let g:vsnip_snippet_dir = expand('~/.config/nvim/ksettings/vsnip')
 
 " ------------------------------ JsDoc settings --------------------------------
-let g:jsdoc_lehre_path = '/Users/kevlee/.nvm/versions/node/v14.18.1/bin/lehre'
+"  TODO make this path unaffected while update lehre version
+let g:jsdoc_lehre_path = '/Users/kevlee/.nvm/versions/node/v14.19.3/bin/lehre'
 " vim-javascript
 let g:javascript_plugin_jsdoc = 1
 
