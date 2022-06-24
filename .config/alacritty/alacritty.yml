@@ -3,6 +3,9 @@
 import:
   # - /Users/kevlee/.config/alacritty/colors/oceanic_next.yaml
   - /Users/kevlee/.config/alacritty/colors/nord.yaml
+  # - /Users/kevlee/.config/alacritty/colors/solarized_dark.yaml
+  # - /Users/kevlee/.config/alacritty/colors/monokai_pro.yaml.yaml
+  # - /Users/kevlee/.config/alacritty/colors/gruvbox_light.yaml
 shell:
   program: /opt/homebrew/bin/bash
   # args:
