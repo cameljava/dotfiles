@@ -197,7 +197,6 @@ Plug 'hrsh7th/nvim-cmp'
 
 " For vsnip user.
 Plug 'hrsh7th/cmp-vsnip'
-Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
 " Plug 'onsails/lspkind-nvim'
@@ -719,7 +718,7 @@ buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnosti
 buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
 buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
 buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
- buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 
 end
 
@@ -794,6 +793,7 @@ require'colorizer'.setup {
   }
 }
 
+
 EOF
 
 " vimway lsp dialog
@@ -803,6 +803,7 @@ EOF
 
 " telescope mapping
 nnoremap <leader>ff <cmd>Telescope git_files<cr>
+nnoremap <leader>fd <cmd>Telescope fd<cr>
 nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
 nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
 nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
@@ -810,7 +811,7 @@ nnoremap <leader>fb <cmd>lua require('telescope.builtin').git_branches()<cr>
 nnoremap <leader>fm <cmd>lua require('telescope.builtin').git_commits()<cr>
 nnoremap <leader>fc <cmd>lua require('telescope.builtin').commands()<cr>
 nnoremap <leader>fs <cmd>lua require('telescope.builtin').grep_string()<cr>
-nnoremap <leader>ca <cmd>lua require('telescope.builtin').lsp_code_actions()<cr>
+nnoremap <leader>fk <cmd>lua require('telescope.builtin').keymaps()<cr>
 
 
 
