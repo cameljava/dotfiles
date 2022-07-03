@@ -87,6 +87,7 @@ brew libmpc
 brew libnghttp2
 brew libomp
 brew libpng
+brew libpython-tabulate
 brew libraw
 brew libssh2
 brew libtasn1
@@ -192,8 +193,18 @@ brew zstd
 tap homebrew/bundle
 
 tap homebrew/cask-fonts
+cask font-fira-code
+cask font-fira-code-nerd-font
+cask font-fira-mono
+cask font-fira-mono-nerd-font
+cask font-hack
+cask font-hack-nerd-font
+cask font-inconsolata
+cask font-inconsolata-nerd-font
 
 tap homebrew/cask
+cask alacritty
+cask brave-browser
 cask cheatsheet
 cask graphql-playground
 cask hammerspoon
@@ -203,6 +214,7 @@ cask maccy
 cask macdown
 cask macvim
 cask qutebrowser
+cask vscodium
 cask zoom
 
 tap aws/tap
@@ -216,16 +228,17 @@ tap rcmdnk/file
 brew brew-file
 
 # App Store applications
+appstore 517914548   Dashlane              (6.2224.0)
 appstore 572304633   Desktop Verse         (2.2)
 appstore 682658836   GarageBand            (10.4.6)
 appstore 408981434   iMovie                (10.3.3)
-appstore 409183694   Keynote               (12.0)
-appstore 462058435   Microsoft Excel       (16.61.1)
-appstore 784801555   Microsoft OneNote     (16.61)
-appstore 985367838   Microsoft Outlook     (16.61)
-appstore 462062816   Microsoft PowerPoint  (16.61)
-appstore 462054704   Microsoft Word        (16.61)
-appstore 409203825   Numbers               (12.0)
-appstore 823766827   OneDrive              (22.099.0508)
-appstore 409201541   Pages                 (12.0)
-appstore 497799835   Xcode                 (13.4)
+appstore 409183694   Keynote               (12.1)
+appstore 462058435   Microsoft Excel       (16.62)
+appstore 784801555   Microsoft OneNote     (16.62)
+appstore 985367838   Microsoft Outlook     (16.62)
+appstore 462062816   Microsoft PowerPoint  (16.62)
+appstore 462054704   Microsoft Word        (16.62)
+appstore 409203825   Numbers               (12.1)
+appstore 823766827   OneDrive              (22.121.0605)
+appstore 409201541   Pages                 (12.1)
+appstore 497799835   Xcode                 (13.4.1)
