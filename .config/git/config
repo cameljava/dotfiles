@@ -224,7 +224,7 @@
   prereleaseSuffix = -rc
   prereleaseSuffix = .rc
 [commit]
-	template = /Users/kevlee/.stCommitMsg
+	; template = /Users/kevlee/.stCommitMsg
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path =
