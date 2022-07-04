@@ -5,7 +5,7 @@
 . "$HOME/.config/shell/function.sh"
 
 if [ -f "$(brew --prefix)/etc/brew-wrap" ]; then
-  source "$(brew --prefix)/etc/brew-wrap"
+	source "$(brew --prefix)/etc/brew-wrap"
 fi
 
 # [ -s "/usr/local/etc/bash_completion.d/pass" ] && \. "/usr/local/etc/bash_completion.d/pass" # This loads pass bash_completion
@@ -108,6 +108,7 @@ export FZF_DEFAULT_COMMAND="rg --files --no-ignore-vcs --hidden --follow --glob 
 export SLS_DEBUG=true
 
 # setting for forgit
+source ~/.config/kManulInstall/forgit/forgit.plugin.sh
 # ctrl-e to view the logs in a vim buffer (glo specific)
 FORGIT_LOG_FZF_OPTS=' --bind="ctrl-e:execute(echo {} |grep -Eo [a-f0-9]+ |head -1 |xargs git show |nvim -)"'
 
