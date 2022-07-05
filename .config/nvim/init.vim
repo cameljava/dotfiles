@@ -78,9 +78,10 @@ Plug 'dense-analysis/ale'
 " Plug 'AndrewRadev/linediff.vim'
 
 " File explorer
-Plug 'scrooloose/nerdtree'
-Plug 'PhilRunninger/nerdtree-buffer-ops'
+" Plug 'scrooloose/nerdtree'
+" Plug 'PhilRunninger/nerdtree-buffer-ops'
 
+Plug 'lambdalisue/fern.vim'
 " Plug 'vifm/vifm.vim'
 
 " Syntax highlighting language pack for vim
@@ -196,7 +197,6 @@ Plug 'hrsh7th/nvim-cmp'
 
 " For vsnip user.
 Plug 'hrsh7th/cmp-vsnip'
-Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
 " Plug 'onsails/lspkind-nvim'
@@ -304,13 +304,73 @@ set scrolloff=50
 " ===                           PLUGIN SETUP                               === "
 " ============================================================================ "
 
+" .............................................................................
+" lambdalisue/fern.vim
+" .............................................................................
+
+" Disable netrw.
+let g:loaded_netrw  = 1
+let g:loaded_netrwPlugin = 1
+let g:loaded_netrwSettings = 1
+let g:loaded_netrwFileHandlers = 1
+
+augroup my-fern-hijack
+  autocmd!
+  autocmd BufEnter * ++nested call s:hijack_directory()
+augroup END
+
+function! s:hijack_directory() abort
+  let path = expand('%:p')
+  if !isdirectory(path)
+    return
+  endif
+  bwipeout %
+  execute printf('Fern %s', fnameescape(path))
+endfunction
+
+" Custom settings and mappings.
+let g:fern#disable_default_mappings = 1
+let g:fern#default_hidden = 1
+
+noremap <silent> <leader>n :Fern . -drawer -reveal=% -toggle -width=35<CR>
+
+function! FernInit() abort
+  nmap <buffer><expr>
+        \ <Plug>(fern-my-open-expand-collapse)
+        \ fern#smart#leaf(
+        \   "\<Plug>(fern-action-open:select)",
+        \   "\<Plug>(fern-action-expand)",
+        \   "\<Plug>(fern-action-collapse)",
+        \ )
+  nmap <buffer> <CR> <Plug>(fern-my-open-expand-collapse)
+  nmap <buffer> <2-LeftMouse> <Plug>(fern-my-open-expand-collapse)
+  nmap <buffer> n <Plug>(fern-action-new-path)
+  nmap <buffer> d <Plug>(fern-action-remove)
+  nmap <buffer> m <Plug>(fern-action-move)
+  nmap <buffer> M <Plug>(fern-action-rename)
+  nmap <buffer> h <Plug>(fern-action-hidden-toggle)
+  nmap <buffer> r <Plug>(fern-action-reload)
+  nmap <buffer> p <Plug>(fern-action-mark)
+  nmap <buffer> K <Plug>(fern-action-mark-children:leaf)
+  nmap <buffer> b <Plug>(fern-action-open:split)
+  nmap <buffer> v <Plug>(fern-action-open:vsplit)
+  nmap <buffer><nowait> < <Plug>(fern-action-leave)
+  nmap <buffer><nowait> > <Plug>(fern-action-enter)
+endfunction
+
+augroup FernGroup
+  autocmd!
+  autocmd FileType fern setlocal norelativenumber | setlocal nonumber | call FernInit()
+augroup END
+
 " ------------------------------ graphql settings --------------------------------
 
 " ------------------------------ vsnip settings --------------------------------
 let g:vsnip_snippet_dir = expand('~/.config/nvim/ksettings/vsnip')
 
 " ------------------------------ JsDoc settings --------------------------------
-let g:jsdoc_lehre_path = '/Users/kevlee/.nvm/versions/node/v14.18.1/bin/lehre'
+"  TODO make this path unaffected while update lehre version
+let g:jsdoc_lehre_path = '/Users/kevlee/.nvm/versions/node/v16.15.1/bin/lehre'
 " vim-javascript
 let g:javascript_plugin_jsdoc = 1
 
@@ -658,7 +718,7 @@ buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnosti
 buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
 buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
 buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
- buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 
 end
 
@@ -733,6 +793,7 @@ require'colorizer'.setup {
   }
 }
 
+
 EOF
 
 " vimway lsp dialog
@@ -742,6 +803,7 @@ EOF
 
 " telescope mapping
 nnoremap <leader>ff <cmd>Telescope git_files<cr>
+nnoremap <leader>fd <cmd>Telescope fd<cr>
 nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
 nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
 nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
@@ -749,7 +811,7 @@ nnoremap <leader>fb <cmd>lua require('telescope.builtin').git_branches()<cr>
 nnoremap <leader>fm <cmd>lua require('telescope.builtin').git_commits()<cr>
 nnoremap <leader>fc <cmd>lua require('telescope.builtin').commands()<cr>
 nnoremap <leader>fs <cmd>lua require('telescope.builtin').grep_string()<cr>
-nnoremap <leader>ca <cmd>lua require('telescope.builtin').lsp_code_actions()<cr>
+nnoremap <leader>fk <cmd>lua require('telescope.builtin').keymaps()<cr>
 
 
 
@@ -760,8 +822,8 @@ let g:python_host_prog = '$HOME/.pyenv/shims/python2'
 
 " === fugitive.nvim === "
 let g:fugitive_gitlab_domains = ['https://gitlab.cochlear.dev']
-nnoremap <leader>n :NERDTreeToggle<CR>
-nnoremap <leader>nf :NERDTreeFind<CR>
+" nnoremap <leader>n :NERDTreeToggle<CR>
+" nnoremap <leader>nf :NERDTreeFind<CR>
 
 
 " === Vim airline ==== "
