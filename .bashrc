@@ -5,7 +5,7 @@
 . "$HOME/.config/shell/function.sh"
 
 if [ -f $(brew --prefix)/etc/brew-wrap ]; then
-  source $(brew --prefix)/etc/brew-wrap
+	source $(brew --prefix)/etc/brew-wrap
 fi
 
 # [ -s "/usr/local/etc/bash_completion.d/pass" ] && \. "/usr/local/etc/bash_completion.d/pass" # This loads pass bash_completion
@@ -100,7 +100,7 @@ shopt -s cdable_vars
 # export dropbox="$HOME/Dropbox"
 
 # fzf settings
-[ -f "$HOME/.fzf.bash" ] && source "$HOME/.fzf.bash"
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 alias fzfp="fzf --preview 'bat --style=numbers --color=always {} | head -500'"
 # search all files in current folder including hidden and git ignore, except .rgignore
 export FZF_DEFAULT_COMMAND="rg --files --no-ignore-vcs --hidden --follow --glob '!.git'"
