@@ -17,6 +17,7 @@ brew c-ares
 brew ca-certificates
 brew calcurse
 brew cask
+brew cfn-lint
 brew checkov
 brew coreutils
 brew cowsay
@@ -103,6 +104,7 @@ brew libzip
 brew little-cms2
 brew llvm
 brew llvm@12
+brew llvm@13
 brew lnav
 brew lua
 brew luajit --HEAD

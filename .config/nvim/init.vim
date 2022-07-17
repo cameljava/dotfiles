@@ -401,6 +401,12 @@ let g:ale_fixers = { '*': ['remove_trailing_lines', 'trim_whitespace'],'javascri
 nmap <silent> <space>k <Plug>(ale_previous_wrap)
 nmap <silent> <space>j <Plug>(ale_next_wrap)
 
+" Do not lint or fix minified files.
+let g:ale_pattern_options = {
+\ '\.min\.js$': {'ale_linters': [], 'ale_fixers': []},
+\ '\.min\.css$': {'ale_linters': [], 'ale_fixers': []},
+\}
+
 " signify settings;
 
 let g:signify_sign_change  = '~'
