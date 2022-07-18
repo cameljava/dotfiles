@@ -116,3 +116,7 @@ FORGIT_LOG_FZF_OPTS=' --bind="ctrl-e:execute(echo {} |grep -Eo [a-f0-9]+ |head -
 export _ZO_ECHO=1
 export _ZO_RESOLVE_SYMLINKS=1
 eval "$(zoxide init bash)"
+
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
