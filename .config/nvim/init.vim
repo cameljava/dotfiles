@@ -30,7 +30,6 @@ Plug 'numToStr/Comment.nvim'
 " color picker
 Plug 'KabbAmine/vCoolor.vim'
 " show color
-" Plug 'chrisbra/Colorizer'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'szw/vim-maximizer'
 
@@ -43,32 +42,21 @@ Plug 'metakirby5/codi.vim'
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-line'
 Plug 'kana/vim-textobj-indent'
-" Plug 'kana/vim-textobj-function'
 Plug 'kana/vim-textobj-entire'
-" syntax based text-object for function
-" Plug 'haya14busa/vim-textobj-function-syntax'
 Plug 'wellle/targets.vim'
-" Plug 'thinca/vim-textobj-function-javascript'
+
 " extended version of gf from kana
 Plug 'kana/vim-gf-user'
 " search
 " use standard regex instead of vim format
 Plug 'othree/eregex.vim'
 
-" Automatically clear search highlights after you move your cursor.
-" Plug 'haya14busa/is.vim'
-" asterisk.vim provides improved * motions
-" Plug 'haya14busa/vim-asterisk'
-" show search status
-" Plug 'osyo-manga/vim-anzu'
 " highlight yank
 Plug 'machakann/vim-highlightedyank'
 
 " fzf
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-
-" Plug 'sbdchd/neoformat'
 
 Plug 'dense-analysis/ale'
 
@@ -77,15 +65,9 @@ Plug 'dense-analysis/ale'
 " Run a diff on 2 blocks of text.
 " Plug 'AndrewRadev/linediff.vim'
 
-" File explorer
-" Plug 'scrooloose/nerdtree'
-" Plug 'PhilRunninger/nerdtree-buffer-ops'
-
 Plug 'lambdalisue/fern.vim'
-" Plug 'vifm/vifm.vim'
 
 " Syntax highlighting language pack for vim
-" Plug 'sheerun/vim-polyglot'
 Plug 'rust-lang/rust.vim'
 Plug 'jparise/vim-graphql'
 
@@ -102,9 +84,6 @@ Plug 'junegunn/gv.vim'
 Plug 'sodapopcan/vim-twiggy'
 Plug 'shumphrey/fugitive-gitlab.vim'
 
-" experience neogit see if it can replace fugitive
-" Plug 'TimUntersberger/neogit'
-
 " Single tabpage interface for easily cycling through diffs for all modified
 " files for any git rev.
 " Plug 'sindrets/diffview.nvim'
@@ -115,9 +94,6 @@ Plug 'voldikss/vim-floaterm'
 Plug 'kassio/neoterm'
 
 Plug 'vim-test/vim-test'
-
-" change buffer name both in vim and filesystem
-" Plug 'danro/rename.vim'
 
 " auto generate tags file
 " Plug 'ludovicchabant/vim-gutentags'
@@ -199,10 +175,7 @@ Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
-" Plug 'onsails/lspkind-nvim'
-" Plug 'onsails/vimway-lsp-diag.nvim'
-" Plug 'p00f/nvim-ts-rainbow'
-"
+
 Plug 'tyru/open-browser.vim'
 
 Plug 'christoomey/vim-tmux-navigator'
