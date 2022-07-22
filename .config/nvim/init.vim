@@ -958,6 +958,10 @@ let g:netrw_nogx = 1 " disable netrw's gx mapping.
 nmap gx <Plug>(openbrowser-smart-search)
 vmap gx <Plug>(openbrowser-smart-search)
 
+" -------------------- Vista setting -------------------
+"
+nnoremap <space>v :Vista nvim_lsp<CR>
+
 " -------------------- markdown and preview setting -------------------
 "
 let g:preview_markdown_parser = 'glow'
