@@ -108,7 +108,7 @@ export FZF_DEFAULT_COMMAND="rg --files --no-ignore-vcs --hidden --follow --glob 
 export SLS_DEBUG=true
 
 # setting for forgit
-source './.config/kManulInstall/forgit/forgit.plugin.zsh'
+source '$HOME/.config/kManulInstall/forgit/forgit.plugin.zsh'
 # export forgit_cherry_pick=gccp
 # ctrl-e to view the logs in a vim buffer (glo specific)
 FORGIT_LOG_FZF_OPTS=' --bind="ctrl-e:execute(echo {} |grep -Eo [a-f0-9]+ |head -1 |xargs git show |nvim -)"'
