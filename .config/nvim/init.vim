@@ -43,12 +43,12 @@ Plug 'metakirby5/codi.vim'
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-line'
 Plug 'kana/vim-textobj-indent'
-Plug 'kana/vim-textobj-function'
+" Plug 'kana/vim-textobj-function'
 Plug 'kana/vim-textobj-entire'
 " syntax based text-object for function
-Plug 'haya14busa/vim-textobj-function-syntax'
+" Plug 'haya14busa/vim-textobj-function-syntax'
 Plug 'wellle/targets.vim'
-Plug 'thinca/vim-textobj-function-javascript'
+" Plug 'thinca/vim-textobj-function-javascript'
 " extended version of gf from kana
 Plug 'kana/vim-gf-user'
 " search
@@ -210,6 +210,7 @@ Plug 'francoiscabrol/ranger.vim'
 Plug 'rbgrouleff/bclose.vim'
 
 Plug 'b0o/schemastore.nvim'
+Plug 'marko-cerovac/material.nvim'
 
 call plug#end()
 
@@ -505,45 +506,52 @@ require('Comment').setup {
 -- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% treesitter setting %%%%%%%%%%%%%%%%%%
 
 require('nvim-treesitter.configs').setup {
-ensure_installed ={ "javascript", "java", "html", "json", "yaml","rust","vim","graphql","css", "dockerfile", "typescript", "python","bash","fish", "json5", "lua", "jsdoc", "regex"},
+ensure_installed ={"javascript", "java", "html", "json", "yaml","rust","vim","toml","graphql","css", "dockerfile", "typescript", "python","bash", "lua", "jsdoc", "regex", "dockerfile", "http"},
 highlight = {
   enable = true,
-  -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-  -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-  -- Using this option may slow down your editor, and you may see some duplicate highlights.
-  -- Instead of true it can also be a list of languages
-  additional_vim_regex_highlighting = false,
   },
 incremental_selection = {
-enable = true,
-keymaps = {
-  init_selection = "gnn",
-  node_incremental = "gnr",
-  scope_incremental = "gnc",
-  node_decremental = "gnd",
-  },
+  enable = true,
+  keymaps = {
+    init_selection = "gnn",
+    node_incremental = "gnr",
+    scope_incremental = "gnc",
+    node_decremental = "gnd",
+    },
 },
 textobjects = {
-  move = {
-  enable = true,
-  set_jumps = true, -- whether to set jumps in the jumplist
-  goto_next_start = {
-    ["]m"] = "@function.outer",
-    ["]]"] = "@class.outer",
-    },
-  goto_next_end = {
-    ["]M"] = "@function.outer",
-    ["]["] = "@class.outer",
-    },
-  goto_previous_start = {
-    ["[m"] = "@function.outer",
-    ["[["] = "@class.outer",
-    },
-  goto_previous_end = {
-    ["[M"] = "@function.outer",
-    ["[]"] = "@class.outer",
+  select = {
+    enable = true,
+     -- Automatically jump forward to textobj, similar to targets.vim
+    lookahead = true,
+    keymaps ={
+    -- You can use the capture groups defined in textobjects.scm
+      ["af"] = "@function.outer",
+      ["if"] = "@function.inner",
+      ["ac"] = "@class.outer",
+      ["ic"] = "@class.inner",
     },
   },
+  move = {
+    enable = true,
+    set_jumps = true, -- whether to set jumps in the jumplist
+    goto_next_start = {
+      ["]m"] = "@function.outer",
+      ["]]"] = "@class.outer",
+      },
+    goto_next_end = {
+      ["]M"] = "@function.outer",
+      ["]["] = "@class.outer",
+      },
+    goto_previous_start = {
+      ["[m"] = "@function.outer",
+      ["[["] = "@class.outer",
+      },
+    goto_previous_end = {
+      ["[M"] = "@function.outer",
+      ["[]"] = "@class.outer",
+      },
+    },
 },
 }
 
