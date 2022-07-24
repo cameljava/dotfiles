@@ -152,13 +152,14 @@ Plug 'rafamadriz/friendly-snippets'
 "
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope.nvim', {'tag': '0.1.0'}
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'BurntSushi/ripgrep'
 
 " tree sitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+Plug 'nvim-treesitter/nvim-treesitter-refactor'
 Plug 'nvim-treesitter/playground'
 
 " using neovim native lsp and autocomplete
@@ -526,6 +527,24 @@ textobjects = {
       },
     },
 },
+refactor = {
+    highlight_definitions = {
+      enable = true,
+      -- Set to false if you have an `updatetime` of ~100.
+      clear_on_cursor_move = false,
+    },
+    highlight_current_scope = { enable = false },
+    navigation = {
+        enable = true,
+        keymaps = {
+          goto_definition = "gnd",
+          list_definitions = "gnD",
+          list_definitions_toc = "gO",
+          goto_next_usage = "<a-*>",
+          goto_previous_usage = "<a-#>",
+        },
+      },
+  },
 }
 
 -- %%%%%%%%%%%%%%%%%%% Telescope setting %%%%%%%%%%%%%%%%%%%%%%%
