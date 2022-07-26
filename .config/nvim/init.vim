@@ -152,7 +152,8 @@ Plug 'rafamadriz/friendly-snippets'
 "
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim', {'tag': '0.1.0'}
+" Plug 'nvim-telescope/telescope.nvim', {'tag': '0.1.0'}
+Plug 'nvim-telescope/telescope.nvim', { 'branch': '0.1.x'}
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'BurntSushi/ripgrep'
 
@@ -185,6 +186,8 @@ Plug 'rbgrouleff/bclose.vim'
 
 Plug 'b0o/schemastore.nvim'
 Plug 'marko-cerovac/material.nvim'
+
+Plug 'klesh/nvim-runscript'
 
 call plug#end()
 
@@ -406,6 +409,10 @@ let g:neoterm_callbacks = {}
 " sign define LspDiagnosticsErrorSign text=E texthl=LspDiagnosticsError linehl=Red numhl=Red
 
 lua <<EOF
+
+-- nvim-runscript setup --
+
+require('nvim-runscript').setup{}
 
 -- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ls color plugin setting TODO default seems not working %%%%%%%%%%%%%%%%%%
 
