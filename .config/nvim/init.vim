@@ -21,10 +21,7 @@ Plug 'ryanoasis/vim-devicons'
 " Tim pope
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
-" Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-obsession'
-" Plug 'tpope/vim-projectionist'
-" Plug 'tpope/vim-unimpaired'
 Plug 'numToStr/Comment.nvim'
 
 " color picker
@@ -32,8 +29,6 @@ Plug 'KabbAmine/vCoolor.vim'
 " show color
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'szw/vim-maximizer'
-
-Plug 'pangloss/vim-javascript'
 
 " code scratch
 Plug 'metakirby5/codi.vim'
@@ -130,10 +125,6 @@ Plug 'junegunn/goyo.vim'
 " evaluate goyo alternative
 Plug 'Pocco81/TrueZen.nvim'
 
-" doc hub
-" Plug 'rizzatti/dash.vim'
-" experience
-
 " markdown preview in browser, preinstall brew install markdown
 " command, :MarkdownPreview
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
@@ -142,10 +133,6 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 " :PreviewMarkdown
 " 'MichaelMure/mdr', install binary
 Plug 'skanehira/preview-markdown.vim'
-
-
-Plug 'hrsh7th/vim-vsnip'
-Plug 'hrsh7th/vim-vsnip-integ'
 
 " Plug 'honza/vim-snippets'
 Plug 'rafamadriz/friendly-snippets'
@@ -174,6 +161,8 @@ Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/nvim-cmp'
 
 " For vsnip user.
+Plug 'hrsh7th/vim-vsnip'
+Plug 'hrsh7th/vim-vsnip-integ'
 Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
@@ -187,7 +176,12 @@ Plug 'rbgrouleff/bclose.vim'
 Plug 'b0o/schemastore.nvim'
 Plug 'marko-cerovac/material.nvim'
 
+" run api test
 Plug 'klesh/nvim-runscript'
+Plug 'diepm/vim-rest-console'
+
+" generate gitignore file
+" Plug 'theniceboy/fzf-gitignore', {'do': ':UpdateRemotePlugins'}
 
 call plug#end()
 
@@ -376,7 +370,7 @@ let g:ale_linters = {'markdown':'remark-lint', 'javascript': ['eslint'] , 'json'
 
 " In ~/.vim/vimrc, or somewhere similar.
 " let g:ale_fixers = { '*': ['remove_trailing_lines', 'trim_whitespace'],'javascript': ['eslint','prettier'] ,'json':['jq','prettier', 'trim_whitespace'], 'yaml':['trim_whitespace','prettier', 'yamlfix'], 'html':['prettier'], 'css':['prettier'], 'sh':['shfmt'] }
-let g:ale_fixers = { '*': ['remove_trailing_lines', 'trim_whitespace'],'javascript': ['eslint'] ,'json':['prettier'], 'yaml':['trim_whitespace','prettier', 'yamlfix'], 'html':['prettier'], 'css':['prettier'], 'sh':['shfmt'], 'markdown':['remark-lint'] }
+let g:ale_fixers = { '*': ['remove_trailing_lines', 'trim_whitespace'],'javascript': ['eslint', 'prettier'] ,'json':['prettier'], 'yaml':['trim_whitespace','prettier', 'yamlfix'], 'html':['prettier'], 'css':['prettier'], 'sh':['shfmt'], 'markdown':['remark-lint'] }
 
 nmap <silent> <space>k <Plug>(ale_previous_wrap)
 nmap <silent> <space>j <Plug>(ale_next_wrap)

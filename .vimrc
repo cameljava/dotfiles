@@ -27,15 +27,15 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-obsession'
-Plug 'tpope/vim-projectionist'
-Plug 'tpope/vim-unimpaired'
+" Plug 'tpope/vim-projectionist'
+" Plug 'tpope/vim-unimpaired'
 
 "  === vim basic enhancement
 " text obj
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-function'
 " syntax based text-object for function
-Plug 'haya14busa/vim-textobj-function-syntax'
+" Plug 'haya14busa/vim-textobj-function-syntax'
 
 " search
 " use standard regex instead of vim format
@@ -81,7 +81,7 @@ Plug 'tpope/vim-rhubarb'
 Plug 'junegunn/gv.vim'
 " git branch
 Plug 'sodapopcan/vim-twiggy'
-Plug 'jreybert/vimagit'
+" Plug 'jreybert/vimagit'
 
 " ====  IDE feature
 
@@ -89,7 +89,7 @@ Plug 'jreybert/vimagit'
 Plug 'danro/rename.vim'
 
 " auto generate tags file
-Plug 'ludovicchabant/vim-gutentags'
+" Plug 'ludovicchabant/vim-gutentags'
 " tagbar like view
 Plug 'liuchengxu/vista.vim'
 
@@ -140,7 +140,6 @@ Plug 'junegunn/vim-easy-align'
 " Plug 'easymotion/vim-easymotion'
 Plug 'mbbill/undotree'
 Plug 'michaeljsmith/vim-indent-object'
-" Plug 'ludovicchabant/vim-gutentags'
 " Plug 'vim-scripts/argtextobj.vim'
 " sort: gs+motion/object
 " Plug 'christoomey/vim-sort-motion'
@@ -545,7 +544,7 @@ set termguicolors
 let g:rehash256 = 1
 " colorscheme molokai
 
-colorscheme gruvbox
+colorscheme everforest
 
 " Gui vim setting
 map <silent> <C-F2> :if &guioptions =~# 'T' <Bar>  set guioptions-=T <Bar>  set guioptions-=m <bar>  else <Bar>  set guioptions+=T <Bar> set guioptions+=m <Bar> endif<CR>
