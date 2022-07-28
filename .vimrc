@@ -1,6 +1,8 @@
 " vimrc
 " author: Kevin Lee
 
+" try minized setting in vim(macvim), use it as plain text editor
+
 " comment out compatible checking, avoid vint complaint
 " Use Vim settings, rather than Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
@@ -58,7 +60,7 @@ Plug 'junegunn/fzf.vim'
 " plugin here.
 " Plug 'mhinz/vim-grepper'
 " use easegrep for refactor name
-Plug 'dkprice/vim-easygrep'
+" Plug 'dkprice/vim-easygrep'
 
 " Run a diff on 2 directories.
 Plug 'will133/vim-dirdiff'
@@ -66,8 +68,8 @@ Plug 'will133/vim-dirdiff'
 Plug 'AndrewRadev/linediff.vim'
 
 " File explorer
-Plug 'scrooloose/nerdtree'
-Plug 'PhilRunninger/nerdtree-buffer-ops'
+" Plug 'scrooloose/nerdtree'
+Plug 'lambdalisue/fern.vim'
 
 " Syntax highlighting language pack for vim
 Plug 'sheerun/vim-polyglot'
@@ -80,13 +82,13 @@ Plug 'tpope/vim-rhubarb'
 " git commit browse
 Plug 'junegunn/gv.vim'
 " git branch
-Plug 'sodapopcan/vim-twiggy'
+" Plug 'sodapopcan/vim-twiggy'
 " Plug 'jreybert/vimagit'
 
 " ====  IDE feature
 
 " change buffer name both in vim and filesystem
-Plug 'danro/rename.vim'
+" Plug 'danro/rename.vim'
 
 " auto generate tags file
 " Plug 'ludovicchabant/vim-gutentags'
@@ -100,11 +102,6 @@ Plug 'liuchengxu/vista.vim'
 " Change code right in quickfix/location list
 Plug 'stefandtw/quickfix-reflector.vim'
 
-" Generate JSDoc commands based on function signature
-Plug 'heavenshell/vim-jsdoc', { 
-  \ 'for': ['javascript', 'javascript.jsx','typescript'], 
-  \ 'do': 'make install'
-\}
 " Zoom in and out of a specific split pane (similar to tmux).
 " Plug 'dhruvasagar/vim-zoom'
 
@@ -126,8 +123,6 @@ Plug 'junegunn/goyo.vim'
 " ALE
 Plug 'dense-analysis/ale'
 
-" Plug 'majutsushi/tagbar'
-
 " Format
 Plug 'Chiel92/vim-autoformat'
 " auto pair
@@ -136,22 +131,10 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/vim-easy-align'
 " Run a diff on 2 directories.
 
-" easymotion
-" Plug 'easymotion/vim-easymotion'
-Plug 'mbbill/undotree'
-Plug 'michaeljsmith/vim-indent-object'
-" Plug 'vim-scripts/argtextobj.vim'
-" sort: gs+motion/object
-" Plug 'christoomey/vim-sort-motion'
-
 " a text searching plugin
 Plug 'dyng/ctrlsf.vim'
 
-" Run test suites for various languages.
-Plug 'janko/vim-test'
-
-Plug 'rizzatti/dash.vim'
-
+" cd to: Zi using fzf, Z
 Plug 'nanotee/zoxide.vim'
 
 call plug#end()
@@ -382,17 +365,64 @@ nnoremap <silent> <leader>eh :e ~/scratch.txt<CR>
 "   Example :Rg myterm -g '*.md'
 " command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case " . <q-args>, 1, <bang>0)
 
-" Nerdtree "
-noremap <leader>n :NERDTreeToggle<CR>
-noremap <Leader>f :NERDTreeFind<CR>
-let NERDTreeIgnore=['node_modules$[[dir]]', '\.git$[[dir]]']
-" automatically close NerdTree when you open a file
-let NERDTreeQuitOnOpen = 1
-" Automatically delete the buffer of the file you just deleted with nerdtree
-let NERDTreeAutoDeleteBuffer = 1
-" setting to make nerdtree look prettier
-let NERDTreeMinimalUI = 1
-let NERDTreeDirArrows = 1
+
+" lambdalisue/fern.vim
+" .............................................................................
+
+" Disable netrw.
+let g:loaded_netrw  = 1
+let g:loaded_netrwPlugin = 1
+let g:loaded_netrwSettings = 1
+let g:loaded_netrwFileHandlers = 1
+
+augroup my-fern-hijack
+  autocmd!
+  autocmd BufEnter * ++nested call s:hijack_directory()
+augroup END
+
+function! s:hijack_directory() abort
+  let path = expand('%:p')
+  if !isdirectory(path)
+    return
+  endif
+  bwipeout %
+  execute printf('Fern %s', fnameescape(path))
+endfunction
+
+" Custom settings and mappings.
+let g:fern#disable_default_mappings = 1
+let g:fern#default_hidden = 1
+
+noremap <silent> <leader>n :Fern . -drawer -reveal=% -toggle -width=35<CR>
+
+function! FernInit() abort
+  nmap <buffer><expr>
+        \ <Plug>(fern-my-open-expand-collapse)
+        \ fern#smart#leaf(
+        \   "\<Plug>(fern-action-open:select)",
+        \   "\<Plug>(fern-action-expand)",
+        \   "\<Plug>(fern-action-collapse)",
+        \ )
+  nmap <buffer> <CR> <Plug>(fern-my-open-expand-collapse)
+  nmap <buffer> <2-LeftMouse> <Plug>(fern-my-open-expand-collapse)
+  nmap <buffer> n <Plug>(fern-action-new-path)
+  nmap <buffer> d <Plug>(fern-action-remove)
+  nmap <buffer> m <Plug>(fern-action-move)
+  nmap <buffer> M <Plug>(fern-action-rename)
+  nmap <buffer> h <Plug>(fern-action-hidden-toggle)
+  nmap <buffer> r <Plug>(fern-action-reload)
+  nmap <buffer> p <Plug>(fern-action-mark)
+  nmap <buffer> K <Plug>(fern-action-mark-children:leaf)
+  nmap <buffer> b <Plug>(fern-action-open:split)
+  nmap <buffer> v <Plug>(fern-action-open:vsplit)
+  nmap <buffer><nowait> < <Plug>(fern-action-leave)
+  nmap <buffer><nowait> > <Plug>(fern-action-enter)
+endfunction
+
+augroup FernGroup
+  autocmd!
+  autocmd FileType fern setlocal norelativenumber | setlocal nonumber | call FernInit()
+augroup END
 
 " Vim Airline
 set laststatus=2
@@ -459,13 +489,6 @@ let g:eregex_force_case = 1
 " dirdiff
 let g:DirDiffExcludes = 'CVS,*.class,*.exe,.*.swp,.git'
 
-" easy alignment
-
-" Start interactive EasyAlign in visual mode (e.g. vipga)
-xmap ga <Plug>(EasyAlign)
-" Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap ga <Plug>(EasyAlign)
-
 
 " End Plugins configuration"}}}
 
@@ -523,8 +546,6 @@ if has('langmap') && exists('+langremap')
   " compatible).
   set nolangremap
 endif
-
-nnoremap <F8> :TagbarToggle<CR>
 
 " Theme and Color
 set background=dark
