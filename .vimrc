@@ -11,6 +11,8 @@ if &compatible
   set nocompatible
 endif
 
+let macvim_skip_colorscheme=1
+
 " When the +eval feature is missing, the set command above will be skipped.
 " Use a trick to reset compatible only when the +eval feature is missing.
 " silent! while 0
@@ -197,7 +199,7 @@ if has('mouse')
   set mouse=a
 endif
 if &diff
-    set noreadonly
+  set noreadonly
 endif
 set completeopt=menu,menuone,preview,noselect,noinsert
 
@@ -467,9 +469,9 @@ let g:ale_open_list = 0
 
 " Do not lint or fix minified files.
 let g:ale_pattern_options = {
-\ '\.min\.js$': {'ale_linters': [], 'ale_fixers': []},
-\ '\.min\.css$': {'ale_linters': [], 'ale_fixers': []},
-\}
+      \ '\.min\.js$': {'ale_linters': [], 'ale_fixers': []},
+      \ '\.min\.css$': {'ale_linters': [], 'ale_fixers': []},
+      \}
 
 " Set this if you want to.
 " This can be useful if you are combining ALE with
