@@ -62,6 +62,7 @@ brew jasper
 brew jbig2dec
 brew jmeter
 brew jpeg
+brew jpeg-turbo
 brew jpeg-xl
 brew jq
 brew jsonlint

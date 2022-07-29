@@ -123,7 +123,7 @@ Plug 'junegunn/limelight.vim'
 " Distraction free writing by removing UI elements and centering everything.
 Plug 'junegunn/goyo.vim'
 " evaluate goyo alternative
-Plug 'Pocco81/TrueZen.nvim'
+" Plug 'Pocco81/TrueZen.nvim'
 
 " markdown preview in browser, preinstall brew install markdown
 " command, :MarkdownPreview
@@ -179,9 +179,6 @@ Plug 'marko-cerovac/material.nvim'
 " run api test
 Plug 'klesh/nvim-runscript'
 Plug 'diepm/vim-rest-console'
-
-" generate gitignore file
-" Plug 'theniceboy/fzf-gitignore', {'do': ':UpdateRemotePlugins'}
 
 call plug#end()
 
