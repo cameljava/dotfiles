@@ -603,8 +603,7 @@ buffer_previewer_maker = require'telescope.previewers'.buffer_previewer_maker
       override_file_sorter = true,     -- override the file sorter
       case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
       -- the default case_mode is "smart_case"
-      }
-    },
+      },
     command_palette = {
       {"File",
         { "entire selection (C-a)", ':call feedkeys("GVgg")' },
@@ -645,6 +644,7 @@ buffer_previewer_maker = require'telescope.previewers'.buffer_previewer_maker
       }
     }
   }
+}
 
 -- This will load fzy_native and have it override the default file sorter
 require('telescope').load_extension('fzf')
