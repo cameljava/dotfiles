@@ -135,3 +135,19 @@ telescope.load_extension('env')
 telescope.load_extension('command_palette')
 telescope.load_extension('node_modules')
 telescope.load_extension('repo')
+
+ -- telescope mapping
+local opts = { noremap = true, silent = true }
+-- Shorten function name
+local keymap = vim.api.nvim_set_keymap
+
+keymap("n", "<leader>fp", "<cmd>Telescope command_palette<cr>", opts)
+
+keymap("n", "<leader>ff", "<cmd>Telescope git_files<cr>", opts)
+-- keymap("n", "<leader>fd", "<cmd>Telescope fd<cr>", opts)
+keymap("n", "<leader>fb", "<cmd>lua require('telescope.builtin').buffers()<cr>", opts)
+keymap("n", "<leader>fg", "<cmd>lua require('telescope.builtin').live_grep()<cr>", opts)
+keymap("n", "<leader>fh", "<cmd>lua require('telescope.builtin').help_tags()<cr>", opts)
+keymap("n", "<leader>fm", "<cmd>lua require('telescope.builtin').git_commits()<cr>", opts)
+keymap("n", "<leader>fk", "<cmd>lua require('telescope.builtin').keymaps()<cr>", opts)
+keymap("n", "<leader>fc", "<cmd>lua require('telescope.builtin').commands()<cr>", opts)

@@ -119,6 +119,16 @@ _G.packer_plugins = {
     path = "/Users/kevinlee/.local/share/nvim/site/pack/packer/start/darkplus.nvim",
     url = "https://github.com/lunarvim/darkplus.nvim"
   },
+  everforest = {
+    loaded = true,
+    path = "/Users/kevinlee/.local/share/nvim/site/pack/packer/start/everforest",
+    url = "https://github.com/sainnhe/everforest"
+  },
+  fd = {
+    loaded = true,
+    path = "/Users/kevinlee/.local/share/nvim/site/pack/packer/start/fd",
+    url = "https://github.com/sharkdp/fd"
+  },
   ["friendly-snippets"] = {
     loaded = true,
     path = "/Users/kevinlee/.local/share/nvim/site/pack/packer/start/friendly-snippets",
@@ -128,6 +138,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/kevinlee/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
     url = "https://github.com/lewis6991/gitsigns.nvim"
+  },
+  gruvbox = {
+    loaded = true,
+    path = "/Users/kevinlee/.local/share/nvim/site/pack/packer/start/gruvbox",
+    url = "https://github.com/morhetz/gruvbox"
   },
   ["impatient.nvim"] = {
     loaded = true,
@@ -143,6 +158,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/kevinlee/.local/share/nvim/site/pack/packer/start/lualine.nvim",
     url = "https://github.com/nvim-lualine/lualine.nvim"
+  },
+  ["nord-vim"] = {
+    loaded = true,
+    path = "/Users/kevinlee/.local/share/nvim/site/pack/packer/start/nord-vim",
+    url = "https://github.com/arcticicestudio/nord-vim"
   },
   ["null-ls.nvim"] = {
     loaded = true,
@@ -188,6 +208,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/kevinlee/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
     url = "https://github.com/kyazdani42/nvim-web-devicons"
+  },
+  ["oceanic-next"] = {
+    loaded = true,
+    path = "/Users/kevinlee/.local/share/nvim/site/pack/packer/start/oceanic-next",
+    url = "https://github.com/mhartington/oceanic-next"
   },
   ["packer.nvim"] = {
     loaded = true,
@@ -248,6 +273,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/kevinlee/.local/share/nvim/site/pack/packer/start/vim-bbye",
     url = "https://github.com/moll/vim-bbye"
+  },
+  ["vim-colors-solarized"] = {
+    loaded = true,
+    path = "/Users/kevinlee/.local/share/nvim/site/pack/packer/start/vim-colors-solarized",
+    url = "https://github.com/altercation/vim-colors-solarized"
   }
 }
 
