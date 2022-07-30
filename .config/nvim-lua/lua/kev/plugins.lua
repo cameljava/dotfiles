@@ -57,7 +57,7 @@ return packer.startup(function(use)
 	use({ "lewis6991/impatient.nvim"})
 	use({ "lukas-reineke/indent-blankline.nvim"})
 	use({ "goolord/alpha-nvim"})
-	use("folke/which-key.nvim")
+	-- use("folke/which-key.nvim")
 
 	-- Colorschemes
 	use({ "folke/tokyonight.nvim"})
@@ -82,6 +82,11 @@ return packer.startup(function(use)
 
 	-- Telescope
 	use({ "nvim-telescope/telescope.nvim"})
+	use({"nvim-telescope/telescope-fzf-native.nvim", run = "make"})
+	use({"nvim-telescope/telescope-node-modules.nvim"})
+	use({"LinArcX/telescope-env.nvim"})
+	use({"LinArcX/telescope-command-palette.nvim"})
+	use({"cljoly/telescope-repo.nvim"})
 
 	-- Treesitter
 	use({

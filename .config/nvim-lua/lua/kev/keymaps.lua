@@ -1,5 +1,6 @@
 local opts = { noremap = true, silent = true }
 
+local opts_noremap = { noremap = true }
 local term_opts = { silent = true }
 
 -- Shorten function name
@@ -11,6 +12,27 @@ local keymap = vim.api.nvim_set_keymap
 -- Remap comma as leader key
 vim.g.mapleader = ","
 vim.g.maplocalleader = ","
+
+keymap("n", ":", ";", opts_noremap)
+keymap("n", ";", ":", opts_noremap)
+
+keymap("v", ":", ";", opts_noremap)
+keymap("v", ";", ":", opts_noremap)
+
+keymap("n", "<leader>s", ":sp<cr>", opts)
+keymap("n", "<leader>v", ":vsp<cr>", opts)
+
+keymap("n", "<BS>", ":nohlsearch<CR>", opts)
+
+ -- Delete current visual selection and dump in black hole buffer before pasting
+ -- Used when you want to paste over something without it getting copied to
+ -- Vim's default buffer TODO seems not working as expected
+-- keymap("v", "<c-v>", '_d"0P', opts_noremap)
+
+-- test, normal, delete, paste, toBeDelete
+
+ -- leader p to paste last copied
+keymap("n", "<leader>p", '"0p', opts)
 
 -- Modes
 --   normal_mode = "n",
@@ -41,7 +63,7 @@ keymap("n", "<S-h>", ":bprevious<CR>", opts)
 -- keymap("n", "<A-j>", "<Esc>:m .+1<CR>==gi", opts)
 -- keymap("n", "<A-k>", "<Esc>:m .-2<CR>==gi", opts)
 
--- Insert --
+-- Insert 
 -- Press jj fast to exit insert mode 
 keymap("i", "jj", "<ESC>", opts)
 
