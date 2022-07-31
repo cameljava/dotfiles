@@ -83,7 +83,12 @@ end
 M.on_attach = function(client, bufnr)
 	-- vim.notify(client.name .. " starting...")
 	-- TODO: refactor this into a method that checks if string in list
-	if client.name == "tsserver" or client.name == "sumneko_lua" or client.name == "jsonls" then
+	if
+		client.name == "tsserver"
+		or client.name == "sumneko_lua"
+		or client.name == "jsonls"
+		or client.name == "yamlls"
+	then
 		client.resolved_capabilities.document_formatting = false
 	end
 	lsp_keymaps(bufnr)
