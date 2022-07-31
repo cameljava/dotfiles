@@ -10,9 +10,9 @@ local keymap = vim.api.nvim_set_keymap
 -- keymap("", "<Space>", "<Nop>", opts)
 
 -- Remap comma as leader key
-vim.g.mapleader = ","
-vim.g.maplocalleader = ","
-
+-- vim.g.mapleader = ","
+-- vim.g.maplocalleader = ","
+--
 keymap("n", ":", ";", opts_noremap)
 keymap("n", ";", ":", opts_noremap)
 

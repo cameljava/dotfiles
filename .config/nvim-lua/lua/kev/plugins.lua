@@ -39,16 +39,16 @@ packer.init({
 })
 
 -- Install your plugins here
-return packer.startup(function(use)
-	-- My plugins here
+return packer.startup(function(use) -- My plugins here
 
 	use 'wbthomason/packer.nvim' -- Have packer manage itself
+	-- use 'nvim-lua/popup.nvim'
 	use 'nvim-lua/plenary.nvim' -- Useful lua functions used by lots of plugins
+
 	use  'windwp/nvim-autopairs'  -- Autopairs, integrates with both cmp and treesitter
 	use  'numToStr/Comment.nvim'
 	use  'JoosepAlviste/nvim-ts-context-commentstring'
-	use  'kyazdani42/nvim-web-devicons'
-	use  'kyazdani42/nvim-tree.lua'
+	use  {'kyazdani42/nvim-tree.lua', requires = {'kyazdani42/nvim-web-devicons'}}
 	use  'akinsho/bufferline.nvim'
 	use  'moll/vim-bbye'
 	use  'nvim-lualine/lualine.nvim'
