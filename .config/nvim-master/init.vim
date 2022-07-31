@@ -262,7 +262,7 @@ set cmdheight=2
 
 " Timeout of user inactivity. Used to save swap file, and by vim-gitgutter plugin
 " You will have bad experience for cmc diagnostic messages when it's default 4000.
-set updatetime=100
+set updatetime=300
 
 " always show signcolumns
 set signcolumn=yes:2

@@ -6,34 +6,6 @@ local term_opts = { silent = true }
 -- Shorten function name
 local keymap = vim.api.nvim_set_keymap
 
---If Remap space as leader key, uncomment below line
--- keymap("", "<Space>", "<Nop>", opts)
-
--- Remap comma as leader key
--- vim.g.mapleader = ","
--- vim.g.maplocalleader = ","
---
-keymap("n", ":", ";", opts_noremap)
-keymap("n", ";", ":", opts_noremap)
-
-keymap("v", ":", ";", opts_noremap)
-keymap("v", ";", ":", opts_noremap)
-
-keymap("n", "<leader>s", ":sp<cr>", opts)
-keymap("n", "<leader>v", ":vsp<cr>", opts)
-
-keymap("n", "<BS>", ":nohlsearch<CR>", opts)
-
- -- Delete current visual selection and dump in black hole buffer before pasting
- -- Used when you want to paste over something without it getting copied to
- -- Vim's default buffer TODO seems not working as expected
--- keymap("v", "<c-v>", '_d"0P', opts_noremap)
-
--- test, normal, delete, paste, toBeDelete
-
- -- leader p to paste last copied
-keymap("n", "<leader>p", '"0p', opts)
-
 -- Modes
 --   normal_mode = "n",
 --   insert_mode = "i",
@@ -42,7 +14,32 @@ keymap("n", "<leader>p", '"0p', opts)
 --   term_mode = "t",
 --   command_mode = "c",
 
+-- Common mode applied in multi Modes
+
+-- swap : and ; to save your hands
+keymap("n", ":", ";", opts_noremap)
+keymap("n", ";", ":", opts_noremap)
+
+keymap("v", ":", ";", opts_noremap)
+keymap("v", ";", ":", opts_noremap)
+
+keymap("x", ":", ";", opts_noremap)
+keymap("x", ";", ":", opts_noremap)
+
+keymap("n", "<leader>s", ":sp<cr>", opts)
+keymap("n", "<leader>v", ":vsp<cr>", opts)
+
+keymap("n", "<BS>", ":nohlsearch<cr>", opts)
+
 -- Normal --
+
+ -- leader p to paste last copied
+keymap("n", "<leader>p", '"0p', opts)
+
+-- Navigate buffers
+keymap("n", "<S-l>", ":bnext<CR>", opts)
+keymap("n", "<S-h>", ":bprevious<CR>", opts)
+
 -- Better window navigation
 keymap("n", "<leader>h", "<C-w>h", opts)
 keymap("n", "<leader>j", "<C-w>j", opts)
@@ -50,14 +47,10 @@ keymap("n", "<leader>k", "<C-w>k", opts)
 keymap("n", "<leader>l", "<C-w>l", opts)
 
 -- Resize with arrows
-keymap("n", "<C-Up>", ":resize -2<CR>", opts)
-keymap("n", "<C-Down>", ":resize +2<CR>", opts)
-keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
-keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
-
--- Navigate buffers
-keymap("n", "<S-l>", ":bnext<CR>", opts)
-keymap("n", "<S-h>", ":bprevious<CR>", opts)
+keymap("n", "<Up>", ":resize -2<CR>", opts)
+keymap("n", "<Down>", ":resize +2<CR>", opts)
+keymap("n", "<Left>", ":vertical resize -2<CR>", opts)
+keymap("n", "<Right>", ":vertical resize +2<CR>", opts)
 
 -- Move text up and down TODO seems not working
 -- keymap("n", "<A-j>", "<Esc>:m .+1<CR>==gi", opts)
@@ -71,6 +64,12 @@ keymap("i", "jj", "<ESC>", opts)
 -- Stay in indent mode
 keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
+
+ -- Delete current visual selection and dump in black hole buffer before pasting
+ -- Used when you want to paste over something without it getting copied to
+ -- Vim's default buffer
+keymap("v", "<c-v>", '"_d"0P', opts_noremap)
+
 
 -- Move text up and down TODO seems not working
 -- keymap("v", "<A-j>", ":m .+1<CR>==", opts)
