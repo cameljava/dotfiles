@@ -35,6 +35,11 @@ keymap("n", "<BS>", ":nohlsearch<cr>", opts)
 
 keymap("n", "<leader>w", "<cmd>update<cr>", opts)
 
+-- Bbye allows you to do delete buffers (close files) without closing your windows or messing up your layout
+-- emoves the file from the buffer list, clears its options, variables and mappings. However, it remains in the jumplist, so Ctrl-o takes you back and reopens the file.
+-- If that's not what you want, use :bwipeout or Bbye's equivalent :Bwipeout
+keymap("n", "<leader>x", "<cmd>Bdelete<cr>", opts)
+
 -- leader p to paste last copied
 keymap("n", "<leader>p", '"0p', opts)
 

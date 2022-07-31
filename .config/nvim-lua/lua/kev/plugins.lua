@@ -55,7 +55,6 @@ return packer.startup(function(use) -- My plugins here
 	use("ahmedkhalf/project.nvim")
 	use("lewis6991/impatient.nvim")
 	use("lukas-reineke/indent-blankline.nvim")
-	use("goolord/alpha-nvim")
 
 	-- Colorschemes
 	use("folke/tokyonight.nvim")
@@ -100,6 +99,7 @@ return packer.startup(function(use) -- My plugins here
 
 	-- Git
 	use("lewis6991/gitsigns.nvim")
+	use("tpope/vim-fugitive")
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
