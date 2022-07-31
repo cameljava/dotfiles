@@ -229,6 +229,11 @@ _G.packer_plugins = {
     path = "/Users/kevinlee/.local/share/nvim/site/pack/packer/start/project.nvim",
     url = "https://github.com/ahmedkhalf/project.nvim"
   },
+  ["schemastore.nvim"] = {
+    loaded = true,
+    path = "/Users/kevinlee/.local/share/nvim/site/pack/packer/start/schemastore.nvim",
+    url = "https://github.com/b0o/schemastore.nvim"
+  },
   ["telescope-command-palette.nvim"] = {
     loaded = true,
     path = "/Users/kevinlee/.local/share/nvim/site/pack/packer/start/telescope-command-palette.nvim",

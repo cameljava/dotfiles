@@ -40,65 +40,66 @@ packer.init({
 
 -- Install your plugins here
 return packer.startup(function(use) -- My plugins here
-
-	use 'wbthomason/packer.nvim' -- Have packer manage itself
+	use("wbthomason/packer.nvim") -- Have packer manage itself
 	-- use 'nvim-lua/popup.nvim'
-	use 'nvim-lua/plenary.nvim' -- Useful lua functions used by lots of plugins
+	use("nvim-lua/plenary.nvim") -- Useful lua functions used by lots of plugins
 
-	use  'windwp/nvim-autopairs'  -- Autopairs, integrates with both cmp and treesitter
-	use  'numToStr/Comment.nvim'
-	use  'JoosepAlviste/nvim-ts-context-commentstring'
-	use  {'kyazdani42/nvim-tree.lua', requires = {'kyazdani42/nvim-web-devicons'}}
-	use  'akinsho/bufferline.nvim'
-	use  'moll/vim-bbye'
-	use  'nvim-lualine/lualine.nvim'
-	use  'akinsho/toggleterm.nvim'
-	use  'ahmedkhalf/project.nvim'
-	use  'lewis6991/impatient.nvim'
-	use  'lukas-reineke/indent-blankline.nvim'
-	use  'goolord/alpha-nvim'
+	use("windwp/nvim-autopairs") -- Autopairs, integrates with both cmp and treesitter
+	use("numToStr/Comment.nvim")
+	use("JoosepAlviste/nvim-ts-context-commentstring")
+	use({ "kyazdani42/nvim-tree.lua", requires = { "kyazdani42/nvim-web-devicons" } })
+	use("akinsho/bufferline.nvim")
+	use("moll/vim-bbye")
+	use("nvim-lualine/lualine.nvim")
+	use("akinsho/toggleterm.nvim")
+	use("ahmedkhalf/project.nvim")
+	use("lewis6991/impatient.nvim")
+	use("lukas-reineke/indent-blankline.nvim")
+	use("goolord/alpha-nvim")
 
 	-- Colorschemes
-	use 'folke/tokyonight.nvim'
-	use 'lunarvim/darkplus.nvim'
-	use 'mhartington/oceanic-next'
-	use 'arcticicestudio/nord-vim'
-	use 'altercation/vim-colors-solarized'
-	use 'morhetz/gruvbox'
-	use 'sainnhe/everforest'
+	use("folke/tokyonight.nvim")
+	use("lunarvim/darkplus.nvim")
+	use("mhartington/oceanic-next")
+	use("arcticicestudio/nord-vim")
+	use("altercation/vim-colors-solarized")
+	use("morhetz/gruvbox")
+	use("sainnhe/everforest")
 
 	-- cmp plugins
-	use  'hrsh7th/nvim-cmp'  -- The completion plugin
-	use  'hrsh7th/cmp-buffer'  -- buffer completions
-	use  'hrsh7th/cmp-path'  -- path completions
-	use  'saadparwaiz1/cmp_luasnip'  -- snippet completions
-	use  'hrsh7th/cmp-nvim-lsp'
-	use  'hrsh7th/cmp-nvim-lua'
+	use("hrsh7th/nvim-cmp") -- The completion plugin
+	use("hrsh7th/cmp-buffer") -- buffer completions
+	use("hrsh7th/cmp-path") -- path completions
+	use("saadparwaiz1/cmp_luasnip") -- snippet completions
+	use("hrsh7th/cmp-nvim-lsp")
+	use("hrsh7th/cmp-nvim-lua")
 
 	-- snippets
-	use  'L3MON4D3/LuaSnip'  --snippet engine
-	use  'rafamadriz/friendly-snippets'  -- a bunch of snippets to use
+	use("L3MON4D3/LuaSnip") --snippet engine
+	use("rafamadriz/friendly-snippets") -- a bunch of snippets to use
 
 	-- LSP
-	use  'neovim/nvim-lspconfig'  -- enable LSP
-	use  'williamboman/nvim-lsp-installer'  -- simple to use language server installer
-	use  'jose-elias-alvarez/null-ls.nvim'  -- for formatters and linters
+	use("neovim/nvim-lspconfig") -- enable LSP
+	use("williamboman/nvim-lsp-installer") -- simple to use language server installer
+	use("jose-elias-alvarez/null-ls.nvim") -- for formatters and linters
+
+	use("b0o/schemastore.nvim")
 
 	-- Telescope
- 	use  'sharkdp/fd'
+	use("sharkdp/fd")
 
-	use  {'nvim-telescope/telescope.nvim', branch = '0.1.x' }
-	use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
-	use 'nvim-telescope/telescope-node-modules.nvim'
-	use 'LinArcX/telescope-env.nvim'
-	use 'LinArcX/telescope-command-palette.nvim'
-	use 'cljoly/telescope-repo.nvim'
+	use({ "nvim-telescope/telescope.nvim", branch = "0.1.x" })
+	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
+	use("nvim-telescope/telescope-node-modules.nvim")
+	use("LinArcX/telescope-env.nvim")
+	use("LinArcX/telescope-command-palette.nvim")
+	use("cljoly/telescope-repo.nvim")
 
 	-- Treesitter
-	use {'nvim-treesitter/nvim-treesitter'}
-	
+	use({ "nvim-treesitter/nvim-treesitter" })
+
 	-- Git
-	use  'lewis6991/gitsigns.nvim'
+	use("lewis6991/gitsigns.nvim")
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins

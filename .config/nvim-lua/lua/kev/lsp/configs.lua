@@ -5,7 +5,19 @@ end
 
 local lspconfig = require("lspconfig")
 
-local servers = { "jsonls", "sumneko_lua" }
+local servers = {
+	"tsserver",
+	"bashls",
+	"dockerls",
+	"eslint",
+	"graphql",
+	"prismals",
+	"html",
+	"jsonls",
+	"sumneko_lua",
+	"vimls",
+	"yamlls",
+}
 
 lsp_installer.setup({
 	ensure_installed = servers,
@@ -27,8 +39,8 @@ vim.lsp.set_log_level("error")
 
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-local opts = { noremap=true, silent=true }
-vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
-vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
+local opts = { noremap = true, silent = true }
+vim.keymap.set("n", "<space>e", vim.diagnostic.open_float, opts)
+vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
+vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
+vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, opts)
