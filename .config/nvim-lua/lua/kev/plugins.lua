@@ -97,6 +97,9 @@ return packer.startup(function(use) -- My plugins here
   -- Treesitter
   use { "nvim-treesitter/nvim-treesitter" }
 
+  use "nvim-treesitter/nvim-treesitter-textobjects"
+  use "nvim-treesitter/nvim-treesitter-refactor"
+  use "nvim-treesitter/playground"
   -- Git
   use "lewis6991/gitsigns.nvim"
   use "tpope/vim-fugitive"
