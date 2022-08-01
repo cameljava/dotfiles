@@ -211,6 +211,7 @@ tap homebrew/cask
 cask alacritty
 cask brave-browser
 cask cheatsheet
+cask dotnet-sdk
 cask graphql-playground
 cask hammerspoon
 cask karabiner-elements

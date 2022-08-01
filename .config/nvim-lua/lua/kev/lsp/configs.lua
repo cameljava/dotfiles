@@ -14,7 +14,7 @@ local servers = {
   "jsonls",
   "pylsp",
   "prismals",
-  "remark_ls",
+  "marksman",
   "sqlls",
   "sumneko_lua",
   "taplo",
