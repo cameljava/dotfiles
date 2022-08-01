@@ -44,7 +44,7 @@ configs.setup {
       init_selection = "gnn",
       node_incremental = "gnr",
       scope_incremental = "gnc",
-      node_decremental = "gnd",
+      node_decremental = "gnm",
     },
   },
   textobjects = {

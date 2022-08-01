@@ -18,11 +18,11 @@
 - java
 - springboot
 
-###tip:
+### tip
 
 - nvm alias default lts/fermium\
   command to set default version for node
 
 ### hotkey to control app max/min and position
 
-refer to \[keyboards] (../docs/keyboards/README.md)
+refer to [keyboards] (../docs/keyboards/README.md)
