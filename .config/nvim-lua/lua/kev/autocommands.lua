@@ -1,4 +1,4 @@
-vim.cmd([[
+vim.cmd [[
   augroup _general_settings
     autocmd!
     autocmd FileType qf,help,man,lspinfo nnoremap <silent> <buffer> q :close<CR> 
@@ -24,9 +24,8 @@ vim.cmd([[
     autocmd VimResized * tabdo wincmd = 
   augroup end
 
- " Autoformat
   augroup _lsp
     autocmd!
     autocmd BufWritePre * lua vim.lsp.buf.formatting()
   augroup end
-]])
+]]

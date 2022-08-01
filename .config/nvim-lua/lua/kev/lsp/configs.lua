@@ -39,4 +39,4 @@ for _, server in pairs(servers) do
 	lspconfig[server].setup(opts)
 end
 
-vim.lsp.set_log_level("error")
+vim.lsp.set_log_level("debug")
