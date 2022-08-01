@@ -139,6 +139,11 @@ _G.packer_plugins = {
     path = "/Users/kevinlee/.local/share/nvim/site/pack/packer/start/gruvbox",
     url = "https://github.com/morhetz/gruvbox"
   },
+  ["gv.vim"] = {
+    loaded = true,
+    path = "/Users/kevinlee/.local/share/nvim/site/pack/packer/start/gv.vim",
+    url = "https://github.com/junegunn/gv.vim"
+  },
   ["impatient.nvim"] = {
     loaded = true,
     path = "/Users/kevinlee/.local/share/nvim/site/pack/packer/start/impatient.nvim",
