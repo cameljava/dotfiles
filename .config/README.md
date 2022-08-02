@@ -13,6 +13,10 @@
 - use softlink to manually put git dotfiles to home directory
 - didn't check in tmux plugin
 
+  See [README]
+
+  [readme]: ../CHANGELOG.md
+
 ### use sdkman
 
 - java
@@ -20,9 +24,9 @@
 
 ### tip
 
-- nvm alias default lts/fermium\
+- nvm alias default lts/fermium
   command to set default version for node
 
 ### hotkey to control app max/min and position
 
-refer to [keyboards] (../docs/keyboards/README.md)
+Refer to [keyboards] (../docs/keyboards/README.md)
