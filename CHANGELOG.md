@@ -41,12 +41,12 @@ Inspired by: https://www.atlassian.com/git/tutorials/dotfiles
 and start my vimrc based on: https://bitbucket.org/durdn/cfg/src/master/.vimrc
 
 mkdir $HOME/git/cameljava\_github/dotfiles
-echo "alias config='/usr/bin/git --git-dir=$HOME/git/cameljava\_github/dotfiles --work-tree=$HOME'" >> $HOME/.bashrc
+echo "alias config='/usr/bin/git --git-dir=$HOME/git/cameljava_github/dotfiles --work-tree=$HOME'" >> $HOME/.bashrc
 echo "config config --local status.showUntrackedFiles no" >> $HOME/.bashrc
 
 setup remote repo
 config remote add origin git@github.com:cameljava/dotfiles.git
-config  push --set-upstream origin master
+config push --set-upstream origin master
 
 Goals:
 1, vim8 as daily text editor;
