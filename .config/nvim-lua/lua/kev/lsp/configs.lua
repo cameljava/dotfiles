@@ -14,7 +14,7 @@ local servers = {
   "jsonls",
   "pylsp",
   "prismals",
-  "marksman",
+  -- "marksman",
   "sqlls",
   "sumneko_lua",
   "taplo",
@@ -40,3 +40,5 @@ for _, server in pairs(servers) do
 end
 
 vim.lsp.set_log_level "info"
+
+lspconfig.marksman.setup {}
