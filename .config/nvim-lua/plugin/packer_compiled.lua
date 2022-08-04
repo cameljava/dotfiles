@@ -211,6 +211,11 @@ _G.packer_plugins = {
     path = "/Users/kevinlee/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
   },
+  ["nvim-surround"] = {
+    loaded = true,
+    path = "/Users/kevinlee/.local/share/nvim/site/pack/packer/start/nvim-surround",
+    url = "https://github.com/kylechui/nvim-surround"
+  },
   ["nvim-tree.lua"] = {
     loaded = true,
     path = "/Users/kevinlee/.local/share/nvim/site/pack/packer/start/nvim-tree.lua",
@@ -270,6 +275,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/kevinlee/.local/share/nvim/site/pack/packer/start/schemastore.nvim",
     url = "https://github.com/b0o/schemastore.nvim"
+  },
+  ["targets.vim"] = {
+    loaded = true,
+    path = "/Users/kevinlee/.local/share/nvim/site/pack/packer/start/targets.vim",
+    url = "https://github.com/wellle/targets.vim"
   },
   ["telescope-command-palette.nvim"] = {
     loaded = true,

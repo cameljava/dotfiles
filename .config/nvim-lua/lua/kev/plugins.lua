@@ -117,7 +117,11 @@ return packer.startup(function(use) -- My plugins here
     end,
     ft = { "markdown" },
   }
+
+  -- text object
+  use "wellle/targets.vim"
   use "junegunn/vim-easy-align"
+  use "kylechui/nvim-surround"
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
