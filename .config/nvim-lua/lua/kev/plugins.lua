@@ -123,6 +123,15 @@ return packer.startup(function(use) -- My plugins here
   use "junegunn/vim-easy-align"
   use "kylechui/nvim-surround"
 
+  -- test
+  use "klesh/nvim-runscript"
+  use "diepm/vim-rest-console"
+  -- utils
+  use "szw/vim-maximizer"
+  use "tyru/open-browser.vim"
+  use "norcalli/nvim-colorizer.lua"
+  use "KabbAmine/vCoolor.vim"
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
