@@ -1,4 +1,3 @@
-vim.cmd [[hi Normal guibg=NONE ctermbg=NONE ]]
 require "kev.options"
 require "kev.keymaps"
 require "kev.plugins"
@@ -17,4 +16,5 @@ require "kev.toggleterm"
 require "kev.project"
 require "kev.impatient"
 require "kev.indentline"
+require "kev.glow"
 require "kev.autocommands"
