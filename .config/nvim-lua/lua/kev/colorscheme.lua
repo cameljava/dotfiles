@@ -1,3 +1,13 @@
+require("nightfox").setup {
+  options = {
+    styles = {
+      comments = "italic",
+      keywords = "italic",
+      types = "bold",
+    },
+  },
+}
+
 vim.cmd [[
 try
   colorscheme nordfox
@@ -6,13 +16,3 @@ catch /^Vim\%((\a\+)\)\=:E185/
   set background=dark
 endtry
 ]]
-
-require("nightfox").setup {
-  options = {
-    styles = {
-      comments = "italic",
-      keywords = "bold",
-      types = "italic,bold",
-    },
-  },
-}
