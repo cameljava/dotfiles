@@ -106,6 +106,7 @@ cmp.setup {
         luasnip = "[Snippet]",
         buffer = "[Buffer]",
         path = "[Path]",
+        nvim_lsp_signature_help = "[Signature]",
       })[entry.source.name]
       return vim_item
     end,
@@ -116,6 +117,7 @@ cmp.setup {
     { name = "luasnip" },
     { name = "buffer" },
     { name = "path" },
+    { name = "nvim_lsp_signature_help" },
   },
   confirm_opts = {
     behavior = cmp.ConfirmBehavior.Replace,
