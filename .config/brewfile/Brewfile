@@ -163,7 +163,6 @@ brew redis
 brew ripgrep
 brew ruby
 brew ruby-build
-brew rust
 brew shared-mime-info
 brew shellcheck
 brew shfmt
@@ -201,6 +200,7 @@ tap homebrew/cask-fonts
 cask font-fira-code
 cask font-fira-code-nerd-font
 cask font-fira-mono
+cask font-fira-mono-for-powerline
 cask font-fira-mono-nerd-font
 cask font-hack
 cask font-hack-nerd-font
@@ -208,7 +208,6 @@ cask font-inconsolata
 cask font-inconsolata-nerd-font
 
 tap homebrew/cask
-cask alacritty
 cask brave-browser
 cask cheatsheet
 cask dotnet-sdk

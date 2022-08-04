@@ -1515,6 +1515,6 @@ include theme.conf
 
 
 # BEGIN_KITTY_THEME
-# Everforest Dark Soft
+# Nord
 include current-theme.conf
 # END_KITTY_THEME

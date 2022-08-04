@@ -57,6 +57,7 @@ return packer.startup(function(use) -- My plugins here
   use "lukas-reineke/indent-blankline.nvim"
 
   -- Colorschemes
+  use "EdenEast/nightfox.nvim"
   use "folke/tokyonight.nvim"
   use "lunarvim/darkplus.nvim"
   use "mhartington/oceanic-next"

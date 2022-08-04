@@ -1,9 +1,10 @@
 ---
 # Configuration for Alacritty, the GPU enhanced terminal emulator.
 import:
-  - ~/.config/alacritty/themes/oceanic_next.yaml
+  # - ~/.config/alacritty/themes/oceanic_next.yaml
   # - ~/.config/alacritty/themes/nord.yaml
   # - ~/.config/alacritty/themes/nightfox.yaml
+  - ~/.config/alacritty/themes/solarized_dark.yaml
   # - ~/.config/alacritty/themes/solarized_light.yaml
 shell:
   program: /opt/homebrew/bin/bash
@@ -12,7 +13,7 @@ shell:
   #   - -c
   #   - "tmux"
 
-TERM: alacritty
+TERM: xterm-256color
 
 window:
   # Window padding (changes require restart)
@@ -67,22 +68,23 @@ scrolling:
 font:
   normal:
     # Font family
-    family: Hack Nerd Font Mono
+    family: Hack Nerd Font
     style: Regular
 
   bold:
     # Font family
-    family: Hack Nerd Font Mono
+    family: Hack Nerd Font
+    # family: Fira Code
     style: Bold
 
   italic:
     # Font family
-    family: Hack Nerd Font Mono
+    family: Hack Nerd Font
     style: Italic
 
   bold_italic:
     # Font family
-    family: Hack Nerd Font Mono
+    family: Hack Nerd Font
     style: Bold Italic
 
   # Point size
@@ -115,7 +117,7 @@ font:
   #
   # This is a global setting and will require a log out or restart to take
   # effect.
-  use_thin_strokes: true
+  # use_thin_strokes: true
 
 # If `true`, bold text is drawn using the bright color variants.
 draw_bold_text_with_bright_colors: true

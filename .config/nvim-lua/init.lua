@@ -1,3 +1,4 @@
+vim.cmd [[hi Normal guibg=NONE ctermbg=NONE ]]
 require "kev.options"
 require "kev.keymaps"
 require "kev.plugins"
