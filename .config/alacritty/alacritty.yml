@@ -4,7 +4,8 @@ import:
   # - ~/.config/alacritty/themes/oceanic_next.yaml
   # - ~/.config/alacritty/themes/nord.yaml
   # - ~/.config/alacritty/themes/nightfox.yaml
-  - ~/.config/alacritty/themes/solarized_dark.yaml
+  # - ~/.config/alacritty/themes/solarized_dark.yaml
+  - ~/.config/alacritty/themes/everforest.yaml
   # - ~/.config/alacritty/themes/solarized_light.yaml
 shell:
   program: /opt/homebrew/bin/bash
@@ -88,7 +89,7 @@ font:
     style: Bold Italic
 
   # Point size
-  size: 11.0
+  size: 12.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
