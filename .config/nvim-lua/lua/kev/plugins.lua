@@ -104,6 +104,8 @@ return packer.startup(function(use) -- My plugins here
   use "nvim-treesitter/playground"
 
   --fzf
+  use "junegunn/fzf"
+  use "junegunn/fzf.vim"
 
   -- Git
   use "lewis6991/gitsigns.nvim"

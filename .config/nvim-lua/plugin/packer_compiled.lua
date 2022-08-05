@@ -134,6 +134,16 @@ _G.packer_plugins = {
     path = "/Users/kevinlee/.local/share/nvim/site/pack/packer/start/friendly-snippets",
     url = "https://github.com/rafamadriz/friendly-snippets"
   },
+  fzf = {
+    loaded = true,
+    path = "/Users/kevinlee/.local/share/nvim/site/pack/packer/start/fzf",
+    url = "https://github.com/junegunn/fzf"
+  },
+  ["fzf.vim"] = {
+    loaded = true,
+    path = "/Users/kevinlee/.local/share/nvim/site/pack/packer/start/fzf.vim",
+    url = "https://github.com/junegunn/fzf.vim"
+  },
   ["gitsigns.nvim"] = {
     loaded = true,
     path = "/Users/kevinlee/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
