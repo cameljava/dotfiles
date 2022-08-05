@@ -3,6 +3,7 @@ require("nightfox").setup {
     styles = {
       comments = "italic",
       keywords = "italic",
+      functions = "italic",
       types = "bold",
     },
   },
