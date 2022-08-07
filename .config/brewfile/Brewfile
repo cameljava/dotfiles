@@ -111,6 +111,7 @@ brew lnav
 brew lua
 brew luajit --HEAD
 brew luajit-openresty
+brew luarocks
 brew luv
 brew lynx
 brew lz4
