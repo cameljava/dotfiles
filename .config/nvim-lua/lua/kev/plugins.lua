@@ -121,6 +121,8 @@ return packer.startup(function(use) -- My plugins here
     end,
     ft = { "markdown" },
   }
+  use "vim-pandoc/vim-pandoc"
+  use "vim-pandoc/vim-pandoc-syntax"
 
   -- text object
   use "wellle/targets.vim"

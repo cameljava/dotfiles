@@ -14,7 +14,7 @@ local servers = {
   "jsonls",
   "pylsp",
   "prismals",
-  "marksman",
+  -- "marksman",
   -- "prosemd",
   "sqlls",
   "sumneko_lua",
