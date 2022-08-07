@@ -41,7 +41,6 @@ packer.init {
 -- Install your plugins here
 return packer.startup(function(use) -- My plugins here
   use "wbthomason/packer.nvim" -- Have packer manage itself
-  -- use 'nvim-lua/popup.nvim'
   use "nvim-lua/plenary.nvim" -- Useful lua functions used by lots of plugins
 
   use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
@@ -137,6 +136,7 @@ return packer.startup(function(use) -- My plugins here
   use "norcalli/nvim-colorizer.lua"
   use "KabbAmine/vCoolor.vim"
   use "dyng/ctrlsf.vim"
+  use "vimwiki/vimwiki"
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then

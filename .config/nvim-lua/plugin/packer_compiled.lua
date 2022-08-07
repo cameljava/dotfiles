@@ -385,6 +385,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/kevinlee/.local/share/nvim/site/pack/packer/start/vim-rest-console",
     url = "https://github.com/diepm/vim-rest-console"
+  },
+  vimwiki = {
+    loaded = true,
+    path = "/Users/kevinlee/.local/share/nvim/site/pack/packer/start/vimwiki",
+    url = "https://github.com/vimwiki/vimwiki"
   }
 }
 
