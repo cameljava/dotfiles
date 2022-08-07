@@ -31,6 +31,11 @@ keymap("n", "<leader>v", ":vsp<cr>", opts)
 
 keymap("n", "<BS>", ":nohlsearch<cr>", opts)
 
+-- save project session
+keymap("n", "<space>s", ":mks!<cr>", opts_noremap)
+
+keymap("n", "<c-s>", ":wa<cr>", opts_noremap)
+
 -- search shortcuts
 
 -- press * to search for the term under the cursor or a visual selection and
