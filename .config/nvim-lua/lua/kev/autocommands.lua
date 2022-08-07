@@ -24,10 +24,10 @@ vim.cmd [[
     autocmd VimResized * tabdo wincmd = 
   augroup end
 
-  " augroup _lsp
-  "   autocmd!
-  "   autocmd BufWritePre * lua vim.lsp.buf.formatting()
-  " augroup end
+  augroup _lsp
+    autocmd!
+    autocmd BufWritePre * lua vim.lsp.buf.formatting()
+  augroup end
 ]]
 
 -- below copy from learn-neovim-lua
@@ -40,12 +40,12 @@ local myAutoGroup = vim.api.nvim_create_augroup("myAutoGroup", {
 local autocmd = vim.api.nvim_create_autocmd
 
 -- autoformat while save
-autocmd("BufWritePre", {
-  group = myAutoGroup,
-  -- pattern = { "*.lua", "*.py", "*.sh" },
-  pattern = { "*.ts", "*.js", "*.md", "*.yml","*.yaml","*.toml", "*.json", "*.lua", "*.py", "*.sh" },
-  callback = vim.lsp.buf.formatting_sync,
-})
+-- autocmd("BufWritePre", {
+--   group = myAutoGroup,
+--   -- pattern = { "*.lua", "*.py", "*.sh" },
+--   pattern = { "*.ts", "*.js", "*.md", "*.yml","*.yaml","*.toml", "*.json", "*.lua", "*.py", "*.sh" },
+--   callback = vim.lsp.buf.formatting_sync,
+-- })
 
 -- Highlight on yank
 autocmd("TextYankPost", {
