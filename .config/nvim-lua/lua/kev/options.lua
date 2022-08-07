@@ -35,6 +35,7 @@ local options = {
   wildmenu = true,
   wrap = false, -- display lines as one long line
   writebackup = false, -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
+  virtualedit = "all", -- allow cursor to pass last charactor, much easier to create table, etc in md
   -- guifont = "monospace:h17", -- the font used in graphical neovim applications
 }
 

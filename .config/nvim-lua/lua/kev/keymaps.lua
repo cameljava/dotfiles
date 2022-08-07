@@ -45,6 +45,7 @@ keymap("v", "//", "y/\\V<c-r>=escape(@\",'/\\')<cr><cr>", opts)
 --  ----------------------------------------------- Normal Mode ----------------------------------------------------
 
 keymap("n", "<leader>w", "<cmd>update<cr>", opts)
+keymap("n", "<space>w", "<cmd>write<cr>", opts)
 
 -- edit config file
 keymap("n", "<leader>eb", "<cmd>vs ~/.bashrc<cr>", opts)
