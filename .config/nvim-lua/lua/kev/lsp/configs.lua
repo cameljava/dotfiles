@@ -8,7 +8,7 @@ local lspconfig = require "lspconfig"
 local servers = {
   "bashls",
   "dockerls",
-  "eslint",
+  -- "eslint",
   "graphql",
   "html",
   "jsonls",

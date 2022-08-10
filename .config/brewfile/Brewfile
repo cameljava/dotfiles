@@ -30,7 +30,6 @@ brew docker
 brew dust
 brew elinks
 brew emacs
-brew exa
 brew fd
 brew findutils
 brew fontconfig
