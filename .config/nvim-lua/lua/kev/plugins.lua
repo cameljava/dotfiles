@@ -139,6 +139,7 @@ return packer.startup(function(use) -- My plugins here
   use "KabbAmine/vCoolor.vim"
   use "dyng/ctrlsf.vim"
   use "vimwiki/vimwiki"
+  use "christoomey/vim-tmux-navigator"
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then

@@ -396,6 +396,11 @@ _G.packer_plugins = {
     path = "/Users/kevinlee/.local/share/nvim/site/pack/packer/start/vim-rest-console",
     url = "https://github.com/diepm/vim-rest-console"
   },
+  ["vim-tmux-navigator"] = {
+    loaded = true,
+    path = "/Users/kevinlee/.local/share/nvim/site/pack/packer/start/vim-tmux-navigator",
+    url = "https://github.com/christoomey/vim-tmux-navigator"
+  },
   vimwiki = {
     loaded = true,
     path = "/Users/kevinlee/.local/share/nvim/site/pack/packer/start/vimwiki",

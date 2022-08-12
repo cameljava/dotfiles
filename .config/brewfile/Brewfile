@@ -2,6 +2,7 @@
 # tap repositories and their packages
 
 tap homebrew/core
+brew ansifilter
 brew aom
 brew apr
 brew apr-util
@@ -36,6 +37,7 @@ brew fontconfig
 brew fortune
 brew freetype
 brew fzf
+brew gawk
 brew gcc
 brew gdbm
 brew gettext
