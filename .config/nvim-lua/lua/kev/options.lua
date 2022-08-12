@@ -59,4 +59,5 @@ _G.loaded_perl_provider = 0
 _G.loaded_ruby_provider = 0
 
 _G.python3_host_prog = "$HOME/.pyenv/shims/python3"
--- _G.python_host_prog = "$HOME/.pyenv/shims/python2"
+_G.do_filetype_lua = 1
+_G.did_load_filetypes = 0
