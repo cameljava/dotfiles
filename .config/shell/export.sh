@@ -2,8 +2,6 @@
 ################################# terminal config ####################
 export PS1="$ "
 export SHELL="/opt/homebrew/bin/bash"
-# export TERM=xterm-256color
-# export TERM=screen-256color
 
 export PAGER="less"
 # export PAGER="most"
