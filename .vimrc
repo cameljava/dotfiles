@@ -205,14 +205,14 @@ set completeopt=menu,menuone,preview,noselect,noinsert
 
 " Switch syntax highlighting on when the terminal has colors or when using the
 " GUI (which always has colors).
-if &t_Co > 2 || has('gui_running')
+" if &t_Co > 2 || has('gui_running')
   " Revert with ':syntax off'.
   syntax on
 
   " I like highlighting strings inside C comments.
   " Revert with ':unlet c_comment_strings'.
-  let c_comment_strings=1
-endif
+  " let c_comment_strings=1
+" endif
 set number rnu                      " show line numbers
 
 " no fold
