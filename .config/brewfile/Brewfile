@@ -74,6 +74,7 @@ brew keychain
 brew lazydocker
 brew lazygit
 brew lerna
+brew less
 brew libarchive
 brew libassuan
 brew libb2
