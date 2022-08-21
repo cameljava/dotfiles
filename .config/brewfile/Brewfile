@@ -19,7 +19,6 @@ brew c-ares
 brew ca-certificates
 brew calcurse
 brew cask
-brew checkov
 brew coreutils
 brew cowsay
 brew cscope

@@ -50,6 +50,9 @@ vim.cmd "set whichwrap+=<,>,[,],h,l"
 vim.cmd [[set iskeyword+=-]]
 vim.cmd [[set formatoptions-=cro]] -- TODO: this doesn't seem to work
 
+vim.cmd "let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]"
+vim.cmd "g:vimwiki_markdown_link_ext=1"
+
 local _G = vim.g
 
 _G.mapleader = ","
