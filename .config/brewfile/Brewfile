@@ -219,11 +219,13 @@ cask cheatsheet
 cask dotnet-sdk
 cask graphql-playground
 cask hammerspoon
+cask insomnia
 cask karabiner-elements
 cask kitty
 cask maccy
 cask macdown
 cask macvim
+cask postman
 cask qutebrowser
 cask visual-studio-code
 cask zoom
