@@ -214,6 +214,7 @@ cask font-inconsolata
 cask font-inconsolata-nerd-font
 
 tap homebrew/cask
+cask amethyst
 cask brave-browser
 cask cheatsheet
 cask dotnet-sdk
