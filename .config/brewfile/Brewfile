@@ -19,6 +19,7 @@ brew c-ares
 brew ca-certificates
 brew calcurse
 brew cask
+brew cmake
 brew coreutils
 brew cowsay
 brew cscope
