@@ -3,11 +3,12 @@ if not status_ok then
   return
 end
 
+
 local diagnostics = {
   "diagnostics",
   sources = { "nvim_diagnostic" },
-  sections = { "error", "warn" },
-  symbols = { error = " ", warn = " " },
+  sections = { "error", "warn", "info", "hint" },
+  symbols = { error = "E ", warn = "W ", info = "I ", hint = "H " },
   colored = true,
   update_in_insert = false,
   always_visible = true,
