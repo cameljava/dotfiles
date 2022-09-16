@@ -1,6 +1,7 @@
 # shellcheck shell=bash
 ################################# terminal config ####################
-export PS1="$ "
+# export PS1="$ "
+export PS1='\[\e[0;$(($?==0?0:91))m\]$ \[\e[0m\]'
 export SHELL="/opt/homebrew/bin/bash"
 
 export PAGER="less"
