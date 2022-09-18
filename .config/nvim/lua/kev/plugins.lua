@@ -66,6 +66,22 @@ return packer.startup(function(use) -- My plugins here
   use "morhetz/gruvbox"
   use "sainnhe/everforest"
 
+  use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
+  use "nvim-treesitter/nvim-treesitter-refactor"
+  use {
+    "nvim-treesitter/nvim-treesitter-textobjects",
+  }
+  use {
+    "nvim-treesitter/nvim-treesitter-context",
+    config = function()
+      require("treesitter-context").setup()
+    end,
+  }
+  use "nvim-treesitter/playground"
+  use {
+    "andymass/vim-matchup",
+  }
+
   -- cmp plugins
   use "hrsh7th/nvim-cmp" -- The completion plugin
   use "hrsh7th/cmp-buffer" -- buffer completions
@@ -95,14 +111,6 @@ return packer.startup(function(use) -- My plugins here
   use "nvim-telescope/telescope-node-modules.nvim"
   use "LinArcX/telescope-env.nvim"
   use "LinArcX/telescope-command-palette.nvim"
-  use "cljoly/telescope-repo.nvim"
-
-  -- Treesitter
-  use { "nvim-treesitter/nvim-treesitter" }
-
-  use "nvim-treesitter/nvim-treesitter-textobjects"
-  use "nvim-treesitter/nvim-treesitter-refactor"
-  use "nvim-treesitter/playground"
 
   --fzf
   use "junegunn/fzf"

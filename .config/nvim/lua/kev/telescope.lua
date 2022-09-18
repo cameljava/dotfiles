@@ -136,7 +136,7 @@ telescope.load_extension "fzf"
 telescope.load_extension "env"
 telescope.load_extension "command_palette"
 telescope.load_extension "node_modules"
-telescope.load_extension "repo"
+ -- telescope.load_extension "repo"
 
 -- telescope mapping
 local opts = { noremap = true, silent = true }
