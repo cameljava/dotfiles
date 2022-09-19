@@ -45,7 +45,14 @@ return packer.startup(function(use) -- My plugins here
 
   use "gpanders/editorconfig.nvim"
   use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
-  use "numToStr/Comment.nvim"
+  use {
+    "numToStr/Comment.nvim",
+    config = function()
+      require("Comment").setup {
+        pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
+      }
+    end,
+  }
   use "JoosepAlviste/nvim-ts-context-commentstring"
   use { "kyazdani42/nvim-tree.lua", requires = { "kyazdani42/nvim-web-devicons" } }
   use { "akinsho/bufferline.nvim", tag = "v2.*", requires = "kyazdani42/nvim-web-devicons" }
@@ -137,8 +144,15 @@ return packer.startup(function(use) -- My plugins here
   -- text object
   use "wellle/targets.vim"
   use "junegunn/vim-easy-align"
-  use "kylechui/nvim-surround"
-
+  use {
+    "kylechui/nvim-surround",
+    tag = "*", -- Use for stability; omit to use `main` branch for the latest features
+    config = function()
+      require("nvim-surround").setup {
+        -- Configuration here, or leave empty to use defaults
+      }
+    end,
+  }
   -- test
   use "klesh/nvim-runscript"
   use "diepm/vim-rest-console"
