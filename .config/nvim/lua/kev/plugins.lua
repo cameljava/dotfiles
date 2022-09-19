@@ -60,7 +60,12 @@ return packer.startup(function(use) -- My plugins here
   use "nvim-lualine/lualine.nvim"
   use "akinsho/toggleterm.nvim"
   use "ahmedkhalf/project.nvim"
-  use "lewis6991/impatient.nvim"
+  use {
+    "lewis6991/impatient.nvim",
+    config = function()
+      require "impatient"
+    end,
+  }
   use "lukas-reineke/indent-blankline.nvim"
 
   -- Colorschemes
