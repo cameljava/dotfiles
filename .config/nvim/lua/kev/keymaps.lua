@@ -26,7 +26,7 @@ keymap("v", ";", ":", opts_noremap)
 keymap("x", ":", ";", opts_noremap)
 keymap("x", ";", ":", opts_noremap)
 
-keymap("n", "<leader>s", ":sp<cr>", opts)
+keymap("n", "<leader>h", ":sp<cr>", opts)
 keymap("n", "<leader>v", ":vsp<cr>", opts)
 
 keymap("n", "<BS>", ":nohlsearch<cr>", opts)
@@ -49,7 +49,7 @@ keymap("v", "//", "y/\\V<c-r>=escape(@\",'/\\')<cr><cr>", opts)
 
 --  ----------------------------------------------- Normal Mode ----------------------------------------------------
 
-keymap("n", "<leader>w", "<cmd>update<cr>", opts)
+keymap("n", "<leader>s", "<cmd>update<cr>", opts)
 keymap("n", "<space>w", "<cmd>write<cr>", opts)
 
 -- edit config file
@@ -66,6 +66,7 @@ keymap("n", "<leader>x", "<cmd>Bdelete<cr>", opts)
 
 -- leader p to paste last copied
 keymap("n", "<leader>p", '"0p', opts)
+keymap("n", "<leader>P", '"0P', opts)
 
 -- Navigate buffers
 keymap("n", "<S-l>", ":bnext<CR>", opts)
