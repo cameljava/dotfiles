@@ -12,6 +12,7 @@ require("nightfox").setup {
 vim.cmd [[
 try
   colorscheme nordfox
+  " colorscheme tokyonight
 catch /^Vim\%((\a\+)\)\=:E185/
   colorscheme default
   set background=dark

@@ -24,7 +24,6 @@ configs.setup {
     "prisma",
     "python",
     "query",
-    "query",
     "regex",
     "rust",
     "sql",

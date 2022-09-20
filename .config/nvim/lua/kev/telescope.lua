@@ -78,6 +78,13 @@ telescope.setup {
     },
   },
   extensions = {
+    fzf = {
+      fuzzy = true, -- false will only do exact matching
+      override_generic_sorter = true, -- override the generic sorter
+      override_file_sorter = true, -- override the file sorter
+      case_mode = "smart_case", -- or "ignore_case" or "respect_case"
+      -- the default case_mode is "smart_case"
+    },
     command_palette = {
       {
         "File",
@@ -120,24 +127,20 @@ telescope.setup {
         { "search highlighting (F12)", ":set hlsearch!" },
       },
     },
-    -- Your extension configuration goes here:
-    -- extension_name = {
-    --   extension_config_key = value,
-    -- }
-    -- please take a look at the readme of the extension you want to configure
   },
 }
 
 -- This will load fzy_native and have it override the default file sorter
 telescope.load_extension "fzf"
-
--- telescope extentions setting --
-
 telescope.load_extension "env"
 telescope.load_extension "command_palette"
 telescope.load_extension "node_modules"
- -- telescope.load_extension "repo"
+-- telescope.load_extension "repo"
+telescope.load_extension "neoclip"
+telescope.load_extension "bookmarks"
+telescope.load_extension "file_browser"
 
+vim.api.nvim_set_keymap("n", "<space>b", ":Telescope file_browser", { noremap = true })
 -- telescope mapping
 local opts = { noremap = true, silent = true }
 -- Shorten function name
