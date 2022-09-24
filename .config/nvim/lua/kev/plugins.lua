@@ -27,7 +27,7 @@ packer.init {
 }
 
 -- Install your plugins here
-return packer.startup(function(use) -- My plugins here
+return packer.startup({function(use) -- My plugins here
   use "wbthomason/packer.nvim" -- Have packer manage itself
   use "nvim-lua/plenary.nvim" -- Useful lua functions used by lots of plugins
 
@@ -59,11 +59,10 @@ return packer.startup(function(use) -- My plugins here
   -- Colorschemes
   use "EdenEast/nightfox.nvim"
   use "folke/tokyonight.nvim"
-  use "lunarvim/darkplus.nvim"
   use "mhartington/oceanic-next"
   use "arcticicestudio/nord-vim"
   use "altercation/vim-colors-solarized"
-  use "morhetz/gruvbox"
+  -- use "morhetz/gruvbox"
   use "sainnhe/everforest"
 
   use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
@@ -98,22 +97,36 @@ return packer.startup(function(use) -- My plugins here
   use "hrsh7th/cmp-nvim-lua"
   use "hrsh7th/cmp-nvim-lsp-signature-help"
 
-  -- snippets
-  use "L3MON4D3/LuaSnip" --snippet engine
-  use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
+  use "b0o/schemastore.nvim"
 
   -- LSP
   use "williamboman/mason.nvim"
   use "williamboman/mason-lspconfig.nvim"
   use "neovim/nvim-lspconfig" -- enable LSP
-  use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
+  -- use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
 
-  use "b0o/schemastore.nvim"
+  -- snippets
+  use "L3MON4D3/LuaSnip" --snippet engine
+  use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
+
+  -- test
+  use "klesh/nvim-runscript"
+  use "diepm/vim-rest-console"
+
+  -- dap
+  use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } }
+  use "theHamsta/nvim-dap-virtual-text"
+  use { "mxsdev/nvim-dap-vscode-js", requires = { "mfussenegger/nvim-dap" } }
+  use {
+    "microsoft/vscode-js-debug",
+    opt = true,
+    run = "npm install --legacy-peer-deps && npm run compile",
+  }
 
   -- Telescope
   use "sharkdp/fd"
 
-  use { "nvim-telescope/telescope.nvim", branch = "0.1.x" }
+  use { "nvim-telescope/telescope.nvim", tag = "0.1.0" }
   use { "nvim-telescope/telescope-fzf-native.nvim", run = "make" }
   use "nvim-telescope/telescope-node-modules.nvim"
   use "LinArcX/telescope-env.nvim"
@@ -131,6 +144,8 @@ return packer.startup(function(use) -- My plugins here
     end,
   }
   use { "nvim-telescope/telescope-file-browser.nvim" }
+  use { "nvim-telescope/telescope-ui-select.nvim" }
+  use "nvim-telescope/telescope-dap.nvim"
 
   --fzf
   use "junegunn/fzf"
@@ -156,7 +171,7 @@ return packer.startup(function(use) -- My plugins here
 
   -- text object
   use "wellle/targets.vim"
-  use "junegunn/vim-easy-align"
+  -- use "junegunn/vim-easy-align"
   use {
     "kylechui/nvim-surround",
     tag = "*", -- Use for stability; omit to use `main` branch for the latest features
@@ -166,11 +181,8 @@ return packer.startup(function(use) -- My plugins here
       }
     end,
   }
-  -- test
-  use "klesh/nvim-runscript"
-  use "diepm/vim-rest-console"
   -- utils
-  use "szw/vim-maximizer"
+  -- use "szw/vim-maximizer"
   use "tyru/open-browser.vim"
   use "norcalli/nvim-colorizer.lua"
   use "KabbAmine/vCoolor.vim"
@@ -184,4 +196,8 @@ return packer.startup(function(use) -- My plugins here
   if packer_bootstrap then
     require("packer").sync()
   end
-end)
+end,
+config={
+  max_jobs = 10
+},
+})
