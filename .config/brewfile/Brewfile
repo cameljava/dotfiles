@@ -78,9 +78,11 @@ brew less
 brew libarchive
 brew libassuan
 brew libb2
+brew libcbor
 brew libde265
 brew libevent
 brew libffi
+brew libfido2
 brew libgcrypt
 brew libgpg-error
 brew libheif
@@ -130,6 +132,8 @@ brew mongosh
 brew mpdecimal
 brew mpfr
 brew msgpack
+brew mysql
+brew mysql-client
 brew ncurses
 brew neovim
 brew nettle
@@ -153,6 +157,7 @@ brew pcre2
 brew perl
 brew pinentry
 brew pkg-config
+brew protobuf
 brew pyenv
 brew pyenv-virtualenv
 brew python-tabulate
@@ -196,7 +201,9 @@ brew x265
 brew xmlto
 brew xz
 brew z.lua
+brew z3
 brew zig
+brew zlib
 brew zoxide
 brew zsh-completions
 brew zstd
@@ -218,6 +225,7 @@ tap homebrew/cask
 cask amethyst
 cask brave-browser
 cask cheatsheet
+cask dbeaver-community
 cask dotnet-sdk
 cask graphql-playground
 cask hammerspoon
@@ -227,8 +235,10 @@ cask kitty
 cask maccy
 cask macdown
 cask macvim
+cask mysqlworkbench
 cask postman
 cask qutebrowser
+cask sequel-pro
 cask visual-studio-code
 cask zoom
 

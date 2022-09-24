@@ -9,7 +9,7 @@ local opts = { noremap = true, silent = true }
 local keymap = vim.api.nvim_set_keymap
 
 keymap("o", "il", ":<c-u>normal! $v^<cr>", opts)
-keymap("x", "il", ":<c-u>normal! $v^<cr>", opts)
+keymap("x", "il", "g_0^", opts)
 
 keymap("o", "al", ":<c-u>normal! $v0<cr>", opts)
 keymap("x", "al", ":<c-u>normal! $v0<cr>", opts)

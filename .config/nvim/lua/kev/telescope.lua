@@ -85,6 +85,11 @@ telescope.setup {
       case_mode = "smart_case", -- or "ignore_case" or "respect_case"
       -- the default case_mode is "smart_case"
     },
+    ["ui-select"] = {
+      require("telescope.themes").get_dropdown {
+        -- even more opts
+      },
+    },
     command_palette = {
       {
         "File",
@@ -130,24 +135,11 @@ telescope.setup {
   },
 }
 
--- This will load fzy_native and have it override the default file sorter
-telescope.load_extension "fzf"
-telescope.load_extension "env"
-telescope.load_extension "command_palette"
-telescope.load_extension "node_modules"
--- telescope.load_extension "repo"
-telescope.load_extension "neoclip"
-telescope.load_extension "bookmarks"
-telescope.load_extension "file_browser"
-
-vim.api.nvim_set_keymap("n", "<space>b", ":Telescope file_browser", { noremap = true })
--- telescope mapping
-local opts = { noremap = true, silent = true }
 -- Shorten function name
 local keymap = vim.api.nvim_set_keymap
+local opts = { noremap = true, silent = true }
 
-keymap("n", "<leader>fp", "<cmd>Telescope command_palette<cr>", opts)
-
+-- telescope mapping
 keymap("n", "<leader>ff", "<cmd>Telescope git_files<cr>", opts)
 keymap("n", "<leader>fd", "<cmd>Telescope fd<cr>", opts)
 keymap("n", "<leader>fb", "<cmd>lua require('telescope.builtin').buffers()<cr>", opts)
@@ -156,3 +148,25 @@ keymap("n", "<leader>fh", "<cmd>lua require('telescope.builtin').help_tags()<cr>
 keymap("n", "<leader>fm", "<cmd>lua require('telescope.builtin').git_commits()<cr>", opts)
 keymap("n", "<leader>fk", "<cmd>lua require('telescope.builtin').keymaps()<cr>", opts)
 keymap("n", "<leader>fc", "<cmd>lua require('telescope.builtin').commands()<cr>", opts)
+
+-- This will load fzy_native and have it override the default file sorter
+telescope.load_extension "fzf"
+telescope.load_extension "env"
+
+telescope.load_extension "command_palette"
+keymap("n", "<leader>fp", "<cmd>Telescope command_palette<cr>", opts)
+
+telescope.load_extension "node_modules"
+-- telescope.load_extension "repo"
+telescope.load_extension "neoclip"
+telescope.load_extension "bookmarks"
+
+telescope.load_extension "file_browser"
+keymap("n", "<space>b", ":Telescope file_browser", { noremap = true })
+
+telescope.load_extension "ui-select"
+-- dap
+telescope.load_extension "dap"
+keymap("n", "<leader>ds", ":Telescope dap frames<CR>", opts)
+-- keymap('n', '<leader>dc', ':Telescope dap commands<CR>', opts)
+keymap("n", "<leader>db", ":Telescope dap list_breakpoints<CR>", opts)
