@@ -5,6 +5,10 @@ if [ -f "$HOME/.bashrc" ]; then
   . "$HOME/.bashrc"
 fi
 
+if [ -r ~/.kNonePublic ]
+then
+    source ~/.kNonePublic
+fi
 # section to opt out telemetry
 export DOTNET_CLI_TELEMETRY_OPTOUT=true
 export SAM_CLI_TELEMETRY=0
