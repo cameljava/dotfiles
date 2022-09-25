@@ -7,7 +7,7 @@ end
 glow.setup {}
 
 --  ==================  nvim-runscript  ===================
-require("nvim-runscript").setup {}
+require("nvim-runscript").setup()
 
 --  ==================  colorizer  ===================
 require("colorizer").setup {
@@ -19,6 +19,7 @@ require("colorizer").setup {
   },
 }
 
+--  ================== toggle_lsp_diagnostics  ===================
 require("toggle_lsp_diagnostics").init { start_on = false }
 
 --  ==================  vimviki  ===================
@@ -37,27 +38,27 @@ let g:vimwiki_ext2syntax = {'.md': 'markdown', '.markdown': 'markdown', '.mdown'
 
 ]]
 
-
+--  ==================  windows  ===================
 vim.o.winwidth = 10
 vim.o.winminwidth = 10
 vim.o.equalalways = false
 
-require('windows').setup{
-      autowidth = {	
-      enable = false,
-      winwidth = 5,			
-      filetype = {		
-         help = 2,
-      },
-   },
-   ignore = {		
-      buftype = { "quickfix" },
-      filetype = { "NvimTree", "neo-tree", "undotree", "gundo" }
-   },
-   animation = {
-      enable = false,
-      duration = 300,
-      fps = 30,
-      easing = "in_out_sine"
-   },
- }
+require("windows").setup {
+  autowidth = {
+    enable = false,
+    winwidth = 5,
+    filetype = {
+      help = 2,
+    },
+  },
+  ignore = {
+    buftype = { "quickfix" },
+    filetype = { "NvimTree", "neo-tree", "undotree", "gundo" },
+  },
+  animation = {
+    enable = false,
+    duration = 300,
+    fps = 30,
+    easing = "in_out_sine",
+  },
+}

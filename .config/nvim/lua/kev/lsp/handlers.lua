@@ -86,7 +86,6 @@ M.on_attach = function(client, bufnr)
     or client.name == "sumneko_lua"
     or client.name == "jsonls"
     or client.name == "yamlls"
-    or client.name == "remark_ls"
   then
     client.resolved_capabilities.document_formatting = false
   end
@@ -96,7 +95,6 @@ M.on_attach = function(client, bufnr)
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-
 local status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
 if not status_ok then
   return

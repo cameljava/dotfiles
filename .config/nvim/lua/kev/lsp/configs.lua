@@ -8,11 +8,19 @@ if not status_ok then
   return
 end
 
+-- IMPORTANT: make sure to setup lua-dev BEFORE lspconfig
+require("lua-dev").setup({
+  -- add any options here, or leave empty to use the default settings
+})
+
+
+
 local lspconfig = require "lspconfig"
 
 local servers = {
   "bashls",
   "dockerls",
+  "eslint",
   "graphql",
   "html",
   "jsonls",
