@@ -188,7 +188,6 @@ return packer.startup({function(use) -- My plugins here
       "anuvyklack/animation.nvim"
    },
 }
-  -- use "szw/vim-maximizer"
   use "tyru/open-browser.vim"
   use "norcalli/nvim-colorizer.lua"
   use "KabbAmine/vCoolor.vim"
