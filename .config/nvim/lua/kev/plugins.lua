@@ -4,7 +4,7 @@ local ensure_packer = function()
   if fn.empty(fn.glob(install_path)) > 0 then
     fn.system { "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path }
     vim.cmd [[packadd packer.nvim]]
-    return true
+
   end
   return false
 end
@@ -182,6 +182,12 @@ return packer.startup({function(use) -- My plugins here
     end,
   }
   -- utils
+  use { "anuvyklack/windows.nvim",
+   requires = {
+      "anuvyklack/middleclass",
+      "anuvyklack/animation.nvim"
+   },
+}
   -- use "szw/vim-maximizer"
   use "tyru/open-browser.vim"
   use "norcalli/nvim-colorizer.lua"
