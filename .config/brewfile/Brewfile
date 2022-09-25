@@ -17,6 +17,7 @@ brew berkeley-db
 brew brotli
 brew c-ares
 brew ca-certificates
+brew cairo
 brew calcurse
 brew cask
 brew cmake
@@ -53,8 +54,10 @@ brew gnu-getopt
 brew gnupg
 brew gnutls
 brew go
+brew graphite2
 brew graphql-cli
 brew guile
+brew harfbuzz
 brew htop
 brew httpie
 brew icu4c
@@ -95,6 +98,7 @@ brew libmpc
 brew libnghttp2
 brew libomp
 brew libpng
+brew libpthread-stubs
 brew libpython-tabulate
 brew libraw
 brew libssh2
@@ -106,6 +110,12 @@ brew libunistring
 brew libusb
 brew libuv
 brew libvmaf
+brew libx11
+brew libxau
+brew libxcb
+brew libxdmcp
+brew libxext
+brew libxrender
 brew libyaml
 brew libzip
 brew little-cms2
@@ -120,6 +130,7 @@ brew luarocks
 brew luv
 brew lynx
 brew lz4
+brew lzo
 brew m4
 brew macos-term-size
 brew markdown
@@ -156,6 +167,7 @@ brew pcre
 brew pcre2
 brew perl
 brew pinentry
+brew pixman
 brew pkg-config
 brew protobuf
 brew pyenv
@@ -199,6 +211,7 @@ brew webp
 brew wget
 brew x265
 brew xmlto
+brew xorgproto
 brew xz
 brew z.lua
 brew z3
