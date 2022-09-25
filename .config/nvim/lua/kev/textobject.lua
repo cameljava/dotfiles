@@ -2,7 +2,6 @@
 -- <c-u>	Delete everything already written in COMMAND-LINE mode (like the selection markers '<,'> for example).
 -- normal!	This Ex-command allow executing NORMAL mode keystrokes.
 -- $v^	Go to the end of the line, switch to VISUAL mode, and select till the beginning of the line (without the eventual white spaces).
-
 -- TODO  default s seems working fine with surround
 
 local opts = { noremap = true, silent = true }

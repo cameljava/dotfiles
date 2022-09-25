@@ -3,7 +3,6 @@ if not status_ok then
   return
 end
 
-
 local diagnostics = {
   "diagnostics",
   sources = { "nvim_diagnostic" },

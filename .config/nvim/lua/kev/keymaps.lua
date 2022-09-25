@@ -60,7 +60,7 @@ keymap("n", "<leader>et", "<cmd>vs ~/.config/tmux/tmux.conf<cr>", opts)
 keymap("n", "<leader>es", "<cmd>vs ~/scratch.txt<cr>", opts)
 
 -- WindowsMaximize
-vim.keymap.set('n', '<leader>m', '<Cmd>WindowsMaximize<CR>')
+vim.keymap.set("n", "<leader>m", "<Cmd>WindowsMaximize<CR>")
 
 -- Bbye allows you to do delete buffers (close files) without closing your windows or messing up your layout
 -- emoves the file from the buffer list, clears its options, variables and mappings. However, it remains in the jumplist, so Ctrl-o takes you back and reopens the file.
