@@ -58,6 +58,7 @@ brew graphite2
 brew graphql-cli
 brew guile
 brew harfbuzz
+brew highway
 brew htop
 brew httpie
 brew icu4c

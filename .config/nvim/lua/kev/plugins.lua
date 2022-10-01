@@ -56,15 +56,6 @@ return packer.startup {
     }
     use "lukas-reineke/indent-blankline.nvim"
 
-    -- Colorschemes
-    use "EdenEast/nightfox.nvim"
-    use "folke/tokyonight.nvim"
-    use "mhartington/oceanic-next"
-    use "arcticicestudio/nord-vim"
-    use "altercation/vim-colors-solarized"
-    -- use "morhetz/gruvbox"
-    use "sainnhe/everforest"
-
     use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
     use "nvim-treesitter/nvim-treesitter-refactor"
     use {
@@ -88,16 +79,19 @@ return packer.startup {
         "kkharji/sqlite.lua",
       },
     }
-    -- cmp plugins
-    use "hrsh7th/nvim-cmp" -- The completion plugin
-    use "hrsh7th/cmp-buffer" -- buffer completions
-    use "hrsh7th/cmp-path" -- path completions
-    use "saadparwaiz1/cmp_luasnip" -- snippet completions
-    use "hrsh7th/cmp-nvim-lsp"
-    use "hrsh7th/cmp-nvim-lua"
-    use "hrsh7th/cmp-nvim-lsp-signature-help"
 
-    use "b0o/schemastore.nvim"
+    -- text object
+    use "wellle/targets.vim"
+    -- use "junegunn/vim-easy-align"
+    use {
+      "kylechui/nvim-surround",
+      tag = "*", -- Use for stability; omit to use `main` branch for the latest features
+      config = function()
+        require("nvim-surround").setup {
+          -- Configuration here, or leave empty to use defaults
+        }
+      end,
+    }
 
     -- LSP
     use "williamboman/mason.nvim"
@@ -166,11 +160,25 @@ return packer.startup {
     use "junegunn/fzf"
     use "junegunn/fzf.vim"
 
+    -- cmp plugins
+    use "hrsh7th/cmp-nvim-lsp"
+    use "hrsh7th/cmp-buffer" -- buffer completions
+    use "hrsh7th/cmp-path" -- path completions
+    use "hrsh7th/cmp-cmdline" -- cmd completions
+    use "hrsh7th/nvim-cmp" -- The completion plugin
+    use "saadparwaiz1/cmp_luasnip" -- lua snippet completions
+
+    use "hrsh7th/cmp-nvim-lua" -- complete neovim lua runtime API, eg vim.lsp.*
+    use "hrsh7th/cmp-nvim-lsp-signature-help"
+
     -- Git
     use "lewis6991/gitsigns.nvim"
     use "tpope/vim-fugitive"
     use "junegunn/gv.vim"
     use "kdheepak/lazygit.nvim"
+
+    -- json schemastore
+    use "b0o/schemastore.nvim"
 
     -- markdown
     use { "ellisonleao/glow.nvim" }
@@ -185,18 +193,6 @@ return packer.startup {
     -- use "vim-pandoc/vim-pandoc"
     -- use "vim-pandoc/vim-pandoc-syntax"
 
-    -- text object
-    use "wellle/targets.vim"
-    -- use "junegunn/vim-easy-align"
-    use {
-      "kylechui/nvim-surround",
-      tag = "*", -- Use for stability; omit to use `main` branch for the latest features
-      config = function()
-        require("nvim-surround").setup {
-          -- Configuration here, or leave empty to use defaults
-        }
-      end,
-    }
     -- utils
     use {
       "anuvyklack/windows.nvim",
@@ -212,6 +208,15 @@ return packer.startup {
     use "vimwiki/vimwiki"
     use "christoomey/vim-tmux-navigator"
     use "WhoIsSethDaniel/toggle-lsp-diagnostics.nvim"
+
+    -- Colorschemes
+    use "EdenEast/nightfox.nvim"
+    use "folke/tokyonight.nvim"
+    use "mhartington/oceanic-next"
+    use "arcticicestudio/nord-vim"
+    use "altercation/vim-colors-solarized"
+    use "morhetz/gruvbox"
+    use "sainnhe/everforest"
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
