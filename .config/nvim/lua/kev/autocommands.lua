@@ -23,11 +23,6 @@ vim.cmd [[
     autocmd!
     autocmd VimResized * tabdo wincmd = 
   augroup end
-
-  augroup _lsp
-    autocmd!
-    autocmd BufWritePre * lua vim.lsp.buf.formatting()
-  augroup end
 ]]
 
 -- below copy from learn-neovim-lua
