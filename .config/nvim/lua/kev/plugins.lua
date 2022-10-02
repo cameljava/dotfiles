@@ -135,7 +135,8 @@ return packer.startup {
     -- Telescope
     use "sharkdp/fd"
 
-    use { "nvim-telescope/telescope.nvim", tag = "0.1.0" }
+     -- use { "nvim-telescope/telescope.nvim", tag = "0.1.0" }
+    use { "nvim-telescope/telescope.nvim", branch = "0.1.x"  }
     use { "nvim-telescope/telescope-fzf-native.nvim", run = "make" }
     use "nvim-telescope/telescope-node-modules.nvim"
     use "LinArcX/telescope-env.nvim"

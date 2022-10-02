@@ -111,6 +111,7 @@ brew libunistring
 brew libusb
 brew libuv
 brew libvmaf
+brew libvterm
 brew libx11
 brew libxau
 brew libxcb
