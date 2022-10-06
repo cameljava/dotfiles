@@ -30,7 +30,7 @@ return packer.startup {
   function(use) -- My plugins here
     use "wbthomason/packer.nvim" -- Have packer manage itself
     use "nvim-lua/plenary.nvim" -- Useful lua functions used by lots of plugins
-    use 'nvim-lua/popup.nvim'
+    use "nvim-lua/popup.nvim"
 
     use "gpanders/editorconfig.nvim"
     use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
@@ -101,7 +101,7 @@ return packer.startup {
     use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
 
     use "folke/lua-dev.nvim"
- use "RRethy/vim-illuminate"
+    use "RRethy/vim-illuminate"
     -- snippets
     use "L3MON4D3/LuaSnip" --snippet engine
     use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
@@ -136,8 +136,8 @@ return packer.startup {
     -- Telescope
     use "sharkdp/fd"
 
-     -- use { "nvim-telescope/telescope.nvim", tag = "0.1.0" }
-    use { "nvim-telescope/telescope.nvim", branch = "0.1.x"  }
+    -- use { "nvim-telescope/telescope.nvim", tag = "0.1.0" }
+    use { "nvim-telescope/telescope.nvim", branch = "0.1.x" }
     use { "nvim-telescope/telescope-fzf-native.nvim", run = "make" }
     use "nvim-telescope/telescope-node-modules.nvim"
     use "LinArcX/telescope-env.nvim"
