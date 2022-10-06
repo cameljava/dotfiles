@@ -21,7 +21,7 @@ bufferline.setup {
     tab_size = 21,
     diagnostics = "nvim_lsp", -- false, | "nvim_lsp" | "coc",
     diagnostics_update_in_insert = false,
-    offsets = { { filetype = "NvimTree", text = "", text_align = "left" } },
+    offsets = { { filetype = "NvimTree", text = "", text_align = "left", padding = 1 } },
     show_buffer_icons = false,
     show_buffer_default_icons = false,
     show_buffer_close_icons = true,
@@ -39,4 +39,4 @@ local opts = { noremap = true, silent = true }
 -- Shorten function name
 local keymap = vim.api.nvim_set_keymap
 
-keymap("n", "gb", ":BufferLinePick<cr>", opts)
+keymap("n", "gp", ":BufferLinePick<cr>", opts)
