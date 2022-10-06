@@ -1,19 +1,12 @@
-local status_ok, mason = pcall(require, "mason")
-if not status_ok then
+local status_mason_ok, mason = pcall(require, "mason")
+if not status_mason_ok then
   return
 end
 
-local status_ok, lsp_installer = pcall(require, "mason-lspconfig")
-if not status_ok then
+local status_mlsp_ok, lsp_installer = pcall(require, "mason-lspconfig")
+if not status_mlsp_ok then
   return
 end
-
--- IMPORTANT: make sure to setup lua-dev BEFORE lspconfig
-require("lua-dev").setup({
-  -- add any options here, or leave empty to use the default settings
-})
-
-
 
 local lspconfig = require "lspconfig"
 
