@@ -1,21 +1,11 @@
-require "kev.options"
-require "kev.keymaps"
-require "kev.plugins"
-require "kev.colorscheme"
-require "kev.textobject"
-require "kev.cmp"
-require "kev.lsp"
-require "kev.telescope"
-require "kev.treesitter"
-require "kev.fzf"
-require "kev.default"
-require "kev.autopairs"
-require "kev.gitsigns"
-require "kev.nvim-tree"
-require "kev.bufferline"
-require "kev.lualine"
-require "kev.toggleterm"
-require "kev.indentline"
-require "kev.autocommands"
-require "kev.test"
-require "kev.dap"
+require('kev.base')
+require('kev.highlights')
+require('kev.maps')
+require('kev.plugins')
+
+local has = vim.fn.has
+local is_mac = has "macunix"
+
+if is_mac then
+  require('kev.macos')
+end
