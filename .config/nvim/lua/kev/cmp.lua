@@ -10,10 +10,10 @@ end
 
 require("luasnip/loaders/from_vscode").lazy_load()
 
-local has_words_before = function()
+--[[ local has_words_before = function()
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match "%s" == nil
-end
+end ]]
 
 local check_backspace = function()
   local col = vim.fn.col "." - 1
@@ -100,14 +100,15 @@ cmp.setup {
     fields = { "kind", "abbr", "menu" },
     format = function(entry, vim_item)
       -- Kind icons
-      vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
+      vim_item.kind = kind_icons[vim_item.kind]
+      -- vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
       -- vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
       vim_item.menu = ({
         luasnip = "[Snippet]",
         nvim_lsp = "[LSP]",
         buffer = "[Buffer]",
         path = "[Path]",
-        cmdline = "[Cmd]",
+        -- cmdline = "[Cmd]",
         nvim_lsp_signature_help = "[Signature]",
         nvim_lua = "[LUA]",
       })[entry.source.name]
@@ -119,7 +120,7 @@ cmp.setup {
     { name = "nvim_lsp" },
     { name = "buffer" },
     { name = "path" },
-    { name = "cmdline" },
+    -- { name = "cmdline" },
     { name = "nvim_lsp_signature_help" },
     { name = "nvim_lua" },
   },

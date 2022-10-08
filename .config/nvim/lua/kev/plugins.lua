@@ -47,15 +47,17 @@ return packer.startup {
 
     use "gpanders/editorconfig.nvim"
     use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
+    use "JoosepAlviste/nvim-ts-context-commentstring"
     use {
       "numToStr/Comment.nvim",
       config = function()
         require("Comment").setup {
+          -- ignores empty lines
+          ignore = '^$',
           pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
         }
       end,
     }
-    use "JoosepAlviste/nvim-ts-context-commentstring"
     use { "kyazdani42/nvim-tree.lua", requires = { "kyazdani42/nvim-web-devicons" } }
     use { "akinsho/bufferline.nvim", tag = "v2.*", requires = "kyazdani42/nvim-web-devicons" }
     use "moll/vim-bbye"
