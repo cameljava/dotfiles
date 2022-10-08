@@ -53,7 +53,7 @@ return packer.startup {
       config = function()
         require("Comment").setup {
           -- ignores empty lines
-          ignore = '^$',
+          ignore = "^$",
           pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
         }
       end,
@@ -242,6 +242,6 @@ return packer.startup {
     end
   end,
   config = {
-    max_jobs = 10,
+    max_jobs = 32,
   },
 }
