@@ -1,7 +1,7 @@
 require('kev.base')
 require('kev.highlights')
 require('kev.maps')
-require('kev.plugins')
+  require('kev.plugins')
 
 local has = vim.fn.has
 local is_mac = has "macunix"
