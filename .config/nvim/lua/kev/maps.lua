@@ -1,34 +1,35 @@
 local keymap = vim.keymap
+local opts = { noremap = true, silent = true }
 
-keymap.set('n', 'x', '"_x')
+keymap.set("n", "x", '"_x', opts)
 
 -- Increment/decrement
-keymap.set('n', '+', '<C-a>')
-keymap.set('n', '-', '<C-x>')
+keymap.set("n", "+", "<C-a>", opts)
+keymap.set("n", "-", "<C-x>", opts)
 
 -- Delete a word backwards
-keymap.set('n', 'dw', 'vb"_d')
+keymap.set("n", "dw", 'vb"_d', opts)
 
 -- Select all
-keymap.set('n', '<C-a>', 'gg<S-v>G')
+keymap.set("n", "<C-a>", "gg<S-v>G", opts)
 
 -- Save with root permission (not working for now)
 --vim.api.nvim_create_user_command('W', 'w !sudo tee > /dev/null %', {})
 
 -- New tab
-keymap.set('n', 'te', ':tabedit')
+keymap.set("n", "te", ":tabedit", opts)
 -- Split window
-keymap.set('n', 'ss', ':split<Return><C-w>w')
-keymap.set('n', 'sv', ':vsplit<Return><C-w>w')
+keymap.set("n", "ss", ":split<Return><C-w>w", opts)
+keymap.set("n", "sv", ":vsplit<Return><C-w>w", opts)
 -- Move window
-keymap.set('n', '<Space>', '<C-w>w')
-keymap.set('', 'sh', '<C-w>h')
-keymap.set('', 'sk', '<C-w>k')
-keymap.set('', 'sj', '<C-w>j')
-keymap.set('', 'sl', '<C-w>l')
+keymap.set("n", "<Space>", "<C-w>w", opts)
+keymap.set("", "sh", "<C-w>h", opts)
+keymap.set("", "sk", "<C-w>k", opts)
+keymap.set("", "sj", "<C-w>j", opts)
+keymap.set("", "sl", "<C-w>l", opts)
 
 -- Resize window
-keymap.set('n', '<C-w><left>', '<C-w><')
-keymap.set('n', '<C-w><right>', '<C-w>>')
-keymap.set('n', '<C-w><up>', '<C-w>+')
-keymap.set('n', '<C-w><down>', '<C-w>-')
+keymap.set("n", "<C-w><left>", "<C-w><", opts)
+keymap.set("n", "<C-w><right>", "<C-w>>", opts)
+keymap.set("n", "<C-w><up>", "<C-w>+", opts)
+keymap.set("n", "<C-w><down>", "<C-w>-", opts)
