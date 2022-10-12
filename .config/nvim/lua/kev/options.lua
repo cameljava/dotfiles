@@ -1,21 +1,30 @@
+vim.cmd "autocmd!"
+
+vim.scriptencoding = "utf-8"
+vim.opt.encoding = "utf-8"
+vim.opt.fileencoding = "utf-8"
+
+vim.opt.title = true
+
+-- macos specific
+vim.opt.clipboard:append { "unnamedplus" }
+
 local _G = vim.g
 
 _G.mapleader = ","
-_G.maplocalleader = ","
+_G.maplocalleader = " "
 
 _G.loaded_perl_provider = 0
 _G.loaded_ruby_provider = 0
 
-local options = {
+local opions = {
   backup = false, -- creates a backup file
-  clipboard = "unnamedplus", -- allows neovim to access the system clipboard
   colorcolumn = "99999", -- fixes indentline for now TODO copy from lunarvim not sure about this
   cmdheight = 2, -- more space in the neovim command line for displaying messages
   completeopt = { "menuone", "noselect", "preview" }, -- mostly just for cmp
   conceallevel = 0, -- so that `` is visible in markdown files
   cursorline = true, -- highlight the current line
   expandtab = true, -- convert tabs to spaces
-  fileencoding = "utf-8", -- the encoding written to a file
   hidden = true,
   hlsearch = true, -- highlight all matches on previous search pattern
   ignorecase = true, -- ignore case in search patterns
