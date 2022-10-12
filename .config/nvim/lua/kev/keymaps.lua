@@ -90,6 +90,7 @@ keymap("n", "<Right>", ":vertical resize +2<CR>", opts)
 -- ---------------------------------------------- Insert Mode ----------------------------------------------------
 -- Press jj fast to exit insert mode
 keymap("i", "jj", "<ESC>", opts)
+keymap("i", "kk", "<ESC>:update<cr>", opts)
 
 -- ----------------------------------------------- Visual Mode ------------------------------------------------------
 -- Stay in visual mode when indent

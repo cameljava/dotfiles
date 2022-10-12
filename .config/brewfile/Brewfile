@@ -34,8 +34,10 @@ brew emacs
 brew exa
 brew fd
 brew fontconfig
+brew fontforge
 brew fortune
 brew freetype
+brew fribidi
 brew fzf
 brew gcc
 brew gdbm
@@ -96,11 +98,13 @@ brew libpng
 brew libpthread-stubs
 brew libpython-tabulate
 brew libraw
+brew libspiro
 brew libssh2
 brew libtasn1
 brew libtermkey
 brew libtiff
 brew libtool
+brew libuninameslist
 brew libunistring
 brew libusb
 brew libuv
@@ -155,6 +159,7 @@ brew openjpeg
 brew openssl@1.1
 brew p11-kit
 brew pandoc
+brew pango
 brew pass
 brew pcre
 brew pcre2
@@ -213,10 +218,12 @@ brew zstd
 tap homebrew/bundle
 
 tap homebrew/cask-fonts
+cask font-fira-code
 
 tap homebrew/cask
 cask alacritty
 cask cheatsheet
+cask fontforge
 cask graphql-playground
 cask hammerspoon
 cask karabiner-elements

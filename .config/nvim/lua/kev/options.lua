@@ -1,3 +1,11 @@
+local _G = vim.g
+
+_G.mapleader = ","
+_G.maplocalleader = ","
+
+_G.loaded_perl_provider = 0
+_G.loaded_ruby_provider = 0
+
 local options = {
   backup = false, -- creates a backup file
   clipboard = "unnamedplus", -- allows neovim to access the system clipboard
@@ -24,8 +32,8 @@ local options = {
   signcolumn = "yes", -- always show the sign column, otherwise it would shift the text each time
   smartcase = true, -- smart case
   smartindent = true, -- make indenting smarter again
-  -- splitbelow = true, -- force all horizontal splits to go below current window
-  -- splitright = true, -- force all vertical splits to go to the right of current window
+  splitbelow = true, -- force all horizontal splits to go below current window
+  splitright = true, -- force all vertical splits to go to the right of current window
   swapfile = false, -- creates a swapfile
   tabstop = 2, -- insert 2 spaces for a tab
   termguicolors = true, -- set term gui colors (most terminals support this)
@@ -52,15 +60,7 @@ vim.cmd [[set formatoptions-=cro]] -- TODO: this doesn't seem to work
 
 vim.cmd "let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]"
 
-local _G = vim.g
-
-_G.mapleader = ","
-_G.maplocalleader = ","
-
-_G.loaded_perl_provider = 0
-_G.loaded_ruby_provider = 0
-
 _G.python3_host_prog = "$HOME/.pyenv/shims/python3"
 -- disable below two lines, lua filetype seems auto detected.
---  _G.do_filetype_lua = 1 
+--  _G.do_filetype_lua = 1
 --  _G.did_load_filetypes = 0
