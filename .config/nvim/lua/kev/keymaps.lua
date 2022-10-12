@@ -49,7 +49,7 @@ keymap("v", "//", "y/\\V<c-r>=escape(@\",'/\\')<cr><cr>", opts)
 
 --  ----------------------------------------------- Normal Mode ----------------------------------------------------
 
-keymap("n", "<leader><leader>", "<cmd>update<cr>", opts)
+keymap("n", "ss", "<cmd>update<cr>", opts)
 keymap("n", "<space>w", "<cmd>write<cr>", opts)
 
 -- edit config file

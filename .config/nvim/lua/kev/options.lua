@@ -4,10 +4,50 @@ vim.scriptencoding = "utf-8"
 vim.opt.encoding = "utf-8"
 vim.opt.fileencoding = "utf-8"
 
+vim.opt.backup = false
+vim.opt.swapfile = false
 vim.opt.title = true
+vim.opt.expandtab = true
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+vim.opt.cmdheight = 2
+vim.opt.completeopt = { "menuone", "noselect", "preview" }
+vim.opt.cursorline = true
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.pumheight = 10
+vim.opt.scrolloff = 10
+vim.opt.sidescrolloff = 10
+vim.opt.termguicolors = true
+vim.opt.splitbelow = true
+vim.opt.splitright = true
+vim.opt.wrap = false
+vim.opt.undofile = true
+vim.opt.wildignorecase = true
+vim.opt.wildmenu = true
+vim.opt.wildmode = { "longest:full", "full" }
+vim.opt.smartindent = true
+vim.opt.signcolumn = "yes"
+vim.opt.updatetime = 800
 
+vim.opt.shortmess:append "c"
 -- macos specific
-vim.opt.clipboard:append { "unnamedplus" }
+vim.opt.clipboard:append "unnamedplus"
+
+-- Undercurl
+vim.cmd [[let &t_Cs = "\e[4:3m"]]
+vim.cmd [[let &t_Ce = "\e[4:0m"]]
+vim.cmd "set whichwrap+=<,>,[,],h,l"
+vim.cmd [[set iskeyword+=-]]
+vim.cmd [[set formatoptions-=cro]] -- TODO: this doesn't seem to work
+
+vim.cmd "let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]"
+
+-- Turn off paste mode when leaving insert
+vim.api.nvim_create_autocmd("InsertLeave", {
+  pattern = "*",
+  command = "set nopaste",
+})
 
 local _G = vim.g
 
@@ -16,60 +56,19 @@ _G.maplocalleader = " "
 
 _G.loaded_perl_provider = 0
 _G.loaded_ruby_provider = 0
+_G.python3_host_prog = "$HOME/.pyenv/shims/python3"
 
-local opions = {
-  backup = false, -- creates a backup file
+--[[
   colorcolumn = "99999", -- fixes indentline for now TODO copy from lunarvim not sure about this
-  cmdheight = 2, -- more space in the neovim command line for displaying messages
-  completeopt = { "menuone", "noselect", "preview" }, -- mostly just for cmp
-  conceallevel = 0, -- so that `` is visible in markdown files
-  cursorline = true, -- highlight the current line
-  expandtab = true, -- convert tabs to spaces
-  hidden = true,
-  hlsearch = true, -- highlight all matches on previous search pattern
-  ignorecase = true, -- ignore case in search patterns
-  mouse = "a", -- allow the mouse to be used in neovim
-  number = true, -- set numbered lines
-  --  numberwidth = 4, -- set number column width to 2 {default 4}
-  pumheight = 10, -- pop up menu height
-  relativenumber = true, -- set relative numbered lines
-  scrolloff = 8, -- is one of my fav
-  shiftwidth = 2, -- the number of spaces inserted for each indentation
-  showmode = false, -- we don't need to see things like -- INSERT -- anymore
   showtabline = 2, -- always show tabs
-  sidescrolloff = 8,
-  signcolumn = "yes", -- always show the sign column, otherwise it would shift the text each time
-  smartcase = true, -- smart case
-  smartindent = true, -- make indenting smarter again
-  splitbelow = true, -- force all horizontal splits to go below current window
-  splitright = true, -- force all vertical splits to go to the right of current window
-  swapfile = false, -- creates a swapfile
   tabstop = 2, -- insert 2 spaces for a tab
-  termguicolors = true, -- set term gui colors (most terminals support this)
   timeoutlen = 500, -- time to wait for a mapped sequence to complete (in milliseconds)
-  undofile = true, -- enable persistent undo
-  updatetime = 300, -- faster completion (4000ms default)
-  wildmenu = true,
-  wrap = true, -- display lines as one long line
   writebackup = false, -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
   -- only turn virtualedit on while do diagram editor, otherwise will causing issue while doing yy yank highlight etc.
   -- virtualedit = "all", -- allow cursor to pass last charactor, much easier to create table, etc in md
   -- guifont = "monospace:h17", -- the font used in graphical neovim applications
-}
+--]]
 
-vim.opt.shortmess:append "c"
-
-for k, v in pairs(options) do
-  vim.opt[k] = v
-end
-
-vim.cmd "set whichwrap+=<,>,[,],h,l"
-vim.cmd [[set iskeyword+=-]]
-vim.cmd [[set formatoptions-=cro]] -- TODO: this doesn't seem to work
-
-vim.cmd "let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]"
-
-_G.python3_host_prog = "$HOME/.pyenv/shims/python3"
 -- disable below two lines, lua filetype seems auto detected.
 --  _G.do_filetype_lua = 1
 --  _G.did_load_filetypes = 0
