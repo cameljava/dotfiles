@@ -43,7 +43,6 @@ return packer.startup {
   function(use) -- My plugins here
     use "wbthomason/packer.nvim" -- Have packer manage itself
     use "nvim-lua/plenary.nvim" -- Useful lua functions used by lots of plugins
-    use "nvim-lua/popup.nvim"
 
     use "gpanders/editorconfig.nvim"
     use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
