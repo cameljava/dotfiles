@@ -11,7 +11,7 @@ if &compatible
   set nocompatible
 endif
 
-let macvim_skip_colorscheme=1
+" let macvim_skip_colorscheme=1
 
 " When the +eval feature is missing, the set command above will be skipped.
 " Use a trick to reset compatible only when the +eval feature is missing.
@@ -561,13 +561,14 @@ set termguicolors
 " colorscheme OceanicNext
 
 " colorscheme nord
+colorscheme solarized8
 " colorscheme onedark
 " colorscheme purify
 
 let g:rehash256 = 1
 " colorscheme molokai
 
-colorscheme everforest
+" colorscheme everforest
 
 " Gui vim setting
 map <silent> <C-F2> :if &guioptions =~# 'T' <Bar>  set guioptions-=T <Bar>  set guioptions-=m <bar>  else <Bar>  set guioptions+=T <Bar> set guioptions+=m <Bar> endif<CR>
