@@ -4,9 +4,9 @@ if not status_ok then
 end
 
 -- IMPORTANT: make sure to setup lua-dev BEFORE lspconfig
-require("lua-dev").setup {
+require("neodev").setup {
   library = {
-    enabled = true, -- when not enabled, lua-dev will not change any settings to the LSP server
+    enabled = true, -- when not enabled, lua-dev will not change any settins to the LSP server
     -- these settings will be used for your Neovim config directory
     runtime = true, -- runtime path
     types = true, -- full signature, docs and completion of vim.api, vim.treesitter, vim.lsp and others
