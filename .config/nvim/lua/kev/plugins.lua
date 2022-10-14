@@ -114,7 +114,7 @@ return packer.startup {
     use "neovim/nvim-lspconfig" -- enable LSP
     use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
 
-    use "folke/lua-dev.nvim"
+    use "folke/neodev.nvim"
     use "RRethy/vim-illuminate"
     -- snippets
     use "L3MON4D3/LuaSnip" --snippet engine
