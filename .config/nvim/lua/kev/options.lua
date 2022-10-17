@@ -29,6 +29,10 @@ vim.opt.wildmode = { "longest:full", "full" }
 vim.opt.smartindent = true
 vim.opt.signcolumn = "yes"
 vim.opt.updatetime = 800
+vim.opt.expandtab = true
+vim.opt.tabstop = 2
+vim.opt.softtabstop = 2
+vim.opt.shiftwidth = 2
 
 vim.opt.shortmess:append "c"
 -- macos specific
