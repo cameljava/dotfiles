@@ -1,5 +1,6 @@
 local keymap = vim.keymap
 local opts = { noremap = true, silent = true }
+local opts_show = { noremap = true, silent = false }
 
 keymap.set("n", "x", '"_x', opts)
 
@@ -33,3 +34,6 @@ keymap.set("n", "<C-w><left>", "<C-w><", opts)
 keymap.set("n", "<C-w><right>", "<C-w>>", opts)
 keymap.set("n", "<C-w><up>", "<C-w>+", opts)
 keymap.set("n", "<C-w><down>", "<C-w>-", opts)
+
+keymap.set("i", "jj", "<Esc>", opts)
+keymap.set("n", ",,", ":", opts_show)
