@@ -6,6 +6,7 @@ alias s='source '
 alias e='exa'
 # alias ls='exa -alT --git -L 2 -I .git -I node_modules'
 alias li='exa -al --git --git-ignore'
+alias lg='exa -al --git'
 alias cp='cp -iv'       # Preferred 'cp' implementation
 alias mv='mv -iv'       # Preferred 'mv' implementation
 alias mkdir='mkdir -pv' # Preferred 'mkdir' implementation
