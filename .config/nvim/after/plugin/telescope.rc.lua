@@ -52,6 +52,9 @@ vim.keymap.set("n", ";f", function()
     hidden = true,
   }
 end)
+vim.keymap.set("n", ";g", function()
+  builtin.git_files {}
+end)
 vim.keymap.set("n", ";r", function()
   builtin.live_grep()
 end)

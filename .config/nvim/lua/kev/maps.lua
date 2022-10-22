@@ -35,5 +35,6 @@ keymap.set("n", "<C-w><right>", "<C-w>>", opts)
 keymap.set("n", "<C-w><up>", "<C-w>+", opts)
 keymap.set("n", "<C-w><down>", "<C-w>-", opts)
 
-keymap.set("i", "jj", "<Esc>", opts)
+keymap.set("i", "jj", "<Esc>:update<Cr>", opts)
 keymap.set("n", ",,", ":", opts_show)
+keymap.set("n", "sg", ":update<Cr>", opts)
