@@ -14,16 +14,19 @@ ts.setup {
   },
   ensure_installed = {
     "bash",
+    "comment",
     "css",
     "diff",
     "dockerfile",
     "gitignore",
     "html",
     "http",
+    "javascript",
     "json",
     "lua",
     "make",
     "markdown",
+    "regex",
     "sql",
     "toml",
     "tsx",
@@ -33,6 +36,16 @@ ts.setup {
   },
   autotag = {
     enable = true,
+  },
+  context_commentstring = {
+    enable = true,
+    enable_autocmd = false,
+  },
+  matchup = {
+    matchup = {
+      enable = true, -- mandatory, false will disable the whole extension
+      disable = { "c", "cpp", "elm", "julia", "svelte", "vue", "ruby" }, -- optional, list of language that will be disabled
+    },
   },
 }
 

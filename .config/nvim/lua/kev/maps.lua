@@ -20,7 +20,7 @@ keymap.set("n", "<C-a>", "gg<S-v>G", opts)
 -- New tab
 keymap.set("n", "te", ":tabedit", opts)
 -- Split window
-keymap.set("n", "ss", ":split<Return><C-w>w", opts)
+keymap.set("n", "sp", ":split<Return><C-w>w", opts)
 keymap.set("n", "sv", ":vsplit<Return><C-w>w", opts)
 -- Move window
 keymap.set("n", "<Space>", "<C-w>w", opts)
@@ -37,4 +37,4 @@ keymap.set("n", "<C-w><down>", "<C-w>-", opts)
 
 keymap.set("i", "jj", "<Esc>:update<Cr>", opts)
 keymap.set("n", ",,", ":", opts_show)
-keymap.set("n", "sg", ":update<Cr>", opts)
+keymap.set("n", "ss", ":update<Cr>", opts)

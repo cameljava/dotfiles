@@ -45,6 +45,9 @@ telescope.setup {
 }
 
 telescope.load_extension "file_browser"
+telescope.load_extension "env"
+telescope.load_extension "neoclip"
+telescope.load_extension "bookmarks"
 
 vim.keymap.set("n", ";f", function()
   builtin.find_files {

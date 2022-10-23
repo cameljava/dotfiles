@@ -13,7 +13,7 @@ vim.opt.smartindent = true
 vim.opt.hlsearch = true
 vim.opt.backup = false
 vim.opt.showcmd = true
-vim.opt.cmdheight = 1
+vim.opt.cmdheight = 2
 vim.opt.laststatus = 2
 vim.opt.expandtab = true
 vim.opt.scrolloff = 10
@@ -29,6 +29,9 @@ vim.opt.wrap = false -- No Wrap lines
 vim.opt.backspace = { "start", "eol", "indent" }
 vim.opt.path:append { "**" } -- Finding files - Search down into subfolders
 vim.opt.wildignore:append { "*/node_modules/*" }
+vim.opt.hidden = true
+vim.opt.wildmenu = true
+vim.opt.wildmode = { "longest:full", "full" }
 
 -- Undercurl
 vim.cmd [[let &t_Cs = "\e[4:3m"]]
@@ -44,3 +47,9 @@ vim.api.nvim_create_autocmd("InsertLeave", {
 vim.opt.formatoptions:append { "r" }
 
 vim.g.mapleader = ","
+
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_ruby_provider = 0
+
+vim.opt.list = true
+vim.opt.listchars:append "eol:↴"
