@@ -11,7 +11,6 @@ if &compatible
   set nocompatible
 endif
 
-let macvim_skip_colorscheme=1
 
 " When the +eval feature is missing, the set command above will be skipped.
 " Use a trick to reset compatible only when the +eval feature is missing.
@@ -23,6 +22,13 @@ let macvim_skip_colorscheme=1
 filetype on   " work around stupid osx bug
 filetype off
 filetype plugin indent on
+
+" automatically leave insert mode after 'updatetime' milliseconds of inaction
+au CursorHoldI * stopinsert"
+
+" set 'updatetime' to 8 seconds when in insert mode
+au InsertEnter * let updaterestore=&updatetime | set updatetime=8000
+au InsertLeave * let &updatetime=updaterestore
 
 call plug#begin('~/.vim/plugged')
 Plug 'chrisbra/unicode.vim'
@@ -58,19 +64,12 @@ Plug 'machakann/vim-highlightedyank'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
-" Handle multi-file find and replace. turn off this - used in nvim, experience different
-" plugin here.
-" Plug 'mhinz/vim-grepper'
-" use easegrep for refactor name
-" Plug 'dkprice/vim-easygrep'
-
 " Run a diff on 2 directories.
 Plug 'will133/vim-dirdiff'
 " Run a diff on 2 blocks of text.
 Plug 'AndrewRadev/linediff.vim'
 
 " File explorer
-" Plug 'scrooloose/nerdtree'
 Plug 'lambdalisue/fern.vim'
 
 " Syntax highlighting language pack for vim
@@ -92,21 +91,6 @@ Plug 'junegunn/gv.vim'
 " change buffer name both in vim and filesystem
 " Plug 'danro/rename.vim'
 
-" auto generate tags file
-" Plug 'ludovicchabant/vim-gutentags'
-" tagbar like view
-Plug 'liuchengxu/vista.vim'
-
-" Edit the quickfix/location list freely
-" Plug 'itchyny/vim-qfedit'
-" Plug 'jceb/vim-editqf'
-" Plug 'romainl/vim-qf' -- tested in nvim
-" Change code right in quickfix/location list
-Plug 'stefandtw/quickfix-reflector.vim'
-
-" Zoom in and out of a specific split pane (similar to tmux).
-" Plug 'dhruvasagar/vim-zoom'
-
 " Customized vim status line
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -115,6 +99,7 @@ Plug 'Yggdroot/indentLine'
 
 Plug 'rafi/awesome-vim-colorschemes'
 Plug 'sainnhe/everforest'
+Plug 'arcticicestudio/nord-vim'
 " Dim paragraphs above and below the active paragraph.
 Plug 'junegunn/limelight.vim'
 " Distraction free writing by removing UI elements and centering everything.
@@ -354,8 +339,6 @@ nnoremap <silent> <leader>ev :e ~/.vimrc<CR>
 nnoremap <silent> <leader>eg :e ~/.gitconfig<CR>
 " Edit the .tmux.conf"
 nnoremap <silent> <leader>et :e ~/.tmux.conf<CR>
-" Edit slate configuration
-"nnoremap <silent> <leader>el :e ~/.slate<cr>
 " Open a scratch file
 nnoremap <silent> <leader>eh :e ~/scratch.txt<CR>
 
@@ -560,14 +543,18 @@ set termguicolors
 " let g:airline_theme='oceanicnext'
 " colorscheme OceanicNext
 
-" colorscheme nord
+colorscheme nord
 " colorscheme onedark
 " colorscheme purify
 
 let g:rehash256 = 1
 " colorscheme molokai
 
-colorscheme everforest
+" colorscheme everforest
+
+if exists("$TMUX")
+  let &t_RB = "\ePtmux;\e\e]11;?\007\e\\"
+endif
 
 " Gui vim setting
 map <silent> <C-F2> :if &guioptions =~# 'T' <Bar>  set guioptions-=T <Bar>  set guioptions-=m <bar>  else <Bar>  set guioptions+=T <Bar> set guioptions+=m <Bar> endif<CR>
