@@ -30,7 +30,7 @@ au CursorHoldI * stopinsert"
 au InsertEnter * let updaterestore=&updatetime | set updatetime=8000
 au InsertLeave * let &updatetime=updaterestore
 
-let &t_SI = "\e[6 q"
+let &t_SI = "\e[5 q"
 let &t_EI = "\e[2 q"
 
 " reset the cursor on start (for older versions of vim, usually not required)
@@ -45,7 +45,7 @@ Plug 'chrisbra/unicode.vim'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-obsession'
+" Plug 'tpope/vim-obsession'
 " Plug 'tpope/vim-projectionist'
 " Plug 'tpope/vim-unimpaired'
 
@@ -123,8 +123,6 @@ Plug 'dense-analysis/ale'
 Plug 'Chiel92/vim-autoformat'
 " auto pair
 Plug 'jiangmiao/auto-pairs'
-" easy align(=)
-Plug 'junegunn/vim-easy-align'
 " Run a diff on 2 directories.
 
 " a text searching plugin
@@ -153,7 +151,7 @@ set encoding=utf-8
 set fileencoding=utf-8
 set fileencodings=utf-8
 scriptencoding utf-8
-set clipboard=unnamed " Add the unnamed register to the clipboard
+set clipboard=unnamed  " Add the unnamed register to the clipboard
 set autoread  "Automatically read a file that has changed on disk
 set nobackup nowritebackup noswapfile noundofile
 set backupcopy=yes
@@ -302,10 +300,10 @@ nnoremap <leader>x :bd<CR>
 nnoremap <silent> <Leader>+ :exe "resize " . (winheight(0) * 3/2)<CR>
 nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
 
-nnoremap <Up> :resize +2<CR>
-nnoremap <Down> :resize -2<CR>
-nnoremap <Left> :vertical resize +2<CR>
-nnoremap <Right> :vertical resize -2<CR>
+" nnoremap <Up> :resize +2<CR>
+" nnoremap <Down> :resize -2<CR>
+" nnoremap <Left> :vertical resize +2<CR>
+" nnoremap <Right> :vertical resize -2<CR>
 
 nnoremap <leader>h <C-W>h
 nnoremap <leader>j <C-W>j
@@ -566,5 +564,5 @@ if exists("$TMUX")
 endif
 
 " Gui vim setting
-map <silent> <C-F2> :if &guioptions =~# 'T' <Bar>  set guioptions-=T <Bar>  set guioptions-=m <bar>  else <Bar>  set guioptions+=T <Bar> set guioptions+=m <Bar> endif<CR>
+" map <silent> <C-F2> :if &guioptions =~# 'T' <Bar>  set guioptions-=T <Bar>  set guioptions-=m <bar>  else <Bar>  set guioptions+=T <Bar> set guioptions+=m <Bar> endif<CR>
 
