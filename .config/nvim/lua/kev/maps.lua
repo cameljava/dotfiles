@@ -9,7 +9,7 @@ keymap.set("n", "+", "<C-a>", opts)
 keymap.set("n", "-", "<C-x>", opts)
 
 -- Delete a word backwards
-keymap.set("n", "dw", 'vb"_d', opts)
+-- keymap.set("n", "dw", 'vb"_d', opts)
 
 -- Select all
 keymap.set("n", "<C-a>", "gg<S-v>G", opts)
@@ -38,3 +38,5 @@ keymap.set("n", "<C-w><down>", "<C-w>-", opts)
 keymap.set("i", "jj", "<Esc>:update<Cr>", opts)
 keymap.set("n", ",,", ":", opts_show)
 keymap.set("n", "ss", ":update<Cr>", opts)
+
+keymap.set("n", "<leader>q", ":q<Cr>", opts)

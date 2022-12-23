@@ -1,3 +1,4 @@
+require "impatient"
 require "kev.base"
 require "kev.highlights"
 require "kev.maps"

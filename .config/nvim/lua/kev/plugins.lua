@@ -7,6 +7,8 @@ end
 vim.cmd [[packadd packer.nvim]]
 
 packer.startup(function(use)
+  use "lewis6991/impatient.nvim"
+
   use "wbthomason/packer.nvim"
   use "nvim-lua/plenary.nvim" -- Common utilities
   use "kyazdani42/nvim-web-devicons" -- File icons
@@ -26,11 +28,12 @@ packer.startup(function(use)
   use "hrsh7th/nvim-cmp" -- Completion
   use "hrsh7th/cmp-nvim-lsp" -- nvim-cmp source for neovim's built-in LSP
   use "hrsh7th/cmp-buffer" -- nvim-cmp source for buffer words
-  use "MunifTanjim/prettier.nvim" -- Prettier plugin for Neovim's built-in LSP client
   use "saadparwaiz1/cmp_luasnip" -- lua snippet completions
 
   use "L3MON4D3/LuaSnip"
   use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
+
+  use "MunifTanjim/prettier.nvim" -- Prettier plugin for Neovim's built-in LSP client
 
   --tree-sitter
   use {
@@ -48,9 +51,7 @@ packer.startup(function(use)
     "AckslD/nvim-neoclip.lua",
     requires = {
       { "kkharji/sqlite.lua", module = "sqlite" },
-      -- you'll need at least one of these
       { "nvim-telescope/telescope.nvim" },
-      -- {'ibhagwan/fzf-lua'},
     },
     config = function()
       require("neoclip").setup()
@@ -59,7 +60,6 @@ packer.startup(function(use)
   use {
     "dhruvmanila/telescope-bookmarks.nvim",
     tag = "*",
-    -- Uncomment if the selected browser is Firefox, Waterfox or buku
     requires = {
       "kkharji/sqlite.lua",
     },
@@ -84,9 +84,7 @@ packer.startup(function(use)
     "kylechui/nvim-surround",
     tag = "*", -- Use for stability; omit to use `main` branch for the latest features
     config = function()
-      require("nvim-surround").setup {
-        -- Configuration here, or leave empty to use defaults
-      }
+      require("nvim-surround").setup {}
     end,
   }
 
@@ -129,7 +127,6 @@ packer.startup(function(use)
 
   -- git
   use "lewis6991/gitsigns.nvim"
-  -- use "dinhhuy258/git.nvim" -- For git blame & browse
   use "tpope/vim-fugitive"
 
   -- colorschema
