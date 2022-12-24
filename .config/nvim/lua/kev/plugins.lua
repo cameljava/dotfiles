@@ -69,6 +69,39 @@ packer.startup(function(use)
     },
   }
 
+  -- git
+  use "tpope/vim-fugitive"
+  use {
+    "lewis6991/gitsigns.nvim",
+    config = function()
+      require("gitsigns").setup {}
+    end,
+  }
+
+  -- test
+  use "akinsho/toggleterm.nvim"
+  use "vim-test/vim-test"
+  use {
+    "nvim-neotest/neotest",
+    requires = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+      "antoinemadec/FixCursorHold.nvim",
+      "nvim-neotest/neotest-vim-test",
+      "nvim-neotest/neotest-plenary",
+      "haydenmeade/neotest-jest",
+    },
+  }
+
+  -- ft
+  use "b0o/schemastore.nvim"
+  use {
+    "iamcco/markdown-preview.nvim",
+    run = function()
+      vim.fn["mkdp#util#install"]()
+    end,
+  }
+
   -- utils
   use "MunifTanjim/prettier.nvim" -- Prettier plugin for Neovim's built-in LSP client
   use {
@@ -101,28 +134,14 @@ packer.startup(function(use)
       require("nvim-surround").setup {}
     end,
   }
-
-  -- test
-  use "akinsho/toggleterm.nvim"
-  use "vim-test/vim-test"
   use {
-    "nvim-neotest/neotest",
-    requires = {
-      "nvim-lua/plenary.nvim",
-      "nvim-treesitter/nvim-treesitter",
-      "antoinemadec/FixCursorHold.nvim",
-      "nvim-neotest/neotest-vim-test",
-      "nvim-neotest/neotest-plenary",
-      "haydenmeade/neotest-jest",
-    },
-  }
-
-  -- ft
-  use "b0o/schemastore.nvim"
-  use {
-    "iamcco/markdown-preview.nvim",
-    run = function()
-      vim.fn["mkdp#util#install"]()
+    "folke/zen-mode.nvim",
+    config = function()
+      require("zen-mode").setup {
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      }
     end,
   }
 
@@ -138,10 +157,6 @@ packer.startup(function(use)
     end,
   }
   use "JoosepAlviste/nvim-ts-context-commentstring"
-
-  -- git
-  use "lewis6991/gitsigns.nvim"
-  use "tpope/vim-fugitive"
 
   -- colorschema
   use {
