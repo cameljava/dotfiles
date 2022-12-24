@@ -8,6 +8,13 @@ vim.cmd [[packadd packer.nvim]]
 
 packer.startup(function(use)
   use "lewis6991/impatient.nvim"
+  -- important: makesure before lspconfig
+  use {
+    "folke/neodev.nvim",
+    config = function()
+      require("neodev").setup()
+    end,
+  }
 
   use "wbthomason/packer.nvim"
   use "nvim-lua/plenary.nvim" -- Common utilities
@@ -21,7 +28,6 @@ packer.startup(function(use)
 
   use "onsails/lspkind-nvim" -- vscode-like pictograms
   use "glepnir/lspsaga.nvim" -- LSP UIs
-  use "folke/neodev.nvim"
   use "RRethy/vim-illuminate"
 
   -- complete
@@ -32,8 +38,6 @@ packer.startup(function(use)
 
   use "L3MON4D3/LuaSnip"
   use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
-
-  use "MunifTanjim/prettier.nvim" -- Prettier plugin for Neovim's built-in LSP client
 
   --tree-sitter
   use {
@@ -66,6 +70,7 @@ packer.startup(function(use)
   }
 
   -- utils
+  use "MunifTanjim/prettier.nvim" -- Prettier plugin for Neovim's built-in LSP client
   use {
     "lukas-reineke/indent-blankline.nvim",
     config = function()
@@ -75,11 +80,20 @@ packer.startup(function(use)
       }
     end,
   }
-  use "windwp/nvim-autopairs"
+  use {
+    "windwp/nvim-autopairs",
+    config = function()
+      require("nvim-autopairs").setup { disable_filetype = { "TelescopePrompt", "vim" } }
+    end,
+  }
   use "windwp/nvim-ts-autotag"
-  use "norcalli/nvim-colorizer.lua"
+  use {
+    "norcalli/nvim-colorizer.lua",
+    config = function()
+      require("colorizer").setup {}
+    end,
+  }
   use "nvim-lualine/lualine.nvim" -- Statusline
-  use "akinsho/nvim-bufferline.lua"
   use {
     "kylechui/nvim-surround",
     tag = "*", -- Use for stability; omit to use `main` branch for the latest features

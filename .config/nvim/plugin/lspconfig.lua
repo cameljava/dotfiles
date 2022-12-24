@@ -23,7 +23,7 @@ if not status then
   return
 end
 
-local protocol = require "vim.lsp.protocol"
+-- local protocol = require "vim.lsp.protocol"
 
 local lsp_formatting = function(bufnr)
   vim.lsp.buf.format {
@@ -89,33 +89,33 @@ local on_attach = function(client, bufnr)
   lsp_highlight_document(client)
 end
 
-protocol.CompletionItemKind = {
-  "", -- Text
-  "", -- Method
-  "", -- Function
-  "", -- Constructor
-  "", -- Field
-  "", -- Variable
-  "", -- Class
-  "ﰮ", -- Interface
-  "", -- Module
-  "", -- Property
-  "", -- Unit
-  "", -- Value
-  "", -- Enum
-  "", -- Keyword
-  "﬌", -- Snippet
-  "", -- Color
-  "", -- File
-  "", -- Reference
-  "", -- Folder
-  "", -- EnumMember
-  "", -- Constant
-  "", -- Struct
-  "", -- Event
-  "ﬦ", -- Operator
-  "", -- TypeParameter
-}
+-- protocol.CompletionItemKind = k
+--   "", -- Text
+--   "", -- Method
+--   "", -- Function
+--   "", -- Constructor
+--   "", -- Field
+--   "", -- Variable
+--   "", -- Class
+--   "ﰮ", -- Interface
+--   "", -- Module
+--   "", -- Property
+--   "", -- Unit
+--   "", -- Value
+--   "", -- Enum
+--   "", -- Keyword
+--   "﬌", -- Snippet
+--   "", -- Color
+--   "", -- File
+--   "", -- Reference
+--   "", -- Folder
+--   "", -- EnumMember
+--   "", -- Constant
+--   "", -- Struct
+--   "", -- Event
+--   "ﬦ", -- Operator
+--   "", -- TypeParameter
+-- k
 
 -- Set up completion using nvim_cmp with LSP source
 -- local capabilities = vim.lsp.protocol.make_client_capabilities()
