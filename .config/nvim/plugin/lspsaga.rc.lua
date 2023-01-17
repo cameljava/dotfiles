@@ -27,10 +27,13 @@ keymap("n", "gr", "<cmd>Lspsaga rename<CR>", opts)
 keymap("n", "gd", "<cmd>Lspsaga peek_definition<CR>", opts)
 
 -- Show line diagnostics
-keymap("n", "<leader>ld", "<cmd>Lspsaga show_line_diagnostics<CR>", opts)
+keymap("n", "<leader>sl", "<cmd>Lspsaga show_line_diagnostics<CR>", opts)
 
 -- Show cursor diagnostics
-keymap("n", "<leader>cd", "<cmd>Lspsaga show_cursor_diagnostics<CR>", opts)
+keymap("n", "<leader>sc", "<cmd>Lspsaga show_cursor_diagnostics<CR>", opts)
+
+-- Show buffer diagnostics
+keymap("n", "<leader>sb", "<cmd>Lspsaga show_cursor_diagnostics<CR>", opts)
 
 -- Diagnostic jump can use `<c-o>` to jump back
 keymap("n", "[e", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opts)
@@ -45,10 +48,14 @@ keymap("n", "]E", function()
 end, opts)
 
 -- Outline
-keymap("n", "<leader>o", "<cmd>LSoutlineToggle<CR>", opts)
+keymap("n", "<leader>o", "<cmd>Lspsaga outline<CR>", opts)
 
 -- Hover Doc
 keymap("n", "K", "<cmd>Lspsaga hover_doc<CR>", opts)
+
+-- Callhierarchy
+keymap("n", "<Leader>ci", "<cmd>Lspsaga incoming_calls<CR>")
+keymap("n", "<Leader>co", "<cmd>Lspsaga outgoing_calls<CR>")
 
 -- Float terminal
 keymap("n", "<A-d>", "<cmd>Lspsaga term_toggle<CR>", opts)
