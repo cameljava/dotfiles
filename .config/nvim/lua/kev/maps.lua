@@ -12,7 +12,7 @@ keymap.set("n", "-", "<C-x>", opts)
 -- keymap.set("n", "dw", 'vb"_d', opts)
 
 -- Select all
-keymap.set("n", "<C-a>", "gg<S-v>G", opts)
+-- keymap.set("n", "<C-a>", "gg<S-v>G", opts)
 
 -- Save with root permission (not working for now)
 --vim.api.nvim_create_user_command('W', 'w !sudo tee > /dev/null %', {})
@@ -35,8 +35,8 @@ keymap.set("n", "<C-w><right>", "<C-w>>", opts)
 keymap.set("n", "<C-w><up>", "<C-w>+", opts)
 keymap.set("n", "<C-w><down>", "<C-w>-", opts)
 
-keymap.set("i", "jj", "<Esc>:update<Cr>", opts)
+keymap.set("i", "jj", "<Esc>:update<Cr>", opts_show)
 keymap.set("n", ",,", ":", opts_show)
-keymap.set("n", "ss", ":update<Cr>", opts)
+keymap.set("n", "ss", ":update<Cr>", opts_show)
 
-keymap.set("n", "<leader>q", ":q<Cr>", opts)
+keymap.set("n", "<leader>q", ":q<Cr>", opts_show)

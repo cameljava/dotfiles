@@ -3,7 +3,7 @@ if not status then
   return
 end
 
-saga.setup({})
+saga.setup {}
 
 local opts = { noremap = true, silent = false }
 local keymap = vim.keymap.set
@@ -51,9 +51,7 @@ keymap("n", "<leader>o", "<cmd>LSoutlineToggle<CR>", opts)
 keymap("n", "K", "<cmd>Lspsaga hover_doc<CR>", opts)
 
 -- Float terminal
-keymap("n", "<A-d>", "<cmd>Lspsaga open_floaterm<CR>", opts)
+keymap("n", "<A-d>", "<cmd>Lspsaga term_toggle<CR>", opts)
 -- if you want to pass some cli command into a terminal you can do it like this
 -- open lazygit in lspsaga float terminal
-keymap("n", "<A-g>", "<cmd>Lspsaga open_floaterm lazygit<CR>", opts)
--- close floaterm
-keymap("t", "<A-d>", [[<C-\><C-n><cmd>Lspsaga close_floaterm<CR>]], opts)
+keymap("n", "<A-g>", "<cmd>Lspsaga term_toggle lazygit<CR>", opts)
