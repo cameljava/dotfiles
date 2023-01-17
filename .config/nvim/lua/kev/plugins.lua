@@ -19,6 +19,7 @@ packer.startup(function(use)
   use "wbthomason/packer.nvim"
   use "nvim-lua/plenary.nvim" -- Common utilities
   use "kyazdani42/nvim-web-devicons" -- File icons
+  use { "fgheng/winbar.nvim" }
 
   -- lsp
   use "williamboman/mason.nvim"
@@ -91,6 +92,21 @@ packer.startup(function(use)
       "nvim-neotest/neotest-plenary",
       "haydenmeade/neotest-jest",
     },
+  }
+
+  use {
+    "mfussenegger/nvim-dap",
+    "theHamsta/nvim-dap-virtual-text",
+    "rcarriga/nvim-dap-ui",
+    -- "mfussenegger/nvim-dap-python",
+    "nvim-telescope/telescope-dap.nvim",
+    -- { "leoluz/nvim-dap-go", module = "dap-go" },
+  }
+  use { "jbyuki/one-small-step-for-vimkind", module = "osv" }
+  use { "mxsdev/nvim-dap-vscode-js" }
+  use {
+    "microsoft/vscode-js-debug",
+    run = "npm install --legacy-peer-deps && npm run compile",
   }
 
   -- ft

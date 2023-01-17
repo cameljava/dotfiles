@@ -48,5 +48,5 @@ lualine.setup {
     lualine_z = {},
   },
   tabline = {},
-  extensions = { "fugitive" },
+  extensions = { "fugitive", "man", "fzf", "quickfix", "toggleterm", "nvim-dap-ui" },
 }
