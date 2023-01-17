@@ -72,6 +72,7 @@ packer.startup(function(use)
 
   -- git
   use "tpope/vim-fugitive"
+  use "junegunn/gv.vim"
   use {
     "lewis6991/gitsigns.nvim",
     config = function()
