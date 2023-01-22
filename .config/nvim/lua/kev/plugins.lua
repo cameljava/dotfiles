@@ -21,6 +21,9 @@ packer.startup(function(use)
   use "kyazdani42/nvim-web-devicons" -- File icons
   use { "fgheng/winbar.nvim" }
 
+  use "tpope/vim-repeat"
+  use "tpope/vim-unimpaired"
+
   -- lsp
   use "williamboman/mason.nvim"
   use "williamboman/mason-lspconfig.nvim"

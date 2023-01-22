@@ -36,8 +36,8 @@ keymap("n", "<leader>sc", "<cmd>Lspsaga show_cursor_diagnostics<CR>", opts)
 keymap("n", "<leader>sb", "<cmd>Lspsaga show_cursor_diagnostics<CR>", opts)
 
 -- Diagnostic jump can use `<c-o>` to jump back
-keymap("n", "[e", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opts)
-keymap("n", "]e", "<cmd>Lspsaga diagnostic_jump_next<CR>", opts)
+keymap("n", "<e", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opts)
+keymap("n", ">e", "<cmd>Lspsaga diagnostic_jump_next<CR>", opts)
 
 -- Only jump to error
 keymap("n", "[E", function()
