@@ -117,9 +117,7 @@ packer.startup(function(use)
     "mfussenegger/nvim-dap",
     "theHamsta/nvim-dap-virtual-text",
     "rcarriga/nvim-dap-ui",
-    -- "mfussenegger/nvim-dap-python",
     "nvim-telescope/telescope-dap.nvim",
-    -- { "leoluz/nvim-dap-go", module = "dap-go" },
   }
   use { "jbyuki/one-small-step-for-vimkind", module = "osv" }
   use { "mxsdev/nvim-dap-vscode-js" }
@@ -136,6 +134,9 @@ packer.startup(function(use)
       vim.fn["mkdp#util#install"]()
     end,
   }
+
+  -- language
+  use "rust-lang/rust.vim"
 
   -- utils
   use {
@@ -215,4 +216,6 @@ packer.startup(function(use)
     requires = { "tjdevries/colorbuddy.nvim" },
   }
   use "folke/tokyonight.nvim"
+  use "EdenEast/nightfox.nvim"
+  use "sainnhe/everforest"
 end)

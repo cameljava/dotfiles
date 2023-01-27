@@ -11,7 +11,7 @@ keymap.set("n", "-", "<C-x>", opts)
 -- Delete a word backwards
 -- keymap.set("n", "dw", 'vb"_d', opts)
 
--- Select all
+-- Select all ? conflict with my tmux leader key
 -- keymap.set("n", "<C-a>", "gg<S-v>G", opts)
 
 -- Save with root permission (not working for now)
@@ -30,13 +30,43 @@ keymap.set("", "sj", "<C-w>j", opts)
 keymap.set("", "sl", "<C-w>l", opts)
 
 -- Resize window
-keymap.set("n", "<C-w><left>", "<C-w><", opts)
-keymap.set("n", "<C-w><right>", "<C-w>>", opts)
-keymap.set("n", "<C-w><up>", "<C-w>+", opts)
-keymap.set("n", "<C-w><down>", "<C-w>-", opts)
+keymap.set("n", "<a-left>", "<C-w><", opts)
+keymap.set("n", "<a-right>", "<C-w>>", opts)
+keymap.set("n", "<a-up>", "<C-w>+", opts)
+keymap.set("n", "<a-down>", "<C-w>-", opts)
 
 keymap.set("i", "jj", "<Esc>:update<Cr>", opts_show)
 keymap.set("n", ",,", ":", opts_show)
 keymap.set("n", "ss", ":update<Cr>", opts_show)
 
+keymap.set("n", "<BS>", ":nohlsearch<Cr>", opts_show)
+
 keymap.set("n", "<leader>q", ":q<Cr>", opts_show)
+
+-- press * to search for the term under the cursor or a visual selection and
+-- then press a key below to replace all instances of it in the current file.
+
+keymap.set("n", "<leader>r", ":%s///g<Left><Left>", opts)
+keymap.set("n", "<leader>cr", ":%s///gc<Left><Left><left>", opts)
+
+-- To search for visually selected text
+keymap.set("v", "//", "y/\\V<c-r>=escape(@\",'/\\')<cr><cr>", opts)
+
+-- leader p to paste last copied
+keymap.set("n", "<leader>p", '"0p', opts)
+keymap.set("n", "<leader>P", '"0P', opts)
+
+-- Better window navigation
+keymap.set("n", "<C-h>", "<C-w>h", opts)
+keymap.set("n", "<C-j>", "<C-w>j", opts)
+keymap.set("n", "<C-k>", "<C-w>k", opts)
+keymap.set("n", "<C-l>", "<C-w>l", opts)
+
+-- Stay in visual mode when indent
+keymap.set("v", "<", "<gv", opts)
+keymap.set("v", ">", ">gv", opts)
+
+-- Visual Block --
+-- Move text up and down
+keymap.set("x", "J", ":move '>+1<CR>gv-gv", opts)
+keymap.set("x", "K", ":move '<-2<CR>gv-gv", opts)

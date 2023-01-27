@@ -37,6 +37,10 @@ vim.opt.wildmode = { "longest:full", "full" }
 vim.cmd [[let &t_Cs = "\e[4:3m"]]
 vim.cmd [[let &t_Ce = "\e[4:0m"]]
 
+-- In the quickfix window, <CR> is used to jump to the error
+-- under the curor, so undefine the mapping there
+vim.cmd [[ autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR> ]]
+
 -- Turn off paste mode when leaving insert
 vim.api.nvim_create_autocmd("InsertLeave", {
   pattern = "*",
