@@ -23,4 +23,6 @@ vim.g.tokyonight_colors = {
   purple = "#6c71c4",
 }
 
-vim.cmd [[colorscheme tokyonight]]
+-- vim.cmd [[colorscheme tokyonight]]
+-- vim.cmd [[colorscheme nordfox]]
+vim.cmd [[colorscheme everforest]]
