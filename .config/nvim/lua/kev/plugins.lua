@@ -28,17 +28,29 @@ packer.startup(function(use)
   use "williamboman/mason.nvim"
   use "williamboman/mason-lspconfig.nvim"
   use "neovim/nvim-lspconfig" -- LSP
-  use "jose-elias-alvarez/null-ls.nvim" -- Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua
 
   use "onsails/lspkind-nvim" -- vscode-like pictograms
   use "glepnir/lspsaga.nvim" -- LSP UIs
   use "RRethy/vim-illuminate"
 
+  -- format
+  use "jose-elias-alvarez/null-ls.nvim" -- Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua
+  use "MunifTanjim/prettier.nvim" -- Prettier plugin for Neovim's built-in LSP client
+
   -- complete
   use "hrsh7th/nvim-cmp" -- Completion
   use "hrsh7th/cmp-nvim-lsp" -- nvim-cmp source for neovim's built-in LSP
+  use "hrsh7th/cmp-nvim-lsp-signature-help"
   use "hrsh7th/cmp-buffer" -- nvim-cmp source for buffer words
+  use "hrsh7th/cmp-path"
+  use "hrsh7th/cmp-cmdline"
   use "saadparwaiz1/cmp_luasnip" -- lua snippet completions
+  use {
+    "petertriho/cmp-git",
+    config = function()
+      require("cmp_git").setup {}
+    end,
+  }
 
   use "L3MON4D3/LuaSnip"
   use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
@@ -126,7 +138,13 @@ packer.startup(function(use)
   }
 
   -- utils
-  use "MunifTanjim/prettier.nvim" -- Prettier plugin for Neovim's built-in LSP client
+  use {
+    "andymass/vim-matchup",
+    setup = function()
+      -- may set any options here
+      vim.g.matchup_matchparen_offscreen = { method = "popup" }
+    end,
+  }
   use {
     "lukas-reineke/indent-blankline.nvim",
     config = function()
@@ -161,6 +179,16 @@ packer.startup(function(use)
     "folke/zen-mode.nvim",
     config = function()
       require("zen-mode").setup {
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      }
+    end,
+  }
+  use {
+    "folke/twilight.nvim",
+    config = function()
+      require("twilight").setup {
         -- your configuration comes here
         -- or leave it empty to use the default settings
         -- refer to the configuration section below

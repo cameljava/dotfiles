@@ -53,17 +53,11 @@ ts.setup {
     enable = true,
     keymaps = {
       init_selection = "gnn", -- set to `false` to disable one of the mappings
-      node_incremental = "gnr",
-      scope_incremental = "gnc",
-      node_decremental = "gnm",
+      node_incremental = "gni",
+      scope_incremental = "gns",
+      node_decremental = "gnd",
     },
   },
-}
-
-local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-parser_config.tsx.filetype_to_parsername = { "javascript", "typescript.tsx" }
-
-require("nvim-treesitter.configs").setup {
   textobjects = {
     select = {
       enable = true,
@@ -105,5 +99,8 @@ require("nvim-treesitter.configs").setup {
     },
   },
 }
+
+local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+parser_config.tsx.filetype_to_parsername = { "javascript", "typescript.tsx" }
 
 require("treesitter-context").setup {}
