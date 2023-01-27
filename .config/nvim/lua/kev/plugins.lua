@@ -50,6 +50,9 @@ packer.startup(function(use)
       require("nvim-treesitter.install").update { with_sync = true }
     end,
   }
+  use "nvim-treesitter/playground"
+  use "nvim-treesitter/nvim-treesitter-textobjects"
+  use "nvim-treesitter/nvim-treesitter-context"
 
   -- telescope
   use "nvim-telescope/telescope.nvim"
