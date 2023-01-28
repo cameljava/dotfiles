@@ -42,6 +42,11 @@ telescope.setup {
         },
       },
     },
+    ["ui-select"] = {
+      require("telescope.themes").get_dropdown {
+        -- even more opts
+      },
+    },
   },
 }
 
@@ -49,6 +54,7 @@ telescope.load_extension "file_browser"
 telescope.load_extension "env"
 telescope.load_extension "neoclip"
 telescope.load_extension "bookmarks"
+telescope.load_extension "ui-select"
 
 vim.keymap.set("n", ";f", function()
   builtin.find_files {

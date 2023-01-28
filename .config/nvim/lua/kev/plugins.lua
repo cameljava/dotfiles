@@ -87,6 +87,7 @@ packer.startup(function(use)
       "kkharji/sqlite.lua",
     },
   }
+  use { "nvim-telescope/telescope-ui-select.nvim" }
 
   -- git
   use "tpope/vim-fugitive"
@@ -135,8 +136,9 @@ packer.startup(function(use)
     end,
   }
 
+  -- turn off, try follow tj youtube using rustup eco tool
   -- language
-  use "rust-lang/rust.vim"
+  -- use "rust-lang/rust.vim"
 
   -- utils
   use {
