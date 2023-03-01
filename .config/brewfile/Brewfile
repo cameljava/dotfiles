@@ -7,6 +7,7 @@ brew aom
 brew apr
 brew apr-util
 brew autoconf
+brew aws-sam-cli
 brew awscli
 brew bash
 brew bash-completion@2
@@ -14,6 +15,7 @@ brew bash-git-prompt
 brew bat
 brew bdw-gc
 brew berkeley-db
+brew boost
 brew brotli
 brew c-ares
 brew ca-certificates
@@ -31,11 +33,18 @@ brew docbook
 brew docbook-xsl
 brew docker
 brew docutils
+brew double-conversion
 brew dust
+brew edencommon
 brew elinks
 brew emacs
+brew fb303
+brew fbthrift
 brew fd
 brew findutils
+brew fizz
+brew fmt
+brew folly
 brew fontconfig
 brew fortune
 brew freetype
@@ -44,11 +53,13 @@ brew gawk
 brew gcc
 brew gdbm
 brew gettext
+brew gflags
 brew ghostscript
 brew giflib
 brew git
 brew git-delta
 brew glib
+brew glog
 brew glow
 brew gmp
 brew gnu-getopt
@@ -103,6 +114,7 @@ brew libomp
 brew libpng
 brew libpthread-stubs
 brew libraw
+brew libsodium
 brew libssh2
 brew libtasn1
 brew libtermkey
@@ -163,6 +175,7 @@ brew openjdk
 brew openjdk@11
 brew openjpeg
 brew openssl@1.1
+brew openssl@3
 brew p11-kit
 brew pandoc
 brew pass
@@ -194,6 +207,7 @@ brew shellcheck
 brew shfmt
 brew showkey
 brew six
+brew snappy
 brew sqlite
 brew subversion
 brew tcl-tk
@@ -211,6 +225,7 @@ brew utf8proc
 brew vifm
 brew vim
 brew vint
+brew wangle
 brew webp
 brew wget
 brew x265
@@ -260,7 +275,6 @@ cask visual-studio-code
 cask zoom
 
 tap aws/tap
-brew aws-sam-cli
 
 tap eddieantonio/eddieantonio
 
@@ -274,17 +288,17 @@ brew brew-file
 tap tidwall/jj
 
 # App Store applications
-appstore 517914548   Dashlane              (6.2246.0)
+appstore 517914548   Dashlane              (6.2302.0)
 appstore 572304633   Desktop Verse         (2.2)
 appstore 682658836   GarageBand            (10.4.7)
 appstore 408981434   iMovie                (10.3.5)
-appstore 409183694   Keynote               (12.2)
-appstore 462058435   Microsoft Excel       (16.68)
-appstore 784801555   Microsoft OneNote     (16.68)
-appstore 985367838   Microsoft Outlook     (16.68)
-appstore 462062816   Microsoft PowerPoint  (16.67)
-appstore 462054704   Microsoft Word        (16.68)
-appstore 409203825   Numbers               (12.2)
-appstore 823766827   OneDrive              (22.238.1114)
-appstore 409201541   Pages                 (12.2)
-appstore 497799835   Xcode                 (14.1)
+appstore 409183694   Keynote               (12.2.1)
+appstore 462058435   Microsoft Excel       (16.69.1)
+appstore 784801555   Microsoft OneNote     (16.69)
+appstore 985367838   Microsoft Outlook     (16.69.1)
+appstore 462062816   Microsoft PowerPoint  (16.69.1)
+appstore 462054704   Microsoft Word        (16.69.1)
+appstore 409203825   Numbers               (12.2.1)
+appstore 823766827   OneDrive              (22.248.1127)
+appstore 409201541   Pages                 (12.2.1)
+appstore 497799835   Xcode                 (14.2)

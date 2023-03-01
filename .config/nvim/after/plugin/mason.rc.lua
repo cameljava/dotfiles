@@ -10,13 +10,5 @@ end
 mason.setup {}
 
 lspconfig.setup {
-  ensure_installed = {
-    "bashls",
-    "eslint",
-    "jsonls",
-    "sumneko_lua",
-    "tsserver",
-    "vimls",
-    "yamlls",
-  },
+  automatic_installation = true,
 }

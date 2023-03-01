@@ -123,11 +123,14 @@ nvim_lsp.tsserver.setup {
   capabilities = capabilities,
 }
 
-nvim_lsp.sumneko_lua.setup {
+nvim_lsp.lua_ls.setup {
   on_attach = on_attach,
   capabilities = capabilities,
   settings = {
     Lua = {
+      runtime = {
+        version = "LuaJIT",
+      },
       diagnostics = {
         -- Get the language server to recognize the `vim` global
         globals = { "vim" },
@@ -136,6 +139,8 @@ nvim_lsp.sumneko_lua.setup {
       workspace = {
         -- Make the server aware of Neovim runtime files
         library = vim.api.nvim_get_runtime_file("", true),
+        maxPreload = 10000,
+        preloadFileSize = 10000,
         checkThirdParty = false,
       },
       telemetry = {

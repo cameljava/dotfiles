@@ -98,6 +98,13 @@ packer.startup(function(use)
       require("gitsigns").setup {}
     end,
   }
+  use {
+    "pwntester/octo.nvim",
+    config = function()
+      require("octo").setup()
+    end,
+  }
+  use "christoomey/vim-conflicted"
 
   -- test
   use "akinsho/toggleterm.nvim"
@@ -122,10 +129,10 @@ packer.startup(function(use)
   }
   use { "jbyuki/one-small-step-for-vimkind", module = "osv" }
   use { "mxsdev/nvim-dap-vscode-js" }
-  use {
-    "microsoft/vscode-js-debug",
-    run = "npm install --legacy-peer-deps && npm run compile",
-  }
+  -- use {
+  --   "microsoft/vscode-js-debug",
+  --   run = "npm install --legacy-peer-deps && npm run compile",
+  -- }
 
   -- ft
   use "b0o/schemastore.nvim"
@@ -135,12 +142,17 @@ packer.startup(function(use)
       vim.fn["mkdp#util#install"]()
     end,
   }
+  use {
+    "gennaro-tedesco/nvim-jqx",
+    ft = { "json", "yaml" },
+  }
 
-  -- turn off, try follow tj youtube using rustup eco tool
   -- language
   -- use "rust-lang/rust.vim"
+  -- use "mustache/vim-mustache-handlebars"
 
   -- utils
+  use "wincent/ferret"
   use {
     "andymass/vim-matchup",
     setup = function()
