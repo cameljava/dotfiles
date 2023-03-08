@@ -72,6 +72,5 @@ keymap.set("x", "J", ":move '>+1<CR>gv-gv", opts)
 keymap.set("x", "K", ":move '<-2<CR>gv-gv", opts)
 
 -- plugins
--- zenmode
-keymap.set("n", "<leader>m", ":ZenMode<cr>", opts)
-keymap.set("n", "<leader>n", ':lua require("zen-mode").toggle({plugins = {twilight = {enabled=false}}})<cr>', opts)
+keymap.set("n", "<leader>m", ":TZFocus<cr>", opts)
+keymap.set("n", "<leader>n", ":TZAtaraxis<cr>", opts)

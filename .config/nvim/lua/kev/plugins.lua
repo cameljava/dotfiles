@@ -191,12 +191,11 @@ packer.startup(function(use)
     end,
   }
   use {
-    "folke/zen-mode.nvim",
+    "Pocco81/true-zen.nvim",
     config = function()
-      require("zen-mode").setup {
-        -- your configuration comes here
-        -- or leave it empty to use the default settings
-        -- refer to the configuration section below
+      require("true-zen").setup {
+        -- your config goes here
+        -- or just leave it empty :)
       }
     end,
   }

@@ -29,13 +29,13 @@ telescope.setup {
       mappings = {
         -- your custom insert mode mappings
         ["i"] = {
-          ["<C-w>"] = function()
-            vim.cmd "normal vbd"
-          end,
+          -- ["<C-w>"] = function()
+          --   vim.cmd "normal xxyy"
+          -- end,
         },
         ["n"] = {
           -- your custom normal mode mappings
-          -- ["N"] = fb_actions.create,
+          ["N"] = fb_actions.create,
           ["/"] = function()
             vim.cmd "startinsert"
           end,
