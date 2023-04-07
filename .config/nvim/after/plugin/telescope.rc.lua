@@ -1,0 +1,97 @@
+local status, telescope = pcall(require, "telescope")
+if not status then
+  return
+end
+local actions = require "telescope.actions"
+local builtin = require "telescope.builtin"
+
+local function telescope_buffer_dir()
+  return vim.fn.expand "%:p:h"
+end
+
+local fb_actions = require("telescope").extensions.file_browser.actions
+
+telescope.setup {
+  defaults = {
+    mappings = {
+      n = {
+        ["q"] = actions.close,
+      },
+    },
+  },
+  extensions = {
+    file_browser = {
+      theme = "dropdown",
+      -- theme = "ivy",
+      -- disables netrw and use telescope-file-browser in its place
+      hijack_netrw = true,
+      hidden = true,
+      mappings = {
+        -- your custom insert mode mappings
+        ["i"] = {
+          -- ["<C-w>"] = function()
+          --   vim.cmd "normal xxyy"
+          -- end,
+        },
+        ["n"] = {
+          -- your custom normal mode mappings
+          ["N"] = fb_actions.create,
+          ["/"] = function()
+            vim.cmd "startinsert"
+          end,
+        },
+      },
+    },
+    ["ui-select"] = {
+      require("telescope.themes").get_dropdown {
+        -- even more opts
+      },
+    },
+  },
+}
+
+telescope.load_extension "file_browser"
+telescope.load_extension "env"
+telescope.load_extension "neoclip"
+telescope.load_extension "bookmarks"
+telescope.load_extension "ui-select"
+
+vim.keymap.set("n", ";f", function()
+  builtin.find_files {
+    no_ignore = false,
+    hidden = true,
+  }
+end)
+vim.keymap.set("n", ";g", function()
+  builtin.git_files {}
+end)
+vim.keymap.set("n", ";r", function()
+  builtin.live_grep()
+end)
+vim.keymap.set("n", "\\\\", function()
+  builtin.buffers()
+end)
+vim.keymap.set("n", ";t", function()
+  builtin.help_tags()
+end)
+vim.keymap.set("n", ";k", function()
+  builtin.keymaps()
+end)
+vim.keymap.set("n", ";;", function()
+  builtin.resume()
+end)
+vim.keymap.set("n", ";e", function()
+  builtin.diagnostics()
+end)
+vim.keymap.set("n", "sf", function()
+  telescope.extensions.file_browser.file_browser {
+    path = "%:p:h",
+    cwd = telescope_buffer_dir(),
+    respect_gitignore = false,
+    hidden = true,
+    grouped = true,
+    previewer = false,
+    initial_mode = "normal",
+    layout_config = { height = 40 },
+  }
+end)

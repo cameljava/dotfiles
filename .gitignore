@@ -5,3 +5,6 @@
 Brewfile.lock.json
 lnav/
 .DS_Store
+node_modules/
+Session.vim
+.config/nvim/plugin/packer_compiled.lua

@@ -1,0 +1,10 @@
+# Dirs / files to ignore.
+# Use the same syntax as gitignore(5).
+# Common patterns:
+#
+
+.git
+.DS_Store
+*~
+node_modules
+

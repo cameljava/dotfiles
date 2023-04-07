@@ -2,12 +2,6 @@
 	name = Kevin Lee
 	email = cameljava@gmail.com
   username = kevlee
-[includeIf "gitdir:~/git/cameljava_github/"]
-  path = .gitconfig-cameljava-github
-[includeIf "gitdir:~/git/cameljava_bitbucket/"]
-  path = .gitconfig-cameljava-bitbucket
-[include]
-  path = ../kManulInstall/deltaTheme/themes.gitconfig
 [color]
   # Enable colors in color-supporting terminals
   ui = auto
@@ -70,7 +64,7 @@
 	; pager = most # --light for light terminal backgrounds
   ; pager = diff-so-fancy | less --tab=2 -RFX
   # Global ignore file (not shared)
-	excludesfile = /Users/kevlee/.gitignore_global
+	; excludesfile = /Users/kevlee/.gitignore_global
   # Global shared hooks directory
   # hooksPath = ~/.githooks
   #
@@ -85,7 +79,7 @@
   #
   # VSCode
   #  editor = code --wait
-  editor = vim
+  editor = nvim
   # Don't consider trailing space change as a cause for merge conflicts
   whitespace = -trailing-space
 [interactive]
@@ -97,8 +91,8 @@
   lineNumbers = true
   ; features = collared-trogon
   ; features = zebra-dark
-  features = chameleon
-  ; features = decorations
+  ; features = chameleon
+  features = decorations
 [delta "interactive"]
     keep-plus-minus-markers = false
 
@@ -127,7 +121,8 @@
   submodule = log
   # Use VSCode as default diff tool when running `git diff-tool`
   #tool = smerge
-  tool = vimdiff
+  ; tool = vimdiff
+  tool = nvim -d
 # [difftool "vscode"]
   # cmd = code --wait --diff $LOCAL $REMOTE
 [difftool]
@@ -233,3 +228,5 @@
 	trustExitCode = true
 [cola]
 	spellcheck = false
+[init]
+	defaultBranch = main

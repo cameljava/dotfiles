@@ -2,55 +2,75 @@
 # tap repositories and their packages
 
 tap homebrew/core
+brew ansifilter
 brew aom
 brew apr
 brew apr-util
 brew autoconf
+brew aws-sam-cli
 brew awscli
 brew bash
 brew bash-completion@2
 brew bash-git-prompt
 brew bat
 brew bdw-gc
+brew berkeley-db
+brew boost
 brew brotli
 brew c-ares
 brew ca-certificates
+brew cairo
 brew calcurse
 brew cask
-brew checkov
+brew cmake
 brew coreutils
 brew cowsay
 brew cscope
 brew ctags
 brew dict
+brew diffutils
 brew docbook
 brew docbook-xsl
 brew docker
+brew docutils
+brew double-conversion
 brew dust
+brew edencommon
 brew elinks
 brew emacs
-brew exa
+brew fb303
+brew fbthrift
 brew fd
+brew findutils
+brew fizz
+brew fmt
+brew folly
 brew fontconfig
 brew fortune
 brew freetype
 brew fzf
+brew gawk
 brew gcc
 brew gdbm
 brew gettext
+brew gflags
 brew ghostscript
 brew giflib
 brew git
 brew git-delta
 brew glib
+brew glog
 brew glow
 brew gmp
 brew gnu-getopt
 brew gnupg
 brew gnutls
 brew go
+brew graphite2
 brew graphql-cli
 brew guile
+brew harfbuzz
+brew highway
 brew htop
 brew httpie
 brew icu4c
@@ -60,6 +80,7 @@ brew isl
 brew jansson
 brew jasper
 brew jbig2dec
+brew jj
 brew jmeter
 brew jpeg
 brew jpeg-turbo
@@ -70,12 +91,15 @@ brew keychain
 brew lazydocker
 brew lazygit
 brew lerna
+brew less
 brew libarchive
 brew libassuan
 brew libb2
+brew libcbor
 brew libde265
 brew libevent
 brew libffi
+brew libfido2
 brew libgcrypt
 brew libgpg-error
 brew libheif
@@ -88,8 +112,9 @@ brew libmpc
 brew libnghttp2
 brew libomp
 brew libpng
-brew libpython-tabulate
+brew libpthread-stubs
 brew libraw
+brew libsodium
 brew libssh2
 brew libtasn1
 brew libtermkey
@@ -99,6 +124,13 @@ brew libunistring
 brew libusb
 brew libuv
 brew libvmaf
+brew libvterm
+brew libx11
+brew libxau
+brew libxcb
+brew libxdmcp
+brew libxext
+brew libxrender
 brew libyaml
 brew libzip
 brew little-cms2
@@ -109,9 +141,11 @@ brew lnav
 brew lua
 brew luajit --HEAD
 brew luajit-openresty
+brew luarocks
 brew luv
 brew lynx
 brew lz4
+brew lzo
 brew m4
 brew macos-term-size
 brew markdown
@@ -124,6 +158,8 @@ brew mongosh
 brew mpdecimal
 brew mpfr
 brew msgpack
+brew mysql
+brew mysql-client
 brew ncurses
 brew neovim
 brew nettle
@@ -139,17 +175,22 @@ brew openjdk
 brew openjdk@11
 brew openjpeg
 brew openssl@1.1
+brew openssl@3
 brew p11-kit
 brew pandoc
 brew pass
 brew pcre
 brew pcre2
+brew perl
 brew pinentry
+brew pixman
 brew pkg-config
+brew protobuf
 brew pyenv
 brew pyenv-virtualenv
 brew python-tabulate
 brew python@3.10
+brew python@3.11
 brew python@3.8
 brew python@3.9
 brew qrencode
@@ -161,12 +202,12 @@ brew redis
 brew ripgrep
 brew ruby
 brew ruby-build
-brew rust
 brew shared-mime-info
 brew shellcheck
 brew shfmt
 brew showkey
 brew six
+brew snappy
 brew sqlite
 brew subversion
 brew tcl-tk
@@ -182,15 +223,21 @@ brew unbound
 brew unibilium
 brew utf8proc
 brew vifm
+brew vim
 brew vint
+brew wangle
 brew webp
 brew wget
 brew x265
 brew xmlto
+brew xorgproto
 brew xz
 brew z.lua
+brew z3
 brew zig
+brew zlib
 brew zoxide
+brew zsh-completions
 brew zstd
 
 tap homebrew/bundle
@@ -199,6 +246,7 @@ tap homebrew/cask-fonts
 cask font-fira-code
 cask font-fira-code-nerd-font
 cask font-fira-mono
+cask font-fira-mono-for-powerline
 cask font-fira-mono-nerd-font
 cask font-hack
 cask font-hack-nerd-font
@@ -206,22 +254,29 @@ cask font-inconsolata
 cask font-inconsolata-nerd-font
 
 tap homebrew/cask
-cask alacritty
+cask amethyst
 cask brave-browser
 cask cheatsheet
+cask dbeaver-community
+cask dotnet-sdk
 cask graphql-playground
 cask hammerspoon
+cask insomnia
 cask karabiner-elements
 cask kitty
 cask maccy
 cask macdown
 cask macvim
+cask mysqlworkbench
+cask postman
 cask qutebrowser
+cask sequel-pro
 cask visual-studio-code
 cask zoom
 
 tap aws/tap
-brew aws-sam-cli
+
+tap eddieantonio/eddieantonio
 
 tap mongodb/brew
 brew mongodb-community
@@ -230,18 +285,20 @@ brew mongodb-database-tools
 tap rcmdnk/file
 brew brew-file
 
+tap tidwall/jj
+
 # App Store applications
-appstore 517914548   Dashlane              (6.2224.0)
+appstore 517914548   Dashlane              (6.2302.0)
 appstore 572304633   Desktop Verse         (2.2)
-appstore 682658836   GarageBand            (10.4.6)
-appstore 408981434   iMovie                (10.3.3)
-appstore 409183694   Keynote               (12.1)
-appstore 462058435   Microsoft Excel       (16.62)
-appstore 784801555   Microsoft OneNote     (16.62)
-appstore 985367838   Microsoft Outlook     (16.62)
-appstore 462062816   Microsoft PowerPoint  (16.62)
-appstore 462054704   Microsoft Word        (16.62)
-appstore 409203825   Numbers               (12.1)
-appstore 823766827   OneDrive              (22.121.0605)
-appstore 409201541   Pages                 (12.1)
-appstore 497799835   Xcode                 (13.4.1)
+appstore 682658836   GarageBand            (10.4.7)
+appstore 408981434   iMovie                (10.3.5)
+appstore 409183694   Keynote               (12.2.1)
+appstore 462058435   Microsoft Excel       (16.69.1)
+appstore 784801555   Microsoft OneNote     (16.69)
+appstore 985367838   Microsoft Outlook     (16.69.1)
+appstore 462062816   Microsoft PowerPoint  (16.69.1)
+appstore 462054704   Microsoft Word        (16.69.1)
+appstore 409203825   Numbers               (12.2.1)
+appstore 823766827   OneDrive              (22.248.1127)
+appstore 409201541   Pages                 (12.2.1)
+appstore 497799835   Xcode                 (14.2)

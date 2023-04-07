@@ -1,9 +1,8 @@
 # shellcheck shell=bash
 ################################# terminal config ####################
-export PS1="$ "
+# export PS1="$ "
+export PS1='\[\e[0;$(($?==0?0:91))m\]$ \[\e[0m\]'
 export SHELL="/opt/homebrew/bin/bash"
-# export TERM=xterm-256color
-# export TERM=screen-256color
 
 export PAGER="less"
 # export PAGER="most"
