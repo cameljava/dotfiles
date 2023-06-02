@@ -7,9 +7,9 @@ lualine.setup {
   options = {
     icons_enabled = true,
     -- theme = "solarized_dark",
-    theme = "auto",
-    section_separators = { left = "", right = "" },
-    component_separators = { left = "", right = "" },
+    theme = "catppuccin",
+    -- section_separators = { left = "", right = "" },
+    -- component_separators = { left = "", right = "" },
     disabled_filetypes = {},
   },
   sections = {
@@ -49,5 +49,5 @@ lualine.setup {
     lualine_z = {},
   },
   tabline = {},
-  extensions = { "fugitive", "man", "fzf", "quickfix", "toggleterm", "nvim-dap-ui" },
+  extensions = { "fugitive" },
 }

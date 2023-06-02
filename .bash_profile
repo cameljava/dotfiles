@@ -1,6 +1,6 @@
 # shellcheck shell=bash
 
-ulimit -n 10240
+ulimit -n 65536 200000
 
 ########## include .bashrc if it exists
 if [ -f "$HOME/.bashrc" ]; then

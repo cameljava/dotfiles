@@ -5,6 +5,7 @@ vim.opt.encoding = "utf-8"
 vim.opt.fileencoding = "utf-8"
 
 vim.wo.number = true
+vim.wo.relativenumber = true
 vim.wo.signcolumn = "yes"
 
 vim.opt.title = true
@@ -13,7 +14,7 @@ vim.opt.smartindent = true
 vim.opt.hlsearch = true
 vim.opt.backup = false
 vim.opt.showcmd = true
-vim.opt.cmdheight = 2
+-- vim.opt.cmdheight = 2
 vim.opt.laststatus = 3
 vim.opt.expandtab = true
 vim.opt.scrolloff = 10
@@ -37,9 +38,11 @@ vim.opt.wildmode = { "longest:full", "full" }
 vim.cmd [[let &t_Cs = "\e[4:3m"]]
 vim.cmd [[let &t_Ce = "\e[4:0m"]]
 
--- In the quickfix window, <CR> is used to jump to the error
--- under the curor, so undefine the mapping there
-vim.cmd [[ autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR> ]]
+vim.cmd [[
+" In the quickfix window, <CR> is used to jump to the error under the
+" cursor, so undefine the mapping there.
+autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
+]]
 
 -- Turn off paste mode when leaving insert
 vim.api.nvim_create_autocmd("InsertLeave", {
@@ -57,3 +60,11 @@ vim.g.loaded_ruby_provider = 0
 
 vim.opt.list = true
 vim.opt.listchars:append "eol:↴"
+
+-- plugins setting
+
+-- vim rest console
+vim.g.vrc_trigger = "<C-]>"
+vim.g.vrc_show_command = 1
+
+vim.cmd [[let g:vrc_curl_opts = { '--connect-timeout' : 10, '-L': '', '-i': '', '--max-time': 60, '--ipv4': '', '-k': '', '-s':'', '-S':'' }]]

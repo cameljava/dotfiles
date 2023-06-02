@@ -1,4 +1,22 @@
-vim.lsp.set_log_level "debug"
+vim.lsp.set_log_level "info"
+
+-- IMPORTANT: make sure to setup lua-dev BEFORE lspconfig
+require("neodev").setup {
+  library = {
+    enabled = true, -- when not enabled, lua-dev will not change any settins to the LSP server
+    -- these settings will be used for your Neovim config directory
+    runtime = true, -- runtime path
+    types = true, -- full signature, docs and completion of vim.api, vim.treesitter, vim.lsp and others
+    plugins = true, -- installed opt or start plugins in packpath
+    -- you can also specify the list of plugins to make available as a workspace library
+    -- plugins = { "nvim-treesitter", "plenary.nvim", "telescope.nvim" },
+  },
+  setup_jsonls = true, -- configures jsonls to provide completion for project specific .luarc.json files
+  -- for your Neovim config directory, the config.library settings will be used as is
+  -- for plugin directories (root_dirs having a /lua directory), config.library.plugins will be disabled
+  -- for any other directory, config.library.enabled will be set to false
+  override = function(root_dir, options) end,
+}
 
 local status, nvim_lsp = pcall(require, "lspconfig")
 if not status then
@@ -59,6 +77,8 @@ local on_attach = function(client, bufnr)
   -- Mappings.
   local opts = { noremap = true, silent = false }
 
+  vim.keymap.set("n", "<space>e", vim.diagnostic.open_float, opts)
+
   -- See `:help vim.lsp.*` for documentation on any of the below functions
   buf_set_keymap("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>", opts)
   buf_set_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
@@ -118,9 +138,10 @@ nvim_lsp.yamlls.setup {
 
 nvim_lsp.tsserver.setup {
   on_attach = on_attach,
-  filetypes = { "typescript", "typescriptreact", "typescript.tsx", "javascript" },
-  cmd = { "typescript-language-server", "--stdio" },
   capabilities = capabilities,
+  filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
+  cmd = { "typescript-language-server", "--stdio" },
+  init_options = { hostInfo = "neovim" },
 }
 
 nvim_lsp.lua_ls.setup {
@@ -131,11 +152,15 @@ nvim_lsp.lua_ls.setup {
       runtime = {
         version = "LuaJIT",
       },
+
       diagnostics = {
         -- Get the language server to recognize the `vim` global
         globals = { "vim" },
+        enable = true,
       },
-
+      completion = {
+        callSnippet = "Replace",
+      },
       workspace = {
         -- Make the server aware of Neovim runtime files
         library = vim.api.nvim_get_runtime_file("", true),
@@ -153,12 +178,6 @@ nvim_lsp.lua_ls.setup {
 nvim_lsp.rust_analyzer.setup {
   on_attach = on_attach,
   capabilities = capabilities,
-  cmd = {
-    "rustup",
-    "run",
-    "stable",
-    "rust-analyzer",
-  },
 }
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {

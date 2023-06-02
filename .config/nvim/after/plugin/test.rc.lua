@@ -76,6 +76,7 @@ local keymap = vim.api.nvim_set_keymap
 
 keymap("n", "<c-y>", ":ToggleTerm size=45 direction=vertical<cr>", opts)
 keymap("n", "<c-m>", ":ToggleTerm direction=horizontal<cr>", opts)
+keymap("n", "<space>g", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", { noremap = true, silent = true })
 
 require("neotest").setup {
   adapters = {

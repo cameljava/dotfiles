@@ -11,19 +11,19 @@ keymap.set("n", "-", "<C-x>", opts)
 -- Delete a word backwards
 -- keymap.set("n", "dw", 'vb"_d', opts)
 
--- Select all ? conflict with my tmux leader key
+-- Select all
 -- keymap.set("n", "<C-a>", "gg<S-v>G", opts)
 
 -- Save with root permission (not working for now)
 --vim.api.nvim_create_user_command('W', 'w !sudo tee > /dev/null %', {})
 
 -- New tab
-keymap.set("n", "te", ":tabedit", opts)
+keymap.set("n", "te", ":tabedit<cr>", opts)
 -- Split window
 keymap.set("n", "sp", ":split<Return><C-w>w", opts)
 keymap.set("n", "sv", ":vsplit<Return><C-w>w", opts)
 -- Move window
-keymap.set("n", "<Space>", "<C-w>w", opts)
+-- keymap.set("n", "<Space>", "<C-w>w", opts)
 keymap.set("", "sh", "<C-w>h", opts)
 keymap.set("", "sk", "<C-w>k", opts)
 keymap.set("", "sj", "<C-w>j", opts)
@@ -35,13 +35,13 @@ keymap.set("n", "<a-right>", "<C-w>>", opts)
 keymap.set("n", "<a-up>", "<C-w>+", opts)
 keymap.set("n", "<a-down>", "<C-w>-", opts)
 
-keymap.set("i", "jj", "<Esc>:update<Cr>", opts_show)
+keymap.set("i", "jj", "<Esc>:w<Cr>", opts_show)
+keymap.set("i", "jk", "<Esc>:update<Cr>", opts_show)
 keymap.set("n", ",,", ":", opts_show)
-keymap.set("n", "ss", ":update<Cr>", opts_show)
+keymap.set("n", "<space><space>", ":w<Cr>", opts_show)
+keymap.set("n", "<leader>w", ":update<Cr>", opts_show)
 
-keymap.set("n", "<BS>", ":nohlsearch<Cr>", opts_show)
-
-keymap.set("n", "<leader>q", ":q<Cr>", opts_show)
+keymap.set("n", "<BS>", ":nohlsearch<cr>", opts)
 
 -- press * to search for the term under the cursor or a visual selection and
 -- then press a key below to replace all instances of it in the current file.
@@ -71,6 +71,9 @@ keymap.set("v", ">", ">gv", opts)
 keymap.set("x", "J", ":move '>+1<CR>gv-gv", opts)
 keymap.set("x", "K", ":move '<-2<CR>gv-gv", opts)
 
--- plugins
-keymap.set("n", "<leader>m", ":TZFocus<cr>", opts)
-keymap.set("n", "<leader>n", ":TZAtaraxis<cr>", opts)
+keymap.set("n", "<leader>q", ":q<cr>", opts_show)
+
+keymap.set("n", "<leader>m", ":TZFocus<cr>", opts_show)
+
+-- sample of how to run <Plug> command without mapping
+-- :execute "normal <Plug>RestNvimPrevie

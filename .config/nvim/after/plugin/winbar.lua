@@ -12,7 +12,7 @@ require("winbar").setup {
 
   icons = {
     file_icon_default = "",
-    seperator = ">",
+    -- seperator = ">",
     editor_state = "●",
     lock_icon = "",
   },
