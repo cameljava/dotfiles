@@ -77,3 +77,5 @@ keymap.set("n", "<leader>m", ":TZFocus<cr>", opts_show)
 
 -- sample of how to run <Plug> command without mapping
 -- :execute "normal <Plug>RestNvimPrevie
+keymap.set("n", "gx", "<Plug>(gxext-normal)")
+keymap.set("x", "gx", "<Plug>(gxext-normal)")

@@ -72,7 +72,7 @@ packer.startup(function(use)
   use "junegunn/fzf.vim"
 
   -- telescope
-  use "nvim-telescope/telescope.nvim"
+  use { "nvim-telescope/telescope.nvim", tag = "0.1.2" }
   use { "nvim-telescope/telescope-fzf-native.nvim", run = "make" }
   use "nvim-telescope/telescope-file-browser.nvim"
   use "LinArcX/telescope-env.nvim"
@@ -152,6 +152,7 @@ packer.startup(function(use)
 
   use "francoiscabrol/ranger.vim"
   use "rbgrouleff/bclose.vim"
+  use "stsewd/gx-extended.vim"
 
   -- test
   use "akinsho/toggleterm.nvim"
@@ -173,11 +174,11 @@ packer.startup(function(use)
   use { "mxsdev/nvim-dap-vscode-js", requires = { "mfussenegger/nvim-dap" } }
   use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } }
   use "theHamsta/nvim-dap-virtual-text"
-  use {
+  --[[ use {
     "microsoft/vscode-js-debug",
     opt = true,
     run = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out",
-  }
+  } ]]
 
   -- ft
   use "b0o/schemastore.nvim"
