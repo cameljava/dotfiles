@@ -2,6 +2,7 @@
 .config/nvim/plugged/
 .config/tmux/plugins/
 .config/configstore
+.config/iterm2/
 .config/httpie
 Brewfile.lock.json
 lnav/

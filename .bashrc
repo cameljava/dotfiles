@@ -1,5 +1,7 @@
 # shellcheck shell=bash
 
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 . "$HOME/.config/shell/export.sh"
 . "$HOME/.config/shell/alias.sh"
 . "$HOME/.config/shell/function.sh"
@@ -109,7 +111,7 @@ export FZF_DEFAULT_COMMAND="rg --files --no-ignore-vcs --hidden --follow --glob 
 export SLS_DEBUG=true
 
 # setting for forgit
-source "$HOME/.config/kManulInstall/forgit/forgit.plugin.zsh"
+# source "$HOME/.config/kManulInstall/forgit/forgit.plugin.zsh"
 # export forgit_cherry_pick=gccp
 # ctrl-e to view the logs in a vim buffer (glo specific)
 FORGIT_LOG_FZF_OPTS=' --bind="ctrl-e:execute(echo {} |grep -Eo [a-f0-9]+ |head -1 |xargs git show |nvim -)"'
@@ -118,5 +120,5 @@ FORGIT_LOG_FZF_OPTS=' --bind="ctrl-e:execute(echo {} |grep -Eo [a-f0-9]+ |head -
 export _ZO_ECHO=1
 export _ZO_RESOLVE_SYMLINKS=1
 eval "$(zoxide init bash)"
-. "$HOME/.cargo/env"
-source ~/.bash_completion/alacritty
+# . "$HOME/.cargo/env"
+# source ~/.bash_completion/alacritty

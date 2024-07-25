@@ -3,14 +3,13 @@
 
 alias s='source '
 # alias ls='/bin/ls -GFhl|cat'
-alias e='exa'
 # alias ls='exa -alT --git -L 2 -I .git -I node_modules'
 alias li='exa -al --git-ignore'
-alias lg='exa -al --git'
 alias cp='cp -iv'       # Preferred 'cp' implementation
 alias mv='mv -iv'       # Preferred 'mv' implementation
 alias mkdir='mkdir -pv' # Preferred 'mkdir' implementation
-alias l='exa -al -T -L 2' # Preferred 'ls' implementation
+alias l='exa -al -T -L 2 --git' # Preferred 'ls' implementation
+alias ll='exa -al --git' # Preferred 'ls' implementation
 # alias l='/bin/ls -FGlAhp|cat'                      # Preferred 'ls' implementation
 # alias less='less -FSRXc' # Preferred 'less' implementation
 alias fd='fd -H '
