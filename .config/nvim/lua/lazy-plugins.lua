@@ -25,7 +25,7 @@ require('lazy').setup({
 
   require 'kev/plugins/gitsigns',
 
-  require 'kev/plugins/which-key',
+  -- require 'kev/plugins/which-key',
 
   require 'kev/plugins/telescope',
 
@@ -60,6 +60,13 @@ require('lazy').setup({
   --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
   --    For additional information, see `:help lazy.nvim-lazy.nvim-structuring-your-plugins`
   -- { import = 'custom.plugins' },
+  {
+    'stevearc/oil.nvim',
+    opts = {},
+    -- Optional dependencies
+    -- dependencies = { { 'echasnovski/mini.icons', opts = {} } },
+    dependencies = { 'nvim-tree/nvim-web-devicons' }, -- use if prefer nvim-web-devicons
+  },
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
