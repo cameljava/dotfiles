@@ -23,6 +23,7 @@ require('lazy').setup({
   -- modular approach: using `require 'path/name'` will
   -- include a plugin definition from file lua/path/name.lua
 
+  require 'kev/plugins/lazydev',
   require 'kev/plugins/gitsigns',
 
   -- require 'kev/plugins/which-key',
