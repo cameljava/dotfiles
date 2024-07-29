@@ -3,6 +3,11 @@
 
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
+vim.keymap.set('i', 'jj', '<Esc>')
+vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+vim.keymap.set('n', 'vs', '<CMD>vs<CR>')
+vim.keymap.set('n', 'sp', '<CMD>sp<CR>')
+vim.keymap.set('n', 'so', '<CMD>so %<CR>')
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- Diagnostic keymaps
@@ -45,6 +50,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
+-- keymap for plugins
 vim.keymap.set('n', '-', '<CMD>Oil<CR>', { desc = 'Open parent directory' })
 
 -- vim: ts=2 sts=2 sw=2 et
