@@ -24,24 +24,15 @@ require('lazy').setup({
   -- include a plugin definition from file lua/path/name.lua
 
   require 'kev/plugins/lazydev',
+
   require 'kev/plugins/gitsigns',
-
-  -- require 'kev/plugins/which-key',
-
   require 'kev/plugins/telescope',
-
   require 'kev/plugins/lspconfig',
-
   require 'kev/plugins/conform',
-
   require 'kev/plugins/cmp',
-
   require 'kev/plugins/tokyonight',
-
   require 'kev/plugins/todo-comments',
-
   require 'kev/plugins/mini',
-
   require 'kev/plugins/treesitter',
 
   -- NOTE: Next step on your Neovim journey: Add/Configure additional plugins
@@ -49,7 +40,7 @@ require('lazy').setup({
   --  Here are some example plugins that I've included in the Kickstart repository.
   --  Uncomment any of the lines below to enable them (you will need to restart nvim).
   --
-  -- require 'kev.plugins.debug',
+  require 'kev.plugins.debug',
   -- require 'kev.plugins.indent_line',
   -- require 'kev.plugins.lint',
   -- require 'kev.plugins.autopairs',
