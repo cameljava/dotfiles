@@ -120,5 +120,7 @@ FORGIT_LOG_FZF_OPTS=' --bind="ctrl-e:execute(echo {} |grep -Eo [a-f0-9]+ |head -
 export _ZO_ECHO=1
 export _ZO_RESOLVE_SYMLINKS=1
 eval "$(zoxide init bash)"
-# . "$HOME/.cargo/env"
+
+# install rust using rustup, instead of brew
+. "$HOME/.cargo/env"
 # source ~/.bash_completion/alacritty
