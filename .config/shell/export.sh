@@ -19,32 +19,47 @@ export PATH="$HOME/kdata/kbin:$PATH"
 # export PATH="/usr/local/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 
-#brew
-eval "$(/opt/homebrew/bin/brew shellenv)"
 
-########### start ssh agent
-# eval "$(keychain --eval --agents ssh --inherit any id_rsa)"
+####### bash
+[[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
+
 # rust
+# install rust using rustup, instead of brew
+. "$HOME/.cargo/env"
 export PATH="$HOME/.cargo/bin:$PATH"
 
-eval "$(rbenv init -)"
-export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+#eval "$(rbenv init -)"
+#export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+#export GEM_HOME="$HOME/.gem"
+
+# pyenv for python
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
+# fzf settings
+# shellcheck source=/dev/null
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+alias fzfp="fzf --preview 'bat --style=numbers --color=always {} | head -500'"
+# search all files in current folder including hidden and git ignore, except .rgignore
+export FZF_DEFAULT_COMMAND="rg --files --no-ignore-vcs --hidden --follow --glob '!.git'"
 
 ######### add vsCode
 export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 
-export GEM_HOME="$HOME/.gem"
 
-####### bash
-[[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
+# setting for forgit
+[ -f $HOMEBREW_PREFIX/share/forgit/forgit.plugin.sh ] && source $HOMEBREW_PREFIX/share/forgit/forgit.plugin.sh
+# export forgit_cherry_pick=gccp
+# ctrl-e to view the logs in a vim buffer (glo specific)
+export FORGIT_LOG_FZF_OPTS=' --bind="ctrl-e:execute(echo {} |grep -Eo [a-f0-9]+ |head -1 |xargs git show |nvim -)"'
+
+PATH="/opt/homebrew/opt/make/libexec/gnubin:$PATH"
+
 # [ -f "$HOME/.iterm2_shell_integration.bash" ] && source "$HOME/.iterm2_shell_integration.bash"
 
-# complete -C '/usr/local/bin/aws_completer' aws
-
-######## git
-# git+fzf
-# source "$HOME/git/cameljava_github/prog/forgit/forgit.plugin.sh"
-# [ -s "$HOME/.scm_breeze/scm_breeze.sh" ] && source "$HOME/.scm_breeze/scm_breeze.sh"
+source ~/.bash_completion/alacritty
+complete -C '/opt/homebrew/bin/aws_completer' aws
 
 # prompt show git status
 if [ -f "/opt/homebrew/opt/bash-git-prompt/share/gitprompt.sh" ]; then
@@ -56,8 +71,9 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && . "/opt/homebrew/opt/nvm/nvm.sh"                                       # This loads nvm
 [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && . "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" # This loads nvm bash_completion
 
-# pyenv for python
+# add zoxide to shell
+export _ZO_ECHO=1
+export _ZO_RESOLVE_SYMLINKS=1
+eval "$(zoxide init bash)"
 
-export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
+export SLS_DEBUG=true

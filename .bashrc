@@ -2,10 +2,6 @@
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
-. "$HOME/.config/shell/export.sh"
-. "$HOME/.config/shell/alias.sh"
-. "$HOME/.config/shell/function.sh"
-
 if [ -f "$(brew --prefix)/etc/brew-wrap" ]; then
 	source "$(brew --prefix)/etc/brew-wrap"
 fi
@@ -101,26 +97,7 @@ shopt -s cdable_vars
 # export documents="$HOME/Documents"
 # export dropbox="$HOME/Dropbox"
 
-# fzf settings
-# shellcheck source=/dev/null
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-alias fzfp="fzf --preview 'bat --style=numbers --color=always {} | head -500'"
-# search all files in current folder including hidden and git ignore, except .rgignore
-export FZF_DEFAULT_COMMAND="rg --files --no-ignore-vcs --hidden --follow --glob '!.git'"
+. "$HOME/.config/shell/export.sh"
+. "$HOME/.config/shell/alias.sh"
+. "$HOME/.config/shell/function.sh"
 
-export SLS_DEBUG=true
-
-# setting for forgit
-# source "$HOME/.config/kManulInstall/forgit/forgit.plugin.zsh"
-# export forgit_cherry_pick=gccp
-# ctrl-e to view the logs in a vim buffer (glo specific)
-FORGIT_LOG_FZF_OPTS=' --bind="ctrl-e:execute(echo {} |grep -Eo [a-f0-9]+ |head -1 |xargs git show |nvim -)"'
-
-# add zoxide to shell
-export _ZO_ECHO=1
-export _ZO_RESOLVE_SYMLINKS=1
-eval "$(zoxide init bash)"
-
-# install rust using rustup, instead of brew
-. "$HOME/.cargo/env"
-# source ~/.bash_completion/alacritty
