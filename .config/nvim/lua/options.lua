@@ -7,7 +7,7 @@
 vim.opt.number = true
 -- You can also add relative line numbers, to help with jumping.
 --  Experiment for yourself to see if you like it!
--- vim.opt.relativenumber = true
+vim.opt.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = 'a'
@@ -36,8 +36,8 @@ vim.opt.signcolumn = 'yes'
 -- Decrease update time
 vim.opt.updatetime = 250
 
--- Decrease mapped sequence wait time
--- Displays which-key popup sooner
+-- Decrease mapped sequence wait time Displays which-key popup sooner
+-- however watch out the setting it may affect comment shutcut.
 vim.opt.timeoutlen = 300
 
 -- Configure how new splits should be opened
@@ -59,4 +59,6 @@ vim.opt.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_ruby_provider = 0
 -- vim: ts=2 sts=2 sw=2 et
