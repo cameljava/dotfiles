@@ -23,5 +23,10 @@ require 'lazy-bootstrap'
 -- [[ Configure and install plugins ]]
 require 'lazy-plugins'
 
+-- vim.cmd [[colorscheme everforest]]
+-- vim.cmd [[colorscheme nord]]
+-- vim.cmd [[colorscheme catppuccin-macchiato]]
+vim.cmd [[colorscheme tokyonight-storm]]
+
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

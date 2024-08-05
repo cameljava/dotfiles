@@ -30,10 +30,11 @@ require('lazy').setup({
   require 'kev/plugins/lspconfig',
   require 'kev/plugins/conform',
   require 'kev/plugins/cmp',
-  require 'kev/plugins/tokyonight',
   require 'kev/plugins/todo-comments',
   require 'kev/plugins/mini',
   require 'kev/plugins/treesitter',
+
+  require 'kev/plugins/colorScheme',
 
   -- NOTE: Next step on your Neovim journey: Add/Configure additional plugins
   --
