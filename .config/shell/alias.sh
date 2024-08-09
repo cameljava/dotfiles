@@ -17,8 +17,9 @@ alias Rg='rg --hidden '
 alias RG='rg --hidden --no-ignore --follow '
 
 # alias diff="diff-so-fancy"
-alias rm="rm -i"
-alias dd='trash '
+# alias rm="rm -i"
+# alias dd='trash '
+[ -x "$(command -v trash)" ] && alias rm="trash -F"
 # alias sls="sls --region ap-southeast-2 "
 alias n="nvim "
 alias nn="nvim ."
@@ -52,4 +53,4 @@ alias DT='tee ~/Desktop/terminalOut.txt'  # DT:           Pipe content to file o
 #git alias
 alias gs='git status'
 
-alias icat='kitty +kitten icat'
+# alias icat='kitty +kitten icat'
