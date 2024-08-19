@@ -1,13 +1,14 @@
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
-local opts = { noremap = true, silent = true }
-local opts_show = { noremap = true, silent = false }
 
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
-vim.keymap.set('i', 'jj', '<Esc>')
+vim.keymap.set('i', 'jj', '<Esc><CMD>update<CR>')
+vim.keymap.set('i', 'jk', '<Esc><CMD>write<CR>')
 vim.keymap.set('n', 'sv', '<CMD>vs<CR>')
 vim.keymap.set('n', 'sp', '<CMD>sp<CR>')
-vim.keymap.set('n', 'so', '<CMD>so %<CR>')
+
+vim.keymap.set("n", "<leader><leader>x", "<cmd>.lua<CR>", { desc = "Execute the current line" })
+vim.keymap.set("n", "<leader>x", "<cmd>source %<CR>", { silent=false, desc = "Execute the current file" })
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
@@ -29,6 +30,12 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
+-- These mappings control the size of splits (height/width)
+vim.keymap.set("n", "<M-,>", "<c-w>5<")
+vim.keymap.set("n", "<M-.>", "<c-w>5>")
+vim.keymap.set("n", "<M-k>", "<C-W>+")
+vim.keymap.set("n", "<M-l>", "<C-W>-")
+
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
@@ -42,6 +49,11 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     vim.highlight.on_yank()
   end,
 })
+
+-- Normally these are not good mappings, but I have left/right on my thumb
+-- cluster, so navigating tabs is quite easy this way.
+vim.keymap.set("n", "<left>", "gT")
+vim.keymap.set("n", "<right>", "gt")
 
 -- keymap for plugins
 
