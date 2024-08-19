@@ -14,10 +14,9 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 
 ################################ set PATH ##############################
-# export PATH="/opt/homebrew/bin:$PATH"
 export PATH="$HOME/kdata/kbin:$PATH"
-# export PATH="/usr/local/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
+
 
 
 ####### bash
@@ -26,7 +25,6 @@ export PATH="$HOME/.local/bin:$PATH"
 # rust
 # install rust using rustup, instead of brew
 . "$HOME/.cargo/env"
-export PATH="$HOME/.cargo/bin:$PATH"
 
 #eval "$(rbenv init -)"
 #export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
@@ -54,8 +52,8 @@ export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/b
 # ctrl-e to view the logs in a vim buffer (glo specific)
 export FORGIT_LOG_FZF_OPTS=' --bind="ctrl-e:execute(echo {} |grep -Eo [a-f0-9]+ |head -1 |xargs git show |nvim -)"'
 
-PATH="/opt/homebrew/opt/make/libexec/gnubin:$PATH"
-PATH="/opt/homebrew/opt/gnu-tar/libexec/gnubin:$PATH"
+# PATH="/opt/homebrew/opt/make/libexec/gnubin:$PATH"
+# PATH="/opt/homebrew/opt/gnu-tar/libexec/gnubin:$PATH"
 
 # [ -f "$HOME/.iterm2_shell_integration.bash" ] && source "$HOME/.iterm2_shell_integration.bash"
 
@@ -76,5 +74,3 @@ export NVM_DIR="$HOME/.nvm"
 export _ZO_ECHO=1
 export _ZO_RESOLVE_SYMLINKS=1
 eval "$(zoxide init bash)"
-
-export SLS_DEBUG=true

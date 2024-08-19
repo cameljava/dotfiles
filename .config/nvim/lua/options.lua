@@ -62,4 +62,16 @@ vim.opt.scrolloff = 10
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
 
+-- global setting for tab expand to 2 spaces, indent 2 spaces
+vim.opt.expandtab = true
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.softtabstop = 2
+
+-- using filetype, to set make file no expand
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'make',
+  command = 'setlocal noexpandtab',
+})
+
 -- vim: ts=2 sts=2 sw=2 et

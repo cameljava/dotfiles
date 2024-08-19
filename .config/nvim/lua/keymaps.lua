@@ -1,9 +1,11 @@
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
+local opts = { noremap = true, silent = true }
+local opts_show = { noremap = true, silent = false }
 
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 vim.keymap.set('i', 'jj', '<Esc>')
-vim.keymap.set('n', 'vs', '<CMD>vs<CR>')
+vim.keymap.set('n', 'sv', '<CMD>vs<CR>')
 vim.keymap.set('n', 'sp', '<CMD>sp<CR>')
 vim.keymap.set('n', 'so', '<CMD>so %<CR>')
 

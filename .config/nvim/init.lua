@@ -26,7 +26,8 @@ require 'lazy-plugins'
 -- vim.cmd [[colorscheme everforest]]
 -- vim.cmd [[colorscheme nord]]
 -- vim.cmd [[colorscheme catppuccin-macchiato]]
-vim.cmd [[colorscheme tokyonight-storm]]
+-- vim.cmd [[colorscheme tokyonight-storm]]
+vim.cmd [[colorscheme nightfox]]
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
