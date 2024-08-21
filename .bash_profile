@@ -2,6 +2,8 @@
 
 ulimit -n 65536 200000
 
+ssh-add --apple-use-keychain ~/.ssh/id_ed25519
+
 ########## include .bashrc if it exists
 if [ -f "$HOME/.bashrc" ]; then
   . "$HOME/.bashrc"
