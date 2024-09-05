@@ -97,3 +97,7 @@ shopt -s cdable_vars
 . "$HOME/.config/shell/alias.sh"
 . "$HOME/.config/shell/function.sh"
 
+
+
+# Load Angular CLI autocompletion.
+source <(ng completion script)
