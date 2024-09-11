@@ -24,6 +24,7 @@ return {
         },
       },
       { 'Bilal2453/luvit-meta', lazy = true },
+      {'towolf/vim-helm'},
     },
     config = function()
       -- Brief aside: **What is LSP?**
@@ -188,6 +189,8 @@ return {
             },
           },
         },
+
+        helm_ls ={},
       }
 
       -- Ensure the servers and tools above are installed
