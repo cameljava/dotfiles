@@ -1,3 +1,3 @@
 return {
-  {'wincent/ferret'}
+  { 'wincent/ferret' }
 }

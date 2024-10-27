@@ -9,7 +9,7 @@ return {
 
       -- Useful status updates for LSP.
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-      { 'j-hui/fidget.nvim', opts = {} },
+      { 'j-hui/fidget.nvim',       opts = {} },
 
       -- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
       -- used for completion, annotations and signatures of Neovim apis
@@ -24,7 +24,7 @@ return {
         },
       },
       { 'Bilal2453/luvit-meta', lazy = true },
-      {'towolf/vim-helm'},
+      { 'towolf/vim-helm' },
     },
     config = function()
       -- Brief aside: **What is LSP?**
@@ -190,7 +190,7 @@ return {
           },
         },
 
-        helm_ls ={},
+        helm_ls = {},
       }
 
       -- Ensure the servers and tools above are installed
