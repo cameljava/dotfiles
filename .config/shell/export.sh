@@ -1,4 +1,3 @@
-# shellcheck shell=bash
 ################################# terminal config ####################
 # export PS1="$ "
 export PS1='\[\e[0;$(($?==0?0:91))m\]$ \[\e[0m\]'
@@ -16,6 +15,8 @@ export XDG_DATA_HOME="$HOME/.local/share"
 ################################ set PATH ##############################
 export PATH="$HOME/kdata/kbin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
+export PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
+export PATH="/opt/homebrew/opt/findutils/libexec/gnubin:$PATH"
 
 
 
@@ -55,16 +56,10 @@ export FORGIT_LOG_FZF_OPTS=' --bind="ctrl-e:execute(echo {} |grep -Eo [a-f0-9]+ 
 # PATH="/opt/homebrew/opt/make/libexec/gnubin:$PATH"
 # PATH="/opt/homebrew/opt/gnu-tar/libexec/gnubin:$PATH"
 
-# [ -f "$HOME/.iterm2_shell_integration.bash" ] && source "$HOME/.iterm2_shell_integration.bash"
+[ -f "$HOME/.iterm2_shell_integration.bash" ] && source "$HOME/.iterm2_shell_integration.bash"
 
 source ~/.bash_completion/alacritty
 complete -C '/opt/homebrew/bin/aws_completer' aws
-
-# prompt show git status
-if [ -f "/opt/homebrew/opt/bash-git-prompt/share/gitprompt.sh" ]; then
-	__GIT_PROMPT_DIR="/opt/homebrew/opt/bash-git-prompt/share"
-	source "/opt/homebrew/opt/bash-git-prompt/share/gitprompt.sh"
-fi
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && . "/opt/homebrew/opt/nvm/nvm.sh"                                       # This loads nvm
@@ -74,3 +69,6 @@ export NVM_DIR="$HOME/.nvm"
 export _ZO_ECHO=1
 export _ZO_RESOLVE_SYMLINKS=1
 eval "$(zoxide init bash)"
+
+export MVN_HOME="$HOME/.sdkman/candidates/maven/current"
+export M2_HOME="$HOME/.sdkman/candidates/maven/current"

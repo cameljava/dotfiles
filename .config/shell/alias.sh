@@ -1,15 +1,16 @@
-# shellcheck shell=bash
 # add alias
+
+# alias bash='/opt/homebrew/bin/bash'
 
 alias s='source '
 # alias ls='/bin/ls -GFhl|cat'
 # alias ls='exa -alT --git -L 2 -I .git -I node_modules'
-alias li='exa -al --git-ignore'
+alias li='eza -al --git-ignore'
 alias cp='cp -iv'       # Preferred 'cp' implementation
 alias mv='mv -iv'       # Preferred 'mv' implementation
 alias mkdir='mkdir -pv' # Preferred 'mkdir' implementation
-alias l='exa -al -T -L 2 --git' # Preferred 'ls' implementation
-alias ll='exa -al --git' # Preferred 'ls' implementation
+alias l='eza -al -T -L 2 --git' # Preferred 'ls' implementation
+alias ll='eza -al --git' # Preferred 'ls' implementation
 # alias l='/bin/ls -FGlAhp|cat'                      # Preferred 'ls' implementation
 # alias less='less -FSRXc' # Preferred 'less' implementation
 alias fd='fd -H '
@@ -53,4 +54,5 @@ alias DT='tee ~/Desktop/terminalOut.txt'  # DT:           Pipe content to file o
 #git alias
 alias gs='git status'
 
+alias imgcat="tmux split-window -h 'cat > /dev/null; imgcat'"
 # alias icat='kitty +kitten icat'

@@ -1,0 +1,12 @@
+contexts:
+- name: admin
+  server: localhost:18080
+  user: admin
+current-context: admin
+servers:
+- grpc-web-root-path: ""
+  insecure: true
+  server: localhost:18080
+users:
+- auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhcmdvY2QiLCJzdWIiOiJhZG1pbjpsb2dpbiIsImV4cCI6MTczMjE0NjU0MywibmJmIjoxNzMyMDYwMTQzLCJpYXQiOjE3MzIwNjAxNDMsImp0aSI6ImQ1ZDYwM2I5LTUzMjEtNGZmZi1iMmQ4LTIzOTQzYWM5MzFlZCJ9.ZwESS0Ic91E-FY-s9yFjR9ppiEocKxjv9gnhga92cZA
+  name: admin

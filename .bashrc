@@ -106,3 +106,18 @@ source <(ng completion script)
 source <(kubectl completion bash) # set up autocomplete in bash into the current shell, bash-completion package should be installed first.
 alias k=kubectl
 complete -o default -F __start_kubectl k
+
+# Set up fzf key bindings and fuzzy completion
+eval "$(fzf --bash)"
+
+# https://egeek.me/2020/04/18/enabling-locate-on-osx/
+if which glocate > /dev/null; then
+  alias locate="glocate -d $HOME/locatedb"
+
+  # Using cache_list requires `LOCATE_PATH` environment var to exist in session.
+  # trouble shoot: `echo $LOCATE_PATH` needs to return db path.
+  [[ -f "$HOME/locatedb" ]] && export LOCATE_PATH="$HOME/locatedb"
+fi
+
+alias loaddb="gupdatedb --localpaths=$HOME --prunepaths=/Volumes --output=$HOME/locatedb"
+

@@ -82,6 +82,7 @@
   editor = nvim
   # Don't consider trailing space change as a cause for merge conflicts
   whitespace = -trailing-space
+	excludesfile = /Users/kevinlee/.gitignore_global
 [interactive]
   diffFilter = delta --color-only --features=interactive
 [delta]
