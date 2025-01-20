@@ -1,4 +1,12 @@
 return {
+  {
+    'tpope/vim-surround',
+    dependencies = { 'tpope/vim-repeat' }, -- Recommended for full dot-repeat support
+    lazy = false,                          -- Load immediately
+    config = function()
+      -- Optional configuration can be added here
+    end
+  },
   { -- Autoformat
     'stevearc/conform.nvim',
     event = { 'BufWritePre' },
