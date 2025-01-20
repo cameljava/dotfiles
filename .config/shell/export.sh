@@ -17,6 +17,7 @@ export PATH="$HOME/kdata/kbin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
 export PATH="/opt/homebrew/opt/findutils/libexec/gnubin:$PATH"
+export PATH="/Applications/Docker.app/Contents/Resources/bin:$PATH"
 
 
 
