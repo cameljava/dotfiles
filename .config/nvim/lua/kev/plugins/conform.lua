@@ -9,13 +9,12 @@ return {
   },
   { -- Autoformat
     'stevearc/conform.nvim',
-    event = { 'BufWritePre' },
-    cmd = { 'ConformInfo' },
+    lazy = false,
     keys = {
       {
         '<leader>f',
         function()
-          require('conform').format { async = true, lsp_fallback = true }
+          require('conform').format { async = true, noremap = true, silent = false, lsp_fallback = true }
         end,
         mode = '',
         desc = '[F]ormat buffer',
@@ -44,13 +43,39 @@ return {
         --
         -- You can use a sub-list to tell conform to run *until* a formatter
         -- is found.
-        javascript = { { 'prettierd', 'prettier' } },
+        javascript = { { 'prettier', 'prettierd' } },
+        html = { { 'prettier', 'prettierd' } },
+        css = { { 'prettier', 'prettierd' } },
+        json = {
+          function()
+            return {
+              exe = "jq",
+              args = { "." },
+              stdin = true,
+            }
+          end,
+        },
+        yaml = {
+          function()
+            return {
+              exe = "jq",
+              args = { "." },
+              stdin = true,
+            }
+          end,
+        },
+        xml = { 'xmllint' },
+        -- Use the "*" filetype to run formatters on all filetypes.
+        -- ["*"] = { "codespell" },
+        -- Use the "_" filetype to run formatters on filetypes that don't
+        -- have other formatters configured.
+        ["_"] = { "trim_whitespace" },
       },
     },
     config = function()
       require('conform').setup {}
       vim.api.nvim_create_user_command('Format', function()
-        require('conform').format { async = true, lsp_fallback = true }
+        require('conform').format { async = true, silent = false, lsp_fallback = true }
       end, {
         desc = 'format-command',
       })

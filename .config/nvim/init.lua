@@ -55,8 +55,8 @@ require("lazy").setup({ import = "kev/plugins" }, {
 
 -- vim.cmd [[colorscheme everforest]]
 -- vim.cmd [[colorscheme nord]]
-vim.cmd [[colorscheme catppuccin-macchiato]]
--- vim.cmd [[colorscheme tokyonight-storm]]
+--vim.cmd [[colorscheme catppuccin-macchiato]]
+vim.cmd [[colorscheme tokyonight-storm]]
 -- vim.cmd [[colorscheme nightfox]]
 
 -- The line beneath this is called `modeline`. See `:help modeline`
