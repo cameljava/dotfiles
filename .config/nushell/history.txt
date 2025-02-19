@@ -1,0 +1,145 @@
+pwd
+ls
+ls | sorted modified
+ls | sorted by modified
+ls | sort-by modified
+ls | sort-by name
+ls | sort-by size
+ls
+pwd
+b README.md
+bat pwd
+bat README.md
+ls
+http https://www.google.com
+curl http://www.google.com
+http
+http get https://api.github.com/repos/nushell/nushell | get license
+http get -h
+ls | sort-by size
+ls | sort-by size | reverse
+ls | sort-by size | reverse | select name
+ls | sort-by size | reverse
+ls | sort-by size | reverse | flat
+ls | sort-by size | reverse | flatten
+ls | sort-by size |  flatten
+ls | where modified> a day
+ls | where modified older a day
+ls | where modified older than a day
+ls
+ls -l
+pwd
+pwd | pycopy
+pwd | pbcopy
+which ls
+ls -l
+ls -l | select name, size
+ls -l | select name size
+ps
+ps | order-by mem
+ps | ordered-by mem
+ps | sort-by mem
+^ls
+^ls -al
+ls
+ps |describe
+ls 
+ls | sort-by size
+ls | sort-by size | reverse
+ls | sort-by size | reverse | first
+ls | sort-by size | reverse | first | flatter
+ls | sort-by size | reverse | first | flatten
+ls | sort-by size | reverse | second
+ls | sort-by size | reverse | last
+ls | sort-by size | reverse | first | cat $in
+ls | sort-by size | reverse | first | get name
+ls | sort-by size | reverse | first | get name | cat "$inAnd"
+ls | sort-by size | reverse | first | get name | echo "$inAnd"
+ls | sort-by size | reverse | first | get name | echo $in"And"
+ls | sort-by size | reverse | first | get name | echo $i
+ls | sort-by size | reverse | first | get name | echo $in
+ls | sort-by size | reverse | first | get name | cat $in
+ls
+ls | sort-by size  | first | get name | cat $in
+ls | sort-by size | first | get name | cat $in
+ls | sort-by name | first | get name | cat $in
+ls | sort-by name | explore
+$env.config | explore
+http get https://api.github.com/repos/nushell/nushell/contributors 
+http get https://api.github.com/repos/nushell/nushell/contributors | select login contributions
+http get https://api.github.com/repos/nushell/nushell/contributors | select login contributions | flatten
+"a" | into int
+"33" | into int
+date now
+date now | date to-timezone 'Europe/London'
+date now | date to-timezone 'Europe/Moscow'
+date now | date to-timezone 'Asia/Beijing'
+date now | date to-timezone 'Europe/Paris'
+date now | date to-timezone 'Europe/Berlin'
+date now | date to-timezone 'Europe/Rome'
+date now | date to-timezone 'Europe/Moscow'
+date now | date to-timezone 'America/NewYork'
+{'name': 'nu', 'stars': 5, 'language': 'Python'} 
+{'name': 'nu', 'stars': 5, 'language': 'Python'} | upsert language 'Rust'
+{'name': 'nu', 'stars': 5} | upsert language 'Rust'
+{'name': 'nu', 'stars': 5} | upsert language 'Rust' | flattern
+{'name': 'nu', 'stars': 5} | upsert language 'Rust' | flatter
+{'name': 'nu', 'stars': 5} | upsert language 'Rust' | flatten
+{'name': 'nu', 'stars': 5} | upsert language 'Rust' | flattern{'name': 'nu', 'stars': 5, 'language': 'Python'} | upsert language 'Rust'
+{'name': 'nu', 'stars': 5, 'language': 'Python'} | upsert language 'Rust'
+{'name': 'nu', 'stars': 5, 'language': 'Python'} | upsert language 'Rust'| flatten
+{'name': 'nu', 'stars': 5, 'language': 'Python'} | upsert language 'Rust'| flatten | to json
+{'name': 'nu', 'stars': 5, 'language': 'Python'} | upsert language 'Rust'
+{'name': 'nu', 'stars': 5, 'language': 'Python'} | upsert language 'Rust'| to json
+{'name': 'nu', 'stars': 5, 'language': 'Python'} | upsert language 'Rust'| flatten | to json
+{'name': 'nu', 'stars': 5, 'language': 'Python'} | upsert language 'Rust'| to yaml
+{'name': 'nu', 'stars': 5, 'language': 'Python'} | upsert language 'Rust'| to yaml | to json
+{'name': 'nu', 'stars': 5, 'language': 'Python'} | upsert language 'Rust'| to yaml
+{'name': 'nu', 'stars': 5, 'language': 'Python'} | upsert language 'Rust'| flatten | to yaml
+{'name': 'nu', 'stars': 5, 'language': 'Python'} | upsert language 'Rust'| flatten | to yaml | from yaml
+{'name': 'nu', 'stars': 5, 'language': 'Python'} | upsert language 'Rust'| flatten | to yaml | from yaml | to json
+{'name': 'nu', 'stars': 5, 'language': 'Python'} | upsert language 'Rust'
+{'name': 'nu', 'stars': 5, 'language': 'Python'} | upsert language 'Rust'|to yaml
+{'name': 'nu', 'stars': 5, 'language': 'Python'} | upsert language 'Rust'|to yaml|to json
+{'name': 'nu', 'stars': 5, 'language': 'Python'} | upsert language 'Rust'|to yaml|from yaml
+{'name': 'nu', 'stars': 5, 'language': 'Python'} | upsert language 'Rust'|to yaml|from yaml|to json
+{'name': 'nu', 'stars': 5, 'language': 'Python'} | upsert language 'Rust'|to yaml|from yaml|to json| to yaml
+{'name': 'nu', 'stars': 5, 'language': 'Python'} | upsert language 'Rust'|to yaml|from yaml|to json| from json
+{'name': 'nu', 'stars': 5, 'language': 'Python'} | upsert language 'Rust'|to yaml|from yaml|to json| from json| to yaml
+{'name': 'nu', 'stars': 5, 'language': 'Python'} | upsert language 'Rust'|to yaml|save tmp.yml
+ls
+n tmp.yml
+vim tmp.yml
+ls
+rm tmp.yml
+ls
+[one two three] | to yaml
+[one two three] | to json
+[[framework, language]; [Django, Python] [Laravel, PHP]]
+[[framework, language]; [Django, Python] [Laravel, PHP]] | to json
+[[framework, language]; [Django, Python] [Laravel, PHP]] | to yaml
+[{name: 'Robert' age: 34 position: 'Designer'}<\n> {name: 'Margaret' age: 30 position: 'Software Developer'}<\n> {name: 'Natalie' age: 50 position: 'Accountant'}<\n>] | select name position
+[{name: 'Robert' age: 34 position: 'Designer'}<\n> {name: 'Margaret' age: 30 position: 'Software Developer'}<\n> {name: 'Natalie' age: 50 position: 'Accountant'}<\n>] 
+[{name: 'Robert' age: 34 position: 'Designer'}<\n> {name: 'Margaret' age: 30 position: 'Software Developer'}<\n> {name: 'Natalie' age: 50 position: 'Accountant'}<\n>] | flatten
+let name = "Alice"<\n>$"greetings, ($name)!"<\n># => greetings, Alice!
+let string_list = "one,two,three" | split row ","<\n>$string_list<\n># => ╭───┬───────╮<\n># => │ 0 │ one   │<\n># => │ 1 │ two   │<\n># => │ 2 │ three │<\n># => ╰───┴───────╯
+let string_list = "one,two,three" | split row ","<\n>$string_list<\n># => ╭───┬───────╮<\n># => │ 0 │ one   │<\n># => │ 1 │ two   │<\n># => │ 2 │ three │<\n># => ╰───┴───────╯ | to yaml
+let string_list = "one,two,three" | split row ","<\n>$string_list<\n># => ╭───┬───────╮<\n># => │ 0 │ one   │<\n># => │ 1 │ two   │<\n># => │ 2 │ three │<\n># => ╰───┴───────╯ 
+let string_list = "one,two,three" | split row ","<\n>$string_list<\n># => ╭───┬───────╮<\n># => │ 0 │ one   │<\n># => │ 1 │ two   │<\n># => │ 2 │ three │<\n># => ╰───┴───────╯ | to json
+let string_list = "one,two,three" | split row ","| to json
+"hellow workd" | str contains "kd"
+let str_list = [zero one two]
+$str_list | str join '-'
+"hellow workd" | parse '{1} {2}'
+$'(ansi purple_bold)This text is a bold purple!(ansi reset)'<\n># => This text is a bold purple!
+"acronym,long\nAPL,A Programming Language" | from csv<\n># => ╭───┬─────────┬────────────────────────╮<\n># => │ # │ acronym │          long          │<\n># => ├───┼─────────┼────────────────────────┤<\n># => │ 0 │ APL     │ A Programming Language │<\n># => ╰───┴─────────┴────────────────────────╯
+[{name: 'Robert' age: 34 position: 'Designer'}<\n> {name: 'Margaret' age: 30 position: 'Software Developer'}<\n> {name: 'Natalie' age: 50 position: 'Accountant'}<\n>] | select name position
+[{name: 'Robert' age: 34 position: 'Designer'}<\n> {name: 'Margaret' age: 30 position: 'Software Developer'}<\n> {name: 'Natalie' age: 50 position: 'Accountant'}<\n>] 
+[{name: 'Robert' age: 34 position: 'Designer'}<\n> {name: 'Margaret' age: 30 position: 'Software Developer'}<\n> {name: 'Natalie' age: 50 position: 'Accountant'}<\n>] | to json
+[{name: 'Robert' age: 34 position: 'Designer'}<\n> {name: 'Margaret' age: 30 position: 'Software Developer'}<\n> {name: 'Natalie' age: 50 position: 'Accountant'}<\n>] | select name position
+[[name age position]; [ Robert 34  Designer ] [Margaret 30 'Software Developer'] [Natalie 50 Accountant]] 
+start README.md
+EVN
+ENV
+ENV | grep editor
+ls
