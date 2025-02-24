@@ -11,3 +11,4 @@ node_modules/
 Session.vim
 .config/nvim/plugin/packer_compiled.lua
 .config/zed/
+.config/nushell/history.txt
