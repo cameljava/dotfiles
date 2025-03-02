@@ -11,6 +11,36 @@ vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
 vim.g.loaded_python3_provider = 0
 
+-- Function to set indentation based on file type
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "go", "make" },
+  callback = function()
+    vim.opt_local.expandtab = false   -- Use tabs
+    vim.opt_local.tabstop = 4
+    vim.opt_local.shiftwidth = 4
+    vim.opt_local.softtabstop = 4
+  end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "python", "typescript", "javascript", "c", "cpp", "java" },
+  callback = function()
+    vim.opt_local.expandtab = true    -- Use spaces
+    vim.opt_local.tabstop = 4
+    vim.opt_local.shiftwidth = 4
+    vim.opt_local.softtabstop = 4
+  end,
+})
+
+-- Auto-detect indentation for other files (except Makefiles)
+vim.api.nvim_create_autocmd("BufReadPost", {
+  callback = function()
+    if vim.bo.filetype ~= "make" then
+      vim.opt_local.expandtab = true
+    end
+  end,
+})
+
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
 if not vim.uv.fs_stat(lazypath) then
   vim.fn.system {
