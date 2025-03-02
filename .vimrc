@@ -566,3 +566,11 @@ endif
 " Gui vim setting
 " map <silent> <C-F2> :if &guioptions =~# 'T' <Bar>  set guioptions-=T <Bar>  set guioptions-=m <bar>  else <Bar>  set guioptions+=T <Bar> set guioptions+=m <Bar> endif<CR>
 
+" Use tabs for Go and Makefiles
+autocmd FileType go,make setlocal noexpandtab tabstop=4 shiftwidth=4 softtabstop=4
+
+" Use spaces for Python, JavaScript, TypeScript, C, Java
+autocmd FileType python,typescript,javascript,c,cpp,java setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
+
+" Enable auto-detection of indentation
+autocmd BufReadPost * if &filetype != "make" | setlocal expandtab | endif
