@@ -17,8 +17,9 @@ export PATH="$HOME/kdata/kbin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
 export PATH="/opt/homebrew/opt/findutils/libexec/gnubin:$PATH"
+export PATH="/opt/homebrew/opt/grep/libexec/gnubin:$PATH"
 export PATH="/Applications/Docker.app/Contents/Resources/bin:$PATH"
-
+export PATH="/Applications/IntelliJ IDEA.app/Contents/MacOS:$PATH"
 
 
 ####### bash
@@ -66,10 +67,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && . "/opt/homebrew/opt/nvm/nvm.sh"                                       # This loads nvm
 [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && . "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" # This loads nvm bash_completion
 
-# add zoxide to shell
-export _ZO_ECHO=1
-export _ZO_RESOLVE_SYMLINKS=1
-eval "$(zoxide init bash)"
-
 export MVN_HOME="$HOME/.sdkman/candidates/maven/current"
 export M2_HOME="$HOME/.sdkman/candidates/maven/current"
+
