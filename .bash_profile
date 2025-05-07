@@ -4,10 +4,15 @@ ulimit -n 65536 200000
 
 ssh-add --apple-use-keychain ~/.ssh/id_ed25519
 
-########## include .bashrc if it exists
-if [ -f "$HOME/.bashrc" ]; then
-  . "$HOME/.bashrc"
-fi
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+. "$HOME/.config/shell/export.sh"
+. "$HOME/.config/shell/alias.sh"
+. "$HOME/.config/shell/function.sh"
+
+
+# shellcheck shell=bash
+
 
 #if [ -r ~/.kNonePublic ]
 #then
@@ -17,9 +22,6 @@ fi
 #export DOTNET_CLI_TELEMETRY_OPTOUT=true
 #export SAM_CLI_TELEMETRY=0
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-#export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
 
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
@@ -38,4 +40,11 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
+
+export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
+
+########## include .bashrc if it exists
+if [ -f "$HOME/.bashrc" ]; then
+  . "$HOME/.bashrc"
+fi
 

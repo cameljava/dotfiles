@@ -1,7 +1,3 @@
-# shellcheck shell=bash
-
-eval "$(/opt/homebrew/bin/brew shellenv)"
-
 # [ -s "/usr/local/etc/bash_completion.d/pass" ] && \. "/usr/local/etc/bash_completion.d/pass" # This loads pass bash_completion
 
 # export XML_CATALOG_FILES="/usr/local/etc/xml/catalog"
@@ -93,12 +89,6 @@ shopt -s cdable_vars
 # export documents="$HOME/Documents"
 # export dropbox="$HOME/Dropbox"
 
-. "$HOME/.config/shell/export.sh"
-. "$HOME/.config/shell/alias.sh"
-. "$HOME/.config/shell/function.sh"
-
-
-
 # Load Angular CLI autocompletion.
 source <(ng completion script)
 
@@ -121,3 +111,16 @@ fi
 
 alias loaddb="gupdatedb --localpaths=$HOME --prunepaths=/Volumes --output=$HOME/locatedb"
 
+
+# Added by Windsurf
+export PATH="/Users/kevinlee/.codeium/windsurf/bin:$PATH"
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+# >>> zoxide initialization
+export _ZO_ECHO=1
+export _ZO_RESOLVE_SYMLINKS=1
+eval "$(zoxide init bash)"
+# <<< zoxide initialization
