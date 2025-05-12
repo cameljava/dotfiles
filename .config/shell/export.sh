@@ -20,6 +20,7 @@ export PATH="/opt/homebrew/opt/findutils/libexec/gnubin:$PATH"
 export PATH="/opt/homebrew/opt/grep/libexec/gnubin:$PATH"
 export PATH="/Applications/Docker.app/Contents/Resources/bin:$PATH"
 export PATH="/Applications/IntelliJ IDEA.app/Contents/MacOS:$PATH"
+export PATH="/Applications/WebStorm.app/Contents/MacOS:$PATH"
 
 
 ####### bash
