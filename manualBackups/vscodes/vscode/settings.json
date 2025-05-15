@@ -1,0 +1,31 @@
+{
+    "git.openRepositoryInParentFolders": "always",
+    "workbench.colorTheme": "Solarized Light",
+    "terminal.integrated.defaultProfile.osx": "bash",
+    "redhat.telemetry.enabled": false,
+    "yaml.schemas": {
+        "file:///Users/kevinlee/.vscode/extensions/docsmsft.docs-yaml-1.0.5/dist/toc.schema.json": "/toc\\.yml/i"
+    },
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+    "[python]": {
+    "editor.tabSize": 2,
+    "editor.insertSpaces": false
+},
+"editor.renderWhitespace": "all",
+"extensions.experimental.affinity": {
+    "asvetliakov.vscode-neovim": 1
+},
+"sessionizer.sessionRoots": [
+    "~/kgit",
+    "~/kdata"
+],
+"[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+},
+"jar-viewer-and-decompiler.cfrPath": "/Users/kevinlee/kgit/localInstalled/jars/cfr-0.152.jar",
+"[yaml]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+},
+"workbench.settings.openDefaultKeybindings": true
+}
