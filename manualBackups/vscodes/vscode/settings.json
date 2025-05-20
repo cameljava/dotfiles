@@ -27,5 +27,7 @@
 "[yaml]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
 },
-"workbench.settings.openDefaultKeybindings": true
+"workbench.settings.openDefaultKeybindings": true,
+"vscode-neovim.neovimExecutablePaths.darwin": "/opt/homebrew/bin/nvim",
+"vscode-neovim.neovimInitVimPaths.darwin": "/Users/kevinlee/.config/nvim/init.lua"
 }

@@ -38,7 +38,7 @@
         "scminput": false
     },
     "workbench.editor.enablePreview": false,
-    "workbench.colorTheme": "Solarized Light",
+    "workbench.colorTheme": "Catppuccin Frappé",
     "terminal.integrated.scrollback": 10000,
     "yaml2json.yamlIndentationSpaces": 2,
     "database-client.autoSync": true,
@@ -49,5 +49,11 @@
     "[xml]": {
         "editor.defaultFormatter": "redhat.vscode-xml"
     },
-    "workbench.settings.applyToAllProfiles": []
+    "workbench.settings.applyToAllProfiles": [],
+    "gitlens.launchpad.indicator.enabled": false,
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "vscode-neovim.neovimExecutablePaths.darwin": "/opt/homebrew/bin/nvim",
+    "vscode-neovim.neovimInitVimPaths.darwin": "/Users/kevinlee/.config/nvim/init.lua"
 }
