@@ -31,14 +31,18 @@ export PATH="/Applications/WebStorm.app/Contents/MacOS:$PATH"
 # install rust using rustup, instead of brew
 . "$HOME/.cargo/env"
 
+export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
+export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
+
 #eval "$(rbenv init -)"
 #export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 #export GEM_HOME="$HOME/.gem"
 
-# pyenv for python
+# pyenv for pythons
 export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - bash)"
+eval "$(pyenv virtualenv-init -)"
 
 # fzf settings
 # shellcheck source=/dev/null
