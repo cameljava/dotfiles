@@ -119,6 +119,8 @@ export PATH="/Users/kevinlee/.codeium/windsurf/bin:$PATH"
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
+[[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path bash)"
+
 # >>> zoxide initialization
 export _ZO_ECHO=1
 export _ZO_RESOLVE_SYMLINKS=1
