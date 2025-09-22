@@ -5,6 +5,16 @@
 # tmp set default profile to kev. turn it off when having cochlear
 #export AWS_DEFAULT_PROFILE=kev
 
+ulimit -n 65536 200000
+
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+complete -C /opt/homebrew/bin/terraform terraform
+
+. "$HOME/.config/shell/export.sh"
+. "$HOME/.config/shell/alias.sh"
+. "$HOME/.config/shell/function.sh"
+
 # Update window size after every command
 shopt -s checkwinsize
 
@@ -101,7 +111,7 @@ complete -o default -F __start_kubectl k
 eval "$(fzf --bash)"
 
 # https://egeek.me/2020/04/18/enabling-locate-on-osx/
-if which glocate > /dev/null; then
+if which glocate >/dev/null; then
   alias locate="glocate -d $HOME/locatedb"
 
   # Using cache_list requires `LOCATE_PATH` environment var to exist in session.
@@ -111,7 +121,6 @@ fi
 
 alias loaddb="gupdatedb --localpaths=$HOME --prunepaths=/Volumes --output=$HOME/locatedb"
 
-
 # Added by Windsurf
 export PATH="/Users/kevinlee/.codeium/windsurf/bin:$PATH"
 
@@ -120,6 +129,7 @@ export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 [[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path bash)"
+export AWS_SESSION_MANAGER_PLUGIN_PATH="/opt/homebrew/bin/session-manager-plugin"
 
 # >>> zoxide initialization
 export _ZO_ECHO=1
