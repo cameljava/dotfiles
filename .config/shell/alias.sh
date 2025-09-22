@@ -6,11 +6,11 @@ alias s='source '
 # alias ls='/bin/ls -GFhl|cat'
 # alias ls='exa -alT --git -L 2 -I .git -I node_modules'
 alias li='eza -al --git-ignore'
-alias cp='cp -iv'       # Preferred 'cp' implementation
-alias mv='mv -iv'       # Preferred 'mv' implementation
-alias mkdir='mkdir -pv' # Preferred 'mkdir' implementation
+alias cp='cp -iv'               # Preferred 'cp' implementation
+alias mv='mv -iv'               # Preferred 'mv' implementation
+alias mkdir='mkdir -pv'         # Preferred 'mkdir' implementation
 alias l='eza -al -T -L 2 --git' # Preferred 'ls' implementation
-alias ll='eza -al --git' # Preferred 'ls' implementation
+alias ll='eza -al --git'        # Preferred 'ls' implementation
 # alias l='/bin/ls -FGlAhp|cat'                      # Preferred 'ls' implementation
 # alias less='less -FSRXc' # Preferred 'less' implementation
 alias fd='fd -H '
@@ -56,3 +56,6 @@ alias gs='git status'
 
 alias imgcat="tmux split-window -h 'cat > /dev/null; imgcat'"
 # alias icat='kitty +kitten icat'
+
+alias python=python3
+alias pip=pip3

@@ -14,12 +14,12 @@ function y() {
 # tre() { command tre "$@" -e && source "/tmp/tre_aliases_$USER" 2>/dev/null; }
 
 dirdiff() {
-	# Shell-escape each path:
-	DIR1=$(printf '%q' "$1")
-	shift
-	DIR2=$(printf '%q' "$1")
-	shift
-	vim "$@" -c "DirDiff $DIR1 $DIR2"
+  # Shell-escape each path:
+  DIR1=$(printf '%q' "$1")
+  shift
+  DIR2=$(printf '%q' "$1")
+  shift
+  vim "$@" -c "DirDiff $DIR1 $DIR2"
 }
 
 mcd() { mkdir -p "$1" && cd "$1"; } # mcd: Makes new Dir and jumps inside
@@ -29,14 +29,14 @@ ql() { qlmanage -p "$*" >&/dev/null; } # ql:           Opens any file in MacOS Q
 function fzf-cd() {
   local dir
   dir=$(find ${1:-.} -path '*/\.*' -prune \
-                  -o -type d -print 2> /dev/null | fzf +m) &&
-  cd "$dir"
+    -o -type d -print 2>/dev/null | fzf +m) &&
+    cd "$dir"
   ls
 }
 
 function fzf-cd-incl-hidden() {
   local dir
-  dir=$(find ${1:-.} -type d 2> /dev/null | fzf +m) && cd "$dir"
+  dir=$(find ${1:-.} -type d 2>/dev/null | fzf +m) && cd "$dir"
   ls
 }
 
@@ -51,34 +51,33 @@ function fzf-rm() {
 }
 
 function fzf-aliases-functions() {
-    CMD=$(
-        (
-            (alias)
-            (functions | grep "()" | cut -d ' ' -f1 | grep -v "^_" )
-        ) | fzf | cut -d '=' -f1
-    );
+  CMD=$(
+    (
+      (alias)
+      (functions | grep "()" | cut -d ' ' -f1 | grep -v "^_")
+    ) | fzf | cut -d '=' -f1
+  )
 
-    eval $CMD
+  eval $CMD
 }
 
-function fzf-find-files(){
+function fzf-find-files() {
   local file=$(fzf --multi --reverse) #get file from fzf
   if [[ $file ]]; then
-     IFS=$'\n' read -r -d '' -a files <<< "$file"
-     for prog in "${files[@]}"
-      do
-       $EDITOR "$prog"
-      done
+    IFS=$'\n' read -r -d '' -a files <<<"$file"
+    for prog in "${files[@]}"; do
+      $EDITOR "$prog"
+    done
   else
     echo "cancelled fzf"
   fi
 }
 
 function fzf-cd-to-file() {
-   local file
-   local dir
-   file=$(fzf +m -q "$1") && dir=$(dirname "$file") && cd "$dir"
-   ls
+  local file
+  local dir
+  file=$(fzf +m -q "$1") && dir=$(dirname "$file") && cd "$dir"
+  ls
 }
 
 function fzf-cd-to-parent() {
@@ -106,43 +105,58 @@ function fzf-kill-processes() {
   local pid
   pid=$(ps -ef | sed 1d | fzf -m | awk '{print $2}')
 
-  if [ "x$pid" != "x" ]
-  then
+  if [ "x$pid" != "x" ]; then
     echo $pid | xargs kill -${1:-9}
   fi
 }
 
 fzf-git-status() {
-    git rev-parse --git-dir > /dev/null 2>&1 || { echo "You are not in a git repository" && return; }
-    local selected
-    selected=$(git -c color.status=always status --short | fzf --height 50% "$@" --border -m --ansi --nth 2..,.. \
-        --preview '(git diff --color=always -- {-1} | sed 1,4d; cat {-1}) | head -500' | cut -c4- | sed 's/.* -> //')
-            if [[ $selected ]]; then
-              IFS=$'\n' read -r -d '' -a files <<< "$selected"
-              for prog in "${files[@]}"
-              do
-                $EDITOR "$prog"
-              done
-            fi
+  git rev-parse --git-dir >/dev/null 2>&1 || { echo "You are not in a git repository" && return; }
+  local selected
+  selected=$(git -c color.status=always status --short | fzf --height 50% "$@" --border -m --ansi --nth 2..,.. \
+    --preview '(git diff --color=always -- {-1} | sed 1,4d; cat {-1}) | head -500' | cut -c4- | sed 's/.* -> //')
+  if [[ $selected ]]; then
+    IFS=$'\n' read -r -d '' -a files <<<"$selected"
+    for prog in "${files[@]}"; do
+      $EDITOR "$prog"
+    done
+  fi
 }
 
-fzf-checkout(){
-    if git rev-parse --git-dir > /dev/null 2>&1; then
-        if [[ "$#" -eq 0 ]]; then
-            local branches branch
-            branches=$(git branch -a) &&
-            branch=$(echo "$branches" |
-            fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
-            git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
-        elif [ `git rev-parse --verify --quiet $*` ] || \
-             [ `git branch --remotes | grep  --extended-regexp "^[[:space:]]+origin/${*}$"` ]; then
-            echo "Checking out to existing branch"
-            git checkout "$*"
-        else
-            echo "Creating new branch"
-            git checkout -b "$*"
-        fi
+fzf-checkout() {
+  if git rev-parse --git-dir >/dev/null 2>&1; then
+    if [[ "$#" -eq 0 ]]; then
+      local branches branch
+      branches=$(git branch -a) &&
+        branch=$(echo "$branches" |
+          fzf-tmux -d $((2 + $(wc -l <<<"$branches"))) +m) &&
+        git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
+    elif [ $(git rev-parse --verify --quiet $*) ] ||
+      [ $(git branch --remotes | grep --extended-regexp "^[[:space:]]+origin/${*}$") ]; then
+      echo "Checking out to existing branch"
+      git checkout "$*"
     else
-        echo "Can't check out or create branch. Not in a git repo"
+      echo "Creating new branch"
+      git checkout -b "$*"
     fi
+  else
+    echo "Can't check out or create branch. Not in a git repo"
+  fi
+}
+
+# ------------------------------------------------------------
+# ossh: SSH into a host non-interactively
+# Usage:
+#   ssh_no_prompt user@host "command to run"
+# ------------------------------------------------------------
+ossh() {
+  local target="$1"
+  local cmd="$2"
+  local key_path="${SSH_KEY_PATH:-$HOME/.ssh/id_ed25519}" # default key
+
+  ssh -o StrictHostKeyChecking=no \
+    -o UserKnownHostsFile=/dev/null \
+    -i "$key_path" \
+    "$target" \
+    "$cmd"
 }

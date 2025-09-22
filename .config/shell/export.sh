@@ -1,6 +1,5 @@
 ################################# terminal config ####################
 # export PS1="$ "
-export PS1='\[\e[0;$(($?==0?0:91))m\]$ \[\e[0m\]'
 export SHELL="/opt/homebrew/bin/bash"
 
 export PAGER="less"
@@ -24,7 +23,6 @@ export PATH="/Applications/IntelliJ IDEA.app/Contents/MacOS:$PATH"
 export PATH="/Applications/WebStorm.app/Contents/MacOS:$PATH"
 export PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
 
-
 ####### bash
 [[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
 
@@ -40,10 +38,10 @@ export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
 #export GEM_HOME="$HOME/.gem"
 
 # pyenv for pythons
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init - bash)"
-eval "$(pyenv virtualenv-init -)"
+# export PYENV_ROOT="$HOME/.pyenv"
+# [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+# eval "$(pyenv init - bash)"
+# eval "$(pyenv virtualenv-init -)"
 
 # fzf settings
 # shellcheck source=/dev/null
@@ -54,7 +52,6 @@ export FZF_DEFAULT_COMMAND="rg --files --no-ignore-vcs --hidden --follow --glob 
 
 ######### add vsCode
 export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
-
 
 # setting for forgit
 [ -f $HOMEBREW_PREFIX/share/forgit/forgit.plugin.sh ] && source $HOMEBREW_PREFIX/share/forgit/forgit.plugin.sh
@@ -76,4 +73,3 @@ export NVM_DIR="$HOME/.nvm"
 
 export MVN_HOME="$HOME/.sdkman/candidates/maven/current"
 export M2_HOME="$HOME/.sdkman/candidates/maven/current"
-
